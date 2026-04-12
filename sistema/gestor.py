@@ -14,14 +14,35 @@ class SistemaVoluntariado:
         self.voluntarios: List[Voluntario] = []
         self.entidades: List[Entidade] = []
         self.acoes: List[Acao] = []
+        self.ods_catalogo: List[Dict[str, Any]] = []
+        self.inscricoes: List[Inscricao] = []
+        self.presencas: List[Dict[str, Any]] = []
 
     # ==========================================
     # OR02 - LEITURA E ESCRITA DE DADOS (JSON)
     # ==========================================
     
     def carregar_sistema(self, caminho_json: str) -> None:
-        """Carrega os dados iniciais do JSON para as listas de objetos (OR02)."""
-        dados = BaseDados.carregar_dados(caminho_json)
+        """Carrega os dados iniciais para as listas de objetos (OR02)."""
+        if os.path.isdir(caminho_json):
+            dados = self._carregar_de_pasta_json(caminho_json)
+        else:
+            dados = BaseDados.carregar_dados(caminho_json)
+
+            # Fallback: se dataset_completo estiver vazio/incompleto,
+            # tenta reconstruir a partir dos ficheiros separados.
+            pasta = os.path.dirname(caminho_json)
+            if (
+                os.path.basename(caminho_json) == "dataset_completo.json"
+                and (
+                    not dados.get("acoes")
+                    or not dados.get("voluntarios")
+                    or not dados.get("entidades")
+                )
+            ):
+                dados_pasta = self._carregar_de_pasta_json(pasta)
+                if dados_pasta.get("voluntarios") or dados_pasta.get("entidades") or dados_pasta.get("acoes"):
+                    dados = dados_pasta
 
         if not dados:
             print("Iniciando o sistema com a base de dados vazia.")
@@ -30,6 +51,10 @@ class SistemaVoluntariado:
         self.voluntarios = [self._desserializar_voluntario(v) for v in dados.get("voluntarios", [])]
         self.entidades = [self._desserializar_entidade(e) for e in dados.get("entidades", [])]
         self.acoes = [self._desserializar_acao(a) for a in dados.get("acoes", [])]
+        self.ods_catalogo = dados.get("ods_catalogo", [])
+        self.presencas = dados.get("presencas", [])
+        self.inscricoes = []
+        self._reconstruir_inscricoes(dados.get("inscricoes", []))
         print("Base de dados JSON encontrada e carregada com sucesso.")
 
     def guardar_sistema(self, caminho_json: str) -> None:
@@ -37,19 +62,70 @@ class SistemaVoluntariado:
         dados_exportar = {
             "voluntarios": [self._serializar_voluntario(v) for v in self.voluntarios],
             "entidades": [self._serializar_entidade(e) for e in self.entidades],
-            "acoes": [self._serializar_acao(a) for a in self.acoes]
+            "acoes": [self._serializar_acao(a) for a in self.acoes],
+            "ods_catalogo": self.ods_catalogo,
+            "inscricoes": [self._serializar_inscricao(i) for i in self.inscricoes],
+            "presencas": self.presencas,
         }
+        if os.path.isdir(caminho_json):
+            self._guardar_em_pasta_json(caminho_json, dados_exportar)
+            return
         BaseDados.guardar_dados(caminho_json, dados_exportar)
+
+    def _carregar_de_pasta_json(self, pasta_json: str) -> Dict[str, Any]:
+        """Carrega dados dos ficheiros JSON separados na pasta de dados."""
+        voluntarios = BaseDados.carregar_dados(os.path.join(pasta_json, "voluntarios.json"))
+        entidades = BaseDados.carregar_dados(os.path.join(pasta_json, "entidades.json"))
+        acoes = BaseDados.carregar_dados(os.path.join(pasta_json, "acoes.json"))
+        ods_catalogo = BaseDados.carregar_dados(os.path.join(pasta_json, "ods_catalogo.json"))
+        inscricoes = BaseDados.carregar_dados(os.path.join(pasta_json, "inscricoes.json"))
+        presencas = BaseDados.carregar_dados(os.path.join(pasta_json, "presencas.json"))
+
+        if not isinstance(voluntarios, list):
+            voluntarios = []
+        if not isinstance(entidades, list):
+            entidades = []
+        if not isinstance(acoes, list):
+            acoes = []
+        if not isinstance(ods_catalogo, list):
+            ods_catalogo = []
+        if not isinstance(inscricoes, list):
+            inscricoes = []
+        if not isinstance(presencas, list):
+            presencas = []
+
+        return {
+            "voluntarios": voluntarios,
+            "entidades": entidades,
+            "acoes": acoes,
+            "ods_catalogo": ods_catalogo,
+            "inscricoes": inscricoes,
+            "presencas": presencas,
+        }
+
+    def _guardar_em_pasta_json(self, pasta_json: str, dados_exportar: Dict[str, Any]) -> None:
+        """Guarda dados nos ficheiros JSON individuais e no consolidado."""
+        BaseDados.guardar_dados(os.path.join(pasta_json, "voluntarios.json"), dados_exportar["voluntarios"])
+        BaseDados.guardar_dados(os.path.join(pasta_json, "entidades.json"), dados_exportar["entidades"])
+        BaseDados.guardar_dados(os.path.join(pasta_json, "acoes.json"), dados_exportar["acoes"])
+        BaseDados.guardar_dados(os.path.join(pasta_json, "ods_catalogo.json"), dados_exportar["ods_catalogo"])
+        BaseDados.guardar_dados(os.path.join(pasta_json, "inscricoes.json"), dados_exportar["inscricoes"])
+        BaseDados.guardar_dados(os.path.join(pasta_json, "presencas.json"), dados_exportar["presencas"])
+        BaseDados.guardar_dados(os.path.join(pasta_json, "dataset_completo.json"), dados_exportar)
 
     def _serializar_voluntario(self, voluntario: Voluntario) -> Dict[str, Any]:
         """Converte um objeto Voluntario para dicionário JSON-serializável."""
         return {
+            "voluntario_id": getattr(voluntario, "voluntario_id", None),
             "nome": voluntario.nome,
             "curso": voluntario.curso,
             "faculdade": voluntario.faculdade,
-            "vinculo": voluntario.vinculo,
+            "vinculo_institucional": voluntario.vinculo,
             "ano": voluntario.ano,
-            "competencias": voluntario.competencias,
+            "competencias": [
+                {"competencia": nome, "nivel": nivel}
+                for nome, nivel in voluntario.competencias.items()
+            ],
             "interesses": voluntario.interesses,
             "ods_interesse": voluntario.ods_interesse,
         }
@@ -57,38 +133,45 @@ class SistemaVoluntariado:
     def _serializar_entidade(self, entidade: Entidade) -> Dict[str, Any]:
         """Converte um objeto Entidade para dicionário JSON-serializável."""
         return {
+            "entidade_id": getattr(entidade, "entidade_id", None),
             "nome": entidade.nome,
             "tipo": entidade.tipo,
-            "area": entidade.area,
+            "area_intervencao": entidade.area,
             "localizacao": entidade.localizacao,
             "url": entidade.url,
             "tags": entidade.tags,
-            "ods_foco": entidade.ods_foco,
+            "ods_principais": [{"ods_id": ods} for ods in entidade.ods_foco],
         }
 
     def _serializar_acao(self, acao: Acao) -> Dict[str, Any]:
         """Converte um objeto Acao para dicionário JSON-serializável."""
         return {
+            "acao_id": getattr(acao, "acao_id", None),
             "titulo": acao.titulo,
-            "entidade": acao.entidade,
+            "entidade_id": getattr(acao, "entidade_id", None),
+            "entidade_nome": acao.entidade,
             "area": acao.area,
             "data_hora": acao.data_hora,
-            "duracao": acao.duracao,
+            "duracao_horas": acao.duracao,
             "vagas": acao.vagas,
             "localizacao": acao.localizacao,
             "estado": acao.estado,
             "metrica_impacto": acao.metrica_impacto,
-            "competencias_desejadas": acao.competencias_desejadas,
-            "ods_associados": acao.ods_associados,
-            "inscricoes_aprovadas": [
-                {
-                    "voluntario": inscricao.voluntario,
-                    "acao": inscricao.acao,
-                    "data_hora_inscricao": inscricao.data_hora_inscricao,
-                    "estado": inscricao.estado,
-                }
-                for inscricao in acao.inscricoes_aprovadas
+            "competencias_desejadas": [
+                {"competencia": nome, "nivel_minimo": nivel}
+                for nome, nivel in acao.competencias_desejadas.items()
             ],
+            "ods_associados": [{"ods_id": ods} for ods in acao.ods_associados],
+        }
+
+    def _serializar_inscricao(self, inscricao: Inscricao) -> Dict[str, Any]:
+        """Converte uma inscrição para dicionário serializável."""
+        return {
+            "inscricao_id": getattr(inscricao, "inscricao_id", None),
+            "voluntario_id": getattr(inscricao, "voluntario_id", None),
+            "acao_id": getattr(inscricao, "acao_id", None),
+            "data_hora_inscricao": inscricao.data_hora_inscricao,
+            "estado": inscricao.estado,
         }
 
     def _desserializar_voluntario(self, dados: Dict[str, Any]) -> Voluntario:
@@ -97,10 +180,17 @@ class SistemaVoluntariado:
             nome=dados.get("nome", ""),
             curso=dados.get("curso", ""),
             faculdade=dados.get("faculdade", ""),
-            vinculo=dados.get("vinculo", ""),
+            vinculo=dados.get("vinculo_institucional", dados.get("vinculo", "")),
             ano=dados.get("ano"),
         )
-        voluntario.competencias = dados.get("competencias", {})
+        voluntario.voluntario_id = dados.get("voluntario_id")
+        competencias = dados.get("competencias", {})
+        if isinstance(competencias, list):
+            voluntario.competencias = {
+                c.get("competencia", ""): c.get("nivel", 0) for c in competencias
+            }
+        else:
+            voluntario.competencias = competencias
         voluntario.interesses = dados.get("interesses", [])
         voluntario.ods_interesse = dados.get("ods_interesse", [])
         return voluntario
@@ -110,38 +200,81 @@ class SistemaVoluntariado:
         entidade = Entidade(
             nome=dados.get("nome", ""),
             tipo=dados.get("tipo", ""),
-            area=dados.get("area", ""),
+            area=dados.get("area_intervencao", dados.get("area", "")),
             localizacao=dados.get("localizacao", ""),
             url=dados.get("url"),
         )
+        entidade.entidade_id = dados.get("entidade_id")
         entidade.tags = dados.get("tags", [])
-        entidade.ods_foco = dados.get("ods_foco", [])
+        ods_principais = dados.get("ods_principais", dados.get("ods_foco", []))
+        if ods_principais and isinstance(ods_principais[0], dict):
+            entidade.ods_foco = [item.get("ods_id") for item in ods_principais if item.get("ods_id")]
+        else:
+            entidade.ods_foco = ods_principais
         return entidade
 
     def _desserializar_acao(self, dados: Dict[str, Any]) -> Acao:
         """Converte um dicionário para objeto Acao."""
         acao = Acao(
             titulo=dados.get("titulo", ""),
-            entidade=dados.get("entidade", ""),
+            entidade=dados.get("entidade_nome", dados.get("entidade", "")),
             data_hora=dados.get("data_hora", ""),
-            duracao=dados.get("duracao", 0),
+            duracao=dados.get("duracao_horas", dados.get("duracao", 0)),
             vagas=dados.get("vagas", 0),
             localizacao=dados.get("localizacao", ""),
             area=dados.get("area", ""),
         )
+        acao.acao_id = dados.get("acao_id")
+        acao.entidade_id = dados.get("entidade_id")
         acao.estado = dados.get("estado", "planeada")
         acao.metrica_impacto = dados.get("metrica_impacto", 0.0)
-        acao.competencias_desejadas = dados.get("competencias_desejadas", {})
-        acao.ods_associados = dados.get("ods_associados", [])
-        for item in dados.get("inscricoes_aprovadas", []):
+        comp = dados.get("competencias_desejadas", {})
+        if isinstance(comp, list):
+            acao.competencias_desejadas = {
+                c.get("competencia", ""): c.get("nivel_minimo", 0) for c in comp
+            }
+        else:
+            acao.competencias_desejadas = comp
+        ods = dados.get("ods_associados", [])
+        if ods and isinstance(ods[0], dict):
+            acao.ods_associados = [item.get("ods_id") for item in ods if item.get("ods_id")]
+        else:
+            acao.ods_associados = ods
+        return acao
+
+    def _reconstruir_inscricoes(self, inscricoes_dados: List[Dict[str, Any]]) -> None:
+        """Reconstrói inscrições e liga-as às ações corretas (fila/aprovadas)."""
+        voluntarios_por_id = {
+            getattr(v, "voluntario_id", None): v for v in self.voluntarios if getattr(v, "voluntario_id", None)
+        }
+        acoes_por_id = {
+            getattr(a, "acao_id", None): a for a in self.acoes if getattr(a, "acao_id", None)
+        }
+
+        for item in inscricoes_dados:
+            voluntario_id = item.get("voluntario_id")
+            acao_id = item.get("acao_id")
+            acao = acoes_por_id.get(acao_id)
+            voluntario = voluntarios_por_id.get(voluntario_id)
+            if not acao:
+                continue
+
+            nome_voluntario = voluntario.nome if voluntario else voluntario_id
             inscricao = Inscricao(
-                voluntario=item.get("voluntario", ""),
-                acao=item.get("acao", acao.titulo),
+                voluntario=nome_voluntario,
+                acao=acao.titulo,
                 data_hora_inscricao=item.get("data_hora_inscricao", ""),
             )
-            inscricao.atualizar_estado(item.get("estado", "aprovada"))
-            acao.inscricoes_aprovadas.append(inscricao)
-        return acao
+            inscricao.inscricao_id = item.get("inscricao_id")
+            inscricao.voluntario_id = voluntario_id
+            inscricao.acao_id = acao_id
+            inscricao.atualizar_estado(item.get("estado", "pendente"))
+            self.inscricoes.append(inscricao)
+
+            if inscricao.estado == "pendente":
+                acao.fila_inscricoes.enqueue(inscricao)
+            elif inscricao.estado == "aprovada":
+                acao.inscricoes_aprovadas.append(inscricao)
 
     # ==========================================
     # RF01 - GESTÃO DE VOLUNTÁRIOS
@@ -377,9 +510,9 @@ class SistemaVoluntariado:
         plt.tight_layout()
         plt.show()
 
-    # ==========================================
+    # ==============================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==========================================
+    # ==============================================
     
     def exportar_relatorio(self) -> None:
         """

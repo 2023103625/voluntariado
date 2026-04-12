@@ -9,7 +9,7 @@ class BaseDados:
     """
 
     @staticmethod
-    def carregar_dados(caminho_ficheiro: str) -> Dict[str, Any]:
+    def carregar_dados(caminho_ficheiro: str) -> Any:
         """
         Lê um ficheiro JSON e retorna o seu conteúdo.
 
@@ -28,7 +28,7 @@ class BaseDados:
             return {}
 
     @staticmethod
-    def guardar_dados(caminho_ficheiro: str, dados: Dict[str, Any]) -> None:
+    def guardar_dados(caminho_ficheiro: str, dados: Any) -> None:
         """
         Guarda os dados do sistema num ficheiro JSON.
 

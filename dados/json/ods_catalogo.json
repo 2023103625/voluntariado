@@ -1,70 +1,70 @@
 [
-  {
-    "ods_id": 1,
-    "ods_nome": "Erradicar a Pobreza"
-  },
-  {
-    "ods_id": 2,
-    "ods_nome": "Erradicar a Fome"
-  },
-  {
-    "ods_id": 3,
-    "ods_nome": "Saúde de Qualidade"
-  },
-  {
-    "ods_id": 4,
-    "ods_nome": "Educação de Qualidade"
-  },
-  {
-    "ods_id": 5,
-    "ods_nome": "Igualdade de Género"
-  },
-  {
-    "ods_id": 6,
-    "ods_nome": "Água Potável e Saneamento"
-  },
-  {
-    "ods_id": 7,
-    "ods_nome": "Energias Renováveis e Acessíveis"
-  },
-  {
-    "ods_id": 8,
-    "ods_nome": "Trabalho Digno e Crescimento Económico"
-  },
-  {
-    "ods_id": 9,
-    "ods_nome": "Indústria, Inovação e Infraestruturas"
-  },
-  {
-    "ods_id": 10,
-    "ods_nome": "Reduzir as Desigualdades"
-  },
-  {
-    "ods_id": 11,
-    "ods_nome": "Cidades e Comunidades Sustentáveis"
-  },
-  {
-    "ods_id": 12,
-    "ods_nome": "Produção e Consumo Sustentáveis"
-  },
-  {
-    "ods_id": 13,
-    "ods_nome": "Ação Climática"
-  },
-  {
-    "ods_id": 14,
-    "ods_nome": "Proteger a Vida Marinha"
-  },
-  {
-    "ods_id": 15,
-    "ods_nome": "Proteger a Vida Terrestre"
-  },
-  {
-    "ods_id": 16,
-    "ods_nome": "Paz, Justiça e Instituições Eficazes"
-  },
-  {
-    "ods_id": 17,
-    "ods_nome": "Parcerias para a Implementação dos Objetivos"
-  }
+    {
+        "ods_id": 1,
+        "ods_nome": "Erradicar a Pobreza"
+    },
+    {
+        "ods_id": 2,
+        "ods_nome": "Erradicar a Fome"
+    },
+    {
+        "ods_id": 3,
+        "ods_nome": "Saúde de Qualidade"
+    },
+    {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+    },
+    {
+        "ods_id": 5,
+        "ods_nome": "Igualdade de Género"
+    },
+    {
+        "ods_id": 6,
+        "ods_nome": "Água Potável e Saneamento"
+    },
+    {
+        "ods_id": 7,
+        "ods_nome": "Energias Renováveis e Acessíveis"
+    },
+    {
+        "ods_id": 8,
+        "ods_nome": "Trabalho Digno e Crescimento Económico"
+    },
+    {
+        "ods_id": 9,
+        "ods_nome": "Indústria, Inovação e Infraestruturas"
+    },
+    {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+    },
+    {
+        "ods_id": 11,
+        "ods_nome": "Cidades e Comunidades Sustentáveis"
+    },
+    {
+        "ods_id": 12,
+        "ods_nome": "Produção e Consumo Sustentáveis"
+    },
+    {
+        "ods_id": 13,
+        "ods_nome": "Ação Climática"
+    },
+    {
+        "ods_id": 14,
+        "ods_nome": "Proteger a Vida Marinha"
+    },
+    {
+        "ods_id": 15,
+        "ods_nome": "Proteger a Vida Terrestre"
+    },
+    {
+        "ods_id": 16,
+        "ods_nome": "Paz, Justiça e Instituições Eficazes"
+    },
+    {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+    }
 ]

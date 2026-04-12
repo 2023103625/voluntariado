@@ -12,7 +12,7 @@ def main():
     Função principal que inicia a aplicação.
     Cumpre a estrutura exigida para o pacote 'main'.
     """
-    caminho_dados = os.path.join('dados', 'json', 'dataset_completo.json')
+    caminho_dados = os.path.join('dados', 'json')
     
     # 1. Cria o objeto que caracteriza o sistema
     sistema = SistemaVoluntariado()

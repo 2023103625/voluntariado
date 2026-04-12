@@ -1,1906 +1,1906 @@
 [
-  {
-    "presenca_id": "P0001",
-    "voluntario_id": "V022",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:17",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0002",
-    "voluntario_id": "V031",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:43",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0003",
-    "voluntario_id": "V050",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:13",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0004",
-    "voluntario_id": "V049",
-    "acao_id": "A001",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0005",
-    "voluntario_id": "V016",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:10",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0006",
-    "voluntario_id": "V060",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:34",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0007",
-    "voluntario_id": "V006",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:32",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0008",
-    "voluntario_id": "V026",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:37",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0009",
-    "voluntario_id": "V023",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:30",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0010",
-    "voluntario_id": "V002",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:36",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0011",
-    "voluntario_id": "V048",
-    "acao_id": "A001",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-12 14:30",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0012",
-    "voluntario_id": "V031",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:08",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0013",
-    "voluntario_id": "V050",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:03",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0014",
-    "voluntario_id": "V002",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:01",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0015",
-    "voluntario_id": "V024",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:01",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0016",
-    "voluntario_id": "V006",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:04",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0017",
-    "voluntario_id": "V014",
-    "acao_id": "A002",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0018",
-    "voluntario_id": "V029",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:02",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0019",
-    "voluntario_id": "V054",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 09:48",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0020",
-    "voluntario_id": "V052",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:04",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0021",
-    "voluntario_id": "V021",
-    "acao_id": "A002",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-10-25 10:13",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0022",
-    "voluntario_id": "V023",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:48",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0023",
-    "voluntario_id": "V008",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:40",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0024",
-    "voluntario_id": "V002",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:49",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0025",
-    "voluntario_id": "V037",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:47",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0026",
-    "voluntario_id": "V036",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:43",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0027",
-    "voluntario_id": "V006",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 09:09",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0028",
-    "voluntario_id": "V058",
-    "acao_id": "A003",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0029",
-    "voluntario_id": "V030",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:49",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0030",
-    "voluntario_id": "V034",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:55",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0031",
-    "voluntario_id": "V029",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 08:45",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0032",
-    "voluntario_id": "V022",
-    "acao_id": "A003",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0033",
-    "voluntario_id": "V052",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 09:10",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0034",
-    "voluntario_id": "V046",
-    "acao_id": "A003",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0035",
-    "voluntario_id": "V033",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 09:02",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0036",
-    "voluntario_id": "V045",
-    "acao_id": "A003",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-08 09:01",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0037",
-    "voluntario_id": "V046",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:33",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0038",
-    "voluntario_id": "V028",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:17",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0039",
-    "voluntario_id": "V044",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:34",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0040",
-    "voluntario_id": "V030",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:38",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0041",
-    "voluntario_id": "V008",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:41",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0042",
-    "voluntario_id": "V056",
-    "acao_id": "A004",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0043",
-    "voluntario_id": "V025",
-    "acao_id": "A004",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0044",
-    "voluntario_id": "V045",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:44",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0045",
-    "voluntario_id": "V031",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:21",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0046",
-    "voluntario_id": "V039",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:22",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0047",
-    "voluntario_id": "V060",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:11",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0048",
-    "voluntario_id": "V023",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:45",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0049",
-    "voluntario_id": "V027",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:29",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0050",
-    "voluntario_id": "V055",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:36",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0051",
-    "voluntario_id": "V041",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:18",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0052",
-    "voluntario_id": "V034",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:43",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0053",
-    "voluntario_id": "V059",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:45",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0054",
-    "voluntario_id": "V058",
-    "acao_id": "A004",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-15 08:18",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0055",
-    "voluntario_id": "V007",
-    "acao_id": "A005",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0056",
-    "voluntario_id": "V048",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 12:43",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0057",
-    "voluntario_id": "V024",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:10",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0058",
-    "voluntario_id": "V049",
-    "acao_id": "A005",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0059",
-    "voluntario_id": "V050",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:05",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0060",
-    "voluntario_id": "V009",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:15",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0061",
-    "voluntario_id": "V040",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:04",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0062",
-    "voluntario_id": "V025",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 12:47",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0063",
-    "voluntario_id": "V030",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:01",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0064",
-    "voluntario_id": "V006",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:12",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0065",
-    "voluntario_id": "V043",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 12:48",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0066",
-    "voluntario_id": "V010",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:09",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0067",
-    "voluntario_id": "V002",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:00",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0068",
-    "voluntario_id": "V041",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 12:59",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0069",
-    "voluntario_id": "V031",
-    "acao_id": "A005",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-11-28 13:14",
-    "horas_registadas": 6
-  },
-  {
-    "presenca_id": "P0070",
-    "voluntario_id": "V001",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 17:08",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0071",
-    "voluntario_id": "V049",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:52",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0072",
-    "voluntario_id": "V038",
-    "acao_id": "A006",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0073",
-    "voluntario_id": "V022",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:55",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0074",
-    "voluntario_id": "V050",
-    "acao_id": "A006",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0075",
-    "voluntario_id": "V016",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 17:01",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0076",
-    "voluntario_id": "V052",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:48",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0077",
-    "voluntario_id": "V060",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 17:10",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0078",
-    "voluntario_id": "V044",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:58",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0079",
-    "voluntario_id": "V046",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:45",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0080",
-    "voluntario_id": "V025",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:42",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0081",
-    "voluntario_id": "V033",
-    "acao_id": "A006",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-03 16:42",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0082",
-    "voluntario_id": "V050",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:23",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0083",
-    "voluntario_id": "V006",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:42",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0084",
-    "voluntario_id": "V016",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:36",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0085",
-    "voluntario_id": "V021",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:29",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0086",
-    "voluntario_id": "V031",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:10",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0087",
-    "voluntario_id": "V029",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:37",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0088",
-    "voluntario_id": "V002",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:13",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0089",
-    "voluntario_id": "V055",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:28",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0090",
-    "voluntario_id": "V026",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:36",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0091",
-    "voluntario_id": "V022",
-    "acao_id": "A007",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0092",
-    "voluntario_id": "V023",
-    "acao_id": "A007",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0093",
-    "voluntario_id": "V054",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:21",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0094",
-    "voluntario_id": "V048",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:24",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0095",
-    "voluntario_id": "V009",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:29",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0096",
-    "voluntario_id": "V020",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:44",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0097",
-    "voluntario_id": "V017",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:19",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0098",
-    "voluntario_id": "V042",
-    "acao_id": "A007",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0099",
-    "voluntario_id": "V030",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:11",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0100",
-    "voluntario_id": "V024",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:12",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0101",
-    "voluntario_id": "V025",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:13",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0102",
-    "voluntario_id": "V011",
-    "acao_id": "A007",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-10 18:24",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0103",
-    "voluntario_id": "V022",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:10",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0104",
-    "voluntario_id": "V006",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:00",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0105",
-    "voluntario_id": "V002",
-    "acao_id": "A008",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0106",
-    "voluntario_id": "V038",
-    "acao_id": "A008",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0107",
-    "voluntario_id": "V033",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:04",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0108",
-    "voluntario_id": "V024",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:01",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0109",
-    "voluntario_id": "V048",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:11",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0110",
-    "voluntario_id": "V059",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 10:50",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0111",
-    "voluntario_id": "V034",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:14",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0112",
-    "voluntario_id": "V052",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 10:44",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0113",
-    "voluntario_id": "V021",
-    "acao_id": "A008",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2025-12-14 11:06",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0114",
-    "voluntario_id": "V024",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:24",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0115",
-    "voluntario_id": "V030",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:35",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0116",
-    "voluntario_id": "V026",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:38",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0117",
-    "voluntario_id": "V037",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:34",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0118",
-    "voluntario_id": "V031",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:34",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0119",
-    "voluntario_id": "V028",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:14",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0120",
-    "voluntario_id": "V045",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:19",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0121",
-    "voluntario_id": "V033",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:15",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0122",
-    "voluntario_id": "V016",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:27",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0123",
-    "voluntario_id": "V006",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:38",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0124",
-    "voluntario_id": "V050",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:11",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0125",
-    "voluntario_id": "V034",
-    "acao_id": "A009",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-07 09:30",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0126",
-    "voluntario_id": "V022",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:45",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0127",
-    "voluntario_id": "V030",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:50",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0128",
-    "voluntario_id": "V009",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:05",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0129",
-    "voluntario_id": "V033",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:40",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0130",
-    "voluntario_id": "V006",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:13",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0131",
-    "voluntario_id": "V059",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:08",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0132",
-    "voluntario_id": "V015",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:12",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0133",
-    "voluntario_id": "V021",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:58",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0134",
-    "voluntario_id": "V048",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:49",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0135",
-    "voluntario_id": "V002",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:53",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0136",
-    "voluntario_id": "V058",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:08",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0137",
-    "voluntario_id": "V052",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:59",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0138",
-    "voluntario_id": "V042",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:01",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0139",
-    "voluntario_id": "V017",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:55",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0140",
-    "voluntario_id": "V024",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 16:15",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0141",
-    "voluntario_id": "V007",
-    "acao_id": "A010",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-16 15:51",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0142",
-    "voluntario_id": "V049",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:14",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0143",
-    "voluntario_id": "V043",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:42",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0144",
-    "voluntario_id": "V008",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:07",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0145",
-    "voluntario_id": "V036",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:55",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0146",
-    "voluntario_id": "V041",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:45",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0147",
-    "voluntario_id": "V001",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:53",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0148",
-    "voluntario_id": "V045",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:07",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0149",
-    "voluntario_id": "V040",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:53",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0150",
-    "voluntario_id": "V002",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:57",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0151",
-    "voluntario_id": "V028",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:58",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0152",
-    "voluntario_id": "V051",
-    "acao_id": "A011",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0153",
-    "voluntario_id": "V023",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:06",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0154",
-    "voluntario_id": "V038",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:48",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0155",
-    "voluntario_id": "V048",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:55",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0156",
-    "voluntario_id": "V050",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:57",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0157",
-    "voluntario_id": "V010",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:45",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0158",
-    "voluntario_id": "V004",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:03",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0159",
-    "voluntario_id": "V060",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:45",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0160",
-    "voluntario_id": "V020",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:02",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0161",
-    "voluntario_id": "V039",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:53",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0162",
-    "voluntario_id": "V024",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:58",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0163",
-    "voluntario_id": "V018",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:11",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0164",
-    "voluntario_id": "V053",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:43",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0165",
-    "voluntario_id": "V031",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 09:09",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0166",
-    "voluntario_id": "V044",
-    "acao_id": "A011",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0167",
-    "voluntario_id": "V033",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:48",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0168",
-    "voluntario_id": "V007",
-    "acao_id": "A011",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-01-24 08:57",
-    "horas_registadas": 8
-  },
-  {
-    "presenca_id": "P0169",
-    "voluntario_id": "V011",
-    "acao_id": "A012",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0170",
-    "voluntario_id": "V008",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 09:10",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0171",
-    "voluntario_id": "V005",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:40",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0172",
-    "voluntario_id": "V002",
-    "acao_id": "A012",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0173",
-    "voluntario_id": "V041",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 09:06",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0174",
-    "voluntario_id": "V046",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 09:14",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0175",
-    "voluntario_id": "V017",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:59",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0176",
-    "voluntario_id": "V006",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:49",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0177",
-    "voluntario_id": "V036",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:44",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0178",
-    "voluntario_id": "V056",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:55",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0179",
-    "voluntario_id": "V038",
-    "acao_id": "A012",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0180",
-    "voluntario_id": "V048",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:51",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0181",
-    "voluntario_id": "V031",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:40",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0182",
-    "voluntario_id": "V058",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:56",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0183",
-    "voluntario_id": "V025",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:57",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0184",
-    "voluntario_id": "V027",
-    "acao_id": "A012",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0185",
-    "voluntario_id": "V060",
-    "acao_id": "A012",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-01 08:56",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0186",
-    "voluntario_id": "V024",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 14:12",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0187",
-    "voluntario_id": "V031",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:43",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0188",
-    "voluntario_id": "V033",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:56",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0189",
-    "voluntario_id": "V037",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 14:00",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0190",
-    "voluntario_id": "V006",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:52",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0191",
-    "voluntario_id": "V050",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:50",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0192",
-    "voluntario_id": "V030",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 14:14",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0193",
-    "voluntario_id": "V009",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:56",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0194",
-    "voluntario_id": "V059",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:59",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0195",
-    "voluntario_id": "V002",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:53",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0196",
-    "voluntario_id": "V026",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:55",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0197",
-    "voluntario_id": "V052",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:59",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0198",
-    "voluntario_id": "V057",
-    "acao_id": "A013",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0199",
-    "voluntario_id": "V007",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 14:09",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0200",
-    "voluntario_id": "V038",
-    "acao_id": "A013",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-07 13:54",
-    "horas_registadas": 3
-  },
-  {
-    "presenca_id": "P0201",
-    "voluntario_id": "V048",
-    "acao_id": "A014",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0202",
-    "voluntario_id": "V031",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:32",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0203",
-    "voluntario_id": "V050",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:19",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0204",
-    "voluntario_id": "V030",
-    "acao_id": "A014",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0205",
-    "voluntario_id": "V006",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:15",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0206",
-    "voluntario_id": "V047",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:43",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0207",
-    "voluntario_id": "V023",
-    "acao_id": "A014",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0208",
-    "voluntario_id": "V002",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:30",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0209",
-    "voluntario_id": "V009",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:19",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0210",
-    "voluntario_id": "V026",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:33",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0211",
-    "voluntario_id": "V058",
-    "acao_id": "A014",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0212",
-    "voluntario_id": "V024",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:18",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0213",
-    "voluntario_id": "V055",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:41",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0214",
-    "voluntario_id": "V021",
-    "acao_id": "A014",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-12 17:45",
-    "horas_registadas": 2
-  },
-  {
-    "presenca_id": "P0215",
-    "voluntario_id": "V030",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 10:15",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0216",
-    "voluntario_id": "V024",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 09:40",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0217",
-    "voluntario_id": "V050",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 10:10",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0218",
-    "voluntario_id": "V022",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 09:58",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0219",
-    "voluntario_id": "V006",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 10:05",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0220",
-    "voluntario_id": "V009",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 09:45",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0221",
-    "voluntario_id": "V033",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 10:04",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0222",
-    "voluntario_id": "V058",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 10:08",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0223",
-    "voluntario_id": "V002",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 09:43",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0224",
-    "voluntario_id": "V045",
-    "acao_id": "A015",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-20 10:02",
-    "horas_registadas": 4
-  },
-  {
-    "presenca_id": "P0225",
-    "voluntario_id": "V023",
-    "acao_id": "A015",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0226",
-    "voluntario_id": "V023",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 15:03",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0227",
-    "voluntario_id": "V008",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 14:59",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0228",
-    "voluntario_id": "V002",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 14:46",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0229",
-    "voluntario_id": "V037",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 15:08",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0230",
-    "voluntario_id": "V036",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 14:45",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0231",
-    "voluntario_id": "V058",
-    "acao_id": "A016",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  },
-  {
-    "presenca_id": "P0232",
-    "voluntario_id": "V006",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 15:03",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0233",
-    "voluntario_id": "V030",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 14:44",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0234",
-    "voluntario_id": "V034",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 15:13",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0235",
-    "voluntario_id": "V022",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 14:52",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0236",
-    "voluntario_id": "V046",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 14:43",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0237",
-    "voluntario_id": "V052",
-    "acao_id": "A016",
-    "estado_presenca": "presente",
-    "checkin_data_hora": "2026-02-27 15:09",
-    "horas_registadas": 5
-  },
-  {
-    "presenca_id": "P0238",
-    "voluntario_id": "V029",
-    "acao_id": "A016",
-    "estado_presenca": "ausente",
-    "checkin_data_hora": "",
-    "horas_registadas": 0
-  }
+    {
+        "presenca_id": "P0001",
+        "voluntario_id": "V022",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:17",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0002",
+        "voluntario_id": "V031",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:43",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0003",
+        "voluntario_id": "V050",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:13",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0004",
+        "voluntario_id": "V049",
+        "acao_id": "A001",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0005",
+        "voluntario_id": "V016",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:10",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0006",
+        "voluntario_id": "V060",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:34",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0007",
+        "voluntario_id": "V006",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:32",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0008",
+        "voluntario_id": "V026",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:37",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0009",
+        "voluntario_id": "V023",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:30",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0010",
+        "voluntario_id": "V002",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:36",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0011",
+        "voluntario_id": "V048",
+        "acao_id": "A001",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-12 14:30",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0012",
+        "voluntario_id": "V031",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:08",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0013",
+        "voluntario_id": "V050",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:03",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0014",
+        "voluntario_id": "V002",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:01",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0015",
+        "voluntario_id": "V024",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:01",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0016",
+        "voluntario_id": "V006",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:04",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0017",
+        "voluntario_id": "V014",
+        "acao_id": "A002",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0018",
+        "voluntario_id": "V029",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:02",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0019",
+        "voluntario_id": "V054",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 09:48",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0020",
+        "voluntario_id": "V052",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:04",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0021",
+        "voluntario_id": "V021",
+        "acao_id": "A002",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-10-25 10:13",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0022",
+        "voluntario_id": "V023",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:48",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0023",
+        "voluntario_id": "V008",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:40",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0024",
+        "voluntario_id": "V002",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:49",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0025",
+        "voluntario_id": "V037",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:47",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0026",
+        "voluntario_id": "V036",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:43",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0027",
+        "voluntario_id": "V006",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 09:09",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0028",
+        "voluntario_id": "V058",
+        "acao_id": "A003",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0029",
+        "voluntario_id": "V030",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:49",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0030",
+        "voluntario_id": "V034",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:55",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0031",
+        "voluntario_id": "V029",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 08:45",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0032",
+        "voluntario_id": "V022",
+        "acao_id": "A003",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0033",
+        "voluntario_id": "V052",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 09:10",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0034",
+        "voluntario_id": "V046",
+        "acao_id": "A003",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0035",
+        "voluntario_id": "V033",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 09:02",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0036",
+        "voluntario_id": "V045",
+        "acao_id": "A003",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-08 09:01",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0037",
+        "voluntario_id": "V046",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:33",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0038",
+        "voluntario_id": "V028",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:17",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0039",
+        "voluntario_id": "V044",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:34",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0040",
+        "voluntario_id": "V030",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:38",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0041",
+        "voluntario_id": "V008",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:41",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0042",
+        "voluntario_id": "V056",
+        "acao_id": "A004",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0043",
+        "voluntario_id": "V025",
+        "acao_id": "A004",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0044",
+        "voluntario_id": "V045",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:44",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0045",
+        "voluntario_id": "V031",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:21",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0046",
+        "voluntario_id": "V039",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:22",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0047",
+        "voluntario_id": "V060",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:11",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0048",
+        "voluntario_id": "V023",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:45",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0049",
+        "voluntario_id": "V027",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:29",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0050",
+        "voluntario_id": "V055",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:36",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0051",
+        "voluntario_id": "V041",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:18",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0052",
+        "voluntario_id": "V034",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:43",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0053",
+        "voluntario_id": "V059",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:45",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0054",
+        "voluntario_id": "V058",
+        "acao_id": "A004",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-15 08:18",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0055",
+        "voluntario_id": "V007",
+        "acao_id": "A005",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0056",
+        "voluntario_id": "V048",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 12:43",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0057",
+        "voluntario_id": "V024",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:10",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0058",
+        "voluntario_id": "V049",
+        "acao_id": "A005",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0059",
+        "voluntario_id": "V050",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:05",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0060",
+        "voluntario_id": "V009",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:15",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0061",
+        "voluntario_id": "V040",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:04",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0062",
+        "voluntario_id": "V025",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 12:47",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0063",
+        "voluntario_id": "V030",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:01",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0064",
+        "voluntario_id": "V006",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:12",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0065",
+        "voluntario_id": "V043",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 12:48",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0066",
+        "voluntario_id": "V010",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:09",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0067",
+        "voluntario_id": "V002",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:00",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0068",
+        "voluntario_id": "V041",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 12:59",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0069",
+        "voluntario_id": "V031",
+        "acao_id": "A005",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-11-28 13:14",
+        "horas_registadas": 6
+    },
+    {
+        "presenca_id": "P0070",
+        "voluntario_id": "V001",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 17:08",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0071",
+        "voluntario_id": "V049",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:52",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0072",
+        "voluntario_id": "V038",
+        "acao_id": "A006",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0073",
+        "voluntario_id": "V022",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:55",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0074",
+        "voluntario_id": "V050",
+        "acao_id": "A006",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0075",
+        "voluntario_id": "V016",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 17:01",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0076",
+        "voluntario_id": "V052",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:48",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0077",
+        "voluntario_id": "V060",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 17:10",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0078",
+        "voluntario_id": "V044",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:58",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0079",
+        "voluntario_id": "V046",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:45",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0080",
+        "voluntario_id": "V025",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:42",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0081",
+        "voluntario_id": "V033",
+        "acao_id": "A006",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-03 16:42",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0082",
+        "voluntario_id": "V050",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:23",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0083",
+        "voluntario_id": "V006",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:42",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0084",
+        "voluntario_id": "V016",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:36",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0085",
+        "voluntario_id": "V021",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:29",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0086",
+        "voluntario_id": "V031",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:10",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0087",
+        "voluntario_id": "V029",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:37",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0088",
+        "voluntario_id": "V002",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:13",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0089",
+        "voluntario_id": "V055",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:28",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0090",
+        "voluntario_id": "V026",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:36",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0091",
+        "voluntario_id": "V022",
+        "acao_id": "A007",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0092",
+        "voluntario_id": "V023",
+        "acao_id": "A007",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0093",
+        "voluntario_id": "V054",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:21",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0094",
+        "voluntario_id": "V048",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:24",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0095",
+        "voluntario_id": "V009",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:29",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0096",
+        "voluntario_id": "V020",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:44",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0097",
+        "voluntario_id": "V017",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:19",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0098",
+        "voluntario_id": "V042",
+        "acao_id": "A007",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0099",
+        "voluntario_id": "V030",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:11",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0100",
+        "voluntario_id": "V024",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:12",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0101",
+        "voluntario_id": "V025",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:13",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0102",
+        "voluntario_id": "V011",
+        "acao_id": "A007",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-10 18:24",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0103",
+        "voluntario_id": "V022",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:10",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0104",
+        "voluntario_id": "V006",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:00",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0105",
+        "voluntario_id": "V002",
+        "acao_id": "A008",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0106",
+        "voluntario_id": "V038",
+        "acao_id": "A008",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0107",
+        "voluntario_id": "V033",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:04",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0108",
+        "voluntario_id": "V024",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:01",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0109",
+        "voluntario_id": "V048",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:11",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0110",
+        "voluntario_id": "V059",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 10:50",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0111",
+        "voluntario_id": "V034",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:14",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0112",
+        "voluntario_id": "V052",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 10:44",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0113",
+        "voluntario_id": "V021",
+        "acao_id": "A008",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2025-12-14 11:06",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0114",
+        "voluntario_id": "V024",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:24",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0115",
+        "voluntario_id": "V030",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:35",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0116",
+        "voluntario_id": "V026",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:38",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0117",
+        "voluntario_id": "V037",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:34",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0118",
+        "voluntario_id": "V031",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:34",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0119",
+        "voluntario_id": "V028",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:14",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0120",
+        "voluntario_id": "V045",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:19",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0121",
+        "voluntario_id": "V033",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:15",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0122",
+        "voluntario_id": "V016",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:27",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0123",
+        "voluntario_id": "V006",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:38",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0124",
+        "voluntario_id": "V050",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:11",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0125",
+        "voluntario_id": "V034",
+        "acao_id": "A009",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-07 09:30",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0126",
+        "voluntario_id": "V022",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:45",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0127",
+        "voluntario_id": "V030",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:50",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0128",
+        "voluntario_id": "V009",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:05",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0129",
+        "voluntario_id": "V033",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:40",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0130",
+        "voluntario_id": "V006",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:13",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0131",
+        "voluntario_id": "V059",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:08",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0132",
+        "voluntario_id": "V015",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:12",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0133",
+        "voluntario_id": "V021",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:58",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0134",
+        "voluntario_id": "V048",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:49",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0135",
+        "voluntario_id": "V002",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:53",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0136",
+        "voluntario_id": "V058",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:08",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0137",
+        "voluntario_id": "V052",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:59",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0138",
+        "voluntario_id": "V042",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:01",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0139",
+        "voluntario_id": "V017",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:55",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0140",
+        "voluntario_id": "V024",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 16:15",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0141",
+        "voluntario_id": "V007",
+        "acao_id": "A010",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-16 15:51",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0142",
+        "voluntario_id": "V049",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:14",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0143",
+        "voluntario_id": "V043",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:42",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0144",
+        "voluntario_id": "V008",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:07",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0145",
+        "voluntario_id": "V036",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:55",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0146",
+        "voluntario_id": "V041",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:45",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0147",
+        "voluntario_id": "V001",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:53",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0148",
+        "voluntario_id": "V045",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:07",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0149",
+        "voluntario_id": "V040",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:53",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0150",
+        "voluntario_id": "V002",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:57",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0151",
+        "voluntario_id": "V028",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:58",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0152",
+        "voluntario_id": "V051",
+        "acao_id": "A011",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0153",
+        "voluntario_id": "V023",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:06",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0154",
+        "voluntario_id": "V038",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:48",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0155",
+        "voluntario_id": "V048",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:55",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0156",
+        "voluntario_id": "V050",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:57",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0157",
+        "voluntario_id": "V010",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:45",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0158",
+        "voluntario_id": "V004",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:03",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0159",
+        "voluntario_id": "V060",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:45",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0160",
+        "voluntario_id": "V020",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:02",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0161",
+        "voluntario_id": "V039",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:53",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0162",
+        "voluntario_id": "V024",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:58",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0163",
+        "voluntario_id": "V018",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:11",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0164",
+        "voluntario_id": "V053",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:43",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0165",
+        "voluntario_id": "V031",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 09:09",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0166",
+        "voluntario_id": "V044",
+        "acao_id": "A011",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0167",
+        "voluntario_id": "V033",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:48",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0168",
+        "voluntario_id": "V007",
+        "acao_id": "A011",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-01-24 08:57",
+        "horas_registadas": 8
+    },
+    {
+        "presenca_id": "P0169",
+        "voluntario_id": "V011",
+        "acao_id": "A012",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0170",
+        "voluntario_id": "V008",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 09:10",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0171",
+        "voluntario_id": "V005",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:40",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0172",
+        "voluntario_id": "V002",
+        "acao_id": "A012",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0173",
+        "voluntario_id": "V041",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 09:06",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0174",
+        "voluntario_id": "V046",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 09:14",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0175",
+        "voluntario_id": "V017",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:59",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0176",
+        "voluntario_id": "V006",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:49",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0177",
+        "voluntario_id": "V036",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:44",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0178",
+        "voluntario_id": "V056",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:55",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0179",
+        "voluntario_id": "V038",
+        "acao_id": "A012",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0180",
+        "voluntario_id": "V048",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:51",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0181",
+        "voluntario_id": "V031",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:40",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0182",
+        "voluntario_id": "V058",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:56",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0183",
+        "voluntario_id": "V025",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:57",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0184",
+        "voluntario_id": "V027",
+        "acao_id": "A012",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0185",
+        "voluntario_id": "V060",
+        "acao_id": "A012",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-01 08:56",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0186",
+        "voluntario_id": "V024",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 14:12",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0187",
+        "voluntario_id": "V031",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:43",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0188",
+        "voluntario_id": "V033",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:56",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0189",
+        "voluntario_id": "V037",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 14:00",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0190",
+        "voluntario_id": "V006",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:52",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0191",
+        "voluntario_id": "V050",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:50",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0192",
+        "voluntario_id": "V030",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 14:14",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0193",
+        "voluntario_id": "V009",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:56",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0194",
+        "voluntario_id": "V059",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:59",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0195",
+        "voluntario_id": "V002",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:53",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0196",
+        "voluntario_id": "V026",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:55",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0197",
+        "voluntario_id": "V052",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:59",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0198",
+        "voluntario_id": "V057",
+        "acao_id": "A013",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0199",
+        "voluntario_id": "V007",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 14:09",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0200",
+        "voluntario_id": "V038",
+        "acao_id": "A013",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-07 13:54",
+        "horas_registadas": 3
+    },
+    {
+        "presenca_id": "P0201",
+        "voluntario_id": "V048",
+        "acao_id": "A014",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0202",
+        "voluntario_id": "V031",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:32",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0203",
+        "voluntario_id": "V050",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:19",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0204",
+        "voluntario_id": "V030",
+        "acao_id": "A014",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0205",
+        "voluntario_id": "V006",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:15",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0206",
+        "voluntario_id": "V047",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:43",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0207",
+        "voluntario_id": "V023",
+        "acao_id": "A014",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0208",
+        "voluntario_id": "V002",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:30",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0209",
+        "voluntario_id": "V009",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:19",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0210",
+        "voluntario_id": "V026",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:33",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0211",
+        "voluntario_id": "V058",
+        "acao_id": "A014",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0212",
+        "voluntario_id": "V024",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:18",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0213",
+        "voluntario_id": "V055",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:41",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0214",
+        "voluntario_id": "V021",
+        "acao_id": "A014",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-12 17:45",
+        "horas_registadas": 2
+    },
+    {
+        "presenca_id": "P0215",
+        "voluntario_id": "V030",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 10:15",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0216",
+        "voluntario_id": "V024",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 09:40",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0217",
+        "voluntario_id": "V050",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 10:10",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0218",
+        "voluntario_id": "V022",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 09:58",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0219",
+        "voluntario_id": "V006",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 10:05",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0220",
+        "voluntario_id": "V009",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 09:45",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0221",
+        "voluntario_id": "V033",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 10:04",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0222",
+        "voluntario_id": "V058",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 10:08",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0223",
+        "voluntario_id": "V002",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 09:43",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0224",
+        "voluntario_id": "V045",
+        "acao_id": "A015",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-20 10:02",
+        "horas_registadas": 4
+    },
+    {
+        "presenca_id": "P0225",
+        "voluntario_id": "V023",
+        "acao_id": "A015",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0226",
+        "voluntario_id": "V023",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 15:03",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0227",
+        "voluntario_id": "V008",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 14:59",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0228",
+        "voluntario_id": "V002",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 14:46",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0229",
+        "voluntario_id": "V037",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 15:08",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0230",
+        "voluntario_id": "V036",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 14:45",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0231",
+        "voluntario_id": "V058",
+        "acao_id": "A016",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    },
+    {
+        "presenca_id": "P0232",
+        "voluntario_id": "V006",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 15:03",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0233",
+        "voluntario_id": "V030",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 14:44",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0234",
+        "voluntario_id": "V034",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 15:13",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0235",
+        "voluntario_id": "V022",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 14:52",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0236",
+        "voluntario_id": "V046",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 14:43",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0237",
+        "voluntario_id": "V052",
+        "acao_id": "A016",
+        "estado_presenca": "presente",
+        "checkin_data_hora": "2026-02-27 15:09",
+        "horas_registadas": 5
+    },
+    {
+        "presenca_id": "P0238",
+        "voluntario_id": "V029",
+        "acao_id": "A016",
+        "estado_presenca": "ausente",
+        "checkin_data_hora": "",
+        "horas_registadas": 0
+    }
 ]
