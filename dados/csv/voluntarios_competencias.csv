@@ -1,0 +1,277 @@
+voluntario_id,competencia,nivel
+V001,logística,2
+V001,análise de dados,3
+V001,programação,3
+V001,tutoria,5
+V001,design gráfico,2
+V002,escrita científica,3
+V002,oratória,2
+V002,logística,4
+V002,comunicação,3
+V002,fotografia,3
+V002,estatística,4
+V003,robótica,3
+V003,design gráfico,2
+V003,escrita científica,2
+V004,escrita científica,3
+V004,estatística,4
+V004,edição de vídeo,5
+V005,apoio psicológico,2
+V005,escrita científica,2
+V005,fotografia,3
+V005,programação,2
+V005,robótica,2
+V005,logística,4
+V006,oratória,5
+V006,edição de vídeo,4
+V006,fotografia,5
+V006,comunicação,5
+V007,comunicação,5
+V007,gestão de eventos,3
+V007,análise de dados,5
+V008,programação,3
+V008,logística,5
+V008,escrita científica,2
+V008,estatística,5
+V008,fotografia,4
+V008,organização,5
+V009,mediação intercultural,2
+V009,línguas,3
+V009,análise de dados,2
+V009,oratória,2
+V009,comunicação,3
+V009,captação de fundos,5
+V010,logística,3
+V010,captação de fundos,4
+V010,análise de dados,5
+V010,robótica,3
+V011,línguas,3
+V011,logística,4
+V011,sustentabilidade,4
+V011,escrita científica,3
+V011,fotografia,5
+V011,oratória,4
+V012,robótica,2
+V012,escrita científica,3
+V012,edição de vídeo,4
+V013,design gráfico,5
+V013,línguas,4
+V013,edição de vídeo,2
+V013,oratória,2
+V014,facilitação,4
+V014,fotografia,3
+V014,captação de fundos,5
+V014,literacia digital,3
+V014,primeiros socorros,2
+V015,gestão de eventos,3
+V015,línguas,3
+V015,edição de vídeo,5
+V016,primeiros socorros,4
+V016,edição de vídeo,4
+V016,facilitação,3
+V016,oratória,3
+V016,tutoria,2
+V017,línguas,4
+V017,design gráfico,2
+V017,logística,2
+V017,oratória,5
+V017,primeiros socorros,4
+V017,apoio psicológico,4
+V018,análise de dados,5
+V018,captação de fundos,2
+V018,facilitação,4
+V019,edição de vídeo,4
+V019,literacia digital,5
+V019,robótica,2
+V020,literacia digital,4
+V020,estatística,2
+V020,robótica,3
+V020,oratória,4
+V021,comunicação,2
+V021,oratória,5
+V021,design gráfico,3
+V021,sustentabilidade,3
+V022,comunicação,4
+V022,captação de fundos,3
+V022,tutoria,4
+V022,apoio psicológico,5
+V022,fotografia,3
+V022,mediação intercultural,4
+V023,apoio psicológico,2
+V023,organização,5
+V023,análise de dados,5
+V023,logística,4
+V023,facilitação,5
+V024,primeiros socorros,5
+V024,análise de dados,3
+V024,captação de fundos,4
+V024,comunicação,5
+V025,análise de dados,3
+V025,gestão de eventos,2
+V025,línguas,4
+V025,sustentabilidade,5
+V025,oratória,4
+V025,tutoria,3
+V026,gestão de eventos,2
+V026,organização,2
+V026,primeiros socorros,3
+V026,facilitação,3
+V026,fotografia,2
+V027,apoio psicológico,3
+V027,sustentabilidade,4
+V027,robótica,2
+V027,mediação intercultural,2
+V028,sustentabilidade,4
+V028,línguas,2
+V028,organização,5
+V028,estatística,5
+V028,tutoria,2
+V028,apoio psicológico,5
+V029,literacia digital,3
+V029,facilitação,2
+V029,logística,4
+V029,oratória,5
+V030,organização,2
+V030,comunicação,3
+V030,sustentabilidade,2
+V030,robótica,3
+V030,línguas,5
+V030,captação de fundos,5
+V031,estatística,4
+V031,sustentabilidade,5
+V031,primeiros socorros,4
+V031,comunicação,4
+V031,facilitação,5
+V031,edição de vídeo,4
+V032,apoio psicológico,2
+V032,línguas,3
+V032,design gráfico,4
+V032,captação de fundos,3
+V033,primeiros socorros,2
+V033,captação de fundos,2
+V033,mediação intercultural,4
+V033,programação,5
+V033,comunicação,5
+V034,comunicação,2
+V034,organização,3
+V034,fotografia,3
+V034,literacia digital,4
+V035,escrita científica,2
+V035,primeiros socorros,2
+V035,captação de fundos,3
+V036,edição de vídeo,2
+V036,logística,3
+V036,comunicação,4
+V036,programação,4
+V036,estatística,5
+V037,apoio psicológico,3
+V037,logística,2
+V037,edição de vídeo,2
+V037,comunicação,3
+V037,primeiros socorros,4
+V038,primeiros socorros,2
+V038,mediação intercultural,2
+V038,edição de vídeo,3
+V038,programação,2
+V038,fotografia,4
+V039,sustentabilidade,5
+V039,literacia digital,4
+V039,estatística,5
+V039,primeiros socorros,4
+V040,design gráfico,5
+V040,literacia digital,2
+V040,escrita científica,5
+V040,análise de dados,5
+V041,captação de fundos,2
+V041,fotografia,2
+V041,apoio psicológico,3
+V041,sustentabilidade,3
+V041,análise de dados,4
+V042,facilitação,5
+V042,design gráfico,3
+V042,mediação intercultural,3
+V042,primeiros socorros,2
+V042,captação de fundos,4
+V042,apoio psicológico,5
+V043,primeiros socorros,5
+V043,análise de dados,4
+V043,estatística,3
+V043,edição de vídeo,3
+V043,escrita científica,5
+V044,organização,5
+V044,sustentabilidade,2
+V044,programação,5
+V045,apoio psicológico,2
+V045,estatística,3
+V045,robótica,4
+V045,fotografia,3
+V045,oratória,2
+V045,organização,5
+V046,línguas,3
+V046,sustentabilidade,5
+V046,organização,4
+V046,tutoria,5
+V047,facilitação,5
+V047,línguas,4
+V047,edição de vídeo,4
+V048,análise de dados,4
+V048,captação de fundos,5
+V048,línguas,4
+V048,facilitação,5
+V048,fotografia,4
+V048,gestão de eventos,5
+V049,programação,5
+V049,tutoria,5
+V049,apoio psicológico,5
+V049,comunicação,5
+V049,escrita científica,3
+V049,análise de dados,5
+V050,comunicação,4
+V050,captação de fundos,4
+V050,design gráfico,4
+V050,oratória,5
+V050,facilitação,4
+V050,programação,3
+V051,edição de vídeo,4
+V051,primeiros socorros,4
+V051,estatística,5
+V051,línguas,5
+V052,mediação intercultural,3
+V052,edição de vídeo,3
+V052,tutoria,3
+V052,literacia digital,3
+V052,comunicação,4
+V053,captação de fundos,4
+V053,análise de dados,5
+V053,design gráfico,4
+V053,primeiros socorros,4
+V054,primeiros socorros,4
+V054,logística,3
+V054,design gráfico,5
+V054,literacia digital,3
+V054,facilitação,5
+V054,captação de fundos,5
+V055,organização,4
+V055,oratória,3
+V055,apoio psicológico,3
+V055,mediação intercultural,5
+V055,facilitação,4
+V056,análise de dados,3
+V056,sustentabilidade,3
+V056,design gráfico,5
+V057,mediação intercultural,5
+V057,primeiros socorros,5
+V057,design gráfico,5
+V058,organização,3
+V058,fotografia,4
+V058,línguas,5
+V059,sustentabilidade,4
+V059,escrita científica,4
+V059,apoio psicológico,4
+V059,primeiros socorros,4
+V059,mediação intercultural,5
+V060,edição de vídeo,4
+V060,facilitação,3
+V060,tutoria,5
+V060,estatística,5
+V060,sustentabilidade,4

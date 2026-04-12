@@ -1,0 +1,15 @@
+entidade_id,nome,tipo,area_intervencao,localizacao,url
+E001,Núcleo de Engenharia Solidária,núcleo,educação,Campus da Asprela,https://voluntariado.universidade.pt/nes
+E002,Associação Académica Verde,associação,ambiente,Campus do Campo Alegre,https://voluntariado.universidade.pt/aav
+E003,Serviço de Ação Social Universitária,serviço,inclusão,Campus da Asprela,https://sas.universidade.pt
+E004,Gabinete de Saúde no Campus,serviço,saúde,Campus da Asprela,https://saude.universidade.pt
+E005,ONG Bairro Aberto,ONG parceira,inclusão,Centro Histórico,https://bairroaberto.org
+E006,ONG Mar Limpo,ONG parceira,ambiente,Matosinhos,https://marlimpo.pt
+E007,Faculdade de Ciências,serviço,educação,Campo Alegre,https://fciencias.universidade.pt
+E008,Faculdade de Engenharia,serviço,tecnologia,Asprela,https://fengenharia.universidade.pt
+E009,Biblioteca Central,serviço,cultura,Reitoria,https://biblioteca.universidade.pt
+E010,Clínica Jurídica Universitária,serviço,direitos,Campus da Justiça,https://direito.universidade.pt/clinica
+E011,Museu e Cultura Viva,associação,cultura,Baixa,https://museuculturaviva.pt
+E012,Centro de Ciência Cidadã,ONG parceira,tecnologia,Parque de Ciência,https://cienciacidada.pt
+E013,Programa Universidade Sem Fome,associação,alimentação,Asprela,https://semfome.universidade.pt
+E014,Rede Alumni Mentores,associação,educação,Online,https://alumni.universidade.pt/mentores

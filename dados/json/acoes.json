@@ -1,0 +1,1172 @@
+[
+  {
+    "acao_id": "A001",
+    "titulo": "Tutoria de Matemática no Bairro",
+    "entidade_id": "E001",
+    "entidade_nome": "Núcleo de Engenharia Solidária",
+    "area": "educação",
+    "data_hora": "2025-10-12 14:30",
+    "duracao_horas": 3,
+    "localizacao": "externo",
+    "vagas": 12,
+    "estado": "concluída",
+    "metrica_impacto": 82,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "tutoria",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A002",
+    "titulo": "Oficina de Literacia Digital para Séniores",
+    "entidade_id": "E005",
+    "entidade_nome": "ONG Bairro Aberto",
+    "area": "inclusão",
+    "data_hora": "2025-10-25 10:00",
+    "duracao_horas": 4,
+    "localizacao": "externo",
+    "vagas": 10,
+    "estado": "concluída",
+    "metrica_impacto": 88,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "literacia digital",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 11,
+        "ods_nome": "Cidades e Comunidades Sustentáveis"
+      }
+    ]
+  },
+  {
+    "acao_id": "A003",
+    "titulo": "Campanha de Recolha de Alimentos de Outono",
+    "entidade_id": "E013",
+    "entidade_nome": "Programa Universidade Sem Fome",
+    "area": "alimentação",
+    "data_hora": "2025-11-08 09:00",
+    "duracao_horas": 5,
+    "localizacao": "campus",
+    "vagas": 18,
+    "estado": "concluída",
+    "metrica_impacto": 79,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "logística",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "organização",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 1,
+        "ods_nome": "Erradicar a Pobreza"
+      },
+      {
+        "ods_id": 2,
+        "ods_nome": "Erradicar a Fome"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A004",
+    "titulo": "Limpeza Ribeirinha do Leça",
+    "entidade_id": "E002",
+    "entidade_nome": "Associação Académica Verde",
+    "area": "ambiente",
+    "data_hora": "2025-11-15 08:30",
+    "duracao_horas": 4,
+    "localizacao": "externo",
+    "vagas": 20,
+    "estado": "concluída",
+    "metrica_impacto": 90,
+    "competencias_desejadas": [
+      {
+        "competencia": "organização",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "sustentabilidade",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 6,
+        "ods_nome": "Água Potável e Saneamento"
+      },
+      {
+        "ods_id": 13,
+        "ods_nome": "Ação Climática"
+      },
+      {
+        "ods_id": 15,
+        "ods_nome": "Proteger a Vida Terrestre"
+      }
+    ]
+  },
+  {
+    "acao_id": "A005",
+    "titulo": "Feira de Ciência Cidadã no Campus",
+    "entidade_id": "E012",
+    "entidade_nome": "Centro de Ciência Cidadã",
+    "area": "tecnologia",
+    "data_hora": "2025-11-28 13:00",
+    "duracao_horas": 6,
+    "localizacao": "campus",
+    "vagas": 16,
+    "estado": "concluída",
+    "metrica_impacto": 84,
+    "competencias_desejadas": [
+      {
+        "competencia": "análise de dados",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "gestão de eventos",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 9,
+        "ods_nome": "Indústria, Inovação e Infraestruturas"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A006",
+    "titulo": "Apoio ao Estudo de Programação",
+    "entidade_id": "E008",
+    "entidade_nome": "Faculdade de Engenharia",
+    "area": "tecnologia",
+    "data_hora": "2025-12-03 17:00",
+    "duracao_horas": 2,
+    "localizacao": "online",
+    "vagas": 14,
+    "estado": "concluída",
+    "metrica_impacto": 76,
+    "competencias_desejadas": [
+      {
+        "competencia": "programação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "tutoria",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 8,
+        "ods_nome": "Trabalho Digno e Crescimento Económico"
+      }
+    ]
+  },
+  {
+    "acao_id": "A007",
+    "titulo": "Workshop de CV e LinkedIn Solidário",
+    "entidade_id": "E014",
+    "entidade_nome": "Rede Alumni Mentores",
+    "area": "educação",
+    "data_hora": "2025-12-10 18:30",
+    "duracao_horas": 2,
+    "localizacao": "online",
+    "vagas": 25,
+    "estado": "concluída",
+    "metrica_impacto": 73,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "oratória",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 8,
+        "ods_nome": "Trabalho Digno e Crescimento Económico"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A008",
+    "titulo": "Visita Cultural Inclusiva ao Museu",
+    "entidade_id": "E011",
+    "entidade_nome": "Museu e Cultura Viva",
+    "area": "cultura",
+    "data_hora": "2025-12-14 11:00",
+    "duracao_horas": 3,
+    "localizacao": "externo",
+    "vagas": 12,
+    "estado": "concluída",
+    "metrica_impacto": 69,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "fotografia",
+        "nivel_minimo": 1
+      },
+      {
+        "competencia": "mediação intercultural",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 11,
+        "ods_nome": "Cidades e Comunidades Sustentáveis"
+      }
+    ]
+  },
+  {
+    "acao_id": "A009",
+    "titulo": "Banco de Sangue Universitário",
+    "entidade_id": "E004",
+    "entidade_nome": "Gabinete de Saúde no Campus",
+    "area": "saúde",
+    "data_hora": "2026-01-07 09:30",
+    "duracao_horas": 5,
+    "localizacao": "campus",
+    "vagas": 15,
+    "estado": "concluída",
+    "metrica_impacto": 87,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "organização",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "primeiros socorros",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 3,
+        "ods_nome": "Saúde de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A010",
+    "titulo": "Mentoria para Caloiros Internacionais",
+    "entidade_id": "E014",
+    "entidade_nome": "Rede Alumni Mentores",
+    "area": "educação",
+    "data_hora": "2026-01-16 16:00",
+    "duracao_horas": 3,
+    "localizacao": "online",
+    "vagas": 20,
+    "estado": "concluída",
+    "metrica_impacto": 85,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "línguas",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "mediação intercultural",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 16,
+        "ods_nome": "Paz, Justiça e Instituições Eficazes"
+      }
+    ]
+  },
+  {
+    "acao_id": "A011",
+    "titulo": "Hackathon Dados para o Bem",
+    "entidade_id": "E008",
+    "entidade_nome": "Faculdade de Engenharia",
+    "area": "tecnologia",
+    "data_hora": "2026-01-24 09:00",
+    "duracao_horas": 8,
+    "localizacao": "campus",
+    "vagas": 30,
+    "estado": "concluída",
+    "metrica_impacto": 92,
+    "competencias_desejadas": [
+      {
+        "competencia": "análise de dados",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "estatística",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "programação",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 9,
+        "ods_nome": "Indústria, Inovação e Infraestruturas"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A012",
+    "titulo": "Plantação Participativa de Árvores",
+    "entidade_id": "E002",
+    "entidade_nome": "Associação Académica Verde",
+    "area": "ambiente",
+    "data_hora": "2026-02-01 09:00",
+    "duracao_horas": 4,
+    "localizacao": "externo",
+    "vagas": 22,
+    "estado": "concluída",
+    "metrica_impacto": 91,
+    "competencias_desejadas": [
+      {
+        "competencia": "fotografia",
+        "nivel_minimo": 1
+      },
+      {
+        "competencia": "logística",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "sustentabilidade",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 13,
+        "ods_nome": "Ação Climática"
+      },
+      {
+        "ods_id": 15,
+        "ods_nome": "Proteger a Vida Terrestre"
+      }
+    ]
+  },
+  {
+    "acao_id": "A013",
+    "titulo": "Oficina de Primeiros Socorros",
+    "entidade_id": "E004",
+    "entidade_nome": "Gabinete de Saúde no Campus",
+    "area": "saúde",
+    "data_hora": "2026-02-07 14:00",
+    "duracao_horas": 3,
+    "localizacao": "campus",
+    "vagas": 16,
+    "estado": "concluída",
+    "metrica_impacto": 80,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "primeiros socorros",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 3,
+        "ods_nome": "Saúde de Qualidade"
+      },
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      }
+    ]
+  },
+  {
+    "acao_id": "A014",
+    "titulo": "Clube de Conversação Português",
+    "entidade_id": "E009",
+    "entidade_nome": "Biblioteca Central",
+    "area": "cultura",
+    "data_hora": "2026-02-12 17:30",
+    "duracao_horas": 2,
+    "localizacao": "campus",
+    "vagas": 18,
+    "estado": "concluída",
+    "metrica_impacto": 74,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "línguas",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A015",
+    "titulo": "Recolha de Material Escolar",
+    "entidade_id": "E003",
+    "entidade_nome": "Serviço de Ação Social Universitária",
+    "area": "inclusão",
+    "data_hora": "2026-02-20 10:00",
+    "duracao_horas": 4,
+    "localizacao": "campus",
+    "vagas": 12,
+    "estado": "concluída",
+    "metrica_impacto": 77,
+    "competencias_desejadas": [
+      {
+        "competencia": "captação de fundos",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "organização",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 1,
+        "ods_nome": "Erradicar a Pobreza"
+      },
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A016",
+    "titulo": "Reforço Alimentar no Banco Local",
+    "entidade_id": "E013",
+    "entidade_nome": "Programa Universidade Sem Fome",
+    "area": "alimentação",
+    "data_hora": "2026-02-27 15:00",
+    "duracao_horas": 5,
+    "localizacao": "externo",
+    "vagas": 15,
+    "estado": "concluída",
+    "metrica_impacto": 86,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "logística",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "organização",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 1,
+        "ods_nome": "Erradicar a Pobreza"
+      },
+      {
+        "ods_id": 2,
+        "ods_nome": "Erradicar a Fome"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A017",
+    "titulo": "Mapeamento de Acessibilidade do Campus",
+    "entidade_id": "E010",
+    "entidade_nome": "Clínica Jurídica Universitária",
+    "area": "direitos",
+    "data_hora": "2026-03-25 14:00",
+    "duracao_horas": 4,
+    "localizacao": "campus",
+    "vagas": 14,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "análise de dados",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 11,
+        "ods_nome": "Cidades e Comunidades Sustentáveis"
+      },
+      {
+        "ods_id": 16,
+        "ods_nome": "Paz, Justiça e Instituições Eficazes"
+      }
+    ]
+  },
+  {
+    "acao_id": "A018",
+    "titulo": "Acompanhamento Digital a IPSS",
+    "entidade_id": "E005",
+    "entidade_nome": "ONG Bairro Aberto",
+    "area": "inclusão",
+    "data_hora": "2026-03-27 10:00",
+    "duracao_horas": 3,
+    "localizacao": "externo",
+    "vagas": 10,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "literacia digital",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A019",
+    "titulo": "Feira de Voluntariado e ODS",
+    "entidade_id": "E003",
+    "entidade_nome": "Serviço de Ação Social Universitária",
+    "area": "inclusão",
+    "data_hora": "2026-04-02 11:00",
+    "duracao_horas": 6,
+    "localizacao": "campus",
+    "vagas": 24,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "design gráfico",
+        "nivel_minimo": 1
+      },
+      {
+        "competencia": "gestão de eventos",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A020",
+    "titulo": "Limpeza de Praia de Matosinhos",
+    "entidade_id": "E006",
+    "entidade_nome": "ONG Mar Limpo",
+    "area": "ambiente",
+    "data_hora": "2026-04-05 08:00",
+    "duracao_horas": 5,
+    "localizacao": "externo",
+    "vagas": 28,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "logística",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "sustentabilidade",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 13,
+        "ods_nome": "Ação Climática"
+      },
+      {
+        "ods_id": 14,
+        "ods_nome": "Proteger a Vida Marinha"
+      }
+    ]
+  },
+  {
+    "acao_id": "A021",
+    "titulo": "Tutoria Intensiva de Exames",
+    "entidade_id": "E001",
+    "entidade_nome": "Núcleo de Engenharia Solidária",
+    "area": "educação",
+    "data_hora": "2026-04-11 09:30",
+    "duracao_horas": 4,
+    "localizacao": "campus",
+    "vagas": 18,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "tutoria",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A022",
+    "titulo": "Apoio à Declaração de IRS Solidário",
+    "entidade_id": "E010",
+    "entidade_nome": "Clínica Jurídica Universitária",
+    "area": "direitos",
+    "data_hora": "2026-04-16 18:00",
+    "duracao_horas": 2,
+    "localizacao": "campus",
+    "vagas": 10,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "oratória",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 1,
+        "ods_nome": "Erradicar a Pobreza"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 16,
+        "ods_nome": "Paz, Justiça e Instituições Eficazes"
+      }
+    ]
+  },
+  {
+    "acao_id": "A023",
+    "titulo": "Open Day Ciência para Escolas",
+    "entidade_id": "E007",
+    "entidade_nome": "Faculdade de Ciências",
+    "area": "educação",
+    "data_hora": "2026-04-22 09:00",
+    "duracao_horas": 6,
+    "localizacao": "campus",
+    "vagas": 20,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "escrita científica",
+        "nivel_minimo": 1
+      },
+      {
+        "competencia": "gestão de eventos",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 9,
+        "ods_nome": "Indústria, Inovação e Infraestruturas"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A024",
+    "titulo": "Corrida Solidária Campus em Movimento",
+    "entidade_id": "E004",
+    "entidade_nome": "Gabinete de Saúde no Campus",
+    "area": "saúde",
+    "data_hora": "2026-04-29 17:00",
+    "duracao_horas": 4,
+    "localizacao": "campus",
+    "vagas": 30,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "gestão de eventos",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "primeiros socorros",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 3,
+        "ods_nome": "Saúde de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A025",
+    "titulo": "Sessão de Ciência Cidadã sobre Qualidade do Ar",
+    "entidade_id": "E012",
+    "entidade_nome": "Centro de Ciência Cidadã",
+    "area": "tecnologia",
+    "data_hora": "2026-05-06 18:00",
+    "duracao_horas": 3,
+    "localizacao": "online",
+    "vagas": 22,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "análise de dados",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "estatística",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 11,
+        "ods_nome": "Cidades e Comunidades Sustentáveis"
+      },
+      {
+        "ods_id": 13,
+        "ods_nome": "Ação Climática"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A026",
+    "titulo": "Oficina de Design para Campanhas Sociais",
+    "entidade_id": "E011",
+    "entidade_nome": "Museu e Cultura Viva",
+    "area": "cultura",
+    "data_hora": "2026-05-10 14:30",
+    "duracao_horas": 4,
+    "localizacao": "campus",
+    "vagas": 15,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "design gráfico",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "edição de vídeo",
+        "nivel_minimo": 1
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 17,
+        "ods_nome": "Parcerias para a Implementação dos Objetivos"
+      }
+    ]
+  },
+  {
+    "acao_id": "A027",
+    "titulo": "Hospital dos Bonecos",
+    "entidade_id": "E004",
+    "entidade_nome": "Gabinete de Saúde no Campus",
+    "area": "saúde",
+    "data_hora": "2026-05-14 09:00",
+    "duracao_horas": 5,
+    "localizacao": "campus",
+    "vagas": 18,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 3
+      },
+      {
+        "competencia": "organização",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "primeiros socorros",
+        "nivel_minimo": 1
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 3,
+        "ods_nome": "Saúde de Qualidade"
+      },
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      }
+    ]
+  },
+  {
+    "acao_id": "A028",
+    "titulo": "Campanha de Recolha de Resíduos Eletrónicos",
+    "entidade_id": "E002",
+    "entidade_nome": "Associação Académica Verde",
+    "area": "ambiente",
+    "data_hora": "2026-05-21 10:00",
+    "duracao_horas": 4,
+    "localizacao": "campus",
+    "vagas": 16,
+    "estado": "planeada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "logística",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "sustentabilidade",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 12,
+        "ods_nome": "Produção e Consumo Sustentáveis"
+      },
+      {
+        "ods_id": 13,
+        "ods_nome": "Ação Climática"
+      }
+    ]
+  },
+  {
+    "acao_id": "A029",
+    "titulo": "Oficina de Robótica para Jovens",
+    "entidade_id": "E008",
+    "entidade_nome": "Faculdade de Engenharia",
+    "area": "tecnologia",
+    "data_hora": "2026-05-28 15:00",
+    "duracao_horas": 5,
+    "localizacao": "campus",
+    "vagas": 14,
+    "estado": "cancelada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "facilitação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "programação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "robótica",
+        "nivel_minimo": 3
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 4,
+        "ods_nome": "Educação de Qualidade"
+      },
+      {
+        "ods_id": 9,
+        "ods_nome": "Indústria, Inovação e Infraestruturas"
+      }
+    ]
+  },
+  {
+    "acao_id": "A030",
+    "titulo": "Encontro Intergeracional de Memórias",
+    "entidade_id": "E011",
+    "entidade_nome": "Museu e Cultura Viva",
+    "area": "cultura",
+    "data_hora": "2026-06-04 15:00",
+    "duracao_horas": 3,
+    "localizacao": "externo",
+    "vagas": 12,
+    "estado": "cancelada",
+    "metrica_impacto": 0,
+    "competencias_desejadas": [
+      {
+        "competencia": "comunicação",
+        "nivel_minimo": 2
+      },
+      {
+        "competencia": "fotografia",
+        "nivel_minimo": 1
+      },
+      {
+        "competencia": "mediação intercultural",
+        "nivel_minimo": 2
+      }
+    ],
+    "ods_associados": [
+      {
+        "ods_id": 3,
+        "ods_nome": "Saúde de Qualidade"
+      },
+      {
+        "ods_id": 10,
+        "ods_nome": "Reduzir as Desigualdades"
+      },
+      {
+        "ods_id": 11,
+        "ods_nome": "Cidades e Comunidades Sustentáveis"
+      }
+    ]
+  }
+]
