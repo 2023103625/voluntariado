@@ -22,7 +22,7 @@ class Inscricao:
         self.acao: str = acao
         self.data_hora_inscricao: str = data_hora_inscricao
         
-        # O estado inicial é sempre pendente até ser processado [cite: 48, 54]
+        # O estado inicial é sempre pendente até ser processado 
         self.estado: str = "pendente"
 
     def atualizar_estado(self, novo_estado: str) -> bool:
@@ -32,7 +32,7 @@ class Inscricao:
         :param novo_estado: O novo estado a atribuir.
         :return: True se o estado for válido e alterado, False caso contrário.
         """
-        estados_validos = ["pendente", "aprovada", "rejeitada", "lista de espera"] #[cite: 48]
+        estados_validos = ["pendente", "aprovada", "rejeitada", "lista de espera"] 
         if novo_estado.lower() in estados_validos:
             self.estado = novo_estado.lower()
             return True

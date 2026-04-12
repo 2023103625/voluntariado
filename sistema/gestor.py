@@ -510,9 +510,9 @@ class SistemaVoluntariado:
         plt.tight_layout()
         plt.show()
 
-    # ==============================================
+    # ==========================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==============================================
+    # ==========================================
     
     def exportar_relatorio(self) -> None:
         """
