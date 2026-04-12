@@ -1,4 +1,3 @@
-import sys
 from sistema.gestor import SistemaVoluntariado
 from sistema.modelos import Voluntario, Entidade, Acao
 
@@ -110,12 +109,13 @@ class MenuTerminal:
         if op == "1":
             tit = input("Título: ")
             ent = input("Entidade Promotora: ")
+            area = input("Área da ação: ")
             data = input("Data/Hora (YYYY-MM-DD HH:MM): ")
             try:
                 dur = int(input("Duração (horas): "))
                 vag = int(input("Vagas: "))
                 loc = input("Localização: ")
-                self.sistema.adicionar_acao(Acao(tit, ent, data, dur, vag, loc))
+                self.sistema.adicionar_acao(Acao(tit, ent, data, dur, vag, loc, area))
             except ValueError:
                 print("Erro: Duração e vagas devem ser números inteiros (OR06).")
         elif op == "2":
@@ -158,7 +158,9 @@ class MenuTerminal:
             print("(Dica: Prima ENTER sem escrever nada para ignorar um filtro)")
             
             entidade = input("Entidade Promotora: ").strip()
-            data = input("Data (ex: 2025-10 ou apenas 2025): ").strip()
+            area = input("Área: ").strip()
+            data_inicio = input("Data início (YYYY-MM-DD HH:MM): ").strip()
+            data_fim = input("Data fim (YYYY-MM-DD HH:MM): ").strip()
             
             vagas_input = input("Vagas mínimas: ").strip()
             # Converte para inteiro se o utilizador digitou números, senão fica None
@@ -166,11 +168,16 @@ class MenuTerminal:
             
             ods_input = input("ODS específico (1-17): ").strip()
             ods = int(ods_input) if ods_input.isdigit() else None
+            if ods is not None and (ods < 1 or ods > 17):
+                print("ODS inválido. Use valores entre 1 e 17.")
+                return
             
             # Constrói o dicionário de filtros
             filtros = {
                 "entidade": entidade,
-                "data": data,
+                "area": area,
+                "data_inicio": data_inicio,
+                "data_fim": data_fim,
                 "vagas_min": vagas_min,
                 "ods": ods
             }

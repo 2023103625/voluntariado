@@ -1,6 +1,5 @@
 from typing import List, Dict
 from sistema.estruturas.fila import Fila
-from sistema.modelos.inscricao import Inscricao
 
 class Acao:
     """
@@ -15,10 +14,19 @@ class Acao:
     :ivar fila_inscricoes: Fila (FIFO) com as inscrições pendentes para esta ação (RF02).
     """
 
-    def __init__(self, titulo: str, entidade: str, data_hora: str, 
-                 duracao: int, vagas: int, localizacao: str):
+    def __init__(
+        self,
+        titulo: str,
+        entidade: str,
+        data_hora: str,
+        duracao: int,
+        vagas: int,
+        localizacao: str,
+        area: str = "",
+    ):
         self.titulo = titulo
         self.entidade = entidade
+        self.area = area
         self.data_hora = data_hora
         self.duracao = duracao
         self.vagas = max(0, vagas) # Garante que as vagas nunca são negativas
@@ -45,7 +53,7 @@ class Acao:
 
     def adicionar_ods(self, ods_id: int) -> bool:
         """Adiciona um ODS validando o limite máximo de 3."""
-        if len(self.ods_associados) < 3 and ods_id not in self.ods_associados:
+        if 1 <= ods_id <= 17 and len(self.ods_associados) < 3 and ods_id not in self.ods_associados:
             self.ods_associados.append(ods_id)
             return True
         return False

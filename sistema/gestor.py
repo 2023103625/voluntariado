@@ -1,8 +1,8 @@
 import os
 import time
 import matplotlib.pyplot as plt
-from typing import List, Optional
-from sistema.modelos import Voluntario, Entidade, Acao
+from typing import List, Optional, Dict, Any
+from sistema.modelos import Voluntario, Entidade, Acao, Inscricao
 from sistema.algoritmos.insertion_sort import ordenar_voluntarios_nome
 from sistema.algoritmos.shell_sort import shell_sort_acoes
 from sistema.base_dados import BaseDados
@@ -22,25 +22,126 @@ class SistemaVoluntariado:
     def carregar_sistema(self, caminho_json: str) -> None:
         """Carrega os dados iniciais do JSON para as listas de objetos (OR02)."""
         dados = BaseDados.carregar_dados(caminho_json)
-        
-        if dados:
-            print("Base de dados JSON encontrada e carregada com sucesso.")
-            # Opcional para o futuro: converter os dicionários de 'dados' 
-            # de volta para objetos Voluntario, Entidade e Acao
-        else:
+
+        if not dados:
             print("Iniciando o sistema com a base de dados vazia.")
+            return
+
+        self.voluntarios = [self._desserializar_voluntario(v) for v in dados.get("voluntarios", [])]
+        self.entidades = [self._desserializar_entidade(e) for e in dados.get("entidades", [])]
+        self.acoes = [self._desserializar_acao(a) for a in dados.get("acoes", [])]
+        print("Base de dados JSON encontrada e carregada com sucesso.")
 
     def guardar_sistema(self, caminho_json: str) -> None:
         """Guarda as listas de objetos de volta no JSON (OR02)."""
-        # Para um projeto avançado, aqui converterias os objetos self.voluntarios 
-        # de volta para dicionários antes de gravar. Por agora, guarda listas vazias
-        # ou os dados em formato base para cumprir a estrutura do requisito.
         dados_exportar = {
-            "voluntarios": [v.__dict__ for v in self.voluntarios],
-            "entidades": [e.__dict__ for e in self.entidades],
-            "acoes": [a.__dict__ for a in self.acoes]  # Simplificação de exportação
+            "voluntarios": [self._serializar_voluntario(v) for v in self.voluntarios],
+            "entidades": [self._serializar_entidade(e) for e in self.entidades],
+            "acoes": [self._serializar_acao(a) for a in self.acoes]
         }
         BaseDados.guardar_dados(caminho_json, dados_exportar)
+
+    def _serializar_voluntario(self, voluntario: Voluntario) -> Dict[str, Any]:
+        """Converte um objeto Voluntario para dicionário JSON-serializável."""
+        return {
+            "nome": voluntario.nome,
+            "curso": voluntario.curso,
+            "faculdade": voluntario.faculdade,
+            "vinculo": voluntario.vinculo,
+            "ano": voluntario.ano,
+            "competencias": voluntario.competencias,
+            "interesses": voluntario.interesses,
+            "ods_interesse": voluntario.ods_interesse,
+        }
+
+    def _serializar_entidade(self, entidade: Entidade) -> Dict[str, Any]:
+        """Converte um objeto Entidade para dicionário JSON-serializável."""
+        return {
+            "nome": entidade.nome,
+            "tipo": entidade.tipo,
+            "area": entidade.area,
+            "localizacao": entidade.localizacao,
+            "url": entidade.url,
+            "tags": entidade.tags,
+            "ods_foco": entidade.ods_foco,
+        }
+
+    def _serializar_acao(self, acao: Acao) -> Dict[str, Any]:
+        """Converte um objeto Acao para dicionário JSON-serializável."""
+        return {
+            "titulo": acao.titulo,
+            "entidade": acao.entidade,
+            "area": acao.area,
+            "data_hora": acao.data_hora,
+            "duracao": acao.duracao,
+            "vagas": acao.vagas,
+            "localizacao": acao.localizacao,
+            "estado": acao.estado,
+            "metrica_impacto": acao.metrica_impacto,
+            "competencias_desejadas": acao.competencias_desejadas,
+            "ods_associados": acao.ods_associados,
+            "inscricoes_aprovadas": [
+                {
+                    "voluntario": inscricao.voluntario,
+                    "acao": inscricao.acao,
+                    "data_hora_inscricao": inscricao.data_hora_inscricao,
+                    "estado": inscricao.estado,
+                }
+                for inscricao in acao.inscricoes_aprovadas
+            ],
+        }
+
+    def _desserializar_voluntario(self, dados: Dict[str, Any]) -> Voluntario:
+        """Converte um dicionário para objeto Voluntario."""
+        voluntario = Voluntario(
+            nome=dados.get("nome", ""),
+            curso=dados.get("curso", ""),
+            faculdade=dados.get("faculdade", ""),
+            vinculo=dados.get("vinculo", ""),
+            ano=dados.get("ano"),
+        )
+        voluntario.competencias = dados.get("competencias", {})
+        voluntario.interesses = dados.get("interesses", [])
+        voluntario.ods_interesse = dados.get("ods_interesse", [])
+        return voluntario
+
+    def _desserializar_entidade(self, dados: Dict[str, Any]) -> Entidade:
+        """Converte um dicionário para objeto Entidade."""
+        entidade = Entidade(
+            nome=dados.get("nome", ""),
+            tipo=dados.get("tipo", ""),
+            area=dados.get("area", ""),
+            localizacao=dados.get("localizacao", ""),
+            url=dados.get("url"),
+        )
+        entidade.tags = dados.get("tags", [])
+        entidade.ods_foco = dados.get("ods_foco", [])
+        return entidade
+
+    def _desserializar_acao(self, dados: Dict[str, Any]) -> Acao:
+        """Converte um dicionário para objeto Acao."""
+        acao = Acao(
+            titulo=dados.get("titulo", ""),
+            entidade=dados.get("entidade", ""),
+            data_hora=dados.get("data_hora", ""),
+            duracao=dados.get("duracao", 0),
+            vagas=dados.get("vagas", 0),
+            localizacao=dados.get("localizacao", ""),
+            area=dados.get("area", ""),
+        )
+        acao.estado = dados.get("estado", "planeada")
+        acao.metrica_impacto = dados.get("metrica_impacto", 0.0)
+        acao.competencias_desejadas = dados.get("competencias_desejadas", {})
+        acao.ods_associados = dados.get("ods_associados", [])
+        for item in dados.get("inscricoes_aprovadas", []):
+            inscricao = Inscricao(
+                voluntario=item.get("voluntario", ""),
+                acao=item.get("acao", acao.titulo),
+                data_hora_inscricao=item.get("data_hora_inscricao", ""),
+            )
+            inscricao.atualizar_estado(item.get("estado", "aprovada"))
+            acao.inscricoes_aprovadas.append(inscricao)
+        return acao
 
     # ==========================================
     # RF01 - GESTÃO DE VOLUNTÁRIOS
@@ -158,7 +259,10 @@ class SistemaVoluntariado:
         resultados = [v for v in self.voluntarios if v.nome.lower().startswith(prefixo.lower())]
         ordenar_voluntarios_nome(resultados)
         for v in resultados:
-            print(f"- {v.nome} ({v.curso})")
+            print(
+                f"- {v.nome} | Curso: {v.curso} | Faculdade: {v.faculdade} "
+                f"| Competências: {v.competencias} | Tags: {v.interesses} | ODS: {v.ods_interesse}"
+            )
 
     # ==========================================
     # RF03 (ii) - PESQUISA E LISTAGEM DE AÇÕES
@@ -175,16 +279,24 @@ class SistemaVoluntariado:
         # 1. Filtro por Entidade (se o texto digitado existir no nome da entidade)
         if filtros.get("entidade"):
             resultados = [a for a in resultados if filtros["entidade"].lower() in a.entidade.lower()]
-        
-        # 2. Filtro por Data (se a data digitada, ex "2025", fizer parte da data_hora da ação)
-        if filtros.get("data"):
-            resultados = [a for a in resultados if filtros["data"] in a.data_hora]
+
+        # 2. Filtro por Área
+        if filtros.get("area"):
+            resultados = [a for a in resultados if filtros["area"].lower() in a.area.lower()]
+
+        # 3. Filtro por Intervalo de Datas (strings no formato YYYY-MM-DD HH:MM)
+        data_inicio = filtros.get("data_inicio")
+        data_fim = filtros.get("data_fim")
+        if data_inicio:
+            resultados = [a for a in resultados if a.data_hora >= data_inicio]
+        if data_fim:
+            resultados = [a for a in resultados if a.data_hora <= data_fim]
             
-        # 3. Filtro por Vagas Mínimas
+        # 4. Filtro por Vagas Mínimas
         if filtros.get("vagas_min") is not None:
             resultados = [a for a in resultados if a.vagas >= filtros["vagas_min"]]
             
-        # 4. Filtro por ODS Associado
+        # 5. Filtro por ODS Associado
         if filtros.get("ods") is not None:
             resultados = [a for a in resultados if filtros["ods"] in a.ods_associados]
 
@@ -330,8 +442,8 @@ class SistemaVoluntariado:
                 f.write("\n" + "=" * 50 + "\n")
                 f.write("Relatório gerado automaticamente pelo Sistema.\n")
 
-            print(f"\n✅ Sucesso! Relatório exportado com sucesso para a pasta 'relatorios'.")
-            print(f"📄 Nome do ficheiro: {nome_ficheiro}")
+            print(f"\n Sucesso! Relatório exportado com sucesso para a pasta 'relatorios'.")
+            print(f" Nome do ficheiro: {nome_ficheiro}")
             
         except Exception as e:
             print(f"Erro ao guardar o relatório: {e}")
