@@ -413,9 +413,9 @@ class SistemaVoluntariado:
         print("Ação não encontrada ou estado inválido.")
         return False
 
-    # ==========================================
-    # RESTANTES REQUISITOS (MANTIDOS INTACTOS)
-    # ==========================================
+    # ============================================
+    # RF02 – Processamento de inscrições nas ações
+    # ============================================
     def processar_inscricao_na_acao(self, titulo_acao: str, aprovada: bool) -> None:
         acao = self.consultar_acao(titulo_acao)
         if not acao:
@@ -436,6 +436,10 @@ class SistemaVoluntariado:
         else:
             inscricao.atualizar_estado("rejeitada")
             print("Rejeitada.")
+
+    # ==========================================
+    # RF03 (i) - PESQUISA E LISTAGEM DE AÇÕES
+    # ==========================================
 
     def listar_voluntarios_prefixo(self, prefixo: str) -> None:
         resultados = [v for v in self.voluntarios if v.nome.lower().startswith(prefixo.lower())]
@@ -494,6 +498,10 @@ class SistemaVoluntariado:
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")
         for a in resultados:
             print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidade: {a.entidade}) - Vagas: {a.vagas}")
+    
+    # ==========================================
+    # RF04 – Estatísticas e Dashboard (versão 1)
+    # ==========================================
 
     def gerar_dashboard(self) -> None:
         """
@@ -502,19 +510,19 @@ class SistemaVoluntariado:
         acoes_por_ods = {i: 0 for i in range(1, 18)}
         horas_por_ods = {i: 0 for i in range(1, 18)}
         
-        # Dicionário para somar as horas de cada voluntário: {"Nome do Voluntário": 10}
+        # Dicionário para somar as horas de cada voluntário
         horas_por_voluntario = {}
 
         for acao in self.acoes:
             for ods in acao.ods_associados:
                 acoes_por_ods[ods] += 1
                 
-            # Só contabilizamos horas se a ação já estiver concluída!
+            # Só são contabilizadas horas se a ação já estiver concluída
             if acao.estado.lower() == "concluída":
                 for ods in acao.ods_associados:
                     horas_por_ods[ods] += acao.duracao
                     
-                # Vamos a cada inscrição aprovada desta ação dar as horas ao voluntário
+                # A cada inscrição aprovada desta ação dá-se as horas ao voluntário
                 for inscricao in getattr(acao, 'inscricoes_aprovadas', []):
                     nome_vol = inscricao.voluntario
                     if nome_vol not in horas_por_voluntario:
@@ -544,11 +552,11 @@ class SistemaVoluntariado:
             print(" -> Nenhum voluntário tem horas registadas em ações concluídas.")
         print("="*50)
 
-        # Chama a função que já tinhas para desenhar os gráficos do matplotlib
+        # Chama a função para desenhar os gráficos do matplotlib
         self._desenhar_graficos(acoes_por_ods, horas_por_ods)
 
     def _desenhar_graficos(self, acoes_ods: dict, horas_ods: dict) -> None:
-        """Desenha os gráficos de barras do dashboard com legibilidade melhorada.
+        """Desenha os gráficos de barras do dashboard.
 
         :param acoes_ods: Dicionário ``{ods: total_acoes}``.
         :param horas_ods: Dicionário ``{ods: total_horas}``.
@@ -600,9 +608,9 @@ class SistemaVoluntariado:
         fig.subplots_adjust(bottom=0.22, wspace=0.26)
         plt.show()
 
-    # ==========================================
+    # ==============================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==========================================
+    # ==============================================
     
     def exportar_relatorio(self) -> None:
         """
