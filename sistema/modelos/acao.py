@@ -2,7 +2,7 @@
 
 from typing import List, Dict
 from sistema.estruturas.fila import Fila
-
+from sistema.modelos.inscricao import Inscricao
 
 class Acao:
     """Representa uma ação de voluntariado.

@@ -2562,6 +2562,37 @@
                 "criatividade"
             ],
             "ods_interesse": []
+        },
+        {
+            "voluntario_id": "V061",
+            "nome": "Ana Xavier",
+            "curso": "LINF - Licenciatura em Informática",
+            "faculdade": "Ciências e Tecnologias",
+            "vinculo_institucional": "estudante",
+            "ano": 3,
+            "competencias": [
+                {
+                    "competencia": "edição de vídeo",
+                    "nivel": 4
+                },
+                {
+                    "competencia": "design gráfico",
+                    "nivel": 3
+                },
+                {
+                    "competencia": "análise de dados",
+                    "nivel": 4
+                }
+            ],
+            "interesses": [
+                "informática",
+                "solidariedade"
+            ],
+            "ods_interesse": [
+                3,
+                4,
+                6
+            ]
         }
     ],
     "entidades": [
@@ -2951,6 +2982,35 @@
             "url": null,
             "tags": [],
             "ods_principais": []
+        },
+        {
+            "entidade_id": "E016",
+            "nome": "Teste",
+            "tipo": "serviço",
+            "area_intervencao": "educação",
+            "localizacao": "online",
+            "url": "https://teste.com/",
+            "tags": [
+                "mentoria",
+                "teste"
+            ],
+            "ods_principais": [
+                {
+                    "ods_id": 2
+                },
+                {
+                    "ods_id": 5
+                },
+                {
+                    "ods_id": 6
+                },
+                {
+                    "ods_id": 8
+                },
+                {
+                    "ods_id": 14
+                }
+            ]
         }
     ],
     "acoes": [
@@ -3905,7 +3965,7 @@
             "area": "saúde",
             "data_hora": "2026-05-14 09:00",
             "duracao_horas": 5,
-            "vagas": 18,
+            "vagas": 17,
             "localizacao": "campus",
             "estado": "planeada",
             "metrica_impacto": 0,
@@ -4057,6 +4117,31 @@
             "metrica_impacto": 0.0,
             "competencias_desejadas": [],
             "ods_associados": []
+        },
+        {
+            "acao_id": "A032",
+            "titulo": "Campanha de Teste",
+            "entidade_id": "E016",
+            "entidade_nome": "Teste",
+            "area": "educação",
+            "data_hora": "2026-06-05 10:00",
+            "duracao_horas": 3,
+            "vagas": 25,
+            "localizacao": "campus",
+            "estado": "planeada",
+            "metrica_impacto": 50.0,
+            "competencias_desejadas": [],
+            "ods_associados": [
+                {
+                    "ods_id": 2
+                },
+                {
+                    "ods_id": 5
+                },
+                {
+                    "ods_id": 8
+                }
+            ]
         }
     ],
     "ods_catalogo": [
@@ -8335,7 +8420,7 @@
             "voluntario_id": "V028",
             "acao_id": "A027",
             "data_hora_inscricao": "2026-05-03 20:16",
-            "estado": "pendente"
+            "estado": "aprovada"
         },
         {
             "inscricao_id": "I0602",

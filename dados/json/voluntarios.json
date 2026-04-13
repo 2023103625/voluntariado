@@ -2561,5 +2561,36 @@
             "criatividade"
         ],
         "ods_interesse": []
+    },
+    {
+        "voluntario_id": "V061",
+        "nome": "Ana Xavier",
+        "curso": "LINF - Licenciatura em Informática",
+        "faculdade": "Ciências e Tecnologias",
+        "vinculo_institucional": "estudante",
+        "ano": 3,
+        "competencias": [
+            {
+                "competencia": "edição de vídeo",
+                "nivel": 4
+            },
+            {
+                "competencia": "design gráfico",
+                "nivel": 3
+            },
+            {
+                "competencia": "análise de dados",
+                "nivel": 4
+            }
+        ],
+        "interesses": [
+            "informática",
+            "solidariedade"
+        ],
+        "ods_interesse": [
+            3,
+            4,
+            6
+        ]
     }
 ]

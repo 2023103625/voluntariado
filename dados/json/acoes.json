@@ -950,7 +950,7 @@
         "area": "saúde",
         "data_hora": "2026-05-14 09:00",
         "duracao_horas": 5,
-        "vagas": 18,
+        "vagas": 17,
         "localizacao": "campus",
         "estado": "planeada",
         "metrica_impacto": 0,
@@ -1102,5 +1102,30 @@
         "metrica_impacto": 0.0,
         "competencias_desejadas": [],
         "ods_associados": []
+    },
+    {
+        "acao_id": "A032",
+        "titulo": "Campanha de Teste",
+        "entidade_id": "E016",
+        "entidade_nome": "Teste",
+        "area": "educação",
+        "data_hora": "2026-06-05 10:00",
+        "duracao_horas": 3,
+        "vagas": 25,
+        "localizacao": "campus",
+        "estado": "planeada",
+        "metrica_impacto": 50.0,
+        "competencias_desejadas": [],
+        "ods_associados": [
+            {
+                "ods_id": 2
+            },
+            {
+                "ods_id": 5
+            },
+            {
+                "ods_id": 8
+            }
+        ]
     }
 ]
