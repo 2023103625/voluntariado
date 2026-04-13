@@ -1,6 +1,5 @@
 """Modelo de domínio para inscrições em ações."""
 
-
 class Inscricao:
     """Representa a candidatura de um voluntário a uma ação.
 

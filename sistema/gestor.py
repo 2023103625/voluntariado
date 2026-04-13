@@ -283,7 +283,6 @@ class SistemaVoluntariado:
             elif inscricao.estado == "aprovada":
                 acao.inscricoes_aprovadas.append(inscricao)
 
-
     def _gerar_proximo_id(self, itens: List[Any], atributo_id: str, prefixo: str) -> str:
         """Gera o próximo identificador sequencial com prefixo (ex.: V001)."""
         maior = 0
@@ -371,6 +370,35 @@ class SistemaVoluntariado:
         print("Entidade não encontrada.")
         return False
 
+    def atualizar_entidade(
+        self,
+        nome: str,
+        novo_tipo: Optional[str] = None,
+        nova_area: Optional[str] = None,
+        nova_localizacao: Optional[str] = None,
+    ) -> bool:
+        """Atualiza campos principais de uma entidade.
+
+        :param nome: Nome atual da entidade a atualizar.
+        :param novo_tipo: Novo tipo (opcional).
+        :param nova_area: Nova área de intervenção (opcional).
+        :param nova_localizacao: Nova localização (opcional).
+        :return: ``True`` se a entidade existir, ``False`` caso contrário.
+        """
+        entidade = self.consultar_entidade(nome)
+        if not entidade:
+            print("Entidade não encontrada.")
+            return False
+
+        if novo_tipo:
+            entidade.tipo = novo_tipo
+        if nova_area:
+            entidade.area = nova_area
+        if nova_localizacao:
+            entidade.localizacao = nova_localizacao
+        print(f"Entidade '{nome}' atualizada com sucesso.")
+        return True
+
     # ==========================================
     # RF01 - GESTÃO DE AÇÕES
     # ==========================================
@@ -381,7 +409,16 @@ class SistemaVoluntariado:
         """
         if self.consultar_acao(acao.titulo):
             print(f"Erro: A ação '{acao.titulo}' já existe.")
+            return
+
+        entidade = self.consultar_entidade(acao.entidade)
+        if not entidade:
+            print(
+                "Erro: A entidade promotora indicada não existe. "
+                "Crie/valide a entidade antes de registar a ação."
+            )
         else:
+            acao.entidade_id = entidade.entidade_id
             acao.acao_id = self._gerar_proximo_id(
                 self.acoes,
                 "acao_id",
@@ -413,9 +450,9 @@ class SistemaVoluntariado:
         print("Ação não encontrada ou estado inválido.")
         return False
 
-    # ============================================
-    # RF02 – Processamento de inscrições nas ações
-    # ============================================
+    # ==========================================
+    # RESTANTES REQUISITOS (MANTIDOS INTACTOS)
+    # ==========================================
     def processar_inscricao_na_acao(self, titulo_acao: str, aprovada: bool) -> None:
         acao = self.consultar_acao(titulo_acao)
         if not acao:
@@ -437,10 +474,6 @@ class SistemaVoluntariado:
             inscricao.atualizar_estado("rejeitada")
             print("Rejeitada.")
 
-    # ==========================================
-    # RF03 (i) - PESQUISA E LISTAGEM DE AÇÕES
-    # ==========================================
-
     def listar_voluntarios_prefixo(self, prefixo: str) -> None:
         resultados = [v for v in self.voluntarios if v.nome.lower().startswith(prefixo.lower())]
         ordenar_voluntarios_nome(resultados)
@@ -456,7 +489,7 @@ class SistemaVoluntariado:
     
     def pesquisar_e_listar_acoes(self, filtros: dict, ordenar_por: str = "data_hora") -> None:
         """
-        Filtra as ações com base num dicionário de critérios e ordena o
+        Filtra as ações com base num dicionário de critérios e ordena o 
         resultado final usando o algoritmo Merge Sort (O(n log n)).
         """
         # Começamos com uma cópia de todas as ações
@@ -491,17 +524,13 @@ class SistemaVoluntariado:
             print("\nNenhuma ação encontrada com os filtros especificados.")
             return
 
-        # Por fim, ordena os resultados filtrados usando o algoritmo
+        # Por fim, ordena os resultados filtrados usando o teu algoritmo Merge Sort
         merge_sort_acoes(resultados, ordenar_por)
 
         # Imprime os resultados
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")
         for a in resultados:
             print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidade: {a.entidade}) - Vagas: {a.vagas}")
-    
-    # ==========================================
-    # RF04 – Estatísticas e Dashboard (versão 1)
-    # ==========================================
 
     def gerar_dashboard(self) -> None:
         """
@@ -510,19 +539,19 @@ class SistemaVoluntariado:
         acoes_por_ods = {i: 0 for i in range(1, 18)}
         horas_por_ods = {i: 0 for i in range(1, 18)}
         
-        # Dicionário para somar as horas de cada voluntário
+        # Dicionário para somar as horas de cada voluntário: {"Nome do Voluntário": 10}
         horas_por_voluntario = {}
 
         for acao in self.acoes:
             for ods in acao.ods_associados:
                 acoes_por_ods[ods] += 1
                 
-            # Só são contabilizadas horas se a ação já estiver concluída
+            # Só contabilizamos horas se a ação já estiver concluída!
             if acao.estado.lower() == "concluída":
                 for ods in acao.ods_associados:
                     horas_por_ods[ods] += acao.duracao
                     
-                # A cada inscrição aprovada desta ação dá-se as horas ao voluntário
+                # Vamos a cada inscrição aprovada desta ação dar as horas ao voluntário
                 for inscricao in getattr(acao, 'inscricoes_aprovadas', []):
                     nome_vol = inscricao.voluntario
                     if nome_vol not in horas_por_voluntario:
@@ -552,11 +581,11 @@ class SistemaVoluntariado:
             print(" -> Nenhum voluntário tem horas registadas em ações concluídas.")
         print("="*50)
 
-        # Chama a função para desenhar os gráficos do matplotlib
+        # Chama a função que já tinhas para desenhar os gráficos do matplotlib
         self._desenhar_graficos(acoes_por_ods, horas_por_ods)
 
     def _desenhar_graficos(self, acoes_ods: dict, horas_ods: dict) -> None:
-        """Desenha os gráficos de barras do dashboard.
+        """Desenha os gráficos de barras do dashboard com legibilidade melhorada.
 
         :param acoes_ods: Dicionário ``{ods: total_acoes}``.
         :param horas_ods: Dicionário ``{ods: total_horas}``.
@@ -608,9 +637,9 @@ class SistemaVoluntariado:
         fig.subplots_adjust(bottom=0.22, wspace=0.26)
         plt.show()
 
-    # ==============================================
+    # ==========================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==============================================
+    # ==========================================
     
     def exportar_relatorio(self) -> None:
         """

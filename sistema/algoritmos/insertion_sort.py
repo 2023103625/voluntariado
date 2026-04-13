@@ -2,9 +2,17 @@ from typing import List
 from sistema.modelos.voluntario import Voluntario
 
 def ordenar_voluntarios_nome(lista: List[Voluntario]) -> None:
-    """
-    Ordena voluntários por nome (A-Z).
-    Melhor caso: O(n). 
+    """Ordena voluntários alfabeticamente pelo atributo ``nome``.
+
+    Implementação do algoritmo Insertion Sort, conforme RF03(i).
+
+    :param lista: Lista de objetos :class:`Voluntario` a ordenar in-place.
+    :return: ``None``.
+
+    .. note::
+        Complexidade:
+        - melhor caso: ``O(n)`` (lista já ordenada);
+        - pior caso: ``O(n^2)``.
     """
     for i in range(1, len(lista)):
         chave = lista[i]
@@ -13,5 +21,3 @@ def ordenar_voluntarios_nome(lista: List[Voluntario]) -> None:
             lista[j + 1] = lista[j]
             j -= 1
         lista[j + 1] = chave
-
-        
