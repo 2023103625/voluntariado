@@ -2573,6 +2573,17 @@
             "competencias": [],
             "interesses": [],
             "ods_interesse": []
+        },
+        {
+            "voluntario_id": null,
+            "nome": "Joana Braga",
+            "curso": "LINF",
+            "faculdade": "Ciências e Tecnologias",
+            "vinculo_institucional": "estudante",
+            "ano": null,
+            "competencias": [],
+            "interesses": [],
+            "ods_interesse": []
         }
     ],
     "entidades": [
@@ -4056,7 +4067,7 @@
         },
         {
             "acao_id": null,
-            "titulo": "Campanha de Incentivo à  Pesca Responsável",
+            "titulo": "Campanha de Incentivo à Pesca Responsável",
             "entidade_id": null,
             "entidade_nome": "Associação Marés Vivas",
             "area": "ambiente",

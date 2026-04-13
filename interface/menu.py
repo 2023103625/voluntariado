@@ -173,7 +173,7 @@ class MenuTerminal:
         """Executa pesquisas e listagens (RF03)."""
         print("\n--- PESQUISAS E LISTAGENS ---")
         print("1. Listar Voluntários por Prefixo (O(n) - Insertion Sort)")
-        print("2. Pesquisar e Ordenar Ações (O(n log n) - Shell Sort)")
+        print("2. Pesquisar e Ordenar Ações (O(n log n) - Merge Sort)")
         print("0. Voltar")
         
         op = ler_opcao("Opção: ", ["0", "1", "2"])

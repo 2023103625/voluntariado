@@ -43,7 +43,7 @@ def _instalar_stub_matplotlib() -> None:
 _instalar_stub_matplotlib()
 
 from sistema.algoritmos.insertion_sort import ordenar_voluntarios_nome
-from sistema.algoritmos.shell_sort import shell_sort_acoes
+from sistema.algoritmos.merge_sort import merge_sort_acoes
 from sistema.estruturas.fila import Fila
 from sistema.gestor import SistemaVoluntariado
 from sistema.modelos.acao import Acao
@@ -129,7 +129,7 @@ class TestAlgoritmos(unittest.TestCase):
         ordenar_voluntarios_nome(lista)
         self.assertEqual([v.nome for v in lista], ["ana", "Bruno", "Zeca"])
 
-    def test_shell_sort_acoes_por_impacto_desc(self):
+    def test_merge_sort_acoes_por_impacto_desc(self):
         a1 = Acao("A1", "E", "2025-01-01 10:00", 2, 5, "online")
         a2 = Acao("A2", "E", "2025-01-01 10:00", 2, 5, "online")
         a3 = Acao("A3", "E", "2025-01-01 10:00", 2, 5, "online")
@@ -138,7 +138,7 @@ class TestAlgoritmos(unittest.TestCase):
         a3.metrica_impacto = 50
         lista = [a1, a2, a3]
 
-        shell_sort_acoes(lista, "metrica_impacto")
+        merge_sort_acoes(lista, "metrica_impacto")
         self.assertEqual([a.titulo for a in lista], ["A2", "A3", "A1"])
 
 
@@ -159,7 +159,7 @@ class TestCargaSistema(unittest.TestCase):
         self.assertGreater(len(sistema.inscricoes), 0)
         self.assertGreater(len(sistema.presencas), 0)
 
-        total_pendentes = sum(len(a.fila_inscricoes.itens) for a in sistema.acoes)
+        total_pendentes = sum(len(a.fila_inscricoes) for a in sistema.acoes)
         total_aprovadas = sum(len(a.inscricoes_aprovadas) for a in sistema.acoes)
         self.assertGreater(total_pendentes + total_aprovadas, 0)
 

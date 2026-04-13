@@ -4,7 +4,7 @@ from sistema.modelos.voluntario import Voluntario
 def ordenar_voluntarios_nome(lista: List[Voluntario]) -> None:
     """
     Ordena voluntários por nome (A-Z).
-    Melhor caso: O(n). [cite: 57]
+    Melhor caso: O(n). 
     """
     for i in range(1, len(lista)):
         chave = lista[i]

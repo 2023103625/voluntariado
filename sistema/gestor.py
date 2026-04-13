@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from typing import List, Optional, Dict, Any
 from sistema.modelos import Voluntario, Entidade, Acao, Inscricao
 from sistema.algoritmos.insertion_sort import ordenar_voluntarios_nome
-from sistema.algoritmos.shell_sort import shell_sort_acoes
+from sistema.algoritmos.merge_sort import merge_sort_acoes
 from sistema.base_dados import BaseDados
 
 class SistemaVoluntariado:
@@ -403,8 +403,8 @@ class SistemaVoluntariado:
     
     def pesquisar_e_listar_acoes(self, filtros: dict, ordenar_por: str = "data_hora") -> None:
         """
-        Filtra as ações com base num dicionário de critérios e ordena o 
-        resultado final usando o algoritmo Shell Sort (O(n log n)).
+        Filtra as ações com base num dicionário de critérios e ordena o
+        resultado final usando o algoritmo Merge Sort (O(n log n)).
         """
         # Começamos com uma cópia de todas as ações
         resultados = self.acoes.copy()
@@ -438,8 +438,8 @@ class SistemaVoluntariado:
             print("\nNenhuma ação encontrada com os filtros especificados.")
             return
 
-        # Por fim, ordena os resultados filtrados usando o teu algoritmo
-        shell_sort_acoes(resultados, ordenar_por)
+        # Por fim, ordena os resultados filtrados usando o algoritmo
+        merge_sort_acoes(resultados, ordenar_por)
 
         # Imprime os resultados
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")

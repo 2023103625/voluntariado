@@ -1,2 +1,2 @@
 from .insertion_sort import ordenar_voluntarios_nome
-from .shell_sort import shell_sort_acoes
+from .merge_sort import merge_sort_acoes
