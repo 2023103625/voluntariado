@@ -8,7 +8,14 @@ from sistema.algoritmos.merge_sort import merge_sort_acoes
 from sistema.base_dados import BaseDados
 
 class SistemaVoluntariado:
-    """Classe principal que gere todo o programa de voluntariado."""
+    """Classe principal de orquestração do sistema de voluntariado.
+
+    A classe centraliza:
+
+    - gestão de entidades de domínio (voluntários, entidades, ações, inscrições);
+    - persistência JSON (carregar/guardar);
+    - operações de negócio dos requisitos funcionais (RF01..RF05).
+    """
 
     def __init__(self):
         self.voluntarios: List[Voluntario] = []
@@ -276,15 +283,39 @@ class SistemaVoluntariado:
             elif inscricao.estado == "aprovada":
                 acao.inscricoes_aprovadas.append(inscricao)
 
+
+    def _gerar_proximo_id(self, itens: List[Any], atributo_id: str, prefixo: str) -> str:
+        """Gera o próximo identificador sequencial com prefixo (ex.: V001)."""
+        maior = 0
+        for item in itens:
+            valor_id = getattr(item, atributo_id, None)
+            if not isinstance(valor_id, str):
+                continue
+            if not valor_id.startswith(prefixo):
+                continue
+            sufixo = valor_id[len(prefixo):]
+            if sufixo.isdigit():
+                maior = max(maior, int(sufixo))
+        return f"{prefixo}{maior + 1:03d}"
+
     # ==========================================
     # RF01 - GESTÃO DE VOLUNTÁRIOS
     # ==========================================
     def adicionar_voluntario(self, voluntario: Voluntario) -> None:
+        """Adiciona um voluntário e atribui ID sequencial.
+
+        :param voluntario: Instância de :class:`Voluntario` a registar.
+        """
         if self.consultar_voluntario(voluntario.nome):
             print(f"Erro: O voluntário '{voluntario.nome}' já existe.")
         else:
+            voluntario.voluntario_id = self._gerar_proximo_id(
+                self.voluntarios,
+                "voluntario_id",
+                "V",
+            )
             self.voluntarios.append(voluntario)
-            print("Voluntário adicionado com sucesso.")
+            print(f"Voluntário adicionado com sucesso (ID: {voluntario.voluntario_id}).")
 
     def consultar_voluntario(self, nome: str) -> Optional[Voluntario]:
         return next((v for v in self.voluntarios if v.nome.lower() == nome.lower()), None)
@@ -313,11 +344,20 @@ class SistemaVoluntariado:
     # RF01 - GESTÃO DE ENTIDADES
     # ==========================================
     def adicionar_entidade(self, entidade: Entidade) -> None:
+        """Adiciona uma entidade e atribui ID sequencial.
+
+        :param entidade: Instância de :class:`Entidade` a registar.
+        """
         if self.consultar_entidade(entidade.nome):
             print(f"Erro: A entidade '{entidade.nome}' já existe.")
         else:
+            entidade.entidade_id = self._gerar_proximo_id(
+                self.entidades,
+                "entidade_id",
+                "E",
+            )
             self.entidades.append(entidade)
-            print("Entidade adicionada com sucesso.")
+            print(f"Entidade adicionada com sucesso (ID: {entidade.entidade_id}).")
 
     def consultar_entidade(self, nome: str) -> Optional[Entidade]:
         return next((e for e in self.entidades if e.nome.lower() == nome.lower()), None)
@@ -335,11 +375,20 @@ class SistemaVoluntariado:
     # RF01 - GESTÃO DE AÇÕES
     # ==========================================
     def adicionar_acao(self, acao: Acao) -> None:
+        """Adiciona uma ação e atribui ID sequencial.
+
+        :param acao: Instância de :class:`Acao` a registar.
+        """
         if self.consultar_acao(acao.titulo):
             print(f"Erro: A ação '{acao.titulo}' já existe.")
         else:
+            acao.acao_id = self._gerar_proximo_id(
+                self.acoes,
+                "acao_id",
+                "A",
+            )
             self.acoes.append(acao)
-            print("Ação adicionada com sucesso.")
+            print(f"Ação adicionada com sucesso (ID: {acao.acao_id}).")
 
     def consultar_acao(self, titulo: str) -> Optional[Acao]:
         return next((a for a in self.acoes if a.titulo.lower() == titulo.lower()), None)
@@ -499,15 +548,56 @@ class SistemaVoluntariado:
         self._desenhar_graficos(acoes_por_ods, horas_por_ods)
 
     def _desenhar_graficos(self, acoes_ods: dict, horas_ods: dict) -> None:
+        """Desenha os gráficos de barras do dashboard com legibilidade melhorada.
+
+        :param acoes_ods: Dicionário ``{ods: total_acoes}``.
+        :param horas_ods: Dicionário ``{ods: total_horas}``.
+        """
         if not sum(acoes_ods.values()):
             print("Sem dados.")
             return
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-        ax1.bar([f"ODS {k}" for k, v in acoes_ods.items() if v > 0], [v for v in acoes_ods.values() if v > 0], color='skyblue')
-        ax1.set_title('Ações por ODS')
-        ax2.bar([f"ODS {k}" for k, v in horas_ods.items() if v > 0], [v for v in horas_ods.values() if v > 0], color='lightgreen')
-        ax2.set_title('Horas por ODS')
-        plt.tight_layout()
+
+        labels_acoes = [f"ODS {k}" for k, v in acoes_ods.items() if v > 0]
+        valores_acoes = [v for v in acoes_ods.values() if v > 0]
+
+        labels_horas = [f"ODS {k}" for k, v in horas_ods.items() if v > 0]
+        valores_horas = [v for v in horas_ods.values() if v > 0]
+
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+        barras1 = ax1.bar(labels_acoes, valores_acoes, color='skyblue', edgecolor='black', linewidth=0.6)
+        ax1.set_title('N.º de Ações por ODS')
+        ax1.set_ylabel('N.º de Ações')
+        ax1.grid(axis='y', linestyle='--', alpha=0.35)
+        ax1.tick_params(axis='x', labelrotation=35)
+        for barra in barras1:
+            altura = barra.get_height()
+            ax1.text(
+                barra.get_x() + barra.get_width() / 2,
+                altura + 0.05,
+                f"{int(altura)}",
+                ha='center',
+                va='bottom',
+                fontsize=9,
+            )
+
+        barras2 = ax2.bar(labels_horas, valores_horas, color='lightgreen', edgecolor='black', linewidth=0.6)
+        ax2.set_title('Horas Totais por ODS')
+        ax2.set_ylabel('Horas')
+        ax2.grid(axis='y', linestyle='--', alpha=0.35)
+        ax2.tick_params(axis='x', labelrotation=35)
+        for barra in barras2:
+            altura = barra.get_height()
+            ax2.text(
+                barra.get_x() + barra.get_width() / 2,
+                altura + 0.05,
+                f"{altura:.1f}" if isinstance(altura, float) else f"{altura}",
+                ha='center',
+                va='bottom',
+                fontsize=9,
+            )
+
+        fig.subplots_adjust(bottom=0.22, wspace=0.26)
         plt.show()
 
     # ==========================================

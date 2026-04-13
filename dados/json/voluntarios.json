@@ -2561,27 +2561,5 @@
             "criatividade"
         ],
         "ods_interesse": []
-    },
-    {
-        "voluntario_id": null,
-        "nome": "Ana Xavier",
-        "curso": "LINF",
-        "faculdade": "Ciências e Tecnologias",
-        "vinculo_institucional": "estudante",
-        "ano": null,
-        "competencias": [],
-        "interesses": [],
-        "ods_interesse": []
-    },
-    {
-        "voluntario_id": null,
-        "nome": "Joana Braga",
-        "curso": "LINF",
-        "faculdade": "Ciências e Tecnologias",
-        "vinculo_institucional": "estudante",
-        "ano": null,
-        "competencias": [],
-        "interesses": [],
-        "ods_interesse": []
     }
 ]

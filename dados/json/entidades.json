@@ -377,9 +377,9 @@
         ]
     },
     {
-        "entidade_id": null,
-        "nome": "Associação Marés Vivas",
-        "tipo": "associação",
+        "entidade_id": "E015",
+        "nome": "Marés Vivas",
+        "tipo": "ambiente",
         "area_intervencao": "ambiente",
         "localizacao": "Ribeira Quente",
         "url": null,
