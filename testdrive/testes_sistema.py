@@ -12,6 +12,7 @@ import sys
 import types
 import unittest
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def _instalar_stub_matplotlib() -> None:
     """Instala um stub simples de matplotlib para ambientes sem dependência."""
@@ -143,7 +144,7 @@ class TestAlgoritmos(unittest.TestCase):
 
 
 class TestCargaSistema(unittest.TestCase):
-    """Testes de carga dos dados reais do projeto."""
+    """Testes de carregamento dos dados do projeto."""
 
     def test_carregar_dados_json_pasta(self):
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
