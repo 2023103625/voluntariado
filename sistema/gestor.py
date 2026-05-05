@@ -18,6 +18,13 @@ class SistemaVoluntariado:
     """
 
     def __init__(self):
+        """Inicializa as estruturas de dados centrais do Gestor.
+        
+        Utilizam-se Listas (List) em vez de Conjuntos (Set) nas coleções 
+        principais porque:
+        1. Necessito manter a ordem cronológica de inserção.
+        2. Necessito aceder aos elementos por índice para os algoritmos de ordenação (Merge Sort e Insertion Sort).
+        """
         self.voluntarios: List[Voluntario] = []
         self.entidades: List[Entidade] = []
         self.acoes: List[Acao] = []
@@ -133,8 +140,9 @@ class SistemaVoluntariado:
                 {"competencia": nome, "nivel": nivel}
                 for nome, nivel in voluntario.competencias.items()
             ],
-            "interesses": voluntario.interesses,
-            "ods_interesse": voluntario.ods_interesse,
+            # ATUALIZAÇÃO: Converter Set para List antes de escrever no JSON
+            "interesses": list(voluntario.interesses),
+            "ods_interesse": list(voluntario.ods_interesse),
         }
 
     def _serializar_entidade(self, entidade: Entidade) -> Dict[str, Any]:
@@ -146,7 +154,8 @@ class SistemaVoluntariado:
             "area_intervencao": entidade.area,
             "localizacao": entidade.localizacao,
             "url": entidade.url,
-            "tags": entidade.tags,
+            # ATUALIZAÇÃO: Converter Set para List
+            "tags": list(entidade.tags),
             "ods_principais": [{"ods_id": ods} for ods in entidade.ods_foco],
         }
 
@@ -168,6 +177,7 @@ class SistemaVoluntariado:
                 {"competencia": nome, "nivel_minimo": nivel}
                 for nome, nivel in acao.competencias_desejadas.items()
             ],
+            # A compressão de lista [ ... for x in set ] já devolve uma Lista, logo está seguro para JSON!
             "ods_associados": [{"ods_id": ods} for ods in acao.ods_associados],
         }
 
@@ -182,7 +192,12 @@ class SistemaVoluntariado:
         }
 
     def _desserializar_voluntario(self, dados: Dict[str, Any]) -> Voluntario:
-        """Converte um dicionário para objeto Voluntario."""
+        """Converte um dicionário JSON para um objeto Voluntario.
+        
+        :param dados: Dicionário contendo a informação lida do JSON.
+        :return: Objeto da classe Voluntario instanciado.
+        """
+        # 1. Criação base do voluntário
         voluntario = Voluntario(
             nome=dados.get("nome", ""),
             curso=dados.get("curso", ""),
@@ -191,6 +206,8 @@ class SistemaVoluntariado:
             ano=dados.get("ano"),
         )
         voluntario.voluntario_id = dados.get("voluntario_id")
+        
+        # 2. Desserialização das competências
         competencias = dados.get("competencias", {})
         if isinstance(competencias, list):
             voluntario.competencias = {
@@ -198,8 +215,19 @@ class SistemaVoluntariado:
             }
         else:
             voluntario.competencias = competencias
-        voluntario.interesses = dados.get("interesses", [])
-        voluntario.ods_interesse = dados.get("ods_interesse", [])
+            
+        # 3. Desserialização dos Interesses (usar set() diretamente porque são apenas textos)
+        voluntario.interesses = set(dados.get("interesses", []))
+        
+        # 4. CORREÇÃO: Desserialização dos ODS de Interesse (lidando com Dicionários)
+        ods = dados.get("ods_interesse", [])
+        if ods and isinstance(ods[0], dict):
+            # Se vier num formato de dicionário (ex: [{"ods_id": 1}]), extraímos apenas o número
+            voluntario.ods_interesse = set(item.get("ods_id") for item in ods if item.get("ods_id"))
+        else:
+            # Se já vier num formato de lista simples (ex: [1, 2, 3]), convertemos logo para Set
+            voluntario.ods_interesse = set(ods)
+            
         return voluntario
 
     def _desserializar_entidade(self, dados: Dict[str, Any]) -> Entidade:
@@ -212,12 +240,16 @@ class SistemaVoluntariado:
             url=dados.get("url"),
         )
         entidade.entidade_id = dados.get("entidade_id")
-        entidade.tags = dados.get("tags", [])
+        
+        # Converter a Lista do JSON para um Conjunto (Set)
+        entidade.tags = set(dados.get("tags", []))
+        
         ods_principais = dados.get("ods_principais", dados.get("ods_foco", []))
         if ods_principais and isinstance(ods_principais[0], dict):
-            entidade.ods_foco = [item.get("ods_id") for item in ods_principais if item.get("ods_id")]
+            # Usar a conversão set() iterando pelos dicionários
+            entidade.ods_foco = set(item.get("ods_id") for item in ods_principais if item.get("ods_id"))
         else:
-            entidade.ods_foco = ods_principais
+            entidade.ods_foco = set(ods_principais)
         return entidade
 
     def _desserializar_acao(self, dados: Dict[str, Any]) -> Acao:
@@ -242,11 +274,13 @@ class SistemaVoluntariado:
             }
         else:
             acao.competencias_desejadas = comp
+            
         ods = dados.get("ods_associados", [])
         if ods and isinstance(ods[0], dict):
-            acao.ods_associados = [item.get("ods_id") for item in ods if item.get("ods_id")]
+            # ATUALIZAÇÃO: Set notation para garantir o tipo Correto no modelo
+            acao.ods_associados = set(item.get("ods_id") for item in ods if item.get("ods_id"))
         else:
-            acao.ods_associados = ods
+            acao.ods_associados = set(ods)
         return acao
 
     def _reconstruir_inscricoes(self, inscricoes_dados: List[Dict[str, Any]]) -> None:
@@ -770,7 +804,7 @@ class SistemaVoluntariado:
             # Gráfico 1: Ações por ODS
             ax1 = fig.add_axes([0.1, 0.45, 0.35, 0.20]) # [esquerda, base, largura, altura]
             
-            # ATUALIZAÇÃO: Guardar apenas o número do ODS (ex: "4" em vez de "ODS 4") para poupar espaço
+            # Guardar apenas o número do ODS (ex: "4" em vez de "ODS 4") para poupar espaço
             labels_acoes = [str(k) for k, v in acoes_por_ods.items() if v > 0]
             valores_acoes = [v for v in acoes_por_ods.values() if v > 0]
             
@@ -778,11 +812,11 @@ class SistemaVoluntariado:
                 barras1 = ax1.bar(labels_acoes, valores_acoes, color='skyblue', edgecolor='black', linewidth=0.5)
                 ax1.set_title('N.º de Ações por ODS', fontsize=9, fontweight='bold', color=cor_primaria)
                 ax1.set_xlabel('ODS', fontsize=8) # Título do eixo X
-                ax1.tick_params(axis='x', labelsize=8) # Rotação removida pois só temos números
+                ax1.tick_params(axis='x', labelsize=8)
                 ax1.tick_params(axis='y', labelsize=8)
                 ax1.grid(axis='y', linestyle='--', alpha=0.35) # Adiciona grelha horizontal
                 
-                # ATUALIZAÇÃO: Adicionar o valor numérico exato no topo de cada barra
+                # Adicionar o valor numérico exato no topo de cada barra
                 for barra in barras1:
                     altura = barra.get_height()
                     ax1.text(barra.get_x() + barra.get_width() / 2, altura + (max(valores_acoes) * 0.02),
@@ -794,7 +828,7 @@ class SistemaVoluntariado:
             # Gráfico 2: Horas por ODS
             ax2 = fig.add_axes([0.55, 0.45, 0.35, 0.20])
             
-            # ATUALIZAÇÃO: Guardar apenas o número do ODS
+            # Guardar apenas o número do ODS
             labels_horas = [str(k) for k, v in horas_por_ods.items() if v > 0]
             valores_horas = [v for v in horas_por_ods.values() if v > 0]
             
@@ -806,7 +840,7 @@ class SistemaVoluntariado:
                 ax2.tick_params(axis='y', labelsize=8)
                 ax2.grid(axis='y', linestyle='--', alpha=0.35)
                 
-                # ATUALIZAÇÃO: Adicionar o valor no topo de cada barra
+                # Adicionar o valor no topo de cada barra
                 for barra in barras2:
                     altura = barra.get_height()
                     texto_altura = f"{altura:.1f}" if isinstance(altura, float) and not altura.is_integer() else f"{int(altura)}"

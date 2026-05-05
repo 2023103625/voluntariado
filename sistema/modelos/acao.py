@@ -1,6 +1,6 @@
 """Modelo de domínio para ações de voluntariado."""
 
-from typing import List, Dict
+from typing import List, Dict, Set
 from sistema.estruturas.fila import Fila
 from sistema.modelos.inscricao import Inscricao
 
@@ -37,10 +37,12 @@ class Acao:
         self.metrica_impacto = 0.0
 
         self.competencias_desejadas: Dict[str, int] = {}
-        self.ods_associados: List[int] = []
+        self.ods_associados: Set[int] = set()
 
         # RF02: fila FIFO para inscrições pendentes
         self.fila_inscricoes = Fila()
+        
+        # Mantive List aqui pois a ordem das inscrições aprovadas é cronológica/relevante
         self.inscricoes_aprovadas: List['Inscricao'] = []
 
     def __str__(self) -> str:
@@ -65,7 +67,7 @@ class Acao:
         return False
 
     def adicionar_ods(self, ods_id: int) -> bool:
-        """Adiciona ODS associado à ação.
+        """Adiciona ODS associado à ação usando um Conjunto (Set).
 
         Regras:
 
@@ -77,6 +79,6 @@ class Acao:
         :return: ``True`` se foi adicionado; caso contrário ``False``.
         """
         if 1 <= ods_id <= 17 and len(self.ods_associados) < 3 and ods_id not in self.ods_associados:
-            self.ods_associados.append(ods_id)
+            self.ods_associados.add(ods_id) 
             return True
         return False

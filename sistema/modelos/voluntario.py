@@ -1,6 +1,6 @@
 """Modelo de domínio para voluntários."""
 
-from typing import List, Dict, Optional
+from typing import Dict, Optional, Set
 
 
 class Voluntario:
@@ -26,9 +26,11 @@ class Voluntario:
         self.faculdade = faculdade
         self.vinculo = vinculo
         self.ano = ano if vinculo == "estudante" else None
+        
         self.competencias: Dict[str, int] = {}
-        self.interesses: List[str] = []
-        self.ods_interesse: List[int] = []
+        # As Listas foram substituídas por Sets para maior eficiência (O(1) na procura)
+        self.interesses: Set[str] = set()
+        self.ods_interesse: Set[int] = set()
 
     def adicionar_competencia(self, nome: str, nivel: int) -> bool:
         """Adiciona uma competência do voluntário.
@@ -48,7 +50,7 @@ class Voluntario:
         return False
 
     def adicionar_interesse(self, interesse: str) -> bool:
-        """Adiciona uma tag de interesse.
+        """Adiciona uma tag de interesse usando um Conjunto (Set).
 
         Regras:
 
@@ -65,12 +67,12 @@ class Voluntario:
             and interesse_limpo not in self.interesses
             and len(self.interesses) < 6
         ):
-            self.interesses.append(interesse_limpo)
+            self.interesses.add(interesse_limpo)
             return True
         return False
 
     def adicionar_ods_interesse(self, ods_id: int) -> bool:
-        """Adiciona um ODS de interesse.
+        """Adiciona um ODS de interesse usando um Conjunto (Set).
 
         Regras:
 
@@ -82,6 +84,6 @@ class Voluntario:
         :return: ``True`` se foi adicionado; caso contrário ``False``.
         """
         if 1 <= ods_id <= 17 and ods_id not in self.ods_interesse and len(self.ods_interesse) < 3:
-            self.ods_interesse.append(ods_id)
+            self.ods_interesse.add(ods_id)
             return True
         return False

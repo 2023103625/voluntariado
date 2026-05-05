@@ -310,18 +310,47 @@ class MenuTerminal:
             self.sistema.adicionar_entidade(entidade)
 
         elif op == "2":
-            self._imprimir_tabela(
-                ["entidade_id", "nome", "tipo", "area_intervencao", "localizacao", "url"], 
-                [[getattr(e, "entidade_id", ""), e.nome, e.tipo, e.area, e.localizacao, e.url or "-"] for e in self.sistema.entidades]
-            )
-            nome = ler_texto_obrigatorio("Nome a consultar: ")
+            # 1. Tabela simplificada: Mostrar IDs e Nomes das entidades disponíveis
+            cabecalhos = ["ID da Entidade", "Nome"]
+            dados_lista = [[getattr(e, "entidade_id", ""), e.nome or "-"] for e in self.sistema.entidades]
+            
+            print("\n--- LISTA DE ENTIDADES PARCEIRAS ---")
+            self._imprimir_tabela(cabecalhos, dados_lista)
+            
+            # 2. Pedir o nome da entidade ao utilizador
+            nome = ler_texto_obrigatorio("\nNome a consultar: ")
             entidade = self.sistema.consultar_entidade(nome)
+            
+            # 3. Mostrar os detalhes da entidade procurada numa Tabela Vertical
             if entidade:
-                print(f"Encontrada: {entidade.nome} - {entidade.tipo}")
-                print(f"Tags: {entidade.tags}")
-                print(f"ODS principais: {entidade.ods_foco}")
+                print(f"\n--- DETALHES DA ENTIDADE: {entidade.nome.upper()} ---")
+                
+                cabecalhos_detalhes = ["Campo", "Detalhe"]
+                
+                # Preparar a visualização dos Conjuntos (Sets) para ficarem limpos na tabela
+                tags_str = ", ".join(entidade.tags) if entidade.tags else "Nenhuma"
+                ods_str = ", ".join(str(o) for o in entidade.ods_foco) if entidade.ods_foco else "Nenhum"
+                
+                # Tratar o facto de o URL poder ser nulo (None)
+                url_str = entidade.url if entidade.url else "Não definido"
+                
+                # Criar as linhas da tabela (Cada atributo é uma linha nova)
+                dados_detalhes = [
+                    ["ID", getattr(entidade, "entidade_id", "Não atribuído")],
+                    ["Nome", entidade.nome],
+                    ["Tipo", entidade.tipo.capitalize()],
+                    ["Área de Intervenção", entidade.area],
+                    ["Localização", entidade.localizacao],
+                    ["URL Institucional", url_str],
+                    ["Tags", tags_str],
+                    ["ODS Principais", ods_str]
+                ]
+                
+                # Chamar a função para desenhar a tabela final
+                self._imprimir_tabela(cabecalhos_detalhes, dados_detalhes)
+                
             else:
-                print("Não encontrada.")
+                print("\nEntidade não encontrada. Verifique se escreveu o nome corretamente.")
 
         elif op == "3":
             self._imprimir_tabela(
@@ -434,16 +463,47 @@ class MenuTerminal:
             self.sistema.adicionar_acao(acao)
 
         elif op == "2":
-            tit = ler_texto_obrigatorio("Título a consultar: ")
-            acao = self.sistema.consultar_acao(tit)
-            if acao:
-                print(
-                    f"Encontrada: {acao.titulo} - Estado: {acao.estado} - Vagas: {acao.vagas}"
-                )
-                print(f"Competências desejadas: {acao.competencias_desejadas}")
-                print(f"ODS associados: {acao.ods_associados}")
+            # 1. Tabela simplificada: Mostrar apenas a lista de títulos disponíveis
+            cabecalhos = ["Título"]
+            dados_tabela = [[acao.titulo] for acao in self.sistema.acoes]
+            
+            print("\n--- LISTA DE AÇÕES DISPONÍVEIS ---")
+            self._imprimir_tabela(cabecalhos, dados_tabela)
+            
+            # 2. Pedir o título ao utilizador
+            tit = ler_texto_obrigatorio("\nTítulo a consultar: ")
+            acao_encontrada = self.sistema.consultar_acao(tit)
+            
+            # 3. Mostrar os detalhes da ação procurada numa Tabela Vertical
+            if acao_encontrada:
+                print(f"\n--- DETALHES DA AÇÃO: {acao_encontrada.titulo.upper()} ---")
+                
+                cabecalhos_detalhes = ["Campo", "Detalhe"]
+                
+                # Preparar a visualização dos Conjuntos (Sets) e Dicionários para ficarem bonitos na tabela
+                ods_str = ", ".join(str(o) for o in acao_encontrada.ods_associados) if acao_encontrada.ods_associados else "Nenhum"
+                comps_str = ", ".join(f"{c} (Nível {n})" for c, n in acao_encontrada.competencias_desejadas.items()) if acao_encontrada.competencias_desejadas else "Nenhuma"
+                
+                # Criar as linhas da tabela (Cada atributo é uma linha nova)
+                dados_detalhes = [
+                    ["Título", acao_encontrada.titulo],
+                    ["Entidade Promotora", acao_encontrada.entidade],
+                    ["Área Temática", acao_encontrada.area],
+                    ["Data e Hora", acao_encontrada.data_hora],
+                    ["Duração", f"{acao_encontrada.duracao} horas"],
+                    ["Vagas Disponíveis", str(acao_encontrada.vagas)],
+                    ["Localização", acao_encontrada.localizacao],
+                    ["Estado", acao_encontrada.estado.capitalize()],
+                    ["Métrica de Impacto", str(acao_encontrada.metrica_impacto)],
+                    ["ODS Associados", ods_str],
+                    ["Competências Desejadas", comps_str]
+                ]
+                
+                # Chamar a função para desenhar a tabela final
+                self._imprimir_tabela(cabecalhos_detalhes, dados_detalhes)
+                
             else:
-                print("Não encontrada.")
+                print("\nAção não encontrada. Verifique se escreveu o título corretamente.")
 
         elif op == "3":
             self._imprimir_tabela(
