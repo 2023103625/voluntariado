@@ -2592,5 +2592,37 @@
             4,
             6
         ]
+    },
+    {
+        "voluntario_id": "V062",
+        "nome": "Ana Maria Santos Xavier",
+        "curso": "Informática",
+        "faculdade": "Ciências e Tecnologias",
+        "vinculo_institucional": "estudante",
+        "ano": 3,
+        "competencias": [
+            {
+                "competencia": "análise de dados",
+                "nivel": 3
+            },
+            {
+                "competencia": "robótica",
+                "nivel": 3
+            },
+            {
+                "competencia": "programação",
+                "nivel": 3
+            }
+        ],
+        "interesses": [
+            "Tecnologia",
+            "saúde",
+            "bem-estar"
+        ],
+        "ods_interesse": [
+            3,
+            11,
+            6
+        ]
     }
 ]

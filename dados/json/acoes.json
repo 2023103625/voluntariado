@@ -1127,5 +1127,35 @@
                 "ods_id": 8
             }
         ]
+    },
+    {
+        "acao_id": "A033",
+        "titulo": "Campanha de Ajuda a Desalojados",
+        "entidade_id": "E018",
+        "entidade_nome": "Direção Regional da Habitação",
+        "area": "Habitação",
+        "data_hora": "2026-05-20 14:00",
+        "duracao_horas": 2,
+        "vagas": 40,
+        "localizacao": "externo",
+        "estado": "planeada",
+        "metrica_impacto": 35.0,
+        "competencias_desejadas": [
+            {
+                "competencia": "comunicação",
+                "nivel_minimo": 4
+            }
+        ],
+        "ods_associados": [
+            {
+                "ods_id": 1
+            },
+            {
+                "ods_id": 6
+            },
+            {
+                "ods_id": 9
+            }
+        ]
     }
 ]

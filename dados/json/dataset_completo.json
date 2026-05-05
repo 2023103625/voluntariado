@@ -2593,6 +2593,38 @@
                 4,
                 6
             ]
+        },
+        {
+            "voluntario_id": "V062",
+            "nome": "Ana Maria Santos Xavier",
+            "curso": "Informática",
+            "faculdade": "Ciências e Tecnologias",
+            "vinculo_institucional": "estudante",
+            "ano": 3,
+            "competencias": [
+                {
+                    "competencia": "análise de dados",
+                    "nivel": 3
+                },
+                {
+                    "competencia": "robótica",
+                    "nivel": 3
+                },
+                {
+                    "competencia": "programação",
+                    "nivel": 3
+                }
+            ],
+            "interesses": [
+                "Tecnologia",
+                "saúde",
+                "bem-estar"
+            ],
+            "ods_interesse": [
+                3,
+                11,
+                6
+            ]
         }
     ],
     "entidades": [
@@ -3009,6 +3041,57 @@
                 },
                 {
                     "ods_id": 14
+                }
+            ]
+        },
+        {
+            "entidade_id": "E017",
+            "nome": "Teste 1",
+            "tipo": "serviço",
+            "area_intervencao": "ambiente",
+            "localizacao": "online",
+            "url": "https://teste1.com/",
+            "tags": [
+                "ambiente"
+            ],
+            "ods_principais": [
+                {
+                    "ods_id": 7
+                },
+                {
+                    "ods_id": 11
+                },
+                {
+                    "ods_id": 12
+                },
+                {
+                    "ods_id": 13
+                },
+                {
+                    "ods_id": 15
+                }
+            ]
+        },
+        {
+            "entidade_id": "E018",
+            "nome": "Direção Regional da Habitação",
+            "tipo": "serviço",
+            "area_intervencao": "Habitação",
+            "localizacao": "Ponta Delgada",
+            "url": "https://portal.azores.gov.pt/web/drh",
+            "tags": [
+                "Habitação Digna",
+                "Apoios à Habitação"
+            ],
+            "ods_principais": [
+                {
+                    "ods_id": 1
+                },
+                {
+                    "ods_id": 6
+                },
+                {
+                    "ods_id": 9
                 }
             ]
         }
@@ -4140,6 +4223,36 @@
                 },
                 {
                     "ods_id": 8
+                }
+            ]
+        },
+        {
+            "acao_id": "A033",
+            "titulo": "Campanha de Ajuda a Desalojados",
+            "entidade_id": "E018",
+            "entidade_nome": "Direção Regional da Habitação",
+            "area": "Habitação",
+            "data_hora": "2026-05-20 14:00",
+            "duracao_horas": 2,
+            "vagas": 40,
+            "localizacao": "externo",
+            "estado": "planeada",
+            "metrica_impacto": 35.0,
+            "competencias_desejadas": [
+                {
+                    "competencia": "comunicação",
+                    "nivel_minimo": 4
+                }
+            ],
+            "ods_associados": [
+                {
+                    "ods_id": 1
+                },
+                {
+                    "ods_id": 6
+                },
+                {
+                    "ods_id": 9
                 }
             ]
         }

@@ -450,9 +450,9 @@ class SistemaVoluntariado:
         print("Ação não encontrada ou estado inválido.")
         return False
 
-    # ==========================================
-    # RESTANTES REQUISITOS (MANTIDOS INTACTOS)
-    # ==========================================
+    # ============================================
+    # RF02 – Processamento de inscrições nas ações
+    # =============================================
     def processar_inscricao_na_acao(self, titulo_acao: str, aprovada: bool) -> None:
         acao = self.consultar_acao(titulo_acao)
         if not acao:
@@ -466,13 +466,20 @@ class SistemaVoluntariado:
             inscricao.atualizar_estado("aprovada")
             acao.vagas -= 1 
             acao.inscricoes_aprovadas.append(inscricao)
-            print(f"Aprovada. Vagas restantes: {acao.vagas}")
+            print(
+                f"Inscrição aprovada: {inscricao.voluntario}. "
+                f"Vagas restantes: {acao.vagas}"
+            )
         elif aprovada:
             inscricao.atualizar_estado("lista de espera")
-            print("Sem vagas! Lista de espera.")
+            print(f"Sem vagas! {inscricao.voluntario} foi para lista de espera.")
         else:
             inscricao.atualizar_estado("rejeitada")
-            print("Rejeitada.")
+            print(f"Inscrição rejeitada: {inscricao.voluntario}.")
+    
+    # ==========================================
+    # RF03 (i) - PESQUISA E LISTAGEM DE AÇÕES
+    # ==========================================
 
     def listar_voluntarios_prefixo(self, prefixo: str) -> None:
         resultados = [v for v in self.voluntarios if v.nome.lower().startswith(prefixo.lower())]
@@ -531,6 +538,10 @@ class SistemaVoluntariado:
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")
         for a in resultados:
             print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidade: {a.entidade}) - Vagas: {a.vagas}")
+    
+    # ==========================================
+    # RF04 – Estatísticas e Dashboard (versão 1)
+    # ==========================================
 
     def gerar_dashboard(self) -> None:
         """
@@ -637,9 +648,9 @@ class SistemaVoluntariado:
         fig.subplots_adjust(bottom=0.22, wspace=0.26)
         plt.show()
 
-    # ==========================================
+    # ==============================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==========================================
+    # ==============================================
     
     def exportar_relatorio(self) -> None:
         """

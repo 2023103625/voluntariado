@@ -25,19 +25,34 @@ class MenuTerminal:
         """
         self.sistema = sistema
 
+    @staticmethod
+    def _imprimir_titulo(titulo: str) -> None:
+        """Imprime um título formatado para melhorar a legibilidade no terminal."""
+        largura = 62
+        print("\n" + "╔" + "═" * largura + "╗")
+        print(f"║{titulo.center(largura)}║")
+        print("╚" + "═" * largura + "╝")
+
+    @staticmethod
+    def _imprimir_opcoes(opcoes: list[str]) -> None:
+        """Imprime um bloco de opções numeradas/alinhadas."""
+        for opcao in opcoes:
+            print(f"  • {opcao}")
+
     def mostrar_menu_principal(self):
         """Mostra o menu principal e processa opções até sair."""
         while True:
-            print("\n" + "=" * 50)
-            print("   SISTEMA DE VOLUNTARIADO UNIVERSITÁRIO (AED)   ")
-            print("=" * 50)
-            print("1. Gestão do Programa (CRUD)")
-            print("2. Processar Inscrições (Filas)")
-            print("3. Pesquisas e Listagens")
-            print("4. Dashboard e Estatísticas (Gráficos)")
-            print("5. Exportar Relatório TXT (RF05)")
-            print("0. Guardar e Sair")
-            print("=" * 50)
+            self._imprimir_titulo("SISTEMA DE VOLUNTARIADO UNIVERSITÁRIO (AED)")
+            self._imprimir_opcoes(
+                [
+                    "1. Gestão do Programa (CRUD)",
+                    "2. Processar Inscrições (Filas)",
+                    "3. Pesquisas e Listagens",
+                    "4. Dashboard e Estatísticas (Gráficos)",
+                    "5. Exportar Relatório TXT (RF05)",
+                    "0. Guardar e Sair",
+                ]
+            )
 
             opcao = input("Escolha uma opção: ").strip()
 
@@ -60,11 +75,15 @@ class MenuTerminal:
     def menu_gestao_geral(self):
         """Mostra submenu de gestão CRUD (RF01)."""
         while True:
-            print("\n--- GESTÃO DO PROGRAMA ---")
-            print("1. Gerir Voluntários")
-            print("2. Gerir Entidades")
-            print("3. Gerir Ações")
-            print("0. Voltar")
+            self._imprimir_titulo("GESTÃO DO PROGRAMA")
+            self._imprimir_opcoes(
+                [
+                    "1. Gerir Voluntários",
+                    "2. Gerir Entidades",
+                    "3. Gerir Ações",
+                    "0. Voltar",
+                ]
+            )
             op = input("Opção: ").strip()
 
             if op == "1":
@@ -123,7 +142,10 @@ class MenuTerminal:
 
     def menu_crud_voluntarios(self):
         """Executa operações CRUD de voluntários."""
-        print("\n[VOLUNTÁRIOS] 1:Adicionar | 2:Consultar | 3:Atualizar | 4:Remover | 0:Voltar")
+        self._imprimir_titulo("VOLUNTÁRIOS")
+        self._imprimir_opcoes(
+            ["1. Adicionar", "2. Consultar", "3. Atualizar", "4. Remover", "0. Voltar"]
+        )
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
@@ -195,7 +217,10 @@ class MenuTerminal:
 
     def menu_crud_entidades(self):
         """Executa operações CRUD de entidades."""
-        print("\n[ENTIDADES] 1:Adicionar | 2:Consultar | 3:Atualizar | 4:Remover | 0:Voltar")
+        self._imprimir_titulo("ENTIDADES")
+        self._imprimir_opcoes(
+            ["1. Adicionar", "2. Consultar", "3. Atualizar", "4. Remover", "0. Voltar"]
+        )
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
@@ -269,7 +294,10 @@ class MenuTerminal:
 
     def menu_crud_acoes(self):
         """Executa operações CRUD de ações."""
-        print("\n[AÇÕES] 1:Adicionar | 2:Consultar | 3:Atualizar Estado | 4:Remover | 0:Voltar")
+        self._imprimir_titulo("AÇÕES")
+        self._imprimir_opcoes(
+            ["1. Adicionar", "2. Consultar", "3. Atualizar Estado", "4. Remover", "0. Voltar"]
+        )
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
