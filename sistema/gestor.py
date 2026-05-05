@@ -653,11 +653,9 @@ class SistemaVoluntariado:
         plt.show()
 
     # ==============================================
-    # ==============================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
     # ==============================================
-    # ==============================================
-    
+
     def exportar_relatorio(self) -> None:
         """
         Gera um ficheiro TXT com o resumo do programa, incluindo os dados
