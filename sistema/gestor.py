@@ -542,6 +542,10 @@ class SistemaVoluntariado:
     # ==========================================
     # RF04 – Estatísticas e Dashboard (versão 1)
     # ==========================================
+    
+    # ==========================================
+    # RF04 – Estatísticas e Dashboard (versão 1)
+    # ==========================================
 
     def gerar_dashboard(self) -> None:
         """
@@ -649,7 +653,9 @@ class SistemaVoluntariado:
         plt.show()
 
     # ==============================================
+    # ==============================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
+    # ==============================================
     # ==============================================
     
     def exportar_relatorio(self) -> None:
