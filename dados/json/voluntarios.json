@@ -2624,5 +2624,31 @@
             11,
             6
         ]
+    },
+    {
+        "voluntario_id": "V063",
+        "nome": "Joana Marques Vieira",
+        "curso": "Gestão",
+        "faculdade": "Economia e Gestão",
+        "vinculo_institucional": "estudante",
+        "ano": 4,
+        "competencias": [
+            {
+                "competencia": "organização",
+                "nivel": 3
+            },
+            {
+                "competencia": "captação de fundos",
+                "nivel": 4
+            }
+        ],
+        "interesses": [
+            "gestão financeira"
+        ],
+        "ods_interesse": [
+            4,
+            8,
+            9
+        ]
     }
 ]

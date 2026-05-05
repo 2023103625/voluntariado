@@ -319,6 +319,12 @@ class SistemaVoluntariado:
     def consultar_voluntario(self, nome: str) -> Optional[Voluntario]:
         return next((v for v in self.voluntarios if v.nome.lower() == nome.lower()), None)
 
+    def pesquisar_voluntarios(self, termo: str) -> List[Voluntario]:
+        termo_normalizado = termo.strip().lower()
+        if not termo_normalizado:
+            return []
+        return [v for v in self.voluntarios if termo_normalizado in v.nome.lower().split()]
+
     def remover_voluntario(self, nome: str) -> bool:
         voluntario = self.consultar_voluntario(nome)
         if voluntario:
@@ -338,6 +344,15 @@ class SistemaVoluntariado:
             return True
         print("Voluntário não encontrado.")
         return False
+
+    def atualizar_voluntario_completo(self, nome: str, campos: Dict[str, Any]) -> bool:
+        voluntario = self.consultar_voluntario(nome)
+        if not voluntario:
+            print("Voluntário não encontrado.")
+            return False
+        for chave, valor in campos.items():
+            setattr(voluntario, chave, valor)
+        return True
 
     # ==========================================
     # RF01 - GESTÃO DE ENTIDADES
@@ -399,6 +414,15 @@ class SistemaVoluntariado:
         print(f"Entidade '{nome}' atualizada com sucesso.")
         return True
 
+    def atualizar_entidade_completo(self, nome: str, campos: Dict[str, Any]) -> bool:
+        entidade = self.consultar_entidade(nome)
+        if not entidade:
+            print("Entidade não encontrada.")
+            return False
+        for chave, valor in campos.items():
+            setattr(entidade, chave, valor)
+        return True
+
     # ==========================================
     # RF01 - GESTÃO DE AÇÕES
     # ==========================================
@@ -450,6 +474,34 @@ class SistemaVoluntariado:
         print("Ação não encontrada ou estado inválido.")
         return False
 
+    def atualizar_acao_completo(self, titulo: str, campos: Dict[str, Any]) -> bool:
+        acao = self.consultar_acao(titulo)
+        if not acao:
+            print("Ação não encontrada.")
+            return False
+        if "entidade" in campos:
+            entidade = self.consultar_entidade(campos["entidade"])
+            if not entidade:
+                print("Entidade promotora inválida.")
+                return False
+            acao.entidade_id = entidade.entidade_id
+        for chave, valor in campos.items():
+            setattr(acao, chave, valor)
+        return True
+
+    def listar_acoes_com_fila_pendente(self) -> List[Acao]:
+        """Retorna uma lista de ações que tenham inscrições por processar."""
+        return [a for a in self.acoes if not a.fila_inscricoes.is_empty()]
+
+    def espreitar_proxima_inscricao(self, titulo_acao: str) -> Optional[Inscricao]:
+        """Mostra a próxima inscrição da fila sem a remover."""
+        acao = self.consultar_acao(titulo_acao)
+        if not acao or acao.fila_inscricoes.is_empty():
+            return None
+            
+        assert acao.fila_inscricoes._cabeca is not None
+        return acao.fila_inscricoes._cabeca.valor
+
     # ============================================
     # RF02 – Processamento de inscrições nas ações
     # =============================================
@@ -476,10 +528,6 @@ class SistemaVoluntariado:
         else:
             inscricao.atualizar_estado("rejeitada")
             print(f"Inscrição rejeitada: {inscricao.voluntario}.")
-    
-    # ==========================================
-    # RF03 (i) - PESQUISA E LISTAGEM DE AÇÕES
-    # ==========================================
 
     def listar_voluntarios_prefixo(self, prefixo: str) -> None:
         resultados = [v for v in self.voluntarios if v.nome.lower().startswith(prefixo.lower())]
@@ -538,14 +586,6 @@ class SistemaVoluntariado:
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")
         for a in resultados:
             print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidade: {a.entidade}) - Vagas: {a.vagas}")
-    
-    # ==========================================
-    # RF04 – Estatísticas e Dashboard (versão 1)
-    # ==========================================
-    
-    # ==========================================
-    # RF04 – Estatísticas e Dashboard (versão 1)
-    # ==========================================
 
     def gerar_dashboard(self) -> None:
         """
@@ -652,21 +692,22 @@ class SistemaVoluntariado:
         fig.subplots_adjust(bottom=0.22, wspace=0.26)
         plt.show()
 
-    # ==============================================
+    # ==========================================
     # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==============================================
-
+    # ==========================================
+    
     def exportar_relatorio(self) -> None:
         """
-        Gera um ficheiro TXT com o resumo do programa, incluindo os dados
-        do Dashboard. Cumpre o RF05 utilizando os módulos 'os' e 'time'.
+        Gera um ficheiro PDF com o resumo do programa e os gráficos do Dashboard,
+        com um design profissional usando o matplotlib (coordenadas absolutas).
         """
         if not self.acoes:
             print("Não há dados suficientes para gerar um relatório.")
             return
 
-        # 1. Recalcular as estatísticas (igual ao Dashboard)
+        # 1. Recalcular as estatísticas (idêntico ao Dashboard)
         acoes_por_ods = {i: 0 for i in range(1, 18)}
+        horas_por_ods = {i: 0 for i in range(1, 18)}
         horas_por_voluntario = {}
 
         for acao in self.acoes:
@@ -674,50 +715,137 @@ class SistemaVoluntariado:
                 acoes_por_ods[ods] += 1
                 
             if acao.estado.lower() == "concluída":
+                for ods in acao.ods_associados:
+                    horas_por_ods[ods] += acao.duracao
+                    
                 for inscricao in getattr(acao, 'inscricoes_aprovadas', []):
                     nome_vol = inscricao.voluntario
-                    # Se o voluntário já lá estiver, soma; se não, começa em 0 e soma a duração
                     horas_por_voluntario[nome_vol] = horas_por_voluntario.get(nome_vol, 0) + acao.duracao
 
         top_ods = sorted(acoes_por_ods.items(), key=lambda x: x[1], reverse=True)[:3]
         top_voluntarios = sorted(horas_por_voluntario.items(), key=lambda x: x[1], reverse=True)[:5]
 
-        # 2. Criar a pasta "relatorios" se ela não existir
+        # 2. Setup do ficheiro
         os.makedirs("relatorios", exist_ok=True)
-        
-        # 3. Gerar um nome único para o ficheiro baseado na data e hora
         timestamp = time.strftime("%Y%m%d_%H%M%S")
-        nome_ficheiro = os.path.join("relatorios", f"relatorio_oficial_{timestamp}.txt")
+        data_formatada = time.strftime('%d/%m/%Y %H:%M:%S')
+        nome_ficheiro = os.path.join("relatorios", f"relatorio_oficial_{timestamp}.pdf")
 
-        # 4. Escrever os dados no ficheiro TXT
+        # 3. Desenhar o PDF Profissional com Matplotlib
         try:
-            with open(nome_ficheiro, 'w', encoding='utf-8') as f:
-                f.write("=" * 50 + "\n")
-                f.write(" RELATÓRIO OFICIAL DO PROGRAMA DE VOLUNTARIADO \n")
-                f.write("=" * 50 + "\n")
-                f.write(f"Data de Geração: {time.strftime('%d/%m/%Y %H:%M:%S')}\n\n")
+            from matplotlib.backends.backend_pdf import PdfPages
+            
+            # Criar a figura em proporção A4
+            fig = plt.figure(figsize=(8.27, 11.69))
+            
+            # Paleta de Cores
+            cor_primaria = '#005b96'
+            cor_texto = '#333333'
+            
+            # --- CABEÇALHO ---
+            fig.text(0.5, 0.93, "RELATÓRIO DE VOLUNTARIADO (AED)", ha='center', va='center', 
+                     fontsize=18, fontweight='bold', color=cor_primaria)
+            fig.text(0.5, 0.90, f"Documento gerado a: {data_formatada}", ha='center', va='center', 
+                     fontsize=10, color='gray', style='italic')
+            
+            # Linha decorativa
+            ax_line = fig.add_axes([0.1, 0.88, 0.8, 0.01])
+            ax_line.axis('off')
+            ax_line.plot([0, 1], [0, 0], color=cor_primaria, lw=2)
+            
+            # --- RESUMO GERAL ---
+            fig.text(0.1, 0.83, "RESUMO GERAL", ha='left', va='center', fontsize=12, fontweight='bold', color=cor_primaria)
+            
+            fig.text(0.25, 0.77, str(len(self.voluntarios)), ha='center', va='center', fontsize=24, fontweight='bold', color=cor_primaria)
+            fig.text(0.25, 0.73, "Voluntários\nRegistados", ha='center', va='top', fontsize=10, color=cor_texto)
+            
+            fig.text(0.5, 0.77, str(len(self.entidades)), ha='center', va='center', fontsize=24, fontweight='bold', color=cor_primaria)
+            fig.text(0.5, 0.73, "Entidades\nParceiras", ha='center', va='top', fontsize=10, color=cor_texto)
+            
+            fig.text(0.75, 0.77, str(len(self.acoes)), ha='center', va='center', fontsize=24, fontweight='bold', color=cor_primaria)
+            fig.text(0.75, 0.73, "Ações\nRegistadas", ha='center', va='top', fontsize=10, color=cor_texto)
+            
+            # --- GRÁFICOS NO PDF ---
+            
+            # Gráfico 1: Ações por ODS
+            ax1 = fig.add_axes([0.1, 0.45, 0.35, 0.20]) # [esquerda, base, largura, altura]
+            
+            # ATUALIZAÇÃO: Guardar apenas o número do ODS (ex: "4" em vez de "ODS 4") para poupar espaço
+            labels_acoes = [str(k) for k, v in acoes_por_ods.items() if v > 0]
+            valores_acoes = [v for v in acoes_por_ods.values() if v > 0]
+            
+            if labels_acoes:
+                barras1 = ax1.bar(labels_acoes, valores_acoes, color='skyblue', edgecolor='black', linewidth=0.5)
+                ax1.set_title('N.º de Ações por ODS', fontsize=9, fontweight='bold', color=cor_primaria)
+                ax1.set_xlabel('ODS', fontsize=8) # Título do eixo X
+                ax1.tick_params(axis='x', labelsize=8) # Rotação removida pois só temos números
+                ax1.tick_params(axis='y', labelsize=8)
+                ax1.grid(axis='y', linestyle='--', alpha=0.35) # Adiciona grelha horizontal
+                
+                # ATUALIZAÇÃO: Adicionar o valor numérico exato no topo de cada barra
+                for barra in barras1:
+                    altura = barra.get_height()
+                    ax1.text(barra.get_x() + barra.get_width() / 2, altura + (max(valores_acoes) * 0.02),
+                             f"{int(altura)}", ha='center', va='bottom', fontsize=7)
+            else:
+                ax1.axis('off')
+                ax1.text(0.5, 0.5, "Sem dados de ODS", ha='center', va='center', fontsize=9)
 
-                f.write("--- RESUMO GERAL ---\n")
-                f.write(f"Total de Voluntários Registados: {len(self.voluntarios)}\n")
-                f.write(f"Total de Entidades Parceiras: {len(self.entidades)}\n")
-                f.write(f"Total de Ações Registadas: {len(self.acoes)}\n\n")
+            # Gráfico 2: Horas por ODS
+            ax2 = fig.add_axes([0.55, 0.45, 0.35, 0.20])
+            
+            # ATUALIZAÇÃO: Guardar apenas o número do ODS
+            labels_horas = [str(k) for k, v in horas_por_ods.items() if v > 0]
+            valores_horas = [v for v in horas_por_ods.values() if v > 0]
+            
+            if labels_horas:
+                barras2 = ax2.bar(labels_horas, valores_horas, color='lightgreen', edgecolor='black', linewidth=0.5)
+                ax2.set_title('Horas Totais por ODS', fontsize=9, fontweight='bold', color=cor_primaria)
+                ax2.set_xlabel('ODS', fontsize=8)
+                ax2.tick_params(axis='x', labelsize=8)
+                ax2.tick_params(axis='y', labelsize=8)
+                ax2.grid(axis='y', linestyle='--', alpha=0.35)
+                
+                # ATUALIZAÇÃO: Adicionar o valor no topo de cada barra
+                for barra in barras2:
+                    altura = barra.get_height()
+                    texto_altura = f"{altura:.1f}" if isinstance(altura, float) and not altura.is_integer() else f"{int(altura)}"
+                    ax2.text(barra.get_x() + barra.get_width() / 2, altura + (max(valores_horas) * 0.02),
+                             texto_altura, ha='center', va='bottom', fontsize=7)
+            else:
+                ax2.axis('off')
+                ax2.text(0.5, 0.5, "Sem horas registadas", ha='center', va='center', fontsize=9)
 
-                f.write("--- TOP 3 ODS MAIS ATIVOS ---\n")
+            # --- LISTAGENS (TOP 3 e TOP 5) ---
+            fig.text(0.1, 0.33, "TOP 3 ODS MAIS ATIVOS", ha='left', va='center', fontsize=11, fontweight='bold', color=cor_primaria)
+            y_pos = 0.29
+            if top_ods and top_ods[0][1] > 0:
                 for ods, contagem in top_ods:
                     if contagem > 0:
-                        f.write(f" -> ODS {ods}: {contagem} ações\n")
+                        fig.text(0.1, y_pos, f"• ODS {ods}: {contagem} ações", ha='left', va='center', fontsize=10, color=cor_texto)
+                        y_pos -= 0.03
+            else:
+                fig.text(0.1, y_pos, "Sem ações registadas.", ha='left', va='center', fontsize=10, color=cor_texto)
 
-                f.write("\n--- TOP 5 VOLUNTÁRIOS (POR HORAS) ---\n")
-                if top_voluntarios:
-                    for i, (nome, horas) in enumerate(top_voluntarios, 1):
-                        f.write(f" {i}º Lugar: {nome} - {horas}h totais\n")
-                else:
-                    f.write(" -> Nenhum voluntário tem horas registadas em ações concluídas.\n")
+            fig.text(0.55, 0.33, "TOP 5 VOLUNTÁRIOS (POR HORAS)", ha='left', va='center', fontsize=11, fontweight='bold', color=cor_primaria)
+            y_pos = 0.29
+            if top_voluntarios:
+                for i, (nome, horas) in enumerate(top_voluntarios, 1):
+                    fig.text(0.55, y_pos, f"{i}º Lugar: {nome} - {horas}h totais", ha='left', va='center', fontsize=10, color=cor_texto)
+                    y_pos -= 0.03
+            else:
+                fig.text(0.55, y_pos, "Nenhum voluntário com horas validadas.", ha='left', va='center', fontsize=10, color=cor_texto)
 
-                f.write("\n" + "=" * 50 + "\n")
-                f.write("Relatório gerado automaticamente pelo Sistema.\n")
+            # --- RODAPÉ ---
+            fig.text(0.5, 0.05, "Relatório gerado automaticamente pelo Sistema de Voluntariado (Projeto AED)", 
+                     ha='center', va='center', fontsize=8, color='gray')
 
-            print(f"\n Sucesso! Relatório exportado com sucesso para a pasta 'relatorios'.")
+            # Fechar e Guardar
+            with PdfPages(nome_ficheiro) as pdf:
+                pdf.savefig(fig)
+            plt.close(fig)
+
+            print(f"\n Sucesso! Relatório visual exportado com sucesso para a pasta 'relatorios'.")
             print(f" Nome do ficheiro: {nome_ficheiro}")
             
         except Exception as e:
