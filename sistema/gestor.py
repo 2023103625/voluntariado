@@ -1,11 +1,14 @@
 import os
 import time
+import csv
 import matplotlib.pyplot as plt
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Tuple
 from sistema.modelos import Voluntario, Entidade, Acao, Inscricao
 from sistema.algoritmos.insertion_sort import ordenar_voluntarios_nome
 from sistema.algoritmos.merge_sort import merge_sort_acoes
 from sistema.base_dados import BaseDados
+from sistema.estruturas.bst import BST
+from sistema.estruturas.heap import MaxHeap
 
 class SistemaVoluntariado:
     """Classe principal de orquestração do sistema de voluntariado.
@@ -14,7 +17,7 @@ class SistemaVoluntariado:
 
     - gestão de entidades de domínio (voluntários, entidades, ações, inscrições);
     - persistência JSON (carregar/guardar);
-    - operações de negócio dos requisitos funcionais (RF01..RF05).
+    - operações de negócio dos requisitos funcionais (RF01..RF09).
     """
 
     def __init__(self):
@@ -140,7 +143,6 @@ class SistemaVoluntariado:
                 {"competencia": nome, "nivel": nivel}
                 for nome, nivel in voluntario.competencias.items()
             ],
-            # ATUALIZAÇÃO: Converter Set para List antes de escrever no JSON
             "interesses": list(voluntario.interesses),
             "ods_interesse": list(voluntario.ods_interesse),
         }
@@ -154,13 +156,24 @@ class SistemaVoluntariado:
             "area_intervencao": entidade.area,
             "localizacao": entidade.localizacao,
             "url": entidade.url,
-            # ATUALIZAÇÃO: Converter Set para List
             "tags": list(entidade.tags),
             "ods_principais": [{"ods_id": ods} for ods in entidade.ods_foco],
         }
 
     def _serializar_acao(self, acao: Acao) -> Dict[str, Any]:
         """Converte um objeto Acao para dicionário JSON-serializável."""
+        
+        # 1. Preparar o histórico da pilha para ser guardado no JSON
+        historico_formatado = []
+        for reg in acao.historico_equipa.para_lista():
+            historico_formatado.append({
+                # O JSON não suporta Set, logo convertemos para list()
+                "estado_anterior": list(reg["estado_anterior"]),
+                "estado_novo": list(reg["estado_novo"]),
+                "data_hora": reg["data_hora"],
+                "tipo": reg["tipo"]
+            })
+            
         return {
             "acao_id": getattr(acao, "acao_id", None),
             "titulo": acao.titulo,
@@ -177,8 +190,9 @@ class SistemaVoluntariado:
                 {"competencia": nome, "nivel_minimo": nivel}
                 for nome, nivel in acao.competencias_desejadas.items()
             ],
-            # A compressão de lista [ ... for x in set ] já devolve uma Lista, logo está seguro para JSON!
             "ods_associados": [{"ods_id": ods} for ods in acao.ods_associados],
+            "equipa": list(getattr(acao, "equipa", set())),
+            "historico_equipa": historico_formatado,
         }
 
     def _serializar_inscricao(self, inscricao: Inscricao) -> Dict[str, Any]:
@@ -192,12 +206,7 @@ class SistemaVoluntariado:
         }
 
     def _desserializar_voluntario(self, dados: Dict[str, Any]) -> Voluntario:
-        """Converte um dicionário JSON para um objeto Voluntario.
-        
-        :param dados: Dicionário contendo a informação lida do JSON.
-        :return: Objeto da classe Voluntario instanciado.
-        """
-        # 1. Criação base do voluntário
+        """Converte um dicionário JSON para um objeto Voluntario."""
         voluntario = Voluntario(
             nome=dados.get("nome", ""),
             curso=dados.get("curso", ""),
@@ -207,7 +216,6 @@ class SistemaVoluntariado:
         )
         voluntario.voluntario_id = dados.get("voluntario_id")
         
-        # 2. Desserialização das competências
         competencias = dados.get("competencias", {})
         if isinstance(competencias, list):
             voluntario.competencias = {
@@ -216,16 +224,12 @@ class SistemaVoluntariado:
         else:
             voluntario.competencias = competencias
             
-        # 3. Desserialização dos Interesses (usar set() diretamente porque são apenas textos)
         voluntario.interesses = set(dados.get("interesses", []))
         
-        # 4. CORREÇÃO: Desserialização dos ODS de Interesse (lidando com Dicionários)
         ods = dados.get("ods_interesse", [])
         if ods and isinstance(ods[0], dict):
-            # Se vier num formato de dicionário (ex: [{"ods_id": 1}]), extraímos apenas o número
             voluntario.ods_interesse = set(item.get("ods_id") for item in ods if item.get("ods_id"))
         else:
-            # Se já vier num formato de lista simples (ex: [1, 2, 3]), convertemos logo para Set
             voluntario.ods_interesse = set(ods)
             
         return voluntario
@@ -240,20 +244,17 @@ class SistemaVoluntariado:
             url=dados.get("url"),
         )
         entidade.entidade_id = dados.get("entidade_id")
-        
-        # Converter a Lista do JSON para um Conjunto (Set)
         entidade.tags = set(dados.get("tags", []))
         
         ods_principais = dados.get("ods_principais", dados.get("ods_foco", []))
         if ods_principais and isinstance(ods_principais[0], dict):
-            # Usar a conversão set() iterando pelos dicionários
             entidade.ods_foco = set(item.get("ods_id") for item in ods_principais if item.get("ods_id"))
         else:
             entidade.ods_foco = set(ods_principais)
         return entidade
 
     def _desserializar_acao(self, dados: Dict[str, Any]) -> Acao:
-        """Converte um dicionário para objeto Acao."""
+        """Converte um dicionário JSON para objeto Acao e reconstrói as estruturas complexas."""
         acao = Acao(
             titulo=dados.get("titulo", ""),
             entidade=dados.get("entidade_nome", dados.get("entidade", "")),
@@ -267,6 +268,7 @@ class SistemaVoluntariado:
         acao.entidade_id = dados.get("entidade_id")
         acao.estado = dados.get("estado", "planeada")
         acao.metrica_impacto = dados.get("metrica_impacto", 0.0)
+        
         comp = dados.get("competencias_desejadas", {})
         if isinstance(comp, list):
             acao.competencias_desejadas = {
@@ -277,10 +279,26 @@ class SistemaVoluntariado:
             
         ods = dados.get("ods_associados", [])
         if ods and isinstance(ods[0], dict):
-            # ATUALIZAÇÃO: Set notation para garantir o tipo Correto no modelo
             acao.ods_associados = set(item.get("ods_id") for item in ods if item.get("ods_id"))
         else:
             acao.ods_associados = set(ods)
+            
+        acao.equipa = set(dados.get("equipa", []))
+        
+        # 2. Reconstruir a Pilha (Histórico)
+        historico_salvo = dados.get("historico_equipa", [])
+        # Como o JSON guardou do [Mais Recente -> Mais Antigo],
+        # temos de inverter a lista (reversed) para empurrar primeiro o mais antigo
+        # e reconstruir a Pilha perfeitamente!
+        for reg in reversed(historico_salvo):
+            acao.historico_equipa.push({
+                # Reverter as listas de volta para Sets
+                "estado_anterior": set(reg.get("estado_anterior", [])),
+                "estado_novo": set(reg.get("estado_novo", [])),
+                "data_hora": reg.get("data_hora", ""),
+                "tipo": reg.get("tipo", "")
+            })
+            
         return acao
 
     def _reconstruir_inscricoes(self, inscricoes_dados: List[Dict[str, Any]]) -> None:
@@ -335,10 +353,6 @@ class SistemaVoluntariado:
     # RF01 - GESTÃO DE VOLUNTÁRIOS
     # ==========================================
     def adicionar_voluntario(self, voluntario: Voluntario) -> None:
-        """Adiciona um voluntário e atribui ID sequencial.
-
-        :param voluntario: Instância de :class:`Voluntario` a registar.
-        """
         if self.consultar_voluntario(voluntario.nome):
             print(f"Erro: O voluntário '{voluntario.nome}' já existe.")
         else:
@@ -369,7 +383,6 @@ class SistemaVoluntariado:
         return False
 
     def atualizar_voluntario(self, nome: str, novo_curso: str = None) -> bool:
-        """Exemplo de atualização: permite alterar o curso de um voluntário."""
         voluntario = self.consultar_voluntario(nome)
         if voluntario:
             if novo_curso:
@@ -392,10 +405,6 @@ class SistemaVoluntariado:
     # RF01 - GESTÃO DE ENTIDADES
     # ==========================================
     def adicionar_entidade(self, entidade: Entidade) -> None:
-        """Adiciona uma entidade e atribui ID sequencial.
-
-        :param entidade: Instância de :class:`Entidade` a registar.
-        """
         if self.consultar_entidade(entidade.nome):
             print(f"Erro: A entidade '{entidade.nome}' já existe.")
         else:
@@ -426,14 +435,6 @@ class SistemaVoluntariado:
         nova_area: Optional[str] = None,
         nova_localizacao: Optional[str] = None,
     ) -> bool:
-        """Atualiza campos principais de uma entidade.
-
-        :param nome: Nome atual da entidade a atualizar.
-        :param novo_tipo: Novo tipo (opcional).
-        :param nova_area: Nova área de intervenção (opcional).
-        :param nova_localizacao: Nova localização (opcional).
-        :return: ``True`` se a entidade existir, ``False`` caso contrário.
-        """
         entidade = self.consultar_entidade(nome)
         if not entidade:
             print("Entidade não encontrada.")
@@ -461,10 +462,6 @@ class SistemaVoluntariado:
     # RF01 - GESTÃO DE AÇÕES
     # ==========================================
     def adicionar_acao(self, acao: Acao) -> None:
-        """Adiciona uma ação e atribui ID sequencial.
-
-        :param acao: Instância de :class:`Acao` a registar.
-        """
         if self.consultar_acao(acao.titulo):
             print(f"Erro: A ação '{acao.titulo}' já existe.")
             return
@@ -498,7 +495,6 @@ class SistemaVoluntariado:
         return False
 
     def atualizar_estado_acao(self, titulo: str, novo_estado: str) -> bool:
-        """Atualiza o estado da ação (planeada, concluída, cancelada)."""
         acao = self.consultar_acao(titulo)
         estados_validos = ["planeada", "concluída", "cancelada"]
         if acao and novo_estado.lower() in estados_validos:
@@ -524,11 +520,9 @@ class SistemaVoluntariado:
         return True
 
     def listar_acoes_com_fila_pendente(self) -> List[Acao]:
-        """Retorna uma lista de ações que tenham inscrições por processar."""
         return [a for a in self.acoes if not a.fila_inscricoes.is_empty()]
 
     def espreitar_proxima_inscricao(self, titulo_acao: str) -> Optional[Inscricao]:
-        """Mostra a próxima inscrição da fila sem a remover."""
         acao = self.consultar_acao(titulo_acao)
         if not acao or acao.fila_inscricoes.is_empty():
             return None
@@ -577,22 +571,13 @@ class SistemaVoluntariado:
     # ==========================================
     
     def pesquisar_e_listar_acoes(self, filtros: dict, ordenar_por: str = "data_hora") -> None:
-        """
-        Filtra as ações com base num dicionário de critérios e ordena o 
-        resultado final usando o algoritmo Merge Sort (O(n log n)).
-        """
-        # Começamos com uma cópia de todas as ações
         resultados = self.acoes.copy()
 
-        # 1. Filtro por Entidade (se o texto digitado existir no nome da entidade)
         if filtros.get("entidade"):
             resultados = [a for a in resultados if filtros["entidade"].lower() in a.entidade.lower()]
-
-        # 2. Filtro por Área
         if filtros.get("area"):
             resultados = [a for a in resultados if filtros["area"].lower() in a.area.lower()]
 
-        # 3. Filtro por Intervalo de Datas (strings no formato YYYY-MM-DD HH:MM)
         data_inicio = filtros.get("data_inicio")
         data_fim = filtros.get("data_fim")
         if data_inicio:
@@ -600,67 +585,52 @@ class SistemaVoluntariado:
         if data_fim:
             resultados = [a for a in resultados if a.data_hora <= data_fim]
             
-        # 4. Filtro por Vagas Mínimas
         if filtros.get("vagas_min") is not None:
             resultados = [a for a in resultados if a.vagas >= filtros["vagas_min"]]
             
-        # 5. Filtro por ODS Associado
         if filtros.get("ods") is not None:
             resultados = [a for a in resultados if filtros["ods"] in a.ods_associados]
 
-        # Se após os filtros a lista ficar vazia...
         if not resultados:
             print("\nNenhuma ação encontrada com os filtros especificados.")
             return
 
-        # Por fim, ordena os resultados filtrados usando o teu algoritmo Merge Sort
         merge_sort_acoes(resultados, ordenar_por)
 
-        # Imprime os resultados
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")
         for a in resultados:
             print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidade: {a.entidade}) - Vagas: {a.vagas}")
 
     def gerar_dashboard(self) -> None:
-        """
-        Gera os indicadores textuais (incluindo o Top 5) e os gráficos obrigatórios.
-        """
         acoes_por_ods = {i: 0 for i in range(1, 18)}
         horas_por_ods = {i: 0 for i in range(1, 18)}
-        
-        # Dicionário para somar as horas de cada voluntário: {"Nome do Voluntário": 10}
         horas_por_voluntario = {}
 
         for acao in self.acoes:
             for ods in acao.ods_associados:
                 acoes_por_ods[ods] += 1
                 
-            # Só contabilizamos horas se a ação já estiver concluída!
             if acao.estado.lower() == "concluída":
                 for ods in acao.ods_associados:
                     horas_por_ods[ods] += acao.duracao
                     
-                # Vamos a cada inscrição aprovada desta ação dar as horas ao voluntário
                 for inscricao in getattr(acao, 'inscricoes_aprovadas', []):
                     nome_vol = inscricao.voluntario
                     if nome_vol not in horas_por_voluntario:
                         horas_por_voluntario[nome_vol] = 0
                     horas_por_voluntario[nome_vol] += acao.duracao
 
-        # --- Impressão no Terminal ---
         print("\n" + "="*50)
         print("   DASHBOARD E ESTATÍSTICAS DO PROGRAMA   ")
         print("="*50)
         
         print("\n[AÇÕES POR ODS - TOP 3]")
-        # Ordena o dicionário de ODS de forma decrescente
         top_ods = sorted(acoes_por_ods.items(), key=lambda x: x[1], reverse=True)[:3]
         for ods, contagem in top_ods:
             if contagem > 0:
                 print(f" - ODS {ods}: {contagem} ações")
 
         print("\n[TOP 5 VOLUNTÁRIOS POR HORAS]")
-        # Ordena o dicionário de voluntários de forma decrescente e apanha os 5 primeiros
         top_voluntarios = sorted(horas_por_voluntario.items(), key=lambda x: x[1], reverse=True)[:5]
         
         if top_voluntarios:
@@ -670,15 +640,9 @@ class SistemaVoluntariado:
             print(" -> Nenhum voluntário tem horas registadas em ações concluídas.")
         print("="*50)
 
-        # Chama a função que já tinhas para desenhar os gráficos do matplotlib
         self._desenhar_graficos(acoes_por_ods, horas_por_ods)
 
     def _desenhar_graficos(self, acoes_ods: dict, horas_ods: dict) -> None:
-        """Desenha os gráficos de barras do dashboard com legibilidade melhorada.
-
-        :param acoes_ods: Dicionário ``{ods: total_acoes}``.
-        :param horas_ods: Dicionário ``{ods: total_horas}``.
-        """
         if not sum(acoes_ods.values()):
             print("Sem dados.")
             return
@@ -726,20 +690,11 @@ class SistemaVoluntariado:
         fig.subplots_adjust(bottom=0.22, wspace=0.26)
         plt.show()
 
-    # ==========================================
-    # RF05 - REQUISITO OPCIONAL (Exportar Relatório)
-    # ==========================================
-    
     def exportar_relatorio(self) -> None:
-        """
-        Gera um ficheiro PDF com o resumo do programa e os gráficos do Dashboard,
-        com um design profissional usando o matplotlib (coordenadas absolutas).
-        """
         if not self.acoes:
             print("Não há dados suficientes para gerar um relatório.")
             return
 
-        # 1. Recalcular as estatísticas (idêntico ao Dashboard)
         acoes_por_ods = {i: 0 for i in range(1, 18)}
         horas_por_ods = {i: 0 for i in range(1, 18)}
         horas_por_voluntario = {}
@@ -759,35 +714,27 @@ class SistemaVoluntariado:
         top_ods = sorted(acoes_por_ods.items(), key=lambda x: x[1], reverse=True)[:3]
         top_voluntarios = sorted(horas_por_voluntario.items(), key=lambda x: x[1], reverse=True)[:5]
 
-        # 2. Setup do ficheiro
         os.makedirs("relatorios", exist_ok=True)
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         data_formatada = time.strftime('%d/%m/%Y %H:%M:%S')
         nome_ficheiro = os.path.join("relatorios", f"relatorio_oficial_{timestamp}.pdf")
 
-        # 3. Desenhar o PDF Profissional com Matplotlib
         try:
             from matplotlib.backends.backend_pdf import PdfPages
             
-            # Criar a figura em proporção A4
             fig = plt.figure(figsize=(8.27, 11.69))
-            
-            # Paleta de Cores
             cor_primaria = '#005b96'
             cor_texto = '#333333'
             
-            # --- CABEÇALHO ---
             fig.text(0.5, 0.93, "RELATÓRIO DE VOLUNTARIADO (AED)", ha='center', va='center', 
                      fontsize=18, fontweight='bold', color=cor_primaria)
             fig.text(0.5, 0.90, f"Documento gerado a: {data_formatada}", ha='center', va='center', 
                      fontsize=10, color='gray', style='italic')
             
-            # Linha decorativa
             ax_line = fig.add_axes([0.1, 0.88, 0.8, 0.01])
             ax_line.axis('off')
             ax_line.plot([0, 1], [0, 0], color=cor_primaria, lw=2)
             
-            # --- RESUMO GERAL ---
             fig.text(0.1, 0.83, "RESUMO GERAL", ha='left', va='center', fontsize=12, fontweight='bold', color=cor_primaria)
             
             fig.text(0.25, 0.77, str(len(self.voluntarios)), ha='center', va='center', fontsize=24, fontweight='bold', color=cor_primaria)
@@ -799,24 +746,19 @@ class SistemaVoluntariado:
             fig.text(0.75, 0.77, str(len(self.acoes)), ha='center', va='center', fontsize=24, fontweight='bold', color=cor_primaria)
             fig.text(0.75, 0.73, "Ações\nRegistadas", ha='center', va='top', fontsize=10, color=cor_texto)
             
-            # --- GRÁFICOS NO PDF ---
+            ax1 = fig.add_axes([0.1, 0.45, 0.35, 0.20])
             
-            # Gráfico 1: Ações por ODS
-            ax1 = fig.add_axes([0.1, 0.45, 0.35, 0.20]) # [esquerda, base, largura, altura]
-            
-            # Guardar apenas o número do ODS (ex: "4" em vez de "ODS 4") para poupar espaço
             labels_acoes = [str(k) for k, v in acoes_por_ods.items() if v > 0]
             valores_acoes = [v for v in acoes_por_ods.values() if v > 0]
             
             if labels_acoes:
                 barras1 = ax1.bar(labels_acoes, valores_acoes, color='skyblue', edgecolor='black', linewidth=0.5)
                 ax1.set_title('N.º de Ações por ODS', fontsize=9, fontweight='bold', color=cor_primaria)
-                ax1.set_xlabel('ODS', fontsize=8) # Título do eixo X
+                ax1.set_xlabel('ODS', fontsize=8) 
                 ax1.tick_params(axis='x', labelsize=8)
                 ax1.tick_params(axis='y', labelsize=8)
-                ax1.grid(axis='y', linestyle='--', alpha=0.35) # Adiciona grelha horizontal
+                ax1.grid(axis='y', linestyle='--', alpha=0.35) 
                 
-                # Adicionar o valor numérico exato no topo de cada barra
                 for barra in barras1:
                     altura = barra.get_height()
                     ax1.text(barra.get_x() + barra.get_width() / 2, altura + (max(valores_acoes) * 0.02),
@@ -825,10 +767,8 @@ class SistemaVoluntariado:
                 ax1.axis('off')
                 ax1.text(0.5, 0.5, "Sem dados de ODS", ha='center', va='center', fontsize=9)
 
-            # Gráfico 2: Horas por ODS
             ax2 = fig.add_axes([0.55, 0.45, 0.35, 0.20])
             
-            # Guardar apenas o número do ODS
             labels_horas = [str(k) for k, v in horas_por_ods.items() if v > 0]
             valores_horas = [v for v in horas_por_ods.values() if v > 0]
             
@@ -840,7 +780,6 @@ class SistemaVoluntariado:
                 ax2.tick_params(axis='y', labelsize=8)
                 ax2.grid(axis='y', linestyle='--', alpha=0.35)
                 
-                # Adicionar o valor no topo de cada barra
                 for barra in barras2:
                     altura = barra.get_height()
                     texto_altura = f"{altura:.1f}" if isinstance(altura, float) and not altura.is_integer() else f"{int(altura)}"
@@ -850,7 +789,6 @@ class SistemaVoluntariado:
                 ax2.axis('off')
                 ax2.text(0.5, 0.5, "Sem horas registadas", ha='center', va='center', fontsize=9)
 
-            # --- LISTAGENS (TOP 3 e TOP 5) ---
             fig.text(0.1, 0.33, "TOP 3 ODS MAIS ATIVOS", ha='left', va='center', fontsize=11, fontweight='bold', color=cor_primaria)
             y_pos = 0.29
             if top_ods and top_ods[0][1] > 0:
@@ -870,11 +808,9 @@ class SistemaVoluntariado:
             else:
                 fig.text(0.55, y_pos, "Nenhum voluntário com horas validadas.", ha='left', va='center', fontsize=10, color=cor_texto)
 
-            # --- RODAPÉ ---
             fig.text(0.5, 0.05, "Relatório gerado automaticamente pelo Sistema de Voluntariado (Projeto AED)", 
                      ha='center', va='center', fontsize=8, color='gray')
 
-            # Fechar e Guardar
             with PdfPages(nome_ficheiro) as pdf:
                 pdf.savefig(fig)
             plt.close(fig)
@@ -884,3 +820,276 @@ class SistemaVoluntariado:
             
         except Exception as e:
             print(f"Erro ao guardar o relatório: {e}")
+
+    def exportar_relatorio_csv(self) -> None:
+        """Gera um ficheiro CSV tabular com os dados de todas as Ações (RF05)."""
+        if not self.acoes:
+            print("Não há dados suficientes para gerar um relatório CSV.")
+            return
+
+        os.makedirs("relatorios", exist_ok=True)
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        nome_ficheiro = os.path.join("relatorios", f"relatorio_dados_{timestamp}.csv")
+
+        try:
+            # O parâmetro newline='' previne linhas em branco extra no Windows
+            # O encoding='utf-8-sig' garante que o Excel lê os acentos de português corretamente!
+            with open(nome_ficheiro, mode='w', newline='', encoding='utf-8-sig') as ficheiro_csv:
+                # Usamos o delimitador ';' que é o padrão para o Excel em português
+                writer = csv.writer(ficheiro_csv, delimiter=';')
+                
+                # 1. Escrever o Cabeçalho da Tabela
+                writer.writerow([
+                    "ID da Ação", 
+                    "Título", 
+                    "Entidade Promotora", 
+                    "Área Temática", 
+                    "Data e Hora", 
+                    "Duração (Horas)", 
+                    "Vagas Restantes", 
+                    "Estado Atual", 
+                    "Métrica de Impacto", 
+                    "Voluntários Aprovados"
+                ])
+                
+                # 2. Escrever os dados de cada Ação, linha a linha
+                for acao in self.acoes:
+                    # Quantos voluntários já estão aprovados nesta ação?
+                    num_aprovados = len(getattr(acao, 'inscricoes_aprovadas', []))
+                    
+                    writer.writerow([
+                        getattr(acao, "acao_id", ""),
+                        acao.titulo,
+                        acao.entidade,
+                        acao.area,
+                        acao.data_hora,
+                        acao.duracao,
+                        acao.vagas,
+                        acao.estado.capitalize(),
+                        acao.metrica_impacto,
+                        num_aprovados
+                    ])
+                    
+            print(f"\n Sucesso! Dados tabulares exportados com sucesso para CSV.")
+            print(f" Nome do ficheiro: {nome_ficheiro}")
+            
+        except Exception as e:
+            print(f"Erro ao guardar o relatório CSV: {e}")
+
+    # ==========================================
+    # RF06 - FORMAÇÃO DE EQUIPAS (PILHA / UNDO)
+    # ==========================================
+    
+    def adequacao_voluntario_acao(self, voluntario: Voluntario, acao: Acao) -> bool:
+        ods_em_comum = voluntario.ods_interesse.intersection(acao.ods_associados)
+        comps_voluntario = set(voluntario.competencias.keys())
+        comps_acao = set(acao.competencias_desejadas.keys())
+        comps_em_comum = comps_voluntario.intersection(comps_acao)
+        
+        if ods_em_comum or comps_em_comum:
+            return True
+        return False
+
+    def adicionar_voluntario_equipa(self, titulo_acao: str, voluntario_nome: str) -> Tuple[bool, str]:
+        """Adiciona um voluntário à equipa e regista a ação detalhada na Pilha."""
+        acao = self.consultar_acao(titulo_acao)
+        voluntario = self.consultar_voluntario(voluntario_nome)
+        
+        if not acao: return False, "Ação não encontrada."
+        if not voluntario: return False, "Voluntário não encontrado."
+        if voluntario.nome in acao.equipa: return False, "O voluntário já pertence a esta equipa."
+        if not self.adequacao_voluntario_acao(voluntario, acao): return False, "Perfil não se adequa à ação."
+            
+        # 1. Guardamos o estado antigo antes de alterar
+        estado_antigo = set(acao.equipa)
+        
+        # 2. Fazemos a alteração
+        acao.equipa.add(voluntario.nome)
+        
+        # 3. PUSH: Guardamos o registo na Pilha com o nome específico do voluntário
+        agora = time.strftime('%Y-%m-%d %H:%M:%S')
+        acao.historico_equipa.push({
+            "estado_anterior": estado_antigo,
+            "estado_novo": set(acao.equipa),
+            "data_hora": agora,
+            "tipo": f"Adição: {voluntario.nome}" 
+        })
+        
+        return True, f"{voluntario.nome} foi adicionado à equipa."
+
+    def remover_voluntario_equipa(self, titulo_acao: str, voluntario_nome: str) -> Tuple[bool, str]:
+        """Remove um voluntário da equipa e regista a ação detalhada na Pilha."""
+        acao = self.consultar_acao(titulo_acao)
+        if not acao: return False, "Ação não encontrada."
+        if voluntario_nome not in acao.equipa: return False, "O voluntário não pertence a esta equipa."
+            
+        estado_antigo = set(acao.equipa)
+        acao.equipa.remove(voluntario_nome)
+        
+        agora = time.strftime('%Y-%m-%d %H:%M:%S')
+        acao.historico_equipa.push({
+            "estado_anterior": estado_antigo,
+            "estado_novo": set(acao.equipa),
+            "data_hora": agora,
+            # --- AQUI ESTÁ A MELHORIA ---
+            "tipo": f"Remoção: {voluntario_nome}"
+        })
+        
+        return True, f"{voluntario_nome} foi removido da equipa."
+
+    def desfazer_alteracao_equipa(self, titulo_acao: str) -> Tuple[bool, str]:
+        acao = self.consultar_acao(titulo_acao)
+        if not acao: return False, "Ação não encontrada."
+        if acao.historico_equipa.is_empty(): return False, "Não existem alterações anteriores para desfazer nesta sessão."
+            
+        # POP: O Undo recupera o registo e restaura apenas o 'estado_anterior'
+        registro = acao.historico_equipa.pop()
+        acao.equipa = registro["estado_anterior"]
+        return True, "A última alteração à equipa foi desfeita com sucesso."
+    
+    # ==========================================
+    # RF07 - CONSULTA DE AÇÕES POR IMPACTO (BST)
+    # ==========================================
+    
+    def _construir_bst_impacto(self) -> BST:
+        arvore = BST()
+        for acao in self.acoes:
+            arvore.inserir(acao.metrica_impacto, acao)
+        return arvore
+
+    def consultar_acoes_por_impacto_ordem(self, crescente: bool = True) -> List[Acao]:
+        arvore = self._construir_bst_impacto()
+        acoes_ordenadas = arvore.listar_em_ordem()
+        if not crescente:
+            acoes_ordenadas.reverse()
+        return acoes_ordenadas
+
+    def consultar_acoes_impacto_exato(self, impacto_alvo: float) -> List[Acao]:
+        arvore = self._construir_bst_impacto()
+        no_atual = arvore.raiz
+        while no_atual is not None:
+            if impacto_alvo == no_atual.chave:
+                return no_atual.valores
+            elif impacto_alvo < no_atual.chave:
+                no_atual = no_atual.esquerda
+            else:
+                no_atual = no_atual.direita
+        return []
+
+    def consultar_acoes_impacto_extremos(self) -> Tuple[List[Acao], List[Acao]]:
+        arvore = self._construir_bst_impacto()
+        if arvore.raiz is None:
+            return [], []
+            
+        no_min = arvore.raiz
+        while no_min.esquerda is not None:
+            no_min = no_min.esquerda
+            
+        no_max = arvore.raiz
+        while no_max.direita is not None:
+            no_max = no_max.direita
+            
+        return no_min.valores, no_max.valores
+
+    def consultar_acoes_por_impacto_intervalo(self, min_imp: float, max_imp: float) -> List[Acao]:
+        arvore = self._construir_bst_impacto()
+        resultados = []
+        
+        def _busca_intervalo(no):
+            if no is None:
+                return
+            if no.chave > min_imp:
+                _busca_intervalo(no.esquerda)
+            if min_imp <= no.chave <= max_imp:
+                resultados.extend(no.valores)
+            if no.chave < max_imp:
+                _busca_intervalo(no.direita)
+                
+        _busca_intervalo(arvore.raiz)
+        return resultados
+
+    # ==================================================
+    # RF08 - PRIORIZAÇÃO DE CANDIDATURAS (MAX-HEAP)
+    # ==================================================
+    
+    def _calcular_pontuacao_compatibilidade(self, voluntario: Voluntario, acao: Acao) -> int:
+        """
+        Calcula a prioridade de um voluntário para uma ação.
+        Critérios:
+        - +2 pontos por cada ODS em comum.
+        - +1 ponto por cada competência desejada em comum.
+        """
+        pontos = 0
+        
+        # 1. Pontuação pelos ODS
+        ods_em_comum = voluntario.ods_interesse.intersection(acao.ods_associados)
+        pontos += (len(ods_em_comum) * 2)
+        
+        # 2. Pontuação pelas Competências
+        comps_voluntario = set(voluntario.competencias.keys())
+        comps_acao = set(acao.competencias_desejadas.keys())
+        comps_em_comum = comps_voluntario.intersection(comps_acao)
+        pontos += len(comps_em_comum)
+        
+        return pontos
+
+    def gerar_candidaturas_ordenadas_heapsort(self, titulo_acao: str) -> List[Tuple[Inscricao, int]]:
+        """
+        Gera a lista de inscrições ordenadas por prioridade usando um Max-Heap e o 
+        algoritmo Heapsort. Usa a data/hora real de inscrição como critério absoluto de desempate.
+        """
+        acao = self.consultar_acao(titulo_acao)
+        if not acao or acao.fila_inscricoes.is_empty():
+            return []
+
+        heap = MaxHeap()
+        inscricoes_pendentes = []
+
+        # 1. Retirar temporariamente da fila FIFO para uma lista
+        while not acao.fila_inscricoes.is_empty():
+            insc = acao.fila_inscricoes.dequeue()
+            if insc:
+                inscricoes_pendentes.append(insc)
+
+        # 2.Ordenar fisicamente a lista pela data de inscrição.
+        # Assim garantimos que o índice 0 é sempre a data mais antiga (o 1º a chegar) independentemente 
+        # da ordem em que os dados estavam guardados no ficheiro JSON!
+        inscricoes_pendentes.sort(key=lambda x: x.data_hora_inscricao)
+
+        total_pendentes = len(inscricoes_pendentes)
+
+        # 3. Calcular prioridade de cada inscrição e inserir no Max-Heap
+        for i, insc in enumerate(inscricoes_pendentes):
+            voluntario = self.consultar_voluntario(insc.voluntario)
+            if voluntario:
+                pontos_base = self._calcular_pontuacao_compatibilidade(voluntario, acao)
+            else:
+                pontos_base = 0 
+                
+            # Como a lista já foi forçada a estar em ordem cronológica real:
+            # i = 0 (mais antigo) ganha o maior bónus decimal (ex: + 0.99)
+            # i = 1 (2º mais antigo) ganha o segundo maior bónus, etc.
+            bonus_antiguidade = (total_pendentes - i) / (total_pendentes + 1)
+            
+            prioridade_exata = pontos_base + bonus_antiguidade
+
+            heap.inserir(prioridade_exata, insc)
+
+        # 4. O ALGORITMO HEAPSORT: Extrair tudo do Max-Heap para obter a lista final ordenada
+        inscricoes_ordenadas = []
+        while not heap.is_empty():
+            topo = heap._heap[0] 
+            insc = topo[1]
+            prioridade_exata = topo[0]
+            
+            # Reverter o truque decimal: Transformar de volta para o inteiro visual
+            pontos_limpos = int(prioridade_exata)
+            
+            inscricoes_ordenadas.append((insc, pontos_limpos))
+            heap.extrair_max()
+
+        # 5. Restaurar a fila original (com a ordem cronológica)
+        for insc in inscricoes_pendentes:
+            acao.fila_inscricoes.enqueue(insc)
+
+        return inscricoes_ordenadas

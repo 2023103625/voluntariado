@@ -7,20 +7,20 @@
         "localizacao": "Campus da Asprela",
         "url": "https://voluntariado.universidade.pt/nes",
         "tags": [
-            "cidadania",
+            "tutoria",
             "solidariedade",
-            "tecnologia",
-            "tutoria"
+            "cidadania",
+            "tecnologia"
         ],
         "ods_principais": [
             {
-                "ods_id": 4
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
         ]
     },
@@ -34,8 +34,8 @@
         "tags": [
             "ambiente",
             "ciência",
-            "mobilidade",
-            "reciclagem"
+            "reciclagem",
+            "mobilidade"
         ],
         "ods_principais": [
             {
@@ -60,10 +60,10 @@
         "localizacao": "Campus da Asprela",
         "url": "https://sas.universidade.pt",
         "tags": [
-            "alimentação",
-            "apoio social",
             "bem-estar",
-            "inclusão"
+            "alimentação",
+            "inclusão",
+            "apoio social"
         ],
         "ods_principais": [
             {
@@ -88,20 +88,20 @@
         "localizacao": "Campus da Asprela",
         "url": "https://saude.universidade.pt",
         "tags": [
-            "bem-estar",
+            "saúde",
             "campanhas",
             "prevenção",
-            "saúde"
+            "bem-estar"
         ],
         "ods_principais": [
             {
-                "ods_id": 3
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 3
             }
         ]
     },
@@ -114,13 +114,13 @@
         "url": "https://bairroaberto.org",
         "tags": [
             "idosos",
-            "inclusão",
+            "solidariedade",
             "literacia",
-            "solidariedade"
+            "inclusão"
         ],
         "ods_principais": [
             {
-                "ods_id": 4
+                "ods_id": 17
             },
             {
                 "ods_id": 10
@@ -129,7 +129,7 @@
                 "ods_id": 11
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
         ]
     },
@@ -141,20 +141,20 @@
         "localizacao": "Matosinhos",
         "url": "https://marlimpo.pt",
         "tags": [
+            "voluntariado",
             "ambiente",
-            "limpeza",
             "mar",
-            "voluntariado"
+            "limpeza"
         ],
         "ods_principais": [
+            {
+                "ods_id": 17
+            },
             {
                 "ods_id": 13
             },
             {
                 "ods_id": 14
-            },
-            {
-                "ods_id": 17
             }
         ]
     },
@@ -167,16 +167,16 @@
         "url": "https://fciencias.universidade.pt",
         "tags": [
             "ciência",
+            "oficinas",
             "divulgação",
-            "escolas",
-            "oficinas"
+            "escolas"
         ],
         "ods_principais": [
             {
-                "ods_id": 4
+                "ods_id": 9
             },
             {
-                "ods_id": 9
+                "ods_id": 4
             },
             {
                 "ods_id": 17
@@ -191,20 +191,20 @@
         "localizacao": "Asprela",
         "url": "https://fengenharia.universidade.pt",
         "tags": [
-            "dados",
             "inovação",
             "robótica",
-            "tecnologia"
+            "tecnologia",
+            "dados"
         ],
         "ods_principais": [
-            {
-                "ods_id": 4
-            },
             {
                 "ods_id": 8
             },
             {
                 "ods_id": 9
+            },
+            {
+                "ods_id": 4
             },
             {
                 "ods_id": 17
@@ -220,19 +220,19 @@
         "url": "https://biblioteca.universidade.pt",
         "tags": [
             "comunidade",
-            "cultura",
+            "livros",
             "literacia",
-            "livros"
+            "cultura"
         ],
         "ods_principais": [
-            {
-                "ods_id": 4
-            },
             {
                 "ods_id": 10
             },
             {
                 "ods_id": 11
+            },
+            {
+                "ods_id": 4
             }
         ]
     },
@@ -244,20 +244,20 @@
         "localizacao": "Campus da Justiça",
         "url": "https://direito.universidade.pt/clinica",
         "tags": [
+            "direitos",
             "apoio",
             "cidadania",
-            "direitos",
             "migração"
         ],
         "ods_principais": [
-            {
-                "ods_id": 10
-            },
             {
                 "ods_id": 16
             },
             {
                 "ods_id": 17
+            },
+            {
+                "ods_id": 10
             }
         ]
     },
@@ -270,13 +270,13 @@
         "url": "https://museuculturaviva.pt",
         "tags": [
             "arte",
-            "cultura",
             "intergeracional",
-            "memória"
+            "memória",
+            "cultura"
         ],
         "ods_principais": [
             {
-                "ods_id": 4
+                "ods_id": 17
             },
             {
                 "ods_id": 10
@@ -285,7 +285,7 @@
                 "ods_id": 11
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
         ]
     },
@@ -297,17 +297,17 @@
         "localizacao": "Parque de Ciência",
         "url": "https://cienciacidada.pt",
         "tags": [
-            "ambiente",
-            "ciência",
             "dados",
+            "ciência",
+            "ambiente",
             "participação"
         ],
         "ods_principais": [
             {
-                "ods_id": 4
+                "ods_id": 9
             },
             {
-                "ods_id": 9
+                "ods_id": 4
             },
             {
                 "ods_id": 13
@@ -325,10 +325,10 @@
         "localizacao": "Asprela",
         "url": "https://semfome.universidade.pt",
         "tags": [
-            "alimentação",
             "comunidade",
-            "recolha",
-            "solidariedade"
+            "solidariedade",
+            "alimentação",
+            "recolha"
         ],
         "ods_principais": [
             {
@@ -357,22 +357,22 @@
         "url": "https://alumni.universidade.pt/mentores",
         "tags": [
             "caloiros",
-            "emprego",
+            "mentoria",
             "internacional",
-            "mentoria"
+            "emprego"
         ],
         "ods_principais": [
             {
-                "ods_id": 4
+                "ods_id": 8
             },
             {
-                "ods_id": 8
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
         ]
     },
@@ -394,8 +394,8 @@
         "localizacao": "online",
         "url": "https://teste.com/",
         "tags": [
-            "mentoria",
-            "teste"
+            "teste",
+            "mentoria"
         ],
         "ods_principais": [
             {

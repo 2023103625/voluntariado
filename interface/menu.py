@@ -74,7 +74,10 @@ class MenuTerminal:
                     "2. Processar Inscrições (Filas)",
                     "3. Pesquisas e Listagens",
                     "4. Dashboard e Estatísticas (Gráficos)",
-                    "5. Exportar Relatório PDF (RF05)",
+                    "5. Exportar Relatórios (PDF / CSV - RF05)",  
+                    "6. Formação de Equipas (RF06)",
+                    "7. Consulta de Ações por Impacto (RF07)",
+                    "8. Priorizar Candidaturas (Max-Heap - RF08)",
                     "0. Guardar e Sair",
                 ]
             )
@@ -90,12 +93,44 @@ class MenuTerminal:
             elif opcao == "4":
                 self.sistema.gerar_dashboard()
             elif opcao == "5":
-                self.sistema.exportar_relatorio()
+                self.menu_exportar_relatorios()  
+            elif opcao == "6":
+                self.menu_equipas()
+            elif opcao == "7":
+                self.menu_impacto()
+            elif opcao == "8":
+                self.menu_priorizacao()
             elif opcao == "0":
                 print("\nA guardar os dados e a fechar o sistema. Até logo!")
                 break
             else:
                 print("Opção inválida.")
+    
+    def menu_exportar_relatorios(self):
+        """Menu interativo para escolha do formato de exportação (RF05)."""
+        self._imprimir_titulo("EXPORTAR RELATÓRIOS (RF05)")
+        self._imprimir_opcoes(
+            [
+                "1. Exportar Resumo Visual (PDF)",
+                "2. Exportar Dados Tabulares (CSV Excel)",
+                "3. Exportar Ambos (PDF + CSV)",
+                "0. Voltar",
+            ]
+        )
+        
+        op = ler_opcao("Escolha o formato pretendido: ", ["0", "1", "2", "3"])
+        
+        if op == "1":
+            self.sistema.exportar_relatorio()
+        elif op == "2":
+            self.sistema.exportar_relatorio_csv()
+        elif op == "3":
+            self.sistema.exportar_relatorio()
+            self.sistema.exportar_relatorio_csv()
+        elif op == "0":
+            return
+            
+        input("\nPrima ENTER para continuar.")
 
     def menu_gestao_geral(self):
         """Mostra submenu de gestão CRUD (RF01)."""
@@ -310,31 +345,23 @@ class MenuTerminal:
             self.sistema.adicionar_entidade(entidade)
 
         elif op == "2":
-            # 1. Tabela simplificada: Mostrar IDs e Nomes das entidades disponíveis
             cabecalhos = ["ID da Entidade", "Nome"]
             dados_lista = [[getattr(e, "entidade_id", ""), e.nome or "-"] for e in self.sistema.entidades]
             
             print("\n--- LISTA DE ENTIDADES PARCEIRAS ---")
             self._imprimir_tabela(cabecalhos, dados_lista)
             
-            # 2. Pedir o nome da entidade ao utilizador
             nome = ler_texto_obrigatorio("\nNome a consultar: ")
             entidade = self.sistema.consultar_entidade(nome)
             
-            # 3. Mostrar os detalhes da entidade procurada numa Tabela Vertical
             if entidade:
                 print(f"\n--- DETALHES DA ENTIDADE: {entidade.nome.upper()} ---")
                 
                 cabecalhos_detalhes = ["Campo", "Detalhe"]
-                
-                # Preparar a visualização dos Conjuntos (Sets) para ficarem limpos na tabela
                 tags_str = ", ".join(entidade.tags) if entidade.tags else "Nenhuma"
                 ods_str = ", ".join(str(o) for o in entidade.ods_foco) if entidade.ods_foco else "Nenhum"
-                
-                # Tratar o facto de o URL poder ser nulo (None)
                 url_str = entidade.url if entidade.url else "Não definido"
                 
-                # Criar as linhas da tabela (Cada atributo é uma linha nova)
                 dados_detalhes = [
                     ["ID", getattr(entidade, "entidade_id", "Não atribuído")],
                     ["Nome", entidade.nome],
@@ -346,9 +373,7 @@ class MenuTerminal:
                     ["ODS Principais", ods_str]
                 ]
                 
-                # Chamar a função para desenhar a tabela final
                 self._imprimir_tabela(cabecalhos_detalhes, dados_detalhes)
-                
             else:
                 print("\nEntidade não encontrada. Verifique se escreveu o nome corretamente.")
 
@@ -463,28 +488,22 @@ class MenuTerminal:
             self.sistema.adicionar_acao(acao)
 
         elif op == "2":
-            # 1. Tabela simplificada: Mostrar apenas a lista de títulos disponíveis
             cabecalhos = ["Título"]
             dados_tabela = [[acao.titulo] for acao in self.sistema.acoes]
             
             print("\n--- LISTA DE AÇÕES DISPONÍVEIS ---")
             self._imprimir_tabela(cabecalhos, dados_tabela)
             
-            # 2. Pedir o título ao utilizador
             tit = ler_texto_obrigatorio("\nTítulo a consultar: ")
             acao_encontrada = self.sistema.consultar_acao(tit)
             
-            # 3. Mostrar os detalhes da ação procurada numa Tabela Vertical
             if acao_encontrada:
                 print(f"\n--- DETALHES DA AÇÃO: {acao_encontrada.titulo.upper()} ---")
                 
                 cabecalhos_detalhes = ["Campo", "Detalhe"]
-                
-                # Preparar a visualização dos Conjuntos (Sets) e Dicionários para ficarem bonitos na tabela
                 ods_str = ", ".join(str(o) for o in acao_encontrada.ods_associados) if acao_encontrada.ods_associados else "Nenhum"
                 comps_str = ", ".join(f"{c} (Nível {n})" for c, n in acao_encontrada.competencias_desejadas.items()) if acao_encontrada.competencias_desejadas else "Nenhuma"
                 
-                # Criar as linhas da tabela (Cada atributo é uma linha nova)
                 dados_detalhes = [
                     ["Título", acao_encontrada.titulo],
                     ["Entidade Promotora", acao_encontrada.entidade],
@@ -499,9 +518,7 @@ class MenuTerminal:
                     ["Competências Desejadas", comps_str]
                 ]
                 
-                # Chamar a função para desenhar a tabela final
                 self._imprimir_tabela(cabecalhos_detalhes, dados_detalhes)
-                
             else:
                 print("\nAção não encontrada. Verifique se escreveu o título corretamente.")
 
@@ -545,26 +562,34 @@ class MenuTerminal:
 
     def menu_inscricoes(self):
         """Processa a fila de inscrições de uma ação (RF02)."""
-        # 1. Obtém as ações com voluntários em espera
         pendentes = self.sistema.listar_acoes_com_fila_pendente()
         
-        # 2. Imprime a tabela. Aqui usamos len(a.fila_inscricoes)
+        # Se não houver pendentes, avisamos logo o utilizador e evitamos pedir dados
+        if not pendentes:
+            print("\nNão existem ações com inscrições pendentes para avaliar no momento.")
+            input("Prima ENTER para voltar.")
+            return
+
         self._imprimir_tabela(
             ["acao_id", "titulo", "pendentes"], 
             [[getattr(a, "acao_id", ""), a.titulo, len(a.fila_inscricoes)] for a in pendentes]
         )
         
-        # 3. Pede ao utilizador a ação a processar
-        titulo_acao = ler_texto_obrigatorio("\nTítulo da ação para processar fila: ")
+        # instrução de '0' para voltar
+        titulo_acao = ler_texto_obrigatorio("\nTítulo da ação para processar fila (ou '0' para Voltar): ")
         
-        # 4. Mostra ao utilizador os dados de quem está em primeiro lugar na fila
+        # interrompe a função e volta ao menu principal
+        if titulo_acao == "0":
+            return
+        
         prox = self.sistema.espreitar_proxima_inscricao(titulo_acao)
         if prox:
-            print(f"Próxima inscrição: voluntário={prox.voluntario}, ação={prox.acao}, data_hora_inscricao={prox.data_hora_inscricao}")
+            print(f"\nPróxima inscrição: voluntário={prox.voluntario}, ação={prox.acao}, data_hora_inscricao={prox.data_hora_inscricao}")
             
-        # 5. Processa a aprovação ou rejeição
-        decisao = ler_opcao("Aprovar (A) ou Rejeitar (R)? ", ["A", "R"]).strip().upper()
-        self.sistema.processar_inscricao_na_acao(titulo_acao, decisao == "A")
+            decisao = ler_opcao("Aprovar (A) ou Rejeitar (R)? ", ["A", "R"]).strip().upper()
+            self.sistema.processar_inscricao_na_acao(titulo_acao, decisao == "A")
+        else:
+            print("\nAção não encontrada ou sem inscrições na fila.")
 
     def menu_pesquisas(self):
         """Executa pesquisas e listagens (RF03)."""
@@ -613,3 +638,282 @@ class MenuTerminal:
 
             atributo = "metrica_impacto" if escolha == "2" else "data_hora"
             self.sistema.pesquisar_e_listar_acoes(filtros, ordenar_por=atributo)
+
+    # ==================================
+    # RF06 - MENU DE FORMAÇÃO DE EQUIPAS
+    # ==================================
+    
+    def menu_equipas(self):
+        """Mostra o menu de Formação de Equipas com suporte a Undo (RF06)."""
+        while True:
+            self._imprimir_titulo("FORMAÇÃO DE EQUIPAS (RF06)")
+            self._imprimir_opcoes(
+                [
+                    "1. Consultar Equipa de uma Ação",
+                    "2. Adicionar Voluntário à Equipa",
+                    "3. Remover Voluntário da Equipa",
+                    "4. Desfazer Última Alteração (Undo)",
+                    "5. Consultar Histórico de Alterações",
+                    "0. Voltar",
+                ]
+            )
+            op = ler_opcao("Escolha uma opção: ", ["0", "1", "2", "3", "4", "5"])
+
+            if op == "0":
+                break
+
+            print("\n--- AÇÕES DISPONÍVEIS ---")
+            self._imprimir_tabela(["Título da Ação"], [[a.titulo] for a in self.sistema.acoes])
+            
+            titulo_acao = ler_texto_obrigatorio("\nDigite o Título da Ação que pretende gerir: ")
+            
+            # Opção 1: Consultar a Equipa
+            if op == "1":
+                acao = self.sistema.consultar_acao(titulo_acao)
+                if acao:
+                    print(f"\n--- EQUIPA ATUAL: {acao.titulo.upper()} ---")
+                    if not acao.equipa:
+                        print("A equipa ainda não tem voluntários alocados.")
+                    else:
+                        self._imprimir_tabela(["Nome do Voluntário"], [[vol] for vol in acao.equipa])
+                else:
+                    print("\nAção não encontrada.")
+
+            # Opção 2: Adicionar Voluntário (Com Avaliação de Perfil)
+            elif op == "2":
+                acao = self.sistema.consultar_acao(titulo_acao)
+                if not acao:
+                    print("\nAção não encontrada.")
+                    continue
+
+                # 1. CRIAR O DICIONÁRIO DE TRADUÇÃO: Pega no catálogo e associa {ID: Nome}
+                mapa_ods = {ods["ods_id"]: ods["ods_nome"] for ods in self.sistema.ods_catalogo}
+
+                # Ciclo para adicionar múltiplos voluntários
+                while True:
+                    print(f"\n--- AVALIAÇÃO DE PERFIS: {acao.titulo.upper()} ---")
+                    cabecalhos = ["Nome", "Apto?", "ODS Partilhados", "Competências Partilhadas"]
+                    dados = []
+                    
+                    for v in self.sistema.voluntarios:
+                        if v.nome in acao.equipa:
+                            continue 
+                            
+                        # Descobrir especificamente o que partilham 
+                        ods_comum = v.ods_interesse.intersection(acao.ods_associados)
+                        comps_comum = set(v.competencias.keys()).intersection(set(acao.competencias_desejadas.keys()))
+                        
+                        apto = bool(ods_comum or comps_comum)
+                        
+                        # 2. TRADUZIR OS NÚMEROS: Para cada ID em comum, vamos buscar o Nome ao mapa
+                        nomes_ods_comum = [mapa_ods.get(o, f"ODS {o}") for o in ods_comum]
+                        
+                        # Formatar para a tabela (unir a lista com vírgulas)
+                        ods_str = ", ".join(nomes_ods_comum) if nomes_ods_comum else "-"
+                        comps_str = ", ".join(comps_comum) if comps_comum else "-"
+                        
+                        if apto:
+                            dados.append([v.nome, "✅ SIM", ods_str, comps_str])
+                        else:
+                            dados.append([v.nome, "❌ NÃO", "-", "-"])
+                            
+                    self._imprimir_tabela(cabecalhos, dados)
+                    
+                    voluntario_nome = ler_texto_obrigatorio("\nDigite o Nome a adicionar (ou '0' para Voltar): ")
+                    if voluntario_nome == "0":
+                        break # Sai do ciclo e volta ao menu de equipas
+                        
+                    sucesso, mensagem = self.sistema.adicionar_voluntario_equipa(titulo_acao, voluntario_nome)
+                    if sucesso:
+                        print(f"\n[SUCESSO] {mensagem}")
+                    else:
+                        print(f"\n[ERRO] {mensagem}")
+                        
+                    continuar = ler_opcao("\nDeseja adicionar mais alguém? (S/N): ", ["S", "N"]).upper()
+                    if continuar == "N":
+                        break
+
+            # Opção 3: Remover Voluntário
+            elif op == "3":
+                acao = self.sistema.consultar_acao(titulo_acao)
+                if not acao:
+                    print("\nAção não encontrada.")
+                    continue
+                    
+                print(f"\n--- EQUIPA ATUAL: {acao.titulo.upper()} ---")
+                if not acao.equipa:
+                    print("A equipa já está vazia. Não há ninguém para remover.")
+                    continue
+                    
+                self._imprimir_tabela(["Nome do Voluntário"], [[vol] for vol in acao.equipa])
+                
+                voluntario_nome = ler_texto_obrigatorio("\nDigite o Nome do Voluntário a remover: ")
+                sucesso, mensagem = self.sistema.remover_voluntario_equipa(titulo_acao, voluntario_nome)
+                if sucesso:
+                    print(f"\n[SUCESSO] {mensagem}")
+                else:
+                    print(f"\n[ERRO] {mensagem}")
+
+            # Opção 4: Desfazer Alteração (Undo)
+            elif op == "4":
+                sucesso, mensagem = self.sistema.desfazer_alteracao_equipa(titulo_acao)
+                if sucesso:
+                    print(f"\n[UNDO] {mensagem}")
+                else:
+                    print(f"\n[ERRO] {mensagem}")
+                    
+            # Opção 5: Ver Histórico da Pilha
+            elif op == "5":
+                acao = self.sistema.consultar_acao(titulo_acao)
+                if not acao:
+                    print("\nAção não encontrada.")
+                    continue
+                    
+                historico = acao.historico_equipa.para_lista()
+                
+                if not historico:
+                    print("\nAinda não foram registadas alterações na equipa durante esta sessão.")
+                    continue
+                    
+                print(f"\n--- HISTÓRICO DE ALTERAÇÕES (PILHA): {acao.titulo.upper()} ---")
+                cabecalhos = ["Data/Hora", "Tipo de Alteração", "Equipa Após Alteração"]
+                dados = []
+                
+                for reg in historico:
+                    membros_str = ", ".join(reg["estado_novo"]) if reg["estado_novo"] else "[Equipa Vazia]"
+                    dados.append([reg["data_hora"], reg["tipo"], membros_str])
+                    
+                self._imprimir_tabela(cabecalhos, dados)
+
+    # ==========================================
+    # RF07 - MENU DE PESQUISA POR IMPACTO (BST)
+    # ==========================================
+    def menu_impacto(self):
+        """Menu dedicado à consulta de Ações organizadas pelo seu impacto (RF07)."""
+        while True:
+            self._imprimir_titulo("PESQUISA POR IMPACTO (BST - RF07)")
+            self._imprimir_opcoes(
+                [
+                    "1. Listar todas as Ações (Crescente ou Decrescente)",
+                    "2. Pesquisar Ações por Impacto Exato",
+                    "3. Consultar Ações num Intervalo de Impacto",
+                    "4. Descobrir Ações com Maior e Menor Impacto",
+                    "0. Voltar",
+                ]
+            )
+            op = ler_opcao("Escolha uma opção: ", ["0", "1", "2", "3", "4"])
+
+            if op == "0":
+                break
+
+            elif op == "1":
+                ordem = ler_opcao("Ordem Crescente (C) ou Decrescente (D)? ", ["C", "D"]).strip().upper()
+                crescente = (ordem == "C")
+                acoes = self.sistema.consultar_acoes_por_impacto_ordem(crescente=crescente)
+                
+                print(f"\n--- AÇÕES ORDENADAS POR IMPACTO ---")
+                cabecalhos = ["Título", "Entidade", "Impacto"]
+                dados = [[a.titulo, a.entidade, a.metrica_impacto] for a in acoes]
+                self._imprimir_tabela(cabecalhos, dados)
+
+            elif op == "2":
+                try:
+                    valor_str = input("Digite o valor exato do impacto (ex: 80.5): ").strip()
+                    impacto_alvo = float(valor_str)
+                    
+                    acoes = self.sistema.consultar_acoes_impacto_exato(impacto_alvo)
+                    print(f"\n--- AÇÕES COM IMPACTO EXATO A {impacto_alvo} ---")
+                    cabecalhos = ["Título", "Entidade", "Impacto"]
+                    dados = [[a.titulo, a.entidade, a.metrica_impacto] for a in acoes]
+                    self._imprimir_tabela(cabecalhos, dados)
+                except ValueError:
+                    print("\n[ERRO] Valor inválido! Por favor introduza um número válido.")
+
+            elif op == "3":
+                try:
+                    min_str = input("Digite o Impacto Mínimo: ").strip()
+                    max_str = input("Digite o Impacto Máximo: ").strip()
+                    min_imp = float(min_str)
+                    max_imp = float(max_str)
+                    
+                    if min_imp > max_imp:
+                        print("\n[ERRO] O valor mínimo não pode ser superior ao valor máximo.")
+                        continue
+                        
+                    acoes = self.sistema.consultar_acoes_por_impacto_intervalo(min_imp, max_imp)
+                    print(f"\n--- AÇÕES NO INTERVALO [{min_imp} - {max_imp}] ---")
+                    cabecalhos = ["Título", "Entidade", "Impacto"]
+                    dados = [[a.titulo, a.entidade, a.metrica_impacto] for a in acoes]
+                    self._imprimir_tabela(cabecalhos, dados)
+                except ValueError:
+                    print("\n[ERRO] Valor inválido! Por favor introduza números válidos.")
+
+            elif op == "4":
+                menores, maiores = self.sistema.consultar_acoes_impacto_extremos()
+                
+                print("\n--- AÇÃO(ÕES) COM MENOR IMPACTO ---")
+                self._imprimir_tabela(["Título", "Entidade", "Impacto"], [[a.titulo, a.entidade, a.metrica_impacto] for a in menores])
+                
+                print("\n--- AÇÃO(ÕES) COM MAIOR IMPACTO ---")
+                self._imprimir_tabela(["Título", "Entidade", "Impacto"], [[a.titulo, a.entidade, a.metrica_impacto] for a in maiores])
+
+    # ==================================================
+    # RF08 - PRIORIZAÇÃO DE CANDIDATURAS (MAX-HEAP)
+    # ==================================================
+    def menu_priorizacao(self):
+        """Menu para listar as candidaturas ordenadas por prioridade (RF08)."""
+        while True:
+            self._imprimir_titulo("PRIORIZAÇÃO DE CANDIDATURAS (HEAP - RF08)")
+            
+            # Vamos mostrar que ações têm candidaturas pendentes
+            pendentes = self.sistema.listar_acoes_com_fila_pendente()
+            if not pendentes:
+                print("\nNão existem ações com inscrições pendentes para avaliar no momento.")
+                input("Prima ENTER para voltar.")
+                break
+                
+            self._imprimir_tabela(
+                ["Ação", "Nº Inscrições Pendentes"], 
+                [[a.titulo, len(a.fila_inscricoes)] for a in pendentes]
+            )
+            
+            print("\n0. Voltar")
+            titulo_acao = input("\nDigite o Título da Ação para ver a prioridade (ou 0): ").strip()
+            
+            if titulo_acao == "0":
+                break
+                
+            acao = self.sistema.consultar_acao(titulo_acao)
+            if not acao:
+                print("\nAção não encontrada.")
+                continue
+                
+            # Chama o algoritmo Heapsort que construímos!
+            candidaturas_ordenadas = self.sistema.gerar_candidaturas_ordenadas_heapsort(titulo_acao)
+            
+            if not candidaturas_ordenadas:
+                print("\nNão existem candidaturas pendentes nesta ação.")
+                continue
+                
+            print(f"\n--- CANDIDATURAS ORDENADAS POR PRIORIDADE: {acao.titulo.upper()} ---")
+            print("(Critério matemático: +2 pts por ODS em comum, +1 pt por Competência em comum)")
+            
+            # Formatar os resultados
+            cabecalhos = ["Lugar", "Nome do Voluntário", "Pontuação", "Data da Inscrição"]
+            dados = []
+            
+            for i, (inscricao, pontos) in enumerate(candidaturas_ordenadas, 1):
+                dados.append([
+                    f"{i}º", 
+                    inscricao.voluntario, 
+                    f"{pontos} pontos", 
+                    inscricao.data_hora_inscricao
+                ])
+                
+            self._imprimir_tabela(cabecalhos, dados)
+            
+            # Destaque de quem está no topo do Max-Heap
+            top_inscricao, top_pontos = candidaturas_ordenadas[0]
+            print(f"\nO candidato mais adequado é '{top_inscricao.voluntario}' com {top_pontos} pontos!")
+            
+            input("\nPrima ENTER para continuar.")

@@ -27,12 +27,14 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 10
             },
             {
-                "ods_id": 10
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A002",
@@ -62,15 +64,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
-            },
-            {
                 "ods_id": 10
             },
             {
                 "ods_id": 11
+            },
+            {
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A003",
@@ -108,7 +112,9 @@
             {
                 "ods_id": 10
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A004",
@@ -134,15 +140,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 6
+                "ods_id": 13
             },
             {
-                "ods_id": 13
+                "ods_id": 6
             },
             {
                 "ods_id": 15
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A005",
@@ -172,15 +180,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 9
             },
             {
-                "ods_id": 9
+                "ods_id": 4
             },
             {
                 "ods_id": 17
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A006",
@@ -206,10 +216,89 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 8
             },
             {
-                "ods_id": 8
+                "ods_id": 4
+            }
+        ],
+        "equipa": [
+            "Bruno Dias",
+            "Joana Teixeira",
+            "Vasco Lopes",
+            "Ana Xavier",
+            "Francisco Ramos"
+        ],
+        "historico_equipa": [
+            {
+                "estado_anterior": [
+                    "Bruno Dias",
+                    "Joana Teixeira",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Leonor Dias"
+                ],
+                "estado_novo": [
+                    "Bruno Dias",
+                    "Joana Teixeira",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Francisco Ramos"
+                ],
+                "data_hora": "2026-05-06 18:08:15",
+                "tipo": "Remoção: Leonor Dias"
+            },
+            {
+                "estado_anterior": [
+                    "Bruno Dias",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Leonor Dias"
+                ],
+                "estado_novo": [
+                    "Bruno Dias",
+                    "Joana Teixeira",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Leonor Dias"
+                ],
+                "data_hora": "2026-05-06 17:55:45",
+                "tipo": "Adição: Joana Teixeira"
+            },
+            {
+                "estado_anterior": [
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Bruno Dias",
+                    "Leonor Dias"
+                ],
+                "estado_novo": [
+                    "Bruno Dias",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Leonor Dias"
+                ],
+                "data_hora": "2026-05-06 17:39:10",
+                "tipo": "Adição de voluntário à equipa"
+            },
+            {
+                "estado_anterior": [
+                    "Francisco Ramos",
+                    "Bruno Dias",
+                    "Ana Xavier"
+                ],
+                "estado_novo": [
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Bruno Dias",
+                    "Leonor Dias"
+                ],
+                "data_hora": "2026-05-06 17:38:54",
+                "tipo": "Adição de voluntário à equipa"
             }
         ]
     },
@@ -241,15 +330,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
-            },
-            {
                 "ods_id": 8
             },
             {
                 "ods_id": 10
+            },
+            {
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A008",
@@ -279,15 +370,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
-            },
-            {
                 "ods_id": 10
             },
             {
                 "ods_id": 11
+            },
+            {
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A009",
@@ -317,15 +410,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 3
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 3
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A010",
@@ -355,15 +450,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 16
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 16
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A011",
@@ -401,7 +498,9 @@
             {
                 "ods_id": 17
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A012",
@@ -436,7 +535,9 @@
             {
                 "ods_id": 15
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A013",
@@ -467,7 +568,9 @@
             {
                 "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A014",
@@ -497,12 +600,14 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 10
             },
             {
-                "ods_id": 10
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A015",
@@ -535,12 +640,14 @@
                 "ods_id": 1
             },
             {
-                "ods_id": 4
+                "ods_id": 10
             },
             {
-                "ods_id": 10
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A016",
@@ -578,7 +685,9 @@
             {
                 "ods_id": 10
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A017",
@@ -608,15 +717,17 @@
         ],
         "ods_associados": [
             {
+                "ods_id": 16
+            },
+            {
                 "ods_id": 10
             },
             {
                 "ods_id": 11
-            },
-            {
-                "ods_id": 16
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A018",
@@ -642,15 +753,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A019",
@@ -680,15 +793,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A020",
@@ -719,7 +834,9 @@
             {
                 "ods_id": 14
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A021",
@@ -745,12 +862,14 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 10
             },
             {
-                "ods_id": 10
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A022",
@@ -780,15 +899,17 @@
         ],
         "ods_associados": [
             {
+                "ods_id": 16
+            },
+            {
                 "ods_id": 1
             },
             {
                 "ods_id": 10
-            },
-            {
-                "ods_id": 16
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A023",
@@ -818,15 +939,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 9
             },
             {
-                "ods_id": 9
+                "ods_id": 4
             },
             {
                 "ods_id": 17
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A024",
@@ -856,15 +979,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 3
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 3
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A025",
@@ -894,15 +1019,17 @@
         ],
         "ods_associados": [
             {
+                "ods_id": 17
+            },
+            {
                 "ods_id": 11
             },
             {
                 "ods_id": 13
-            },
-            {
-                "ods_id": 17
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A026",
@@ -932,15 +1059,17 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 17
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 17
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A027",
@@ -970,15 +1099,17 @@
         ],
         "ods_associados": [
             {
+                "ods_id": 10
+            },
+            {
                 "ods_id": 3
             },
             {
                 "ods_id": 4
-            },
-            {
-                "ods_id": 10
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A028",
@@ -1013,7 +1144,9 @@
             {
                 "ods_id": 13
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A029",
@@ -1043,12 +1176,14 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 4
+                "ods_id": 9
             },
             {
-                "ods_id": 9
+                "ods_id": 4
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A030",
@@ -1086,7 +1221,9 @@
             {
                 "ods_id": 11
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A031",
@@ -1101,7 +1238,9 @@
         "estado": "cancelada",
         "metrica_impacto": 0.0,
         "competencias_desejadas": [],
-        "ods_associados": []
+        "ods_associados": [],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A032",
@@ -1118,15 +1257,17 @@
         "competencias_desejadas": [],
         "ods_associados": [
             {
+                "ods_id": 8
+            },
+            {
                 "ods_id": 2
             },
             {
                 "ods_id": 5
-            },
-            {
-                "ods_id": 8
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     },
     {
         "acao_id": "A033",
@@ -1156,6 +1297,8 @@
             {
                 "ods_id": 9
             }
-        ]
+        ],
+        "equipa": [],
+        "historico_equipa": []
     }
 ]

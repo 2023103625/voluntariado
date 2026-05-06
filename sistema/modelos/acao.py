@@ -3,6 +3,7 @@
 from typing import List, Dict, Set
 from sistema.estruturas.fila import Fila
 from sistema.modelos.inscricao import Inscricao
+from sistema.estruturas.pilha import Pilha
 
 class Acao:
     """Representa uma ação de voluntariado.
@@ -38,6 +39,8 @@ class Acao:
 
         self.competencias_desejadas: Dict[str, int] = {}
         self.ods_associados: Set[int] = set()
+        self.equipa: set[str] = set()
+        self.historico_equipa = Pilha()
 
         # RF02: fila FIFO para inscrições pendentes
         self.fila_inscricoes = Fila()
