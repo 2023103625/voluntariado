@@ -10,7 +10,7 @@
         "vagas": 12,
         "localizacao": "externo",
         "estado": "concluída",
-        "metrica_impacto": 82,
+        "metrica_impacto": 82.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -47,7 +47,7 @@
         "vagas": 10,
         "localizacao": "externo",
         "estado": "concluída",
-        "metrica_impacto": 88,
+        "metrica_impacto": 88.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -87,7 +87,7 @@
         "vagas": 18,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 79,
+        "metrica_impacto": 79.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -127,7 +127,7 @@
         "vagas": 20,
         "localizacao": "externo",
         "estado": "concluída",
-        "metrica_impacto": 90,
+        "metrica_impacto": 90.0,
         "competencias_desejadas": [
             {
                 "competencia": "organização",
@@ -163,7 +163,7 @@
         "vagas": 16,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 84,
+        "metrica_impacto": 84.0,
         "competencias_desejadas": [
             {
                 "competencia": "análise de dados",
@@ -203,7 +203,7 @@
         "vagas": 14,
         "localizacao": "online",
         "estado": "concluída",
-        "metrica_impacto": 76,
+        "metrica_impacto": 76.0,
         "competencias_desejadas": [
             {
                 "competencia": "programação",
@@ -223,79 +223,99 @@
             }
         ],
         "equipa": [
-            "Bruno Dias",
-            "Joana Teixeira",
             "Vasco Lopes",
             "Ana Xavier",
-            "Francisco Ramos"
+            "Francisco Moreira",
+            "Francisco Ramos",
+            "Bruno Dias",
+            "Joana Teixeira"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
+                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Joana Teixeira",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Joana Teixeira"
+                ],
+                "estado_novo": [
+                    "Francisco Moreira",
+                    "Francisco Ramos",
+                    "Bruno Dias",
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Joana Teixeira"
+                ],
+                "data_hora": "2026-05-07 21:05:45",
+                "tipo": "Adição: Francisco Moreira"
+            },
+            {
+                "estado_anterior": [
+                    "Vasco Lopes",
+                    "Ana Xavier",
+                    "Leonor Dias",
+                    "Francisco Ramos",
+                    "Bruno Dias",
+                    "Joana Teixeira"
+                ],
+                "estado_novo": [
                     "Vasco Lopes",
                     "Ana Xavier",
                     "Francisco Ramos",
-                    "Leonor Dias"
-                ],
-                "estado_novo": [
                     "Bruno Dias",
-                    "Joana Teixeira",
-                    "Vasco Lopes",
-                    "Ana Xavier",
-                    "Francisco Ramos"
+                    "Joana Teixeira"
                 ],
                 "data_hora": "2026-05-06 18:08:15",
                 "tipo": "Remoção: Leonor Dias"
             },
             {
                 "estado_anterior": [
-                    "Bruno Dias",
                     "Vasco Lopes",
                     "Ana Xavier",
+                    "Leonor Dias",
                     "Francisco Ramos",
-                    "Leonor Dias"
+                    "Bruno Dias"
                 ],
                 "estado_novo": [
-                    "Bruno Dias",
-                    "Joana Teixeira",
                     "Vasco Lopes",
                     "Ana Xavier",
+                    "Leonor Dias",
                     "Francisco Ramos",
-                    "Leonor Dias"
+                    "Bruno Dias",
+                    "Joana Teixeira"
                 ],
                 "data_hora": "2026-05-06 17:55:45",
                 "tipo": "Adição: Joana Teixeira"
             },
             {
                 "estado_anterior": [
-                    "Ana Xavier",
-                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Leonor Dias"
+                    "Ana Xavier",
+                    "Leonor Dias",
+                    "Francisco Ramos"
                 ],
                 "estado_novo": [
-                    "Bruno Dias",
                     "Vasco Lopes",
                     "Ana Xavier",
+                    "Leonor Dias",
                     "Francisco Ramos",
-                    "Leonor Dias"
+                    "Bruno Dias"
                 ],
                 "data_hora": "2026-05-06 17:39:10",
                 "tipo": "Adição de voluntário à equipa"
             },
             {
                 "estado_anterior": [
-                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Ana Xavier"
+                    "Ana Xavier",
+                    "Francisco Ramos"
                 ],
                 "estado_novo": [
-                    "Ana Xavier",
-                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Leonor Dias"
+                    "Ana Xavier",
+                    "Leonor Dias",
+                    "Francisco Ramos"
                 ],
                 "data_hora": "2026-05-06 17:38:54",
                 "tipo": "Adição de voluntário à equipa"
@@ -313,7 +333,7 @@
         "vagas": 25,
         "localizacao": "online",
         "estado": "concluída",
-        "metrica_impacto": 73,
+        "metrica_impacto": 73.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -353,7 +373,7 @@
         "vagas": 12,
         "localizacao": "externo",
         "estado": "concluída",
-        "metrica_impacto": 69,
+        "metrica_impacto": 69.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -393,7 +413,7 @@
         "vagas": 15,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 87,
+        "metrica_impacto": 87.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -433,7 +453,7 @@
         "vagas": 20,
         "localizacao": "online",
         "estado": "concluída",
-        "metrica_impacto": 85,
+        "metrica_impacto": 85.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -473,7 +493,7 @@
         "vagas": 30,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 92,
+        "metrica_impacto": 92.0,
         "competencias_desejadas": [
             {
                 "competencia": "análise de dados",
@@ -513,7 +533,7 @@
         "vagas": 22,
         "localizacao": "externo",
         "estado": "concluída",
-        "metrica_impacto": 91,
+        "metrica_impacto": 91.0,
         "competencias_desejadas": [
             {
                 "competencia": "fotografia",
@@ -550,7 +570,7 @@
         "vagas": 16,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 80,
+        "metrica_impacto": 80.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -583,7 +603,7 @@
         "vagas": 18,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 74,
+        "metrica_impacto": 74.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -620,7 +640,7 @@
         "vagas": 12,
         "localizacao": "campus",
         "estado": "concluída",
-        "metrica_impacto": 77,
+        "metrica_impacto": 77.0,
         "competencias_desejadas": [
             {
                 "competencia": "captação de fundos",
@@ -660,7 +680,7 @@
         "vagas": 15,
         "localizacao": "externo",
         "estado": "concluída",
-        "metrica_impacto": 86,
+        "metrica_impacto": 86.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -700,7 +720,7 @@
         "vagas": 13,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "análise de dados",
@@ -740,7 +760,7 @@
         "vagas": 10,
         "localizacao": "externo",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -776,7 +796,7 @@
         "vagas": 24,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -816,7 +836,7 @@
         "vagas": 27,
         "localizacao": "externo",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "logística",
@@ -849,7 +869,7 @@
         "vagas": 18,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -882,7 +902,7 @@
         "vagas": 10,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -922,7 +942,7 @@
         "vagas": 20,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -959,10 +979,10 @@
         "area": "saúde",
         "data_hora": "2026-04-29 17:00",
         "duracao_horas": 4,
-        "vagas": 30,
+        "vagas": 29,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -1002,7 +1022,7 @@
         "vagas": 22,
         "localizacao": "online",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "análise de dados",
@@ -1042,7 +1062,7 @@
         "vagas": 14,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -1082,7 +1102,7 @@
         "vagas": 17,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -1122,7 +1142,7 @@
         "vagas": 16,
         "localizacao": "campus",
         "estado": "planeada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -1159,7 +1179,7 @@
         "vagas": 14,
         "localizacao": "campus",
         "estado": "cancelada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "facilitação",
@@ -1196,7 +1216,7 @@
         "vagas": 12,
         "localizacao": "externo",
         "estado": "cancelada",
-        "metrica_impacto": 0,
+        "metrica_impacto": 0.0,
         "competencias_desejadas": [
             {
                 "competencia": "comunicação",
@@ -1235,10 +1255,26 @@
         "duracao_horas": 2,
         "vagas": 30,
         "localizacao": "externo",
-        "estado": "cancelada",
-        "metrica_impacto": 0.0,
-        "competencias_desejadas": [],
-        "ods_associados": [],
+        "estado": "planeada",
+        "metrica_impacto": 60.0,
+        "competencias_desejadas": [
+            {
+                "competencia": "sustentabilidade",
+                "nivel_minimo": 3
+            },
+            {
+                "competencia": "comunicão",
+                "nivel_minimo": 4
+            }
+        ],
+        "ods_associados": [
+            {
+                "ods_id": 17
+            },
+            {
+                "ods_id": 14
+            }
+        ],
         "equipa": [],
         "historico_equipa": []
     },

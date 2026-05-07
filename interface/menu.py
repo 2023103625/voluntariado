@@ -1,71 +1,106 @@
-"""Módulo de interface terminal principal.
+"""
+Módulo de interface terminal principal.
 
-Este módulo implementa a camada ``interface`` (OR03), expondo menus
-terminal-based para os requisitos funcionais da aplicação.
+Este módulo implementa a camada interface (OR03), expondo menus
+baseados em terminal para interagir com todos os requisitos funcionais da aplicação.
 """
 
+from typing import List, Any
 from sistema.gestor import SistemaVoluntariado
 from sistema.modelos import Voluntario, Entidade, Acao
 from interface.inputs import (
     ler_data_hora_iso_ou_vazio,
-    ler_inteiro_intervalo,
     ler_ods_ou_vazio,
     ler_opcao,
     ler_texto_obrigatorio,
 )
 
+
 class MenuTerminal:
-    """Interface terminal principal da aplicação."""
+    """
+    Interface terminal principal da aplicação.
 
-    def __init__(self, sistema: SistemaVoluntariado):
-        """Inicializa o menu principal.
+    Gere o ciclo de vida do programa, a navegação entre ecrãs e a
+    interação com a camada de negócio (Gestor).
+    """
 
-        :param sistema: Instância de :class:`SistemaVoluntariado`.
+    def __init__(self, sistema: SistemaVoluntariado) -> None:
         """
-        self.sistema = sistema
+        Inicializa o menu principal.
+
+        :param sistema: Instância central do Gestor do Sistema de Voluntariado.
+        :type sistema: SistemaVoluntariado
+        :return: Nada.
+        :rtype: None
+        """
+        self.sistema: SistemaVoluntariado = sistema
 
     @staticmethod
     def _imprimir_titulo(titulo: str) -> None:
-        """Imprime um título formatado para melhorar a legibilidade no terminal."""
+        """
+        Imprime um título formatado para melhorar a legibilidade no terminal.
+
+        :param titulo: Texto do título a exibir.
+        :type titulo: str
+        :return: Nada.
+        :rtype: None
+        """
         largura = 62
         print("\n" + "╔" + "═" * largura + "╗")
         print(f"║{titulo.center(largura)}║")
         print("╚" + "═" * largura + "╝")
 
     @staticmethod
-    def _imprimir_opcoes(opcoes: list[str]) -> None:
-        """Imprime um bloco de opções numeradas/alinhadas."""
+    def _imprimir_opcoes(opcoes: List[str]) -> None:
+        """
+        Imprime um bloco de opções numeradas e alinhadas.
+
+        :param opcoes: Lista de strings contendo as opções a exibir.
+        :type opcoes: List[str]
+        :return: Nada.
+        :rtype: None
+        """
         for opcao in opcoes:
             print(f"  • {opcao}")
 
     @staticmethod
-    def _imprimir_tabela(headers: list[str], rows: list[list[object]]) -> None:
-        """Desenha uma tabela em formato texto baseada nas larguras das colunas."""
+    def _imprimir_tabela(headers: List[str], rows: List[List[Any]]) -> None:
+        """
+        Desenha uma tabela em formato texto baseada nas larguras das colunas.
+
+        :param headers: Títulos das colunas da tabela.
+        :type headers: List[str]
+        :param rows: Lista de linhas, onde cada linha é uma lista de valores.
+        :type rows: List[List[Any]]
+        :return: Nada.
+        :rtype: None
+        """
         if not rows:
             print("(sem dados)")
             return
             
-        # Calcula a largura necessária para cada coluna
         larguras = [len(h) for h in headers]
         for row in rows:
             for i, val in enumerate(row):
                 larguras[i] = max(larguras[i], len(str(val)))
                 
-        # Constrói o separador da tabela (ex: +---+-------+)
         linha = "+-" + "-+-".join("-" * l for l in larguras) + "-+"
         print(linha)
         
-        # Imprime o cabeçalho
         print("| " + " | ".join(h.ljust(larguras[i]) for i, h in enumerate(headers)) + " |")
         print(linha)
         
-        # Imprime os dados linha a linha
         for row in rows:
             print("| " + " | ".join(str(v).ljust(larguras[i]) for i, v in enumerate(row)) + " |")
         print(linha)
 
-    def mostrar_menu_principal(self):
-        """Mostra o menu principal e processa opções até sair."""
+    def mostrar_menu_principal(self) -> None:
+        """
+        Mostra o menu principal e processa opções até o utilizador decidir sair.
+
+        :return: Nada.
+        :rtype: None
+        """
         while True:
             self._imprimir_titulo("SISTEMA DE VOLUNTARIADO UNIVERSITÁRIO (AED)")
             self._imprimir_opcoes(
@@ -91,7 +126,7 @@ class MenuTerminal:
             elif opcao == "3":
                 self.menu_pesquisas()
             elif opcao == "4":
-                self.sistema.gerar_dashboard()
+                self.menu_dashboards()
             elif opcao == "5":
                 self.menu_exportar_relatorios()  
             elif opcao == "6":
@@ -106,8 +141,40 @@ class MenuTerminal:
             else:
                 print("Opção inválida.")
     
-    def menu_exportar_relatorios(self):
-        """Menu interativo para escolha do formato de exportação (RF05)."""
+    def menu_dashboards(self) -> None:
+        """
+        Menu interativo para escolha do Dashboard pretendido.
+
+        :return: Nada.
+        :rtype: None
+        """
+        self._imprimir_titulo("DASHBOARDS E ESTATÍSTICAS")
+        self._imprimir_opcoes(
+            [
+                "1. Visão de Ações e Impacto ODS (Dashboard V1 - RF04)",
+                "2. Visão Demográfica e Panorama de Candidaturas (Dashboard V2 - RF09)",
+                "0. Voltar",
+            ]
+        )
+        
+        op = ler_opcao("Escolha o Dashboard que pretende visualizar: ", ["0", "1", "2"])
+        
+        if op == "1":
+            self.sistema.gerar_dashboard()
+        elif op == "2":
+            self.sistema.gerar_dashboard_v2()
+        elif op == "0":
+            return
+            
+        input("\nPrima ENTER para continuar.")
+    
+    def menu_exportar_relatorios(self) -> None:
+        """
+        Menu interativo para escolha do formato de exportação de dados (RF05).
+
+        :return: Nada.
+        :rtype: None
+        """
         self._imprimir_titulo("EXPORTAR RELATÓRIOS (RF05)")
         self._imprimir_opcoes(
             [
@@ -132,8 +199,13 @@ class MenuTerminal:
             
         input("\nPrima ENTER para continuar.")
 
-    def menu_gestao_geral(self):
-        """Mostra submenu de gestão CRUD (RF01)."""
+    def menu_gestao_geral(self) -> None:
+        """
+        Mostra submenu de gestão CRUD (RF01).
+
+        :return: Nada.
+        :rtype: None
+        """
         while True:
             self._imprimir_titulo("GESTÃO DO PROGRAMA")
             self._imprimir_opcoes(
@@ -157,55 +229,203 @@ class MenuTerminal:
             else:
                 print("Inválido.")
 
-    def _ler_competencias_voluntario(self, voluntario: Voluntario) -> None:
-        """Lê competências do voluntário (até 8, nível 1..5)."""
+    # =========================================================================
+    # FUNÇÕES DE LEITURA (COM EARLY EXIT INTEGRADO)
+    # =========================================================================
+
+    def _ler_competencias_voluntario(self, voluntario: Voluntario) -> bool:
+        """
+        Lê iterativamente as competências do voluntário.
+
+        :param voluntario: Objeto voluntário a atualizar.
+        :type voluntario: Voluntario
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
         print("\nCompetências do voluntário (até 8).")
-        print("Deixe o nome vazio para terminar.")
         while len(voluntario.competencias) < 8:
-            nome = input("Competência: ").strip()
-            if not nome:
-                break
+            nome = input("Competência (ENTER avança, '0' cancela operação): ").strip()
+            if nome == "0": return False
+            if not nome: break
+            
             if nome in voluntario.competencias:
                 print("Competência já adicionada.")
                 continue
-            nivel = ler_inteiro_intervalo("Nível (1-5): ", 1, 5)
-            if voluntario.adicionar_competencia(nome, nivel):
+            
+            nivel_str = input("Nível (1-5) ou '0' para cancelar operação: ").strip()
+            if nivel_str == "0": return False
+            if not nivel_str.isdigit() or not (1 <= int(nivel_str) <= 5):
+                print("Nível inválido.")
+                continue
+                
+            if voluntario.adicionar_competencia(nome, int(nivel_str)):
                 print("Competência adicionada.")
-            else:
-                print("Não foi possível adicionar a competência.")
+        return True
 
-    def _ler_interesses_voluntario(self, voluntario: Voluntario) -> None:
-        """Lê tags/interesses do voluntário (até 6)."""
+    def _ler_interesses_voluntario(self, voluntario: Voluntario) -> bool:
+        """
+        Lê iterativamente as tags de interesse do voluntário.
+
+        :param voluntario: Objeto voluntário a atualizar.
+        :type voluntario: Voluntario
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
         print("\nInteresses/tags do voluntário (até 6).")
-        print("Deixe vazio para terminar.")
         while len(voluntario.interesses) < 6:
-            tag = input("Tag de interesse: ").strip()
-            if not tag:
-                break
+            tag = input("Tag de interesse (ENTER avança, '0' cancela operação): ").strip()
+            if tag == "0": return False
+            if not tag: break
             if voluntario.adicionar_interesse(tag):
                 print("Tag adicionada.")
             else:
                 print("Tag inválida, repetida ou limite atingido.")
+        return True
 
-    def _ler_ods_voluntario(self, voluntario: Voluntario) -> None:
-        """Lê ODS de interesse do voluntário (0..3)."""
+    def _ler_ods_voluntario(self, voluntario: Voluntario) -> bool:
+        """
+        Lê iterativamente os ODS de interesse do voluntário.
+
+        :param voluntario: Objeto voluntário a atualizar.
+        :type voluntario: Voluntario
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
         print("\nODS de interesse do voluntário (máx. 3).")
         self._imprimir_tabela(
             ["ods_id", "ods_nome"],
-            [[o.get("ods_id"), o.get("ods_nome")] for o in self.sistema.ods_catalogo],
+            [[ods_id, ods_nome] for ods_id, ods_nome in self.sistema.ods_catalogo.items()],
         )
-        print("Prima ENTER para terminar.")
         while len(voluntario.ods_interesse) < 3:
-            ods = ler_ods_ou_vazio("ODS (1-17): ")
-            if ods is None:
-                break
-            if voluntario.adicionar_ods_interesse(ods):
+            ods_str = input("ODS (1-17) [ENTER avança, '0' cancela operação]: ").strip()
+            if ods_str == "0": return False
+            if not ods_str: break
+            if not ods_str.isdigit():
+                print("Entrada inválida.")
+                continue
+                
+            if voluntario.adicionar_ods_interesse(int(ods_str)):
                 print("ODS adicionado.")
             else:
                 print("ODS inválido, repetido ou limite atingido.")
+        return True
 
-    def menu_crud_voluntarios(self):
-        """Executa operações CRUD de voluntários."""
+    def _ler_tags_entidade(self, entidade: Entidade) -> bool:
+        """
+        Lê iterativamente as tags da entidade promotora.
+
+        :param entidade: Objeto entidade a atualizar.
+        :type entidade: Entidade
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
+        print("\nTags da entidade (até 6).")
+        while len(entidade.tags) < 6:
+            tag = input("Tag (ENTER avança, '0' cancela operação): ").strip()
+            if tag == "0": return False
+            if not tag: break
+            if entidade.adicionar_tag(tag):
+                print("Tag adicionada.")
+            else:
+                print("Tag inválida, repetida ou limite atingido.")
+        return True
+
+    def _ler_ods_entidade(self, entidade: Entidade) -> bool:
+        """
+        Lê iterativamente os ODS principais da entidade promotora.
+
+        :param entidade: Objeto entidade a atualizar.
+        :type entidade: Entidade
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
+        print("\nODS principais da entidade (entre 1 e 5 ODS).")
+        self._imprimir_tabela(
+            ["ods_id", "ods_nome"],
+            [[ods_id, ods_nome] for ods_id, ods_nome in self.sistema.ods_catalogo.items()],
+        )
+        while True:
+            ods_str = input("ODS (1-17) [ENTER avança, '0' cancela operação]: ").strip()
+            if ods_str == "0": return False
+            if not ods_str:
+                if len(entidade.ods_foco) >= 1: break
+                print("É obrigatório indicar pelo menos 1 ODS.")
+                continue
+                
+            if ods_str.isdigit() and entidade.adicionar_ods_foco(int(ods_str)):
+                print("ODS adicionado.")
+            else:
+                print("ODS inválido, repetido ou limite atingido (máx. 5).")
+        return True
+
+    def _ler_competencias_acao(self, acao: Acao) -> bool:
+        """
+        Lê iterativamente as competências exigidas para uma ação.
+
+        :param acao: Objeto ação a atualizar.
+        :type acao: Acao
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
+        print("\nCompetências desejadas da ação (até 6).")
+        while len(acao.competencias_desejadas) < 6:
+            nome = input("Competência desejada (ENTER avança, '0' cancela operação): ").strip()
+            if nome == "0": return False
+            if not nome: break
+            
+            if nome in acao.competencias_desejadas:
+                print("Competência já adicionada.")
+                continue
+                
+            nivel_str = input("Nível mínimo (1-5) ou '0' para cancelar operação: ").strip()
+            if nivel_str == "0": return False
+            if not nivel_str.isdigit() or not (1 <= int(nivel_str) <= 5):
+                print("Nível inválido.")
+                continue
+                
+            if acao.adicionar_competencia(nome, int(nivel_str)):
+                print("Competência adicionada.")
+        return True
+
+    def _ler_ods_acao(self, acao: Acao) -> bool:
+        """
+        Lê iterativamente os ODS associados a uma ação.
+
+        :param acao: Objeto ação a atualizar.
+        :type acao: Acao
+        :return: True se concluiu com sucesso, False se o utilizador abortou.
+        :rtype: bool
+        """
+        print("\nODS associados à ação (obrigatório entre 1 e 3).")
+        self._imprimir_tabela(
+            ["ods_id", "ods_nome"],
+            [[ods_id, ods_nome] for ods_id, ods_nome in self.sistema.ods_catalogo.items()],
+        )
+        while True:
+            ods_str = input("ODS (1-17) [ENTER avança, '0' cancela operação]: ").strip()
+            if ods_str == "0": return False
+            if not ods_str:
+                if len(acao.ods_associados) >= 1: break
+                print("É obrigatório indicar pelo menos 1 ODS.")
+                continue
+                
+            if ods_str.isdigit() and acao.adicionar_ods(int(ods_str)):
+                print("ODS adicionado.")
+            else:
+                print("ODS inválido, repetido ou limite atingido (máx. 3).")
+        return True
+
+    # =========================================================
+    # MENUS CRUD (OPERAÇÕES DE GESTÃO)
+    # =========================================================
+
+    def menu_crud_voluntarios(self) -> None:
+        """
+        Gere as operações de Criação, Leitura, Atualização e Remoção de Voluntários.
+
+        :return: Nada.
+        :rtype: None
+        """
         self._imprimir_titulo("VOLUNTÁRIOS")
         self._imprimir_opcoes(
             ["1. Adicionar", "2. Consultar", "3. Atualizar", "4. Remover", "0. Voltar"]
@@ -213,74 +433,132 @@ class MenuTerminal:
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
-            nome = ler_texto_obrigatorio("Nome: ")
-            curso = ler_texto_obrigatorio("Curso: ")
-            faculdade = ler_texto_obrigatorio("Faculdade: ")
+            nome = ler_texto_obrigatorio("Nome (ou '0' para cancelar): ")
+            if nome == "0": return
+
+            curso = ler_texto_obrigatorio("Curso (ou '0' para cancelar): ")
+            if curso == "0": return
+            
+            faculdade = ler_texto_obrigatorio("Faculdade (ou '0' para cancelar): ")
+            if faculdade == "0": return
+            
             vinculo = ler_opcao(
-                "Vínculo (estudante/docente/tecnico): ",
-                ["estudante", "docente", "tecnico"],
+                "Vínculo (estudante/docente/tecnico) ou '0' para cancelar: ",
+                ["estudante", "docente", "tecnico", "0"],
             ).lower()
+            if vinculo == "0": return
 
             ano = None
             if vinculo == "estudante":
-                ano = ler_inteiro_intervalo("Ano do estudante (1-8): ", 1, 8)
+                ano_str = input("Ano do estudante (1-8) ou '0' para cancelar: ").strip()
+                if ano_str == "0": return
+                ano = int(ano_str) if ano_str.isdigit() else 1
 
             voluntario = Voluntario(nome, curso, faculdade, vinculo, ano)
-            self._ler_competencias_voluntario(voluntario)
-            self._ler_interesses_voluntario(voluntario)
-            self._ler_ods_voluntario(voluntario)
+            
+            if not self._ler_competencias_voluntario(voluntario): return
+            if not self._ler_interesses_voluntario(voluntario): return
+            if not self._ler_ods_voluntario(voluntario): return
+            
             self.sistema.adicionar_voluntario(voluntario)
 
         elif op == "2":
-            termo = input("Nome completo, primeiro/último nome (vazio para todos): ").strip()
+            termo = input("Nome a pesquisar (vazio para todos, ou '0' para cancelar): ").strip()
+            if termo == "0": return
+            
             if not termo:
-                resultados = self.sistema.voluntarios
+                resultados = list(self.sistema.voluntarios.values())
             else:
                 v_exato = self.sistema.consultar_voluntario(termo)
                 resultados = [v_exato] if v_exato else self.sistema.pesquisar_voluntarios(termo)
             
             self._imprimir_tabela(
                 ["voluntario_id", "nome", "curso", "faculdade", "vinculo_institucional", "ano"],
-                [[getattr(v, "voluntario_id", ""), v.nome, v.curso, v.faculdade, v.vinculo, v.ano or "-"] for v in resultados],
+                [[getattr(v, "voluntario_id", ""), v.nome, v.curso, v.faculdade, v.vinculo, v.ano or "-"] for v in resultados if v],
             )
 
         elif op == "3":
             self._imprimir_tabela(
                 ["voluntario_id", "nome", "curso", "faculdade", "vinculo_institucional", "ano"],
-                [[getattr(v, "voluntario_id", ""), v.nome, v.curso, v.faculdade, v.vinculo, v.ano or "-"] for v in self.sistema.voluntarios],
+                [[getattr(v, "voluntario_id", ""), v.nome, v.curso, v.faculdade, v.vinculo, v.ano or "-"] for v in self.sistema.voluntarios.values()],
             )
-            nome = ler_texto_obrigatorio("Nome a atualizar: ")
+            nome = ler_texto_obrigatorio("Nome a atualizar (ou '0' para cancelar): ")
+            if nome == "0": return
+
             voluntario = self.sistema.consultar_voluntario(nome)
             if not voluntario:
                 print("Voluntário não encontrado.")
                 return
             
-            print(f"Atual: {voluntario.__dict__}")
+            print(f"\n--- ATUALIZAR DADOS BASE ---")
             novos = {}
-            novo_nome = input("Nome (ENTER mantém): ").strip()
+            novo_nome = input(f"Nome atual ({voluntario.nome}) -> Novo (ENTER mantém, '0' cancela): ").strip()
+            if novo_nome == "0": return
             if novo_nome: novos["nome"] = novo_nome
             
-            novo_curso = input("Curso (ENTER mantém): ").strip()
+            novo_curso = input(f"Curso atual ({voluntario.curso}) -> Novo (ENTER mantém, '0' cancela): ").strip()
+            if novo_curso == "0": return
             if novo_curso: novos["curso"] = novo_curso
             
-            nova_faculdade = input("Faculdade (ENTER mantém): ").strip()
+            nova_faculdade = input(f"Faculdade atual ({voluntario.faculdade}) -> Novo (ENTER mantém, '0' cancela): ").strip()
+            if nova_faculdade == "0": return
             if nova_faculdade: novos["faculdade"] = nova_faculdade
             
-            novo_vinculo = input("Vínculo (estudante/docente/tecnico, ENTER mantém): ").strip().lower()
-            if novo_vinculo: novos["vinculo"] = novo_vinculo
+            novo_vinculo = input(f"Vínculo ({voluntario.vinculo}) -> Novo (estudante/docente/tecnico, ENTER mantém, '0' cancela): ").strip().lower()
+            if novo_vinculo == "0": return
+            if novo_vinculo in ["estudante", "docente", "tecnico"]: 
+                novos["vinculo"] = novo_vinculo
             
-            if (novo_vinculo or voluntario.vinculo) == "estudante":
-                ano_txt = input("Ano (1-8, ENTER mantém): ").strip()
+            vinculo_final = novos.get("vinculo", voluntario.vinculo)
+            if vinculo_final == "estudante":
+                ano_atual = voluntario.ano if voluntario.ano else "N/A"
+                ano_txt = input(f"Ano ({ano_atual}) -> Novo (1-8, ENTER mantém, '0' cancela): ").strip()
+                if ano_txt == "0": return
                 if ano_txt.isdigit(): novos["ano"] = int(ano_txt)
+            else:
+                novos["ano"] = None 
                 
             self.sistema.atualizar_voluntario_completo(nome, novos)
+
+            print("\n--- ATUALIZAR PERFIL (COMPETÊNCIAS, TAGS E ODS) ---")
+            
+            print(f"Competências atuais: {voluntario.competencias}")
+            if ler_opcao("Deseja redefinir as competências? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_comp = dict(voluntario.competencias)
+                voluntario.competencias.clear()
+                if not self._ler_competencias_voluntario(voluntario):
+                    voluntario.competencias = bkp_comp
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+                
+            print(f"\nInteresses atuais: {voluntario.interesses}")
+            if ler_opcao("Deseja redefinir os interesses/tags? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_int = set(voluntario.interesses)
+                voluntario.interesses.clear()
+                if not self._ler_interesses_voluntario(voluntario):
+                    voluntario.interesses = bkp_int
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+                
+            print(f"\nODS atuais: {voluntario.ods_interesse}")
+            if ler_opcao("Deseja redefinir os ODS de interesse? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_ods = set(voluntario.ods_interesse)
+                voluntario.ods_interesse.clear()
+                if not self._ler_ods_voluntario(voluntario):
+                    voluntario.ods_interesse = bkp_ods
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+
+            print("\n[SUCESSO] Registo do voluntário totalmente atualizado!")
 
         elif op == "4":
             self._imprimir_tabela(
                 ["voluntario_id", "nome", "curso", "faculdade", "vinculo_institucional", "ano"],
-                [[getattr(v, "voluntario_id", ""), v.nome, v.curso, v.faculdade, v.vinculo, v.ano or "-"] for v in self.sistema.voluntarios],
+                [[getattr(v, "voluntario_id", ""), v.nome, v.curso, v.faculdade, v.vinculo, v.ano or "-"] for v in self.sistema.voluntarios.values()],
             )
-            nome = ler_texto_obrigatorio("Nome a remover: ")
+            nome = ler_texto_obrigatorio("Nome a remover (ou '0' para cancelar): ")
+            if nome == "0": return
+
             voluntario = self.sistema.consultar_voluntario(nome)
             if not voluntario:
                 print("Voluntário não encontrado.")
@@ -289,40 +567,13 @@ class MenuTerminal:
             if ler_opcao("Confirma remoção? (S/N): ", ["S", "N"]) == "S":
                 self.sistema.remover_voluntario(nome)
 
-    def _ler_tags_entidade(self, entidade: Entidade) -> None:
-        """Lê tags da entidade (até 6)."""
-        print("\nTags da entidade (até 6).")
-        print("Deixe vazio para terminar.")
-        while len(entidade.tags) < 6:
-            tag = input("Tag: ").strip()
-            if not tag:
-                break
-            if entidade.adicionar_tag(tag):
-                print("Tag adicionada.")
-            else:
-                print("Tag inválida, repetida ou limite atingido.")
+    def menu_crud_entidades(self) -> None:
+        """
+        Gere as operações de Criação, Leitura, Atualização e Remoção de Entidades.
 
-    def _ler_ods_entidade(self, entidade: Entidade) -> None:
-        """Lê ODS principais da entidade (obrigatório 1..5)."""
-        print("\nODS principais da entidade (entre 1 e 5 ODS).")
-        self._imprimir_tabela(
-            ["ods_id", "ods_nome"], 
-            [[o.get("ods_id"), o.get("ods_nome")] for o in self.sistema.ods_catalogo]
-        )
-        while True:
-            ods = ler_ods_ou_vazio("ODS (1-17): ")
-            if ods is None:
-                if len(entidade.ods_foco) >= 1:
-                    break
-                print("É obrigatório indicar pelo menos 1 ODS.")
-                continue
-            if entidade.adicionar_ods_foco(ods):
-                print("ODS adicionado.")
-            else:
-                print("ODS inválido, repetido ou limite atingido (máx. 5).")
-
-    def menu_crud_entidades(self):
-        """Executa operações CRUD de entidades."""
+        :return: Nada.
+        :rtype: None
+        """
         self._imprimir_titulo("ENTIDADES")
         self._imprimir_opcoes(
             ["1. Adicionar", "2. Consultar", "3. Atualizar", "4. Remover", "0. Voltar"]
@@ -330,28 +581,42 @@ class MenuTerminal:
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
-            nome = ler_texto_obrigatorio("Nome: ")
-            tipo = ler_opcao(
-                "Tipo (núcleo/associação/serviço/ong parceira): ",
-                ["núcleo", "associação", "serviço", "ong parceira"],
-            )
-            area = ler_texto_obrigatorio("Área de intervenção: ")
-            loc = ler_texto_obrigatorio("Localização: ")
-            url = input("URL (opcional): ").strip() or None
+            nome = ler_texto_obrigatorio("Nome (ou '0' para cancelar): ")
+            if nome == "0": return
 
-            entidade = Entidade(nome, tipo, area, loc, url)
-            self._ler_tags_entidade(entidade)
-            self._ler_ods_entidade(entidade)
+            tipo = ler_opcao(
+                "Tipo (núcleo/associação/serviço/ong parceira) ou '0' para cancelar: ",
+                ["núcleo", "associação", "serviço", "ong parceira", "0"],
+            )
+            if tipo == "0": return
+            
+            area = ler_texto_obrigatorio("Área de intervenção (ou '0' para cancelar): ")
+            if area == "0": return
+            
+            loc = ler_texto_obrigatorio("Localização (ou '0' para cancelar): ")
+            if loc == "0": return
+            
+            url = input("URL (opcional, ou '0' para cancelar): ").strip()
+            if url == "0": return
+            url_final = url if url else None
+
+            entidade = Entidade(nome, tipo, area, loc, url_final)
+            
+            if not self._ler_tags_entidade(entidade): return
+            if not self._ler_ods_entidade(entidade): return
+            
             self.sistema.adicionar_entidade(entidade)
 
         elif op == "2":
             cabecalhos = ["ID da Entidade", "Nome"]
-            dados_lista = [[getattr(e, "entidade_id", ""), e.nome or "-"] for e in self.sistema.entidades]
+            dados_lista = [[getattr(e, "entidade_id", ""), e.nome or "-"] for e in self.sistema.entidades.values()]
             
             print("\n--- LISTA DE ENTIDADES PARCEIRAS ---")
             self._imprimir_tabela(cabecalhos, dados_lista)
             
-            nome = ler_texto_obrigatorio("\nNome a consultar: ")
+            nome = ler_texto_obrigatorio("\nNome a consultar (ou '0' para cancelar): ")
+            if nome == "0": return
+
             entidade = self.sistema.consultar_entidade(nome)
             
             if entidade:
@@ -380,27 +645,54 @@ class MenuTerminal:
         elif op == "3":
             self._imprimir_tabela(
                 ["entidade_id", "nome", "tipo", "area_intervencao", "localizacao", "url"], 
-                [[getattr(e, "entidade_id", ""), e.nome, e.tipo, e.area, e.localizacao, e.url or "-"] for e in self.sistema.entidades]
+                [[getattr(e, "entidade_id", ""), e.nome, e.tipo, e.area, e.localizacao, e.url or "-"] for e in self.sistema.entidades.values()]
             )
-            nome = ler_texto_obrigatorio("Nome da entidade a atualizar: ")
+            nome = ler_texto_obrigatorio("Nome da entidade a atualizar (ou '0' para cancelar): ")
+            if nome == "0": return
+
             entidade = self.sistema.consultar_entidade(nome)
             if not entidade:
                 print("Entidade não encontrada.")
                 return
             
-            print(f"Atual: {entidade.__dict__}")
+            print(f"\n--- ATUALIZAR DADOS BASE ---")
             novos = {}
             for campo, label in [("nome", "Nome"), ("tipo", "Tipo"), ("area", "Área"), ("localizacao", "Localização"), ("url", "URL")]:
-                val = input(f"{label} (ENTER mantém): ").strip()
+                val = input(f"{label} atual ({getattr(entidade, campo)}) -> Novo (ENTER mantém, '0' cancela): ").strip()
+                if val == "0": return
                 if val: novos[campo] = val
+                
             self.sistema.atualizar_entidade_completo(nome, novos)
+            
+            print("\n--- ATUALIZAR PERFIL (TAGS E ODS) ---")
+            print(f"Tags atuais: {entidade.tags}")
+            if ler_opcao("Deseja redefinir as Tags? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_tags = set(entidade.tags)
+                entidade.tags.clear()
+                if not self._ler_tags_entidade(entidade):
+                    entidade.tags = bkp_tags
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+                
+            print(f"\nODS atuais: {entidade.ods_foco}")
+            if ler_opcao("Deseja redefinir os ODS? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_ods_ent = set(entidade.ods_foco)
+                entidade.ods_foco.clear()
+                if not self._ler_ods_entidade(entidade):
+                    entidade.ods_foco = bkp_ods_ent
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+                    
+            print("\n[SUCESSO] Registo da entidade totalmente atualizado!")
 
         elif op == "4":
             self._imprimir_tabela(
                 ["entidade_id", "nome", "tipo", "area_intervencao", "localizacao", "url"], 
-                [[getattr(e, "entidade_id", ""), e.nome, e.tipo, e.area, e.localizacao, e.url or "-"] for e in self.sistema.entidades]
+                [[getattr(e, "entidade_id", ""), e.nome, e.tipo, e.area, e.localizacao, e.url or "-"] for e in self.sistema.entidades.values()]
             )
-            nome = ler_texto_obrigatorio("Nome a remover: ")
+            nome = ler_texto_obrigatorio("Nome a remover (ou '0' para cancelar): ")
+            if nome == "0": return
+
             entidade = self.sistema.consultar_entidade(nome)
             if not entidade:
                 print("Entidade não encontrada.")
@@ -409,92 +701,81 @@ class MenuTerminal:
             if ler_opcao("Confirma remoção? (S/N): ", ["S", "N"]) == "S":
                 self.sistema.remover_entidade(nome)
 
-    def _ler_competencias_acao(self, acao: Acao) -> None:
-        """Lê competências desejadas da ação (até 6, nível mínimo 1..5)."""
-        print("\nCompetências desejadas da ação (até 6).")
-        print("Deixe vazio para terminar.")
-        while len(acao.competencias_desejadas) < 6:
-            nome = input("Competência desejada: ").strip()
-            if not nome:
-                break
-            if nome in acao.competencias_desejadas:
-                print("Competência já adicionada.")
-                continue
-            nivel = ler_inteiro_intervalo("Nível mínimo (1-5): ", 1, 5)
-            if acao.adicionar_competencia(nome, nivel):
-                print("Competência adicionada.")
-            else:
-                print("Não foi possível adicionar a competência.")
+    def menu_crud_acoes(self) -> None:
+        """
+        Gere as operações de Criação, Leitura, Atualização e Remoção de Ações.
 
-    def _ler_ods_acao(self, acao: Acao) -> None:
-        """Lê ODS da ação (obrigatório 1..3)."""
-        print("\nODS associados à ação (obrigatório entre 1 e 3).")
-        self._imprimir_tabela(
-            ["ods_id", "ods_nome"], 
-            [[o.get("ods_id"), o.get("ods_nome")] for o in self.sistema.ods_catalogo]
-        )
-        while True:
-            ods = ler_ods_ou_vazio("ODS (1-17): ")
-            if ods is None:
-                if len(acao.ods_associados) >= 1:
-                    break
-                print("É obrigatório indicar pelo menos 1 ODS.")
-                continue
-            if acao.adicionar_ods(ods):
-                print("ODS adicionado.")
-            else:
-                print("ODS inválido, repetido ou limite atingido (máx. 3).")
-
-    def menu_crud_acoes(self):
-        """Executa operações CRUD de ações."""
+        :return: Nada.
+        :rtype: None
+        """
         self._imprimir_titulo("AÇÕES")
         self._imprimir_opcoes(
-            ["1. Adicionar", "2. Consultar", "3. Atualizar Estado", "4. Remover", "0. Voltar"]
+            ["1. Adicionar", "2. Consultar", "3. Atualizar Dados", "4. Remover", "0. Voltar"]
         )
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
-            tit = ler_texto_obrigatorio("Título: ")
+            tit = ler_texto_obrigatorio("Título (ou '0' para cancelar): ")
+            if tit == "0": return
             
             print("Entidades existentes:")
-            for e in self.sistema.entidades:
+            for e in self.sistema.entidades.values():
                 print(f"- {e.nome}")
                 
-            ent = ler_texto_obrigatorio("Entidade Promotora: ")
-            area = ler_texto_obrigatorio("Área da ação: ")
-            data = ler_data_hora_iso_ou_vazio("Data/Hora (YYYY-MM-DD HH:MM): ")
+            ent = ler_texto_obrigatorio("Entidade Promotora (ou '0' para cancelar): ")
+            if ent == "0": return
+            
+            area = ler_texto_obrigatorio("Área da ação (ou '0' para cancelar): ")
+            if area == "0": return
+            
+            data = ler_data_hora_iso_ou_vazio("Data/Hora (YYYY-MM-DD HH:MM) ou ENTER para cancelar: ")
             if not data:
-                print("Data/Hora é obrigatória.")
+                print("Operação cancelada.")
                 return
 
-            dur = ler_inteiro_intervalo("Duração (horas): ", 1)
-            vag = ler_inteiro_intervalo("Vagas: ", 0)
+            dur_str = input("Duração em horas (ou '0' para cancelar): ").strip()
+            if dur_str == "0": return
+            dur = int(dur_str) if dur_str.isdigit() else 1
+            
+            vag_str = input("Vagas (>=0) ou '-1' para cancelar: ").strip()
+            if vag_str == "-1": return
+            vag = int(vag_str) if vag_str.lstrip('-').isdigit() else 0
+            
             loc = ler_opcao(
-                "Localização (campus/externo/online): ",
-                ["campus", "externo", "online"],
+                "Localização (campus/externo/online) ou '0' para cancelar: ",
+                ["campus", "externo", "online", "0"],
             )
+            if loc == "0": return
+            
             estado = ler_opcao(
-                "Estado (planeada/concluída/cancelada): ",
-                ["planeada", "concluída", "cancelada"],
+                "Estado (planeada/concluída/cancelada) ou '0' para cancelar: ",
+                ["planeada", "concluída", "cancelada", "0"],
             )
-            impacto = ler_inteiro_intervalo("Métrica de impacto (0-100): ", 0, 100)
+            if estado == "0": return
+            
+            imp_str = input("Métrica impacto (0-100) ou '-1' para cancelar: ").strip()
+            if imp_str == "-1": return
+            impacto = float(imp_str) if imp_str.replace('.', '', 1).isdigit() else 0.0
 
             acao = Acao(tit, ent, data, dur, vag, loc, area)
             acao.estado = estado
-            acao.metrica_impacto = float(impacto)
+            acao.metrica_impacto = impacto
 
-            self._ler_competencias_acao(acao)
-            self._ler_ods_acao(acao)
+            if not self._ler_competencias_acao(acao): return
+            if not self._ler_ods_acao(acao): return
+            
             self.sistema.adicionar_acao(acao)
 
         elif op == "2":
             cabecalhos = ["Título"]
-            dados_tabela = [[acao.titulo] for acao in self.sistema.acoes]
+            dados_tabela = [[acao.titulo] for acao in self.sistema.acoes.values()]
             
             print("\n--- LISTA DE AÇÕES DISPONÍVEIS ---")
             self._imprimir_tabela(cabecalhos, dados_tabela)
             
-            tit = ler_texto_obrigatorio("\nTítulo a consultar: ")
+            tit = ler_texto_obrigatorio("\nTítulo a consultar (ou '0' para cancelar): ")
+            if tit == "0": return
+
             acao_encontrada = self.sistema.consultar_acao(tit)
             
             if acao_encontrada:
@@ -525,32 +806,59 @@ class MenuTerminal:
         elif op == "3":
             self._imprimir_tabela(
                 ["acao_id","titulo","entidade_id","entidade_nome","area","data_hora","duracao_horas","localizacao","vagas","estado","metrica_impacto"], 
-                [[getattr(a,"acao_id",""), getattr(a,"titulo",""), getattr(a,"entidade_id",""), a.entidade, a.area, a.data_hora, a.duracao, a.localizacao, a.vagas, a.estado, a.metrica_impacto] for a in self.sistema.acoes]
+                [[getattr(a,"acao_id",""), getattr(a,"titulo",""), getattr(a,"entidade_id",""), a.entidade, a.area, a.data_hora, a.duracao, a.localizacao, a.vagas, a.estado, a.metrica_impacto] for a in self.sistema.acoes.values()]
             )
-            tit = ler_texto_obrigatorio("Título a atualizar: ")
+            tit = ler_texto_obrigatorio("Título a atualizar (ou '0' para cancelar): ")
+            if tit == "0": return
+
             acao = self.sistema.consultar_acao(tit)
             if not acao:
                 print("Ação não encontrada.")
                 return
             
-            print(f"Atual: {acao.__dict__}")
+            print(f"\n--- ATUALIZAR DADOS BASE ---")
             novos = {}
             for campo, label in [("titulo","Título"),("entidade","Entidade"),("area","Área"),("data_hora","Data/Hora"),("localizacao","Localização"),("estado","Estado")]:
-                val = input(f"{label} (ENTER mantém): ").strip()
+                val = input(f"{label} atual ({getattr(acao, campo)}) -> Novo (ENTER mantém, '0' cancela): ").strip()
+                if val == "0": return
                 if val: novos[campo] = val
                 
             for campo, label in [("duracao","Duração horas"),("vagas","Vagas"),("metrica_impacto","Métrica impacto")]:
-                val = input(f"{label} (ENTER mantém): ").strip()
+                val = input(f"{label} atual ({getattr(acao, campo)}) -> Novo (ENTER mantém, '0' cancela): ").strip()
+                if val == "0": return
                 if val: novos[campo] = int(val) if campo != "metrica_impacto" else float(val)
                 
             self.sistema.atualizar_acao_completo(tit, novos)
 
+            print("\n--- ATUALIZAR PERFIL (COMPETÊNCIAS E ODS) ---")
+            print(f"Competências atuais: {acao.competencias_desejadas}")
+            if ler_opcao("Deseja redefinir as Competências Desejadas? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_comp_acao = dict(acao.competencias_desejadas)
+                acao.competencias_desejadas.clear()
+                if not self._ler_competencias_acao(acao):
+                    acao.competencias_desejadas = bkp_comp_acao
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+                
+            print(f"\nODS atuais: {acao.ods_associados}")
+            if ler_opcao("Deseja redefinir os ODS Associados? (S/N): ", ["S", "N"]).upper() == "S":
+                bkp_ods_acao = set(acao.ods_associados)
+                acao.ods_associados.clear()
+                if not self._ler_ods_acao(acao):
+                    acao.ods_associados = bkp_ods_acao
+                    print("\nOperação abortada. Dados antigos restaurados.")
+                    return
+                    
+            print("\n[SUCESSO] Registo da ação totalmente atualizado!")
+
         elif op == "4":
             self._imprimir_tabela(
                 ["acao_id","titulo","entidade_id","entidade_nome","area","data_hora","duracao_horas","localizacao","vagas","estado","metrica_impacto"], 
-                [[getattr(a,"acao_id",""), getattr(a,"titulo",""), getattr(a,"entidade_id",""), a.entidade, a.area, a.data_hora, a.duracao, a.localizacao, a.vagas, a.estado, a.metrica_impacto] for a in self.sistema.acoes]
+                [[getattr(a,"acao_id",""), getattr(a,"titulo",""), getattr(a,"entidade_id",""), a.entidade, a.area, a.data_hora, a.duracao, a.localizacao, a.vagas, a.estado, a.metrica_impacto] for a in self.sistema.acoes.values()]
             )
-            tit = ler_texto_obrigatorio("Título a remover: ")
+            tit = ler_texto_obrigatorio("Título a remover (ou '0' para cancelar): ")
+            if tit == "0": return
+
             acao = self.sistema.consultar_acao(tit)
             if not acao:
                 print("Ação não encontrada.")
@@ -560,11 +868,15 @@ class MenuTerminal:
             if ler_opcao("Confirma remoção? (S/N): ", ["S", "N"]) == "S":
                 self.sistema.remover_acao(tit)
 
-    def menu_inscricoes(self):
-        """Processa a fila de inscrições de uma ação (RF02)."""
+    def menu_inscricoes(self) -> None:
+        """
+        Processa iterativamente a fila de inscrições (FIFO) de uma ação (RF02).
+
+        :return: Nada.
+        :rtype: None
+        """
         pendentes = self.sistema.listar_acoes_com_fila_pendente()
         
-        # Se não houver pendentes, avisamos logo o utilizador e evitamos pedir dados
         if not pendentes:
             print("\nNão existem ações com inscrições pendentes para avaliar no momento.")
             input("Prima ENTER para voltar.")
@@ -575,10 +887,7 @@ class MenuTerminal:
             [[getattr(a, "acao_id", ""), a.titulo, len(a.fila_inscricoes)] for a in pendentes]
         )
         
-        # instrução de '0' para voltar
         titulo_acao = ler_texto_obrigatorio("\nTítulo da ação para processar fila (ou '0' para Voltar): ")
-        
-        # interrompe a função e volta ao menu principal
         if titulo_acao == "0":
             return
         
@@ -586,13 +895,20 @@ class MenuTerminal:
         if prox:
             print(f"\nPróxima inscrição: voluntário={prox.voluntario}, ação={prox.acao}, data_hora_inscricao={prox.data_hora_inscricao}")
             
-            decisao = ler_opcao("Aprovar (A) ou Rejeitar (R)? ", ["A", "R"]).strip().upper()
+            decisao = ler_opcao("Aprovar (A) ou Rejeitar (R)? (ou '0' para cancelar): ", ["A", "R", "0"]).strip().upper()
+            if decisao == "0": return
+            
             self.sistema.processar_inscricao_na_acao(titulo_acao, decisao == "A")
         else:
             print("\nAção não encontrada ou sem inscrições na fila.")
 
-    def menu_pesquisas(self):
-        """Executa pesquisas e listagens (RF03)."""
+    def menu_pesquisas(self) -> None:
+        """
+        Executa o menu de pesquisas, listagens e ordenações avançadas (RF03).
+
+        :return: Nada.
+        :rtype: None
+        """
         print("\n--- PESQUISAS E LISTAGENS ---")
         print("1. Listar Voluntários por Prefixo (O(n) - Insertion Sort)")
         print("2. Pesquisar e Ordenar Ações (O(n log n) - Merge Sort)")
@@ -601,26 +917,32 @@ class MenuTerminal:
         op = ler_opcao("Opção: ", ["0", "1", "2"])
 
         if op == "1":
-            prefixo = ler_texto_obrigatorio("Prefixo do nome: ")
+            prefixo = ler_texto_obrigatorio("Prefixo do nome (ou '0' para Voltar): ")
+            if prefixo == "0": return
             self.sistema.listar_voluntarios_prefixo(prefixo)
 
         elif op == "2":
             self._imprimir_tabela(
                 ["titulo", "entidade_nome", "area", "data_hora", "vagas", "ods_associados"], 
-                [[a.titulo, a.entidade, a.area, a.data_hora, a.vagas, ",".join(str(o) for o in a.ods_associados)] for a in self.sistema.acoes]
+                [[a.titulo, a.entidade, a.area, a.data_hora, a.vagas, ",".join(str(o) for o in a.ods_associados)] for a in self.sistema.acoes.values()]
             )
             print("\n--- Filtros de Ação ---")
             print("(Dica: Prima ENTER sem escrever nada para ignorar um filtro)")
 
-            entidade = input("Entidade Promotora: ").strip()
-            area = input("Área: ").strip()
-            data_inicio = ler_data_hora_iso_ou_vazio("Data início (YYYY-MM-DD HH:MM): ")
-            data_fim = ler_data_hora_iso_ou_vazio("Data fim (YYYY-MM-DD HH:MM): ")
+            entidade = input("Entidade Promotora (ou '0' para Voltar): ").strip()
+            if entidade == "0": return
 
-            vagas_input = input("Vagas mínimas: ").strip()
+            area = input("Área (ou '0' para Voltar): ").strip()
+            if area == "0": return
+            
+            data_inicio = ler_data_hora_iso_ou_vazio("Data início (YYYY-MM-DD HH:MM) ou ENTER para ignorar: ")
+            data_fim = ler_data_hora_iso_ou_vazio("Data fim (YYYY-MM-DD HH:MM) ou ENTER para ignorar: ")
+
+            vagas_input = input("Vagas mínimas (ou '0' para Voltar): ").strip()
+            if vagas_input == "0": return
             vagas_min = int(vagas_input) if vagas_input.isdigit() else None
 
-            ods = ler_ods_ou_vazio("ODS específico (1-17): ")
+            ods = ler_ods_ou_vazio("ODS específico (1-17) ou ENTER para ignorar: ")
 
             filtros = {
                 "entidade": entidade,
@@ -634,17 +956,21 @@ class MenuTerminal:
             print("\nOrdenar resultados por:")
             print("1. Data e Hora")
             print("2. Métrica de Impacto")
-            escolha = ler_opcao("Escolha (1/2): ", ["1", "2"]).strip()
+            print("0. Cancelar pesquisa")
+            escolha = ler_opcao("Escolha: ", ["0", "1", "2"]).strip()
+            if escolha == "0": return
 
             atributo = "metrica_impacto" if escolha == "2" else "data_hora"
             self.sistema.pesquisar_e_listar_acoes(filtros, ordenar_por=atributo)
+            input("\nPrima ENTER para continuar.")
 
-    # ==================================
-    # RF06 - MENU DE FORMAÇÃO DE EQUIPAS
-    # ==================================
-    
-    def menu_equipas(self):
-        """Mostra o menu de Formação de Equipas com suporte a Undo (RF06)."""
+    def menu_equipas(self) -> None:
+        """
+        Mostra o menu de Formação de Equipas com suporte a Undo usando Pilhas (RF06).
+
+        :return: Nada.
+        :rtype: None
+        """
         while True:
             self._imprimir_titulo("FORMAÇÃO DE EQUIPAS (RF06)")
             self._imprimir_opcoes(
@@ -663,11 +989,12 @@ class MenuTerminal:
                 break
 
             print("\n--- AÇÕES DISPONÍVEIS ---")
-            self._imprimir_tabela(["Título da Ação"], [[a.titulo] for a in self.sistema.acoes])
+            self._imprimir_tabela(["Título da Ação"], [[a.titulo] for a in self.sistema.acoes.values()])
             
-            titulo_acao = ler_texto_obrigatorio("\nDigite o Título da Ação que pretende gerir: ")
+            titulo_acao = ler_texto_obrigatorio("\nDigite o Título da Ação que pretende gerir (ou '0' para Voltar): ")
+            if titulo_acao == "0":
+                continue
             
-            # Opção 1: Consultar a Equipa
             if op == "1":
                 acao = self.sistema.consultar_acao(titulo_acao)
                 if acao:
@@ -679,49 +1006,43 @@ class MenuTerminal:
                 else:
                     print("\nAção não encontrada.")
 
-            # Opção 2: Adicionar Voluntário (Com Avaliação de Perfil)
             elif op == "2":
                 acao = self.sistema.consultar_acao(titulo_acao)
                 if not acao:
                     print("\nAção não encontrada.")
                     continue
 
-                # 1. CRIAR O DICIONÁRIO DE TRADUÇÃO: Pega no catálogo e associa {ID: Nome}
-                mapa_ods = {ods["ods_id"]: ods["ods_nome"] for ods in self.sistema.ods_catalogo}
+                # 1. DICIONÁRIO DE TRADUÇÃO (Eficiência O(1))
+                mapa_ods = self.sistema.ods_catalogo
 
-                # Ciclo para adicionar múltiplos voluntários
                 while True:
                     print(f"\n--- AVALIAÇÃO DE PERFIS: {acao.titulo.upper()} ---")
                     cabecalhos = ["Nome", "Apto?", "ODS Partilhados", "Competências Partilhadas"]
                     dados = []
                     
-                    for v in self.sistema.voluntarios:
+                    for v in self.sistema.voluntarios.values():
                         if v.nome in acao.equipa:
                             continue 
                             
-                        # Descobrir especificamente o que partilham 
                         ods_comum = v.ods_interesse.intersection(acao.ods_associados)
                         comps_comum = set(v.competencias.keys()).intersection(set(acao.competencias_desejadas.keys()))
                         
                         apto = bool(ods_comum or comps_comum)
-                        
-                        # 2. TRADUZIR OS NÚMEROS: Para cada ID em comum, vamos buscar o Nome ao mapa
                         nomes_ods_comum = [mapa_ods.get(o, f"ODS {o}") for o in ods_comum]
                         
-                        # Formatar para a tabela (unir a lista com vírgulas)
                         ods_str = ", ".join(nomes_ods_comum) if nomes_ods_comum else "-"
                         comps_str = ", ".join(comps_comum) if comps_comum else "-"
                         
                         if apto:
-                            dados.append([v.nome, "✅ SIM", ods_str, comps_str])
+                            dados.append([v.nome, "SIM", ods_str, comps_str])
                         else:
-                            dados.append([v.nome, "❌ NÃO", "-", "-"])
+                            dados.append([v.nome, "NÃO", "-", "-"])
                             
                     self._imprimir_tabela(cabecalhos, dados)
                     
                     voluntario_nome = ler_texto_obrigatorio("\nDigite o Nome a adicionar (ou '0' para Voltar): ")
                     if voluntario_nome == "0":
-                        break # Sai do ciclo e volta ao menu de equipas
+                        break 
                         
                     sucesso, mensagem = self.sistema.adicionar_voluntario_equipa(titulo_acao, voluntario_nome)
                     if sucesso:
@@ -733,7 +1054,6 @@ class MenuTerminal:
                     if continuar == "N":
                         break
 
-            # Opção 3: Remover Voluntário
             elif op == "3":
                 acao = self.sistema.consultar_acao(titulo_acao)
                 if not acao:
@@ -747,14 +1067,16 @@ class MenuTerminal:
                     
                 self._imprimir_tabela(["Nome do Voluntário"], [[vol] for vol in acao.equipa])
                 
-                voluntario_nome = ler_texto_obrigatorio("\nDigite o Nome do Voluntário a remover: ")
+                voluntario_nome = ler_texto_obrigatorio("\nDigite o Nome do Voluntário a remover (ou '0' para Voltar): ")
+                if voluntario_nome == "0":
+                    continue
+                    
                 sucesso, mensagem = self.sistema.remover_voluntario_equipa(titulo_acao, voluntario_nome)
                 if sucesso:
                     print(f"\n[SUCESSO] {mensagem}")
                 else:
                     print(f"\n[ERRO] {mensagem}")
 
-            # Opção 4: Desfazer Alteração (Undo)
             elif op == "4":
                 sucesso, mensagem = self.sistema.desfazer_alteracao_equipa(titulo_acao)
                 if sucesso:
@@ -762,7 +1084,6 @@ class MenuTerminal:
                 else:
                     print(f"\n[ERRO] {mensagem}")
                     
-            # Opção 5: Ver Histórico da Pilha
             elif op == "5":
                 acao = self.sistema.consultar_acao(titulo_acao)
                 if not acao:
@@ -785,11 +1106,13 @@ class MenuTerminal:
                     
                 self._imprimir_tabela(cabecalhos, dados)
 
-    # ==========================================
-    # RF07 - MENU DE PESQUISA POR IMPACTO (BST)
-    # ==========================================
-    def menu_impacto(self):
-        """Menu dedicado à consulta de Ações organizadas pelo seu impacto (RF07)."""
+    def menu_impacto(self) -> None:
+        """
+        Menu dedicado à consulta de Ações organizadas pelo seu impacto através da BST (RF07).
+
+        :return: Nada.
+        :rtype: None
+        """
         while True:
             self._imprimir_titulo("PESQUISA POR IMPACTO (BST - RF07)")
             self._imprimir_opcoes(
@@ -807,7 +1130,9 @@ class MenuTerminal:
                 break
 
             elif op == "1":
-                ordem = ler_opcao("Ordem Crescente (C) ou Decrescente (D)? ", ["C", "D"]).strip().upper()
+                ordem = ler_opcao("Ordem Crescente (C) ou Decrescente (D)? (ou 'V' para Voltar) ", ["C", "D", "V"]).strip().upper()
+                if ordem == "V": continue
+                
                 crescente = (ordem == "C")
                 acoes = self.sistema.consultar_acoes_por_impacto_ordem(crescente=crescente)
                 
@@ -818,7 +1143,9 @@ class MenuTerminal:
 
             elif op == "2":
                 try:
-                    valor_str = input("Digite o valor exato do impacto (ex: 80.5): ").strip()
+                    valor_str = input("Digite o valor exato do impacto (ex: 80.5) ou 'V' para Voltar: ").strip()
+                    if valor_str.upper() == "V": continue
+                    
                     impacto_alvo = float(valor_str)
                     
                     acoes = self.sistema.consultar_acoes_impacto_exato(impacto_alvo)
@@ -831,7 +1158,9 @@ class MenuTerminal:
 
             elif op == "3":
                 try:
-                    min_str = input("Digite o Impacto Mínimo: ").strip()
+                    min_str = input("Digite o Impacto Mínimo (ou 'V' para Voltar): ").strip()
+                    if min_str.upper() == "V": continue
+                    
                     max_str = input("Digite o Impacto Máximo: ").strip()
                     min_imp = float(min_str)
                     max_imp = float(max_str)
@@ -857,15 +1186,16 @@ class MenuTerminal:
                 print("\n--- AÇÃO(ÕES) COM MAIOR IMPACTO ---")
                 self._imprimir_tabela(["Título", "Entidade", "Impacto"], [[a.titulo, a.entidade, a.metrica_impacto] for a in maiores])
 
-    # ==================================================
-    # RF08 - PRIORIZAÇÃO DE CANDIDATURAS (MAX-HEAP)
-    # ==================================================
-    def menu_priorizacao(self):
-        """Menu para listar as candidaturas ordenadas por prioridade (RF08)."""
+    def menu_priorizacao(self) -> None:
+        """
+        Menu para extrair e listar candidaturas ordenadas por prioridade via Max-Heap (RF08).
+
+        :return: Nada.
+        :rtype: None
+        """
         while True:
             self._imprimir_titulo("PRIORIZAÇÃO DE CANDIDATURAS (HEAP - RF08)")
             
-            # Vamos mostrar que ações têm candidaturas pendentes
             pendentes = self.sistema.listar_acoes_com_fila_pendente()
             if not pendentes:
                 print("\nNão existem ações com inscrições pendentes para avaliar no momento.")
@@ -878,7 +1208,7 @@ class MenuTerminal:
             )
             
             print("\n0. Voltar")
-            titulo_acao = input("\nDigite o Título da Ação para ver a prioridade (ou 0): ").strip()
+            titulo_acao = input("\nDigite o Título da Ação para ver a prioridade (ou '0' para Voltar): ").strip()
             
             if titulo_acao == "0":
                 break
@@ -888,7 +1218,6 @@ class MenuTerminal:
                 print("\nAção não encontrada.")
                 continue
                 
-            # Chama o algoritmo Heapsort que construímos!
             candidaturas_ordenadas = self.sistema.gerar_candidaturas_ordenadas_heapsort(titulo_acao)
             
             if not candidaturas_ordenadas:
@@ -898,7 +1227,6 @@ class MenuTerminal:
             print(f"\n--- CANDIDATURAS ORDENADAS POR PRIORIDADE: {acao.titulo.upper()} ---")
             print("(Critério matemático: +2 pts por ODS em comum, +1 pt por Competência em comum)")
             
-            # Formatar os resultados
             cabecalhos = ["Lugar", "Nome do Voluntário", "Pontuação", "Data da Inscrição"]
             dados = []
             
@@ -912,7 +1240,6 @@ class MenuTerminal:
                 
             self._imprimir_tabela(cabecalhos, dados)
             
-            # Destaque de quem está no topo do Max-Heap
             top_inscricao, top_pontos = candidaturas_ordenadas[0]
             print(f"\nO candidato mais adequado é '{top_inscricao.voluntario}' com {top_pontos} pontos!")
             
