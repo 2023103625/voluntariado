@@ -12,7 +12,7 @@ import os
 import time
 import matplotlib.pyplot as plt
 
-# Apenas os módulos estritamente permitidos pelo OR07 são utilizados.
+# Apenas os módulos permitidos pelo OR07 são utilizados.
 # A exportação CSV é feita com manipulação nativa de texto.
 
 from typing import List, Optional, Dict, Any, Tuple
@@ -1171,21 +1171,24 @@ class SistemaVoluntariado:
         :type voluntario: Voluntario
         :param acao: Objeto ação pretendida.
         :type acao: Acao
-        :return: True se tem competências/ODS partilhados, False caso contrário.
+        :return: True se tem competências/ODS/interesses partilhados, False caso contrário.
         :rtype: bool
         """
         ods_em_comum = voluntario.ods_interesse.intersection(acao.ods_associados)
         comps_voluntario = set(voluntario.competencias.keys())
         comps_acao = set(acao.competencias_desejadas.keys())
         comps_em_comum = comps_voluntario.intersection(comps_acao)
+        interesses_vol = {i.lower() for i in voluntario.interesses}
+        interesse_na_area = acao.area.lower() in interesses_vol
         
-        if ods_em_comum or comps_em_comum:
+        if ods_em_comum or comps_em_comum or interesse_na_area:
             return True
+            
         return False
 
     def adicionar_voluntario_equipa(self, titulo_acao: str, voluntario_nome: str) -> Tuple[bool, str]:
         """
-        Gere a adição de um voluntário à equipa de uma ação (com gravação na Pilha Undo).
+        Gere a adição de um voluntário à equipa de uma ação (com gravação na Pilha).
 
         :param titulo_acao: O título da ação.
         :type titulo_acao: str

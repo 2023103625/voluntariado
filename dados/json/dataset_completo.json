@@ -30,9 +30,9 @@
                 }
             ],
             "interesses": [
-                "ciência",
+                "emprego",
                 "inclusão",
-                "emprego"
+                "ciência"
             ],
             "ods_interesse": []
         },
@@ -70,10 +70,10 @@
                 }
             ],
             "interesses": [
-                "literacia",
-                "internacional",
+                "emprego",
                 "inclusão",
-                "emprego"
+                "internacional",
+                "literacia"
             ],
             "ods_interesse": [
                 10,
@@ -103,8 +103,8 @@
                 }
             ],
             "interesses": [
-                "inclusão",
-                "cidadania"
+                "cidadania",
+                "inclusão"
             ],
             "ods_interesse": [
                 10,
@@ -133,11 +133,11 @@
                 }
             ],
             "interesses": [
-                "tutoria",
                 "mobilidade",
-                "alimentação",
                 "solidariedade",
-                "ambiente"
+                "tutoria",
+                "ambiente",
+                "alimentação"
             ],
             "ods_interesse": [
                 17
@@ -177,10 +177,10 @@
                 }
             ],
             "interesses": [
-                "direitos",
                 "ambiente",
                 "solidariedade",
-                "cultura"
+                "cultura",
+                "direitos"
             ],
             "ods_interesse": [
                 11
@@ -212,12 +212,12 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
-                "direitos",
-                "cidadania",
-                "emprego",
+                "idosos",
                 "solidariedade",
-                "idosos"
+                "emprego",
+                "cidadania",
+                "bem-estar",
+                "direitos"
             ],
             "ods_interesse": [
                 8,
@@ -247,8 +247,8 @@
                 }
             ],
             "interesses": [
-                "direitos",
-                "internacional"
+                "internacional",
+                "direitos"
             ],
             "ods_interesse": [
                 16
@@ -289,11 +289,11 @@
             ],
             "interesses": [
                 "mobilidade",
-                "emprego",
-                "solidariedade",
-                "cultura",
                 "inclusão",
-                "ambiente"
+                "solidariedade",
+                "emprego",
+                "ambiente",
+                "cultura"
             ],
             "ods_interesse": [
                 11,
@@ -335,10 +335,10 @@
                 }
             ],
             "interesses": [
-                "ciência",
-                "bem-estar",
                 "emprego",
-                "criatividade"
+                "bem-estar",
+                "criatividade",
+                "ciência"
             ],
             "ods_interesse": [
                 3
@@ -370,11 +370,11 @@
                 }
             ],
             "interesses": [
-                "direitos",
                 "mobilidade",
+                "criatividade",
                 "saúde",
-                "ambiente",
-                "criatividade"
+                "direitos",
+                "ambiente"
             ],
             "ods_interesse": [
                 9
@@ -414,12 +414,12 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
+                "idosos",
+                "saúde",
                 "tecnologia",
                 "tutoria",
-                "saúde",
-                "alimentação",
-                "idosos"
+                "bem-estar",
+                "alimentação"
             ],
             "ods_interesse": []
         },
@@ -476,10 +476,10 @@
                 }
             ],
             "interesses": [
-                "ciência",
-                "bem-estar",
+                "emprego",
                 "ambiente",
-                "emprego"
+                "bem-estar",
+                "ciência"
             ],
             "ods_interesse": []
         },
@@ -513,8 +513,8 @@
                 }
             ],
             "interesses": [
-                "direitos",
-                "solidariedade"
+                "solidariedade",
+                "direitos"
             ],
             "ods_interesse": []
         },
@@ -540,8 +540,8 @@
                 }
             ],
             "interesses": [
-                "inclusão",
                 "cidadania",
+                "inclusão",
                 "alimentação"
             ],
             "ods_interesse": [
@@ -623,10 +623,10 @@
                 }
             ],
             "interesses": [
+                "solidariedade",
+                "infância",
                 "tecnologia",
                 "cidadania",
-                "infância",
-                "solidariedade",
                 "ambiente"
             ],
             "ods_interesse": [
@@ -655,10 +655,10 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
-                "cultura",
                 "emprego",
-                "criatividade"
+                "bem-estar",
+                "criatividade",
+                "cultura"
             ],
             "ods_interesse": [
                 11
@@ -686,11 +686,11 @@
                 }
             ],
             "interesses": [
-                "saúde",
-                "dados",
-                "cultura",
                 "idosos",
-                "ambiente"
+                "saúde",
+                "ambiente",
+                "dados",
+                "cultura"
             ],
             "ods_interesse": [
                 16,
@@ -725,9 +725,9 @@
             ],
             "interesses": [
                 "idosos",
-                "mobilidade",
                 "literacia",
-                "criatividade"
+                "criatividade",
+                "mobilidade"
             ],
             "ods_interesse": [
                 16,
@@ -761,12 +761,12 @@
                 }
             ],
             "interesses": [
-                "infância",
-                "literacia",
-                "dados",
-                "cultura",
                 "inclusão",
-                "criatividade"
+                "criatividade",
+                "infância",
+                "dados",
+                "literacia",
+                "cultura"
             ],
             "ods_interesse": [
                 16,
@@ -808,11 +808,11 @@
                 }
             ],
             "interesses": [
-                "tecnologia",
                 "infância",
-                "alimentação",
+                "tecnologia",
                 "ciência",
-                "literacia"
+                "literacia",
+                "alimentação"
             ],
             "ods_interesse": [
                 16,
@@ -851,8 +851,8 @@
             ],
             "interesses": [
                 "internacional",
-                "tecnologia",
-                "cultura"
+                "cultura",
+                "tecnologia"
             ],
             "ods_interesse": [
                 10
@@ -884,12 +884,12 @@
                 }
             ],
             "interesses": [
+                "idosos",
+                "inclusão",
                 "direitos",
                 "alimentação",
                 "dados",
-                "cultura",
-                "idosos",
-                "inclusão"
+                "cultura"
             ],
             "ods_interesse": [
                 17,
@@ -931,11 +931,11 @@
                 }
             ],
             "interesses": [
+                "mobilidade",
+                "criatividade",
                 "infância",
                 "tutoria",
-                "mobilidade",
-                "dados",
-                "criatividade"
+                "dados"
             ],
             "ods_interesse": [
                 5
@@ -971,8 +971,8 @@
                 }
             ],
             "interesses": [
-                "literacia",
-                "bem-estar"
+                "bem-estar",
+                "literacia"
             ],
             "ods_interesse": [
                 10,
@@ -1005,12 +1005,12 @@
                 }
             ],
             "interesses": [
+                "solidariedade",
                 "tecnologia",
                 "tutoria",
+                "ambiente",
                 "literacia",
-                "solidariedade",
-                "cultura",
-                "ambiente"
+                "cultura"
             ],
             "ods_interesse": []
         },
@@ -1048,9 +1048,9 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
-                "inclusão",
                 "cidadania",
+                "inclusão",
+                "bem-estar",
                 "criatividade"
             ],
             "ods_interesse": [
@@ -1085,10 +1085,10 @@
                 }
             ],
             "interesses": [
-                "literacia",
                 "emprego",
-                "alimentação",
-                "criatividade"
+                "literacia",
+                "criatividade",
+                "alimentação"
             ],
             "ods_interesse": [
                 16,
@@ -1130,9 +1130,9 @@
                 }
             ],
             "interesses": [
-                "tecnologia",
                 "tutoria",
-                "saúde"
+                "saúde",
+                "tecnologia"
             ],
             "ods_interesse": [
                 17,
@@ -1174,8 +1174,8 @@
             ],
             "interesses": [
                 "dados",
-                "ambiente",
-                "criatividade"
+                "criatividade",
+                "ambiente"
             ],
             "ods_interesse": [
                 4,
@@ -1247,8 +1247,8 @@
                 }
             ],
             "interesses": [
-                "alimentação",
-                "cultura"
+                "cultura",
+                "alimentação"
             ],
             "ods_interesse": [
                 5
@@ -1280,8 +1280,8 @@
                 }
             ],
             "interesses": [
-                "ciência",
-                "cultura"
+                "cultura",
+                "ciência"
             ],
             "ods_interesse": []
         },
@@ -1307,12 +1307,12 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
-                "cidadania",
-                "mobilidade",
-                "internacional",
                 "idosos",
-                "criatividade"
+                "mobilidade",
+                "criatividade",
+                "cidadania",
+                "bem-estar",
+                "internacional"
             ],
             "ods_interesse": [
                 8,
@@ -1426,12 +1426,12 @@
                 }
             ],
             "interesses": [
-                "cidadania",
                 "mobilidade",
+                "inclusão",
                 "emprego",
-                "alimentação",
+                "cidadania",
                 "literacia",
-                "inclusão"
+                "alimentação"
             ],
             "ods_interesse": [
                 17,
@@ -1465,10 +1465,10 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
                 "emprego",
-                "infância",
-                "solidariedade"
+                "solidariedade",
+                "bem-estar",
+                "infância"
             ],
             "ods_interesse": []
         },
@@ -1498,11 +1498,11 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
+                "solidariedade",
                 "tecnologia",
-                "alimentação",
+                "bem-estar",
                 "literacia",
-                "solidariedade"
+                "alimentação"
             ],
             "ods_interesse": [
                 17,
@@ -1540,8 +1540,8 @@
             ],
             "interesses": [
                 "emprego",
-                "ambiente",
-                "solidariedade"
+                "solidariedade",
+                "ambiente"
             ],
             "ods_interesse": [
                 17,
@@ -1583,8 +1583,8 @@
             ],
             "interesses": [
                 "infância",
-                "tutoria",
                 "emprego",
+                "tutoria",
                 "ciência",
                 "ambiente"
             ],
@@ -1624,8 +1624,8 @@
                 }
             ],
             "interesses": [
-                "literacia",
                 "emprego",
+                "literacia",
                 "alimentação"
             ],
             "ods_interesse": [
@@ -1655,11 +1655,11 @@
                 }
             ],
             "interesses": [
-                "cidadania",
+                "idosos",
                 "mobilidade",
-                "emprego",
                 "saúde",
-                "idosos"
+                "emprego",
+                "cidadania"
             ],
             "ods_interesse": []
         },
@@ -1697,12 +1697,12 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
-                "saúde",
-                "ciência",
-                "solidariedade",
                 "idosos",
-                "criatividade"
+                "solidariedade",
+                "criatividade",
+                "saúde",
+                "bem-estar",
+                "ciência"
             ],
             "ods_interesse": [
                 9,
@@ -1766,9 +1766,9 @@
                 }
             ],
             "interesses": [
-                "ciência",
+                "emprego",
                 "direitos",
-                "emprego"
+                "ciência"
             ],
             "ods_interesse": [
                 15
@@ -1808,12 +1808,12 @@
                 }
             ],
             "interesses": [
-                "cidadania",
+                "criatividade",
                 "saúde",
-                "alimentação",
+                "cidadania",
                 "ciência",
-                "cultura",
-                "criatividade"
+                "alimentação",
+                "cultura"
             ],
             "ods_interesse": [
                 16,
@@ -1856,8 +1856,8 @@
             ],
             "interesses": [
                 "idosos",
-                "ambiente",
-                "criatividade"
+                "criatividade",
+                "ambiente"
             ],
             "ods_interesse": [
                 17
@@ -1898,9 +1898,9 @@
             ],
             "interesses": [
                 "emprego",
-                "tecnologia",
                 "bem-estar",
-                "saúde"
+                "saúde",
+                "tecnologia"
             ],
             "ods_interesse": [
                 17,
@@ -1933,8 +1933,8 @@
                 }
             ],
             "interesses": [
-                "ambiente",
-                "infância"
+                "infância",
+                "ambiente"
             ],
             "ods_interesse": [
                 17,
@@ -1971,12 +1971,12 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
+                "inclusão",
                 "saúde",
                 "emprego",
+                "bem-estar",
                 "ciência",
-                "dados",
-                "inclusão"
+                "dados"
             ],
             "ods_interesse": [
                 1,
@@ -2010,9 +2010,9 @@
             ],
             "interesses": [
                 "emprego",
+                "solidariedade",
                 "direitos",
-                "tutoria",
-                "solidariedade"
+                "tutoria"
             ],
             "ods_interesse": []
         },
@@ -2087,12 +2087,12 @@
                 }
             ],
             "interesses": [
-                "emprego",
-                "dados",
-                "solidariedade",
                 "inclusão",
+                "solidariedade",
+                "criatividade",
+                "emprego",
                 "ambiente",
-                "criatividade"
+                "dados"
             ],
             "ods_interesse": [
                 4
@@ -2120,8 +2120,8 @@
                 }
             ],
             "interesses": [
-                "direitos",
                 "ambiente",
+                "direitos",
                 "saúde"
             ],
             "ods_interesse": [
@@ -2150,12 +2150,12 @@
                 }
             ],
             "interesses": [
+                "inclusão",
+                "emprego",
+                "cidadania",
                 "bem-estar",
                 "direitos",
-                "cidadania",
-                "emprego",
-                "alimentação",
-                "inclusão"
+                "alimentação"
             ],
             "ods_interesse": []
         },
@@ -2181,11 +2181,11 @@
                 }
             ],
             "interesses": [
-                "bem-estar",
+                "idosos",
                 "tecnologia",
                 "cidadania",
-                "internacional",
-                "idosos"
+                "bem-estar",
+                "internacional"
             ],
             "ods_interesse": [
                 1,
@@ -2261,8 +2261,8 @@
                 }
             ],
             "interesses": [
-                "ciência",
-                "criatividade"
+                "criatividade",
+                "ciência"
             ],
             "ods_interesse": []
         },
@@ -2288,8 +2288,8 @@
                 }
             ],
             "interesses": [
-                "informática",
-                "solidariedade"
+                "solidariedade",
+                "informática"
             ],
             "ods_interesse": [
                 3,
@@ -2361,10 +2361,10 @@
             "localizacao": "Campus da Asprela",
             "url": "https://voluntariado.universidade.pt/nes",
             "tags": [
-                "tecnologia",
                 "cidadania",
                 "tutoria",
-                "solidariedade"
+                "solidariedade",
+                "tecnologia"
             ],
             "ods_principais": [
                 {
@@ -2386,10 +2386,10 @@
             "localizacao": "Campus do Campo Alegre",
             "url": "https://voluntariado.universidade.pt/aav",
             "tags": [
-                "ciência",
+                "mobilidade",
                 "reciclagem",
                 "ambiente",
-                "mobilidade"
+                "ciência"
             ],
             "ods_principais": [
                 {
@@ -2415,8 +2415,8 @@
             "url": "https://sas.universidade.pt",
             "tags": [
                 "apoio social",
-                "bem-estar",
                 "inclusão",
+                "bem-estar",
                 "alimentação"
             ],
             "ods_principais": [
@@ -2442,10 +2442,10 @@
             "localizacao": "Campus da Asprela",
             "url": "https://saude.universidade.pt",
             "tags": [
+                "campanhas",
                 "bem-estar",
                 "prevenção",
-                "saúde",
-                "campanhas"
+                "saúde"
             ],
             "ods_principais": [
                 {
@@ -2469,8 +2469,8 @@
             "tags": [
                 "idosos",
                 "inclusão",
-                "literacia",
-                "solidariedade"
+                "solidariedade",
+                "literacia"
             ],
             "ods_principais": [
                 {
@@ -2495,10 +2495,10 @@
             "localizacao": "Matosinhos",
             "url": "https://marlimpo.pt",
             "tags": [
-                "ambiente",
-                "limpeza",
+                "mar",
                 "voluntariado",
-                "mar"
+                "limpeza",
+                "ambiente"
             ],
             "ods_principais": [
                 {
@@ -2520,10 +2520,10 @@
             "localizacao": "Campo Alegre",
             "url": "https://fciencias.universidade.pt",
             "tags": [
-                "ciência",
-                "escolas",
+                "oficinas",
                 "divulgação",
-                "oficinas"
+                "escolas",
+                "ciência"
             ],
             "ods_principais": [
                 {
@@ -2546,9 +2546,9 @@
             "url": "https://fengenharia.universidade.pt",
             "tags": [
                 "robótica",
-                "tecnologia",
                 "dados",
-                "inovação"
+                "inovação",
+                "tecnologia"
             ],
             "ods_principais": [
                 {
@@ -2574,8 +2574,8 @@
             "url": "https://biblioteca.universidade.pt",
             "tags": [
                 "comunidade",
-                "cultura",
                 "literacia",
+                "cultura",
                 "livros"
             ],
             "ods_principais": [
@@ -2598,10 +2598,10 @@
             "localizacao": "Campus da Justiça",
             "url": "https://direito.universidade.pt/clinica",
             "tags": [
-                "direitos",
-                "apoio",
+                "cidadania",
                 "migração",
-                "cidadania"
+                "apoio",
+                "direitos"
             ],
             "ods_principais": [
                 {
@@ -2625,8 +2625,8 @@
             "tags": [
                 "cultura",
                 "intergeracional",
-                "arte",
-                "memória"
+                "memória",
+                "arte"
             ],
             "ods_principais": [
                 {
@@ -2651,10 +2651,10 @@
             "localizacao": "Parque de Ciência",
             "url": "https://cienciacidada.pt",
             "tags": [
-                "ciência",
-                "dados",
                 "participação",
-                "ambiente"
+                "ambiente",
+                "dados",
+                "ciência"
             ],
             "ods_principais": [
                 {
@@ -2679,10 +2679,10 @@
             "localizacao": "Asprela",
             "url": "https://semfome.universidade.pt",
             "tags": [
+                "recolha",
                 "comunidade",
-                "alimentação",
                 "solidariedade",
-                "recolha"
+                "alimentação"
             ],
             "ods_principais": [
                 {
@@ -2710,10 +2710,10 @@
             "localizacao": "Online",
             "url": "https://alumni.universidade.pt/mentores",
             "tags": [
-                "caloiros",
-                "mentoria",
                 "emprego",
-                "internacional"
+                "internacional",
+                "mentoria",
+                "caloiros"
             ],
             "ods_principais": [
                 {
@@ -2738,10 +2738,10 @@
             "localizacao": "Ribeira Quente",
             "url": "https://maresvivas.com/",
             "tags": [
-                "comunidade",
-                "participação",
                 "ambiente",
-                "solidariedade"
+                "comunidade",
+                "solidariedade",
+                "participação"
             ],
             "ods_principais": [
                 {
@@ -2826,8 +2826,8 @@
             "localizacao": "Ponta Delgada",
             "url": "https://portal.azores.gov.pt/web/drh",
             "tags": [
-                "Habitação Digna",
-                "Apoios à Habitação"
+                "Apoios à Habitação",
+                "Habitação Digna"
             ],
             "ods_principais": [
                 {
@@ -3067,84 +3067,84 @@
                 }
             ],
             "equipa": [
-                "Vasco Lopes",
                 "Ana Xavier",
                 "Francisco Moreira",
-                "Francisco Ramos",
                 "Bruno Dias",
-                "Joana Teixeira"
+                "Francisco Ramos",
+                "Joana Teixeira",
+                "Vasco Lopes"
             ],
             "historico_equipa": [
                 {
                     "estado_anterior": [
-                        "Francisco Ramos",
-                        "Bruno Dias",
-                        "Vasco Lopes",
                         "Ana Xavier",
-                        "Joana Teixeira"
+                        "Bruno Dias",
+                        "Francisco Ramos",
+                        "Joana Teixeira",
+                        "Vasco Lopes"
                     ],
                     "estado_novo": [
-                        "Francisco Moreira",
-                        "Francisco Ramos",
-                        "Bruno Dias",
-                        "Vasco Lopes",
                         "Ana Xavier",
-                        "Joana Teixeira"
+                        "Francisco Moreira",
+                        "Bruno Dias",
+                        "Francisco Ramos",
+                        "Joana Teixeira",
+                        "Vasco Lopes"
                     ],
                     "data_hora": "2026-05-07 21:05:45",
                     "tipo": "Adição: Francisco Moreira"
                 },
                 {
                     "estado_anterior": [
-                        "Vasco Lopes",
                         "Ana Xavier",
                         "Leonor Dias",
-                        "Francisco Ramos",
                         "Bruno Dias",
-                        "Joana Teixeira"
+                        "Francisco Ramos",
+                        "Joana Teixeira",
+                        "Vasco Lopes"
                     ],
                     "estado_novo": [
-                        "Vasco Lopes",
                         "Ana Xavier",
-                        "Francisco Ramos",
                         "Bruno Dias",
-                        "Joana Teixeira"
+                        "Francisco Ramos",
+                        "Joana Teixeira",
+                        "Vasco Lopes"
                     ],
                     "data_hora": "2026-05-06 18:08:15",
                     "tipo": "Remoção: Leonor Dias"
                 },
                 {
                     "estado_anterior": [
-                        "Vasco Lopes",
                         "Ana Xavier",
                         "Leonor Dias",
+                        "Bruno Dias",
                         "Francisco Ramos",
-                        "Bruno Dias"
+                        "Vasco Lopes"
                     ],
                     "estado_novo": [
-                        "Vasco Lopes",
                         "Ana Xavier",
                         "Leonor Dias",
-                        "Francisco Ramos",
                         "Bruno Dias",
-                        "Joana Teixeira"
+                        "Francisco Ramos",
+                        "Joana Teixeira",
+                        "Vasco Lopes"
                     ],
                     "data_hora": "2026-05-06 17:55:45",
                     "tipo": "Adição: Joana Teixeira"
                 },
                 {
                     "estado_anterior": [
+                        "Leonor Dias",
                         "Bruno Dias",
                         "Ana Xavier",
-                        "Leonor Dias",
                         "Francisco Ramos"
                     ],
                     "estado_novo": [
-                        "Vasco Lopes",
                         "Ana Xavier",
                         "Leonor Dias",
+                        "Bruno Dias",
                         "Francisco Ramos",
-                        "Bruno Dias"
+                        "Vasco Lopes"
                     ],
                     "data_hora": "2026-05-06 17:39:10",
                     "tipo": "Adição de voluntário à equipa"
@@ -3156,9 +3156,9 @@
                         "Francisco Ramos"
                     ],
                     "estado_novo": [
+                        "Leonor Dias",
                         "Bruno Dias",
                         "Ana Xavier",
-                        "Leonor Dias",
                         "Francisco Ramos"
                     ],
                     "data_hora": "2026-05-06 17:38:54",
@@ -3433,8 +3433,61 @@
                     "ods_id": 4
                 }
             ],
-            "equipa": [],
-            "historico_equipa": []
+            "equipa": [
+                "Daniel Gomes",
+                "Joana Teixeira",
+                "Marta Nogueira",
+                "Salomé Gomes"
+            ],
+            "historico_equipa": [
+                {
+                    "estado_anterior": [
+                        "Daniel Gomes",
+                        "Joana Teixeira",
+                        "Marta Nogueira"
+                    ],
+                    "estado_novo": [
+                        "Daniel Gomes",
+                        "Joana Teixeira",
+                        "Marta Nogueira",
+                        "Salomé Gomes"
+                    ],
+                    "data_hora": "2026-05-09 20:58:30",
+                    "tipo": "Adição: Salomé Gomes"
+                },
+                {
+                    "estado_anterior": [
+                        "Daniel Gomes",
+                        "Marta Nogueira"
+                    ],
+                    "estado_novo": [
+                        "Daniel Gomes",
+                        "Joana Teixeira",
+                        "Marta Nogueira"
+                    ],
+                    "data_hora": "2026-05-09 20:58:15",
+                    "tipo": "Adição: Joana Teixeira"
+                },
+                {
+                    "estado_anterior": [
+                        "Marta Nogueira"
+                    ],
+                    "estado_novo": [
+                        "Daniel Gomes",
+                        "Marta Nogueira"
+                    ],
+                    "data_hora": "2026-05-09 20:57:59",
+                    "tipo": "Adição: Daniel Gomes"
+                },
+                {
+                    "estado_anterior": [],
+                    "estado_novo": [
+                        "Marta Nogueira"
+                    ],
+                    "data_hora": "2026-05-09 20:57:39",
+                    "tipo": "Adição: Marta Nogueira"
+                }
+            ]
         },
         {
             "acao_id": "A014",

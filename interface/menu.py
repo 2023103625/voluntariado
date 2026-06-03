@@ -1017,7 +1017,7 @@ class MenuTerminal:
 
                 while True:
                     print(f"\n--- AVALIAÇÃO DE PERFIS: {acao.titulo.upper()} ---")
-                    cabecalhos = ["Nome", "Apto?", "ODS Partilhados", "Competências Partilhadas"]
+                    cabecalhos = ["Nome", "Apto?", "ODS Partilhados", "Competências Partilhadas", "Interesse na Área"]
                     dados = []
                     
                     for v in self.sistema.voluntarios.values():
@@ -1026,17 +1026,21 @@ class MenuTerminal:
                             
                         ods_comum = v.ods_interesse.intersection(acao.ods_associados)
                         comps_comum = set(v.competencias.keys()).intersection(set(acao.competencias_desejadas.keys()))
+                        interesses_vol = {i.lower() for i in v.interesses}
+                        interesse_na_area = acao.area.lower() in interesses_vol
                         
-                        apto = bool(ods_comum or comps_comum)
+                        # Está apto se tiver pelo menos um critério em comum (ODS, Competências ou Interesse na área)
+                        apto = bool(ods_comum or comps_comum or interesse_na_area)
                         nomes_ods_comum = [mapa_ods.get(o, f"ODS {o}") for o in ods_comum]
                         
                         ods_str = ", ".join(nomes_ods_comum) if nomes_ods_comum else "-"
                         comps_str = ", ".join(comps_comum) if comps_comum else "-"
+                        ints_str = acao.area.title() if interesse_na_area else "-"
                         
                         if apto:
-                            dados.append([v.nome, "SIM", ods_str, comps_str])
+                            dados.append([v.nome, "SIM", ods_str, comps_str, ints_str])
                         else:
-                            dados.append([v.nome, "NÃO", "-", "-"])
+                            dados.append([v.nome, "NÃO", "-", "-", "-"])
                             
                     self._imprimir_tabela(cabecalhos, dados)
                     

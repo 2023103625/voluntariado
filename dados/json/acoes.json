@@ -223,84 +223,84 @@
             }
         ],
         "equipa": [
-            "Vasco Lopes",
             "Ana Xavier",
             "Francisco Moreira",
-            "Francisco Ramos",
             "Bruno Dias",
-            "Joana Teixeira"
+            "Francisco Ramos",
+            "Joana Teixeira",
+            "Vasco Lopes"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
-                    "Francisco Ramos",
-                    "Bruno Dias",
-                    "Vasco Lopes",
                     "Ana Xavier",
-                    "Joana Teixeira"
+                    "Bruno Dias",
+                    "Francisco Ramos",
+                    "Joana Teixeira",
+                    "Vasco Lopes"
                 ],
                 "estado_novo": [
-                    "Francisco Moreira",
-                    "Francisco Ramos",
-                    "Bruno Dias",
-                    "Vasco Lopes",
                     "Ana Xavier",
-                    "Joana Teixeira"
+                    "Francisco Moreira",
+                    "Bruno Dias",
+                    "Francisco Ramos",
+                    "Joana Teixeira",
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-07 21:05:45",
                 "tipo": "Adição: Francisco Moreira"
             },
             {
                 "estado_anterior": [
-                    "Vasco Lopes",
                     "Ana Xavier",
                     "Leonor Dias",
-                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Joana Teixeira"
+                    "Francisco Ramos",
+                    "Joana Teixeira",
+                    "Vasco Lopes"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
                     "Ana Xavier",
-                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Joana Teixeira"
+                    "Francisco Ramos",
+                    "Joana Teixeira",
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-06 18:08:15",
                 "tipo": "Remoção: Leonor Dias"
             },
             {
                 "estado_anterior": [
-                    "Vasco Lopes",
                     "Ana Xavier",
                     "Leonor Dias",
+                    "Bruno Dias",
                     "Francisco Ramos",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
                     "Ana Xavier",
                     "Leonor Dias",
-                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Joana Teixeira"
+                    "Francisco Ramos",
+                    "Joana Teixeira",
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-06 17:55:45",
                 "tipo": "Adição: Joana Teixeira"
             },
             {
                 "estado_anterior": [
+                    "Leonor Dias",
                     "Bruno Dias",
                     "Ana Xavier",
-                    "Leonor Dias",
                     "Francisco Ramos"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
                     "Ana Xavier",
                     "Leonor Dias",
+                    "Bruno Dias",
                     "Francisco Ramos",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-06 17:39:10",
                 "tipo": "Adição de voluntário à equipa"
@@ -312,9 +312,9 @@
                     "Francisco Ramos"
                 ],
                 "estado_novo": [
+                    "Leonor Dias",
                     "Bruno Dias",
                     "Ana Xavier",
-                    "Leonor Dias",
                     "Francisco Ramos"
                 ],
                 "data_hora": "2026-05-06 17:38:54",
@@ -589,8 +589,61 @@
                 "ods_id": 4
             }
         ],
-        "equipa": [],
-        "historico_equipa": []
+        "equipa": [
+            "Daniel Gomes",
+            "Joana Teixeira",
+            "Marta Nogueira",
+            "Salomé Gomes"
+        ],
+        "historico_equipa": [
+            {
+                "estado_anterior": [
+                    "Daniel Gomes",
+                    "Joana Teixeira",
+                    "Marta Nogueira"
+                ],
+                "estado_novo": [
+                    "Daniel Gomes",
+                    "Joana Teixeira",
+                    "Marta Nogueira",
+                    "Salomé Gomes"
+                ],
+                "data_hora": "2026-05-09 20:58:30",
+                "tipo": "Adição: Salomé Gomes"
+            },
+            {
+                "estado_anterior": [
+                    "Daniel Gomes",
+                    "Marta Nogueira"
+                ],
+                "estado_novo": [
+                    "Daniel Gomes",
+                    "Joana Teixeira",
+                    "Marta Nogueira"
+                ],
+                "data_hora": "2026-05-09 20:58:15",
+                "tipo": "Adição: Joana Teixeira"
+            },
+            {
+                "estado_anterior": [
+                    "Marta Nogueira"
+                ],
+                "estado_novo": [
+                    "Daniel Gomes",
+                    "Marta Nogueira"
+                ],
+                "data_hora": "2026-05-09 20:57:59",
+                "tipo": "Adição: Daniel Gomes"
+            },
+            {
+                "estado_anterior": [],
+                "estado_novo": [
+                    "Marta Nogueira"
+                ],
+                "data_hora": "2026-05-09 20:57:39",
+                "tipo": "Adição: Marta Nogueira"
+            }
+        ]
     },
     {
         "acao_id": "A014",

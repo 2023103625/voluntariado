@@ -18,15 +18,15 @@ class NoBST:
 
     :param chave: O valor numérico que define a posição na árvore.
     :type chave: float
-    :param valor: O objeto inicial (ex: Acao) a guardar neste nó.
+    :param valor: O objeto inicial a guardar neste nó.
     :type valor: Any
     """
 
     def __init__(self, chave: float, valor: Any) -> None:
         """Inicializa um novo nó da árvore."""
         self.chave: float = chave
-        # Usamos uma lista para os valores. Se duas ações tiverem 
-        # exatamente a mesma métrica de impacto, ficam no mesmo nó.
+        # Optei por uma Lista em vez de um Dicionário porque o objetivo desta coleção é manter um pequeno número de colisões ordenadas para critério de desempate. 
+        # A Lista oferece a ordenação nativa (Timsort) de forma mais eficiente e com menor consumo de memória do que uma Hash Table (Dicionário).
         self.valores: List[Any] = [valor]
         self.esquerda: Optional['NoBST'] = None
         self.direita: Optional['NoBST'] = None
