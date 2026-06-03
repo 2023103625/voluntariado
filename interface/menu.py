@@ -97,9 +97,6 @@ class MenuTerminal:
     def mostrar_menu_principal(self) -> None:
         """
         Mostra o menu principal e processa opções até o utilizador decidir sair.
-
-        :return: Nada.
-        :rtype: None
         """
         while True:
             self._imprimir_titulo("SISTEMA DE VOLUNTARIADO UNIVERSITÁRIO (AED)")
@@ -113,28 +110,22 @@ class MenuTerminal:
                     "6. Formação de Equipas (RF06)",
                     "7. Consulta de Ações por Impacto (RF07)",
                     "8. Priorizar Candidaturas (Max-Heap - RF08)",
+                    "9. Gestão da Rede de Entidades (Grafos - RF14 a RF16)",
                     "0. Guardar e Sair",
                 ]
             )
 
             opcao = input("Escolha uma opção: ").strip()
 
-            if opcao == "1":
-                self.menu_gestao_geral()
-            elif opcao == "2":
-                self.menu_inscricoes()
-            elif opcao == "3":
-                self.menu_pesquisas()
-            elif opcao == "4":
-                self.menu_dashboards()
-            elif opcao == "5":
-                self.menu_exportar_relatorios()  
-            elif opcao == "6":
-                self.menu_equipas()
-            elif opcao == "7":
-                self.menu_impacto()
-            elif opcao == "8":
-                self.menu_priorizacao()
+            if opcao == "1": self.menu_gestao_geral()
+            elif opcao == "2": self.menu_inscricoes()
+            elif opcao == "3": self.menu_pesquisas()
+            elif opcao == "4": self.menu_dashboards()
+            elif opcao == "5": self.menu_exportar_relatorios()  
+            elif opcao == "6": self.menu_equipas()
+            elif opcao == "7": self.menu_impacto()
+            elif opcao == "8": self.menu_priorizacao()
+            elif opcao == "9": self.menu_rede_entidades()
             elif opcao == "0":
                 print("\nA guardar os dados e a fechar o sistema. Até logo!")
                 break
@@ -702,36 +693,43 @@ class MenuTerminal:
                 self.sistema.remover_entidade(nome)
 
     def menu_crud_acoes(self) -> None:
-        """
-        Gere as operações de Criação, Leitura, Atualização e Remoção de Ações.
-
-        :return: Nada.
-        :rtype: None
-        """
+        """Gere as operações de Criação, Leitura, Atualização e Remoção de Ações."""
         self._imprimir_titulo("AÇÕES")
-        self._imprimir_opcoes(
-            ["1. Adicionar", "2. Consultar", "3. Atualizar Dados", "4. Remover", "0. Voltar"]
-        )
+        self._imprimir_opcoes(["1. Adicionar", "2. Consultar", "3. Atualizar Dados", "4. Remover", "0. Voltar"])
         op = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4"])
 
         if op == "1":
             tit = ler_texto_obrigatorio("Título (ou '0' para cancelar): ")
             if tit == "0": return
             
-            print("Entidades existentes:")
+            print("\nEntidades registadas no sistema:")
             for e in self.sistema.entidades.values():
                 print(f"- {e.nome}")
                 
-            ent = ler_texto_obrigatorio("Entidade Promotora (ou '0' para cancelar): ")
-            if ent == "0": return
+            entidades_parceiras = []
+            print("\nIndique as Entidades Parceiras (pressione ENTER com o campo vazio para terminar):")
+            while True:
+                ent = input(f"Entidade {len(entidades_parceiras) + 1} (ou '0' para cancelar): ").strip()
+                if ent == "0": return
+                if not ent:
+                    if len(entidades_parceiras) >= 1: break
+                    print("A ação exige pelo menos uma entidade promotora!")
+                    continue
+                    
+                if self.sistema.consultar_entidade(ent):
+                    if ent not in entidades_parceiras:
+                        entidades_parceiras.append(ent)
+                        print(f"'{ent}' associada à ação.")
+                    else:
+                        print("Entidade já adicionada.")
+                else:
+                    print("Entidade não existe no sistema. Valide o nome e tente novamente.")
             
             area = ler_texto_obrigatorio("Área da ação (ou '0' para cancelar): ")
             if area == "0": return
             
             data = ler_data_hora_iso_ou_vazio("Data/Hora (YYYY-MM-DD HH:MM) ou ENTER para cancelar: ")
-            if not data:
-                print("Operação cancelada.")
-                return
+            if not data: return
 
             dur_str = input("Duração em horas (ou '0' para cancelar): ").strip()
             if dur_str == "0": return
@@ -741,29 +739,22 @@ class MenuTerminal:
             if vag_str == "-1": return
             vag = int(vag_str) if vag_str.lstrip('-').isdigit() else 0
             
-            loc = ler_opcao(
-                "Localização (campus/externo/online) ou '0' para cancelar: ",
-                ["campus", "externo", "online", "0"],
-            )
+            loc = ler_opcao("Localização (campus/externo/online) ou '0' para cancelar: ", ["campus", "externo", "online", "0"])
             if loc == "0": return
             
-            estado = ler_opcao(
-                "Estado (planeada/concluída/cancelada) ou '0' para cancelar: ",
-                ["planeada", "concluída", "cancelada", "0"],
-            )
+            estado = ler_opcao("Estado (planeada/concluída/cancelada) ou '0' para cancelar: ", ["planeada", "concluída", "cancelada", "0"])
             if estado == "0": return
             
             imp_str = input("Métrica impacto (0-100) ou '-1' para cancelar: ").strip()
             if imp_str == "-1": return
             impacto = float(imp_str) if imp_str.replace('.', '', 1).isdigit() else 0.0
 
-            acao = Acao(tit, ent, data, dur, vag, loc, area)
+            acao = Acao(tit, entidades_parceiras, data, dur, vag, loc, area)
             acao.estado = estado
             acao.metrica_impacto = impacto
 
             if not self._ler_competencias_acao(acao): return
             if not self._ler_ods_acao(acao): return
-            
             self.sistema.adicionar_acao(acao)
 
         elif op == "2":
@@ -784,10 +775,11 @@ class MenuTerminal:
                 cabecalhos_detalhes = ["Campo", "Detalhe"]
                 ods_str = ", ".join(str(o) for o in acao_encontrada.ods_associados) if acao_encontrada.ods_associados else "Nenhum"
                 comps_str = ", ".join(f"{c} (Nível {n})" for c, n in acao_encontrada.competencias_desejadas.items()) if acao_encontrada.competencias_desejadas else "Nenhuma"
+                entidades_str = ", ".join(acao_encontrada.entidades) if acao_encontrada.entidades else "Nenhuma"
                 
                 dados_detalhes = [
                     ["Título", acao_encontrada.titulo],
-                    ["Entidade Promotora", acao_encontrada.entidade],
+                    ["Entidade(s) Promotora(s)", entidades_str],
                     ["Área Temática", acao_encontrada.area],
                     ["Data e Hora", acao_encontrada.data_hora],
                     ["Duração", f"{acao_encontrada.duracao} horas"],
@@ -801,12 +793,12 @@ class MenuTerminal:
                 
                 self._imprimir_tabela(cabecalhos_detalhes, dados_detalhes)
             else:
-                print("\nAção não encontrada. Verifique se escreveu o título corretamente.")
+                print("\nAção não encontrada.")
 
         elif op == "3":
             self._imprimir_tabela(
-                ["acao_id","titulo","entidade_id","entidade_nome","area","data_hora","duracao_horas","localizacao","vagas","estado","metrica_impacto"], 
-                [[getattr(a,"acao_id",""), getattr(a,"titulo",""), getattr(a,"entidade_id",""), a.entidade, a.area, a.data_hora, a.duracao, a.localizacao, a.vagas, a.estado, a.metrica_impacto] for a in self.sistema.acoes.values()]
+                ["titulo", "entidades", "area", "data_hora", "vagas", "estado"], 
+                [[a.titulo, ", ".join(a.entidades)[:20]+"...", a.area, a.data_hora, a.vagas, a.estado] for a in self.sistema.acoes.values()]
             )
             tit = ler_texto_obrigatorio("Título a atualizar (ou '0' para cancelar): ")
             if tit == "0": return
@@ -818,53 +810,59 @@ class MenuTerminal:
             
             print(f"\n--- ATUALIZAR DADOS BASE ---")
             novos = {}
-            for campo, label in [("titulo","Título"),("entidade","Entidade"),("area","Área"),("data_hora","Data/Hora"),("localizacao","Localização"),("estado","Estado")]:
+            for campo, label in [("titulo","Título"), ("area","Área"), ("data_hora","Data/Hora"), ("localizacao","Localização"), ("estado","Estado")]:
                 val = input(f"{label} atual ({getattr(acao, campo)}) -> Novo (ENTER mantém, '0' cancela): ").strip()
                 if val == "0": return
                 if val: novos[campo] = val
                 
-            for campo, label in [("duracao","Duração horas"),("vagas","Vagas"),("metrica_impacto","Métrica impacto")]:
+            for campo, label in [("duracao","Duração horas"), ("vagas","Vagas"), ("metrica_impacto","Métrica impacto")]:
                 val = input(f"{label} atual ({getattr(acao, campo)}) -> Novo (ENTER mantém, '0' cancela): ").strip()
                 if val == "0": return
                 if val: novos[campo] = int(val) if campo != "metrica_impacto" else float(val)
                 
             self.sistema.atualizar_acao_completo(tit, novos)
 
-            print("\n--- ATUALIZAR PERFIL (COMPETÊNCIAS E ODS) ---")
+            print("\n--- ATUALIZAR PERFIL (ENTIDADES, COMPETÊNCIAS E ODS) ---")
+            print(f"Entidades parceiras atuais: {', '.join(acao.entidades)}")
+            if ler_opcao("Deseja redefinir as Entidades? (S/N): ", ["S", "N"]).upper() == "S":
+                entidades_backup = set(acao.entidades)
+                acao.entidades.clear()
+                while True:
+                    ent = input("Entidade parceira (ENTER para terminar, '0' cancela): ").strip()
+                    if ent == "0":
+                        acao.entidades = entidades_backup
+                        print("Operação abortada. Entidades antigas restauradas.")
+                        return
+                    if not ent:
+                        if len(acao.entidades) >= 1: break
+                        print("Precisa de pelo menos uma entidade!")
+                        continue
+                    if self.sistema.consultar_entidade(ent):
+                        acao.entidades.add(ent)
+                    else:
+                        print("Entidade não existe no sistema.")
+
             print(f"Competências atuais: {acao.competencias_desejadas}")
             if ler_opcao("Deseja redefinir as Competências Desejadas? (S/N): ", ["S", "N"]).upper() == "S":
-                bkp_comp_acao = dict(acao.competencias_desejadas)
+                bkp_comp = dict(acao.competencias_desejadas)
                 acao.competencias_desejadas.clear()
                 if not self._ler_competencias_acao(acao):
-                    acao.competencias_desejadas = bkp_comp_acao
-                    print("\nOperação abortada. Dados antigos restaurados.")
+                    acao.competencias_desejadas = bkp_comp
                     return
                 
             print(f"\nODS atuais: {acao.ods_associados}")
             if ler_opcao("Deseja redefinir os ODS Associados? (S/N): ", ["S", "N"]).upper() == "S":
-                bkp_ods_acao = set(acao.ods_associados)
+                bkp_ods = set(acao.ods_associados)
                 acao.ods_associados.clear()
                 if not self._ler_ods_acao(acao):
-                    acao.ods_associados = bkp_ods_acao
-                    print("\nOperação abortada. Dados antigos restaurados.")
+                    acao.ods_associados = bkp_ods
                     return
                     
             print("\n[SUCESSO] Registo da ação totalmente atualizado!")
 
         elif op == "4":
-            self._imprimir_tabela(
-                ["acao_id","titulo","entidade_id","entidade_nome","area","data_hora","duracao_horas","localizacao","vagas","estado","metrica_impacto"], 
-                [[getattr(a,"acao_id",""), getattr(a,"titulo",""), getattr(a,"entidade_id",""), a.entidade, a.area, a.data_hora, a.duracao, a.localizacao, a.vagas, a.estado, a.metrica_impacto] for a in self.sistema.acoes.values()]
-            )
             tit = ler_texto_obrigatorio("Título a remover (ou '0' para cancelar): ")
             if tit == "0": return
-
-            acao = self.sistema.consultar_acao(tit)
-            if not acao:
-                print("Ação não encontrada.")
-                return
-                
-            print(f"A remover: {acao.__dict__}")
             if ler_opcao("Confirma remoção? (S/N): ", ["S", "N"]) == "S":
                 self.sistema.remover_acao(tit)
 
@@ -1248,3 +1246,115 @@ class MenuTerminal:
             print(f"\nO candidato mais adequado é '{top_inscricao.voluntario}' com {top_pontos} pontos!")
             
             input("\nPrima ENTER para continuar.")
+    
+
+    # =========================================================
+    # MENU REDE DE ENTIDADES (GRAFOS - RF14, 15, 16)
+    # =========================================================
+
+    def menu_rede_entidades(self) -> None:
+        """
+        Menu dedicado à gestão e visualização da Rede de Entidades via Grafos.
+        Cobre os requisitos RF14 (Gestão), RF15 (Caminho/Centralidade) e RF16 (Visualização).
+        """
+        # Sincroniza o grafo com as ações logo à entrada do menu
+        self.sistema.reconstruir_rede_entidades()
+
+        while True:
+            self._imprimir_titulo("REDE DE ENTIDADES (GRAFOS)")
+            self._imprimir_opcoes(
+                [
+                    "1. Consultar Ligações da Rede (Sincronizadas por Ações)",
+                    "2. Adicionar/Remover Local Manual na Rede",
+                    "3. Adicionar/Remover Ligação Manual (Aresta)",
+                    "4. Calcular Caminho Mais Curto entre Entidades (RF15)",
+                    "5. Ver Ranking de Centralidade de Proximidade (RF15)",
+                    "6. Visualizar Grafo Graficamente (NetworkX - RF16)",
+                    "0. Voltar",
+                ]
+            )
+            op = ler_opcao("Escolha uma opção: ", ["0", "1", "2", "3", "4", "5", "6"])
+
+            grafo = self.sistema.rede_entidades
+
+            if op == "0":
+                break
+
+            elif op == "1":
+                print("\n--- MATRIZ DE LIGAÇÕES DA REDE ---")
+                dados = []
+                for no, vizinhos in grafo.adjacencias.items():
+                    conexoes = [f"{viz} (peso {p})" for viz, p in vizinhos.items()]
+                    dados.append([no.title(), ", ".join(conexoes) if conexoes else "Isolada"])
+                
+                self._imprimir_tabela(["Entidade (Nó)", "Ligações (Arestas e Pesos)"], dados)
+                input("\nPrima ENTER para continuar.")
+
+            elif op == "2":
+                sub_op = ler_opcao("Pretende Adicionar (A) ou Remover (R) um nó? (ou '0' para cancelar): ", ["A", "R", "0"]).upper()
+                if sub_op == "0": continue
+                
+                nome = input("Nome do local/entidade: ").strip()
+                if sub_op == "A":
+                    if grafo.adicionar_entidade(nome.lower()):
+                        print(f"[SUCESSO] O nó '{nome}' foi adicionado à rede.")
+                    else:
+                        print(f"[ERRO] O nó '{nome}' já existe.")
+                elif sub_op == "R":
+                    if grafo.remover_entidade(nome.lower()):
+                        print(f"[SUCESSO] O nó '{nome}' e as suas arestas foram removidas.")
+                    else:
+                        print(f"[ERRO] O nó '{nome}' não foi encontrado.")
+
+            elif op == "3":
+                sub_op = ler_opcao("Pretende Adicionar (A) ou Remover (R) uma ligação? (ou '0' para cancelar): ", ["A", "R", "0"]).upper()
+                if sub_op == "0": continue
+                
+                ent1 = input("Nome da Entidade 1: ").strip().lower()
+                ent2 = input("Nome da Entidade 2: ").strip().lower()
+                
+                if sub_op == "A":
+                    peso_str = input("Peso da ligação (ex: nº de ações em comum): ").strip()
+                    peso = int(peso_str) if peso_str.isdigit() else 1
+                    if grafo.adicionar_ligacao(ent1, ent2, peso):
+                        print(f"[SUCESSO] Ligação criada entre '{ent1}' e '{ent2}' com peso {peso}.")
+                    else:
+                        print(f"[ERRO] Falha ao criar. Verifique se ambos os nós existem.")
+                elif sub_op == "R":
+                    if grafo.remover_ligacao(ent1, ent2):
+                        print(f"[SUCESSO] Ligação removida entre '{ent1}' e '{ent2}'.")
+                    else:
+                        print(f"[ERRO] Não existe ligação entre os nós ou os nós não existem.")
+
+            elif op == "4":
+                print("\n--- DESCOBRIR CAMINHO MAIS CURTO (BFS) ---")
+                origem = input("Entidade de Origem: ").strip()
+                destino = input("Entidade de Destino: ").strip()
+                
+                caminho = self.sistema.pesquisar_caminho_curto_entidades(origem, destino)
+                
+                if caminho:
+                    passos = " -> ".join([no.title() for no in caminho])
+                    print(f"\n[SUCESSO] Caminho encontrado! ({len(caminho)-1} saltos)")
+                    print(f"Trajeto: {passos}")
+                else:
+                    print("\n[AVISO] Não foi encontrado nenhum caminho possível entre essas entidades.")
+                
+                input("\nPrima ENTER para continuar.")
+
+            elif op == "5":
+                print("\n--- RANKING DE CENTRALIDADE (PROXIMIDADE) ---")
+                centralidades = self.sistema.calcular_centralidade_rede()
+                
+                if not centralidades:
+                    print("Rede vazia.")
+                    continue
+                    
+                dados = [[f"{i+1}º", ent, f"{cent:.4f}"] for i, (ent, cent) in enumerate(centralidades)]
+                self._imprimir_tabela(["Posição", "Entidade", "Grau de Proximidade (Inverso Dist.)"], dados)
+                input("\nPrima ENTER para continuar.")
+
+            elif op == "6":
+                print("\n[A INICIAR O MOTOR NETWORKX E MATPLOTLIB...]")
+                print("Por favor verifique se a janela do gráfico abriu (pode estar minimizada).")
+                self.sistema.visualizar_rede_parceiros()

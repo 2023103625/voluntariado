@@ -10,6 +10,7 @@ requisitos funcionais (RF01 a RF09).
 
 import os
 import time
+import networkx as nx
 import matplotlib.pyplot as plt
 
 # Apenas os módulos permitidos pelo OR07 são utilizados.
@@ -22,6 +23,8 @@ from sistema.algoritmos.merge_sort import merge_sort_acoes
 from sistema.algoritmos.heap_sort import heap_sort
 from sistema.base_dados import BaseDados
 from sistema.estruturas.bst import BST
+from sistema.estruturas.grafo import Grafo
+from sistema.algoritmos.bfs import caminho_mais_curto_bfs, soma_distancias_geodesicas_bfs
 
 
 class SistemaVoluntariado:
@@ -48,6 +51,7 @@ class SistemaVoluntariado:
         self.ods_catalogo: Dict[int, str] = {}
         self.inscricoes: Dict[str, Inscricao] = {}
         self.presencas: List[Dict[str, Any]] = []
+        self.rede_entidades: Grafo = Grafo()
 
     # ==========================================
     # OR02 - LEITURA E ESCRITA DE DADOS (JSON)
@@ -231,8 +235,7 @@ class SistemaVoluntariado:
         return {
             "acao_id": getattr(acao, "acao_id", None),
             "titulo": acao.titulo,
-            "entidade_id": getattr(acao, "entidade_id", None),
-            "entidade_nome": acao.entidade,
+            "entidades": list(acao.entidades),
             "area": acao.area,
             "data_hora": acao.data_hora,
             "duracao_horas": acao.duracao,
@@ -332,17 +335,24 @@ class SistemaVoluntariado:
         :return: O objeto Acao reconstruído.
         :rtype: Acao
         """
+        # Se for um JSON novo, carrega a lista. Se for JSON antigo, converte a string para lista.
+        entidades_carregadas = dados.get("entidades", [])
+        if not entidades_carregadas:
+            entidade_antiga = dados.get("entidade_nome", dados.get("entidade", ""))
+            if entidade_antiga:
+                entidades_carregadas = [entidade_antiga]
+
         acao = Acao(
             titulo=dados.get("titulo", ""),
-            entidade=dados.get("entidade_nome", dados.get("entidade", "")),
+            entidades=entidades_carregadas, 
             data_hora=dados.get("data_hora", ""),
             duracao=dados.get("duracao_horas", dados.get("duracao", 0)),
             vagas=dados.get("vagas", 0),
             localizacao=dados.get("localizacao", ""),
             area=dados.get("area", ""),
         )
-        acao.acao_id = dados.get("acao_id")
-        acao.entidade_id = dados.get("entidade_id")
+        
+        acao.acao_id = dados.get("acao_id")   
         acao.estado = dados.get("estado", "planeada")
         acao.metrica_impacto = float(dados.get("metrica_impacto", 0.0))
         
@@ -1441,3 +1451,125 @@ class SistemaVoluntariado:
             acao.fila_inscricoes.enqueue(insc)
 
         return inscricoes_ordenadas
+    
+    # ====================================================================
+    # RF14 - GESTÃO DA REDE DE ENTIDADES (GRAFOS)
+    # ====================================================================
+
+    def reconstruir_rede_entidades(self) -> None:
+        """
+        Reconstrói o grafo do zero. 
+        Duas entidades estão ligadas se participarem na mesma ação.
+        O peso da ligação é o número de ações que têm em comum.
+        
+        Nota: Cumpre rigorosamente o OR07 ao não utilizar o módulo itertools.
+        """
+        self.rede_entidades = Grafo()
+        
+        # 1. Adicionar todas as entidades válidas como nós do grafo
+        for nome_entidade in self.entidades.keys():
+            self.rede_entidades.adicionar_entidade(nome_entidade.lower())
+
+        # 2. Iterar sobre todas as ações para criar as ligações
+        ligacoes_contagem = {}
+        for acao in self.acoes.values():
+            # Convertemos as entidades da ação para uma lista indexável
+            lista_entidades = list(acao.entidades)
+            n = len(lista_entidades)
+            
+            for i in range(n):
+                for j in range(i + 1, n):
+                    ent1 = lista_entidades[i].lower()
+                    ent2 = lista_entidades[j].lower()
+                    
+                    # Ordenar alfabeticamente para garantir consistência bidirecional
+                    par_ordenado = tuple(sorted([ent1, ent2]))
+                    ligacoes_contagem[par_ordenado] = ligacoes_contagem.get(par_ordenado, 0) + 1
+
+        # 3. Inserir as ligações com os pesos (ações em comum) no Grafo
+        for (ent1, ent2), peso in ligacoes_contagem.items():
+            self.rede_entidades.adicionar_ligacao(ent1, ent2, peso)
+
+    # ====================================================================
+    # RF15 - CAMINHO MAIS CURTO E CENTRALIDADE
+    # ====================================================================
+
+    def pesquisar_caminho_curto_entidades(self, ent1: str, ent2: str) -> Optional[List[str]]:
+        """
+        Encontra o caminho mais curto (menos vértices) usando o algoritmo BFS abstrato.
+        """
+        self.reconstruir_rede_entidades() # Garante que a rede está atualizada
+        return caminho_mais_curto_bfs(self.rede_entidades.adjacencias, ent1.lower(), ent2.lower())
+
+    def calcular_centralidade_rede(self) -> List[Tuple[str, float]]:
+        """
+        Calcula a proximidade de todas as entidades usando a distância geodésica.
+        """
+        self.reconstruir_rede_entidades()
+        centralidades = []
+
+        for entidade in self.rede_entidades.adjacencias.keys():
+            soma_dist = soma_distancias_geodesicas_bfs(self.rede_entidades.adjacencias, entidade)
+            proximidade = (1.0 / soma_dist) if soma_dist > 0 else 0.0
+            
+            # Formatar nome original para exibição bonita
+            obj_ent = self.consultar_entidade(entidade)
+            nome_display = obj_ent.nome if obj_ent else entidade.title()
+            
+            centralidades.append((nome_display, proximidade))
+
+        # Ordenar por proximidade descendente
+        centralidades.sort(key=lambda x: x[1], reverse=True)
+        return centralidades
+
+    # ====================================================================
+    # RF16 (OPCIONAL) - VISUALIZAÇÃO DA REDE (NETWORKX)
+    # ====================================================================
+
+    def visualizar_rede_parceiros(self) -> None:
+        """
+        Renderiza graficamente a teia da rede de entidades usando NetworkX e Matplotlib.
+        O tamanho dos nós escala com a sua centralidade!
+        """
+        self.reconstruir_rede_entidades()
+        nx_grafo = nx.Graph()
+
+        # Adicionar nós e arestas ao NetworkX
+        for entidade, vizinhos in self.rede_entidades.adjacencias.items():
+            nx_grafo.add_node(entidade)
+            for vizinho, peso in vizinhos.items():
+                nx_grafo.add_edge(entidade, vizinho, weight=peso)
+
+        if len(nx_grafo.nodes) == 0:
+            print("A rede de entidades está vazia. Não é possível gerar o gráfico.")
+            return
+
+        # Calcular tamanhos com base na centralidade para tornar o gráfico interativo
+        centralidades = dict(self.calcular_centralidade_rede())
+        tamanhos_nos = []
+        for no in nx_grafo.nodes():
+            nome_display = self.consultar_entidade(no).nome if self.consultar_entidade(no) else no.title()
+            cent = centralidades.get(nome_display, 0)
+            # Escalar o tamanho do nó para o gráfico
+            tamanhos_nos.append(1000 + (cent * 30000))
+
+        # Layout da rede (Spring Layout aproxima entidades conectadas e afasta desconectadas)
+        pos = nx.spring_layout(nx_grafo, seed=42)
+
+        plt.figure(figsize=(12, 8))
+        plt.title("Visualização da Rede de Parcerias entre Entidades (RF16)", fontsize=16, fontweight='bold', color='#005b96')
+        
+        # Desenhar Arestas (a espessura depende do peso/ações em comum)
+        pesos = [nx_grafo[u][v]['weight'] for u, v in nx_grafo.edges()]
+        nx.draw_networkx_edges(nx_grafo, pos, width=pesos, edge_color='gray', alpha=0.5)
+        
+        # Desenhar Nós
+        nx.draw_networkx_nodes(nx_grafo, pos, node_size=tamanhos_nos, node_color='skyblue', edgecolors='black', linewidths=1.5)
+        
+        # Desenhar Rótulos
+        rotulos = {no: no.title() for no in nx_grafo.nodes()}
+        nx.draw_networkx_labels(nx_grafo, pos, labels=rotulos, font_size=9, font_weight='bold')
+
+        plt.axis('off')
+        plt.tight_layout()
+        plt.show()

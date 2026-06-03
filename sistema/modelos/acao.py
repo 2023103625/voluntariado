@@ -38,7 +38,7 @@ class Acao:
     def __init__(
         self,
         titulo: str,
-        entidade: str,
+        entidades: List[str],
         data_hora: str,
         duracao: int,
         vagas: int,
@@ -49,7 +49,7 @@ class Acao:
         Inicializa uma nova instância de Acao.
         """
         self.titulo: str = titulo
-        self.entidade: str = entidade
+        self.entidades: Set[str] = set(entidades)
         self.area: str = area
         self.data_hora: str = data_hora
         self.duracao: int = duracao
