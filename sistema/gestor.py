@@ -700,7 +700,8 @@ class SistemaVoluntariado:
         resultados = list(self.acoes.values())
 
         if filtros.get("entidade"):
-            resultados = [a for a in resultados if filtros["entidade"].lower() in a.entidade.lower()]
+            # CORREÇÃO: Procura se o texto inserido existe nalguma das entidades da lista
+            resultados = [a for a in resultados if any(filtros["entidade"].lower() in ent.lower() for ent in a.entidades)]
         if filtros.get("area"):
             resultados = [a for a in resultados if filtros["area"].lower() in a.area.lower()]
 
@@ -725,7 +726,8 @@ class SistemaVoluntariado:
 
         print(f"\n--- Resultados da Pesquisa ({len(resultados)} encontradas) ---")
         for a in resultados:
-            print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidade: {a.entidade}) - Vagas: {a.vagas}")
+            # join() para imprimir todas as entidades parceiras formatadas
+            print(f"[{getattr(a, ordenar_por)}] {a.titulo} (Entidades: {', '.join(a.entidades)}) - Vagas: {a.vagas}")
 
     # ==========================================
     # RF04 – ESTATÍSTICAS E DASHBOARD (V1)
@@ -1119,9 +1121,9 @@ class SistemaVoluntariado:
 
         try:
             with open(nome_ficheiro, mode='w', encoding='utf-8-sig') as ficheiro_csv:
-                # Escrever cabeçalho com formatação nativa
+                # Escrever cabeçalho com formatação nativa (alterado para plural)
                 cabecalhos = [
-                    "ID da Ação", "Título", "Entidade Promotora", "Área Temática", 
+                    "ID da Ação", "Título", "Entidades Promotoras", "Área Temática", 
                     "Data e Hora", "Duração (Horas)", "Vagas Restantes", 
                     "Estado Atual", "Métrica de Impacto", "Qtd. Aprovados",
                     "Nomes dos Voluntários Aprovados", "Faculdades Envolvidas"
@@ -1141,9 +1143,12 @@ class SistemaVoluntariado:
                     str_nomes = ", ".join(nomes_aprovados) if nomes_aprovados else "Nenhum"
                     str_faculdades = ", ".join(faculdades_envolvidas) if faculdades_envolvidas else "-"
 
-                    # Limpar as strings de potenciais "ponto e vírgula" que destruiriam o CSV
+                    # Limpar as strings de potenciais "ponto e vírgula" 
                     titulo_limpo = str(acao.titulo).replace(";", ",")
-                    entidade_limpa = str(acao.entidade).replace(";", ",")
+                    
+                    # Junta as várias entidades numa única string separada por vírgulas
+                    entidade_limpa = ", ".join(acao.entidades).replace(";", ",")
+                    
                     area_limpa = str(acao.area).replace(";", ",")
                     
                     linha = [

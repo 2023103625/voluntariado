@@ -921,8 +921,8 @@ class MenuTerminal:
 
         elif op == "2":
             self._imprimir_tabela(
-                ["titulo", "entidade_nome", "area", "data_hora", "vagas", "ods_associados"], 
-                [[a.titulo, a.entidade, a.area, a.data_hora, a.vagas, ",".join(str(o) for o in a.ods_associados)] for a in self.sistema.acoes.values()]
+                ["titulo", "entidades_promotoras", "area", "data_hora", "vagas", "ods_associados"], 
+                [[a.titulo, ", ".join(a.entidades), a.area, a.data_hora, a.vagas, ",".join(str(o) for o in a.ods_associados)] for a in self.sistema.acoes.values()]
             )
             print("\n--- Filtros de Ação ---")
             print("(Dica: Prima ENTER sem escrever nada para ignorar um filtro)")
@@ -1139,8 +1139,8 @@ class MenuTerminal:
                 acoes = self.sistema.consultar_acoes_por_impacto_ordem(crescente=crescente)
                 
                 print(f"\n--- AÇÕES ORDENADAS POR IMPACTO ---")
-                cabecalhos = ["Título", "Entidade", "Impacto"]
-                dados = [[a.titulo, a.entidade, a.metrica_impacto] for a in acoes]
+                cabecalhos = ["Título", "Entidade(s)", "Impacto"]
+                dados = [[a.titulo, ", ".join(a.entidades), a.metrica_impacto] for a in acoes]
                 self._imprimir_tabela(cabecalhos, dados)
 
             elif op == "2":
@@ -1152,8 +1152,8 @@ class MenuTerminal:
                     
                     acoes = self.sistema.consultar_acoes_impacto_exato(impacto_alvo)
                     print(f"\n--- AÇÕES COM IMPACTO EXATO A {impacto_alvo} ---")
-                    cabecalhos = ["Título", "Entidade", "Impacto"]
-                    dados = [[a.titulo, a.entidade, a.metrica_impacto] for a in acoes]
+                    cabecalhos = ["Título", "Entidade(s)", "Impacto"]
+                    dados = [[a.titulo, ", ".join(a.entidades), a.metrica_impacto] for a in acoes]
                     self._imprimir_tabela(cabecalhos, dados)
                 except ValueError:
                     print("\n[ERRO] Valor inválido! Por favor introduza um número válido.")
@@ -1173,8 +1173,8 @@ class MenuTerminal:
                         
                     acoes = self.sistema.consultar_acoes_por_impacto_intervalo(min_imp, max_imp)
                     print(f"\n--- AÇÕES NO INTERVALO [{min_imp} - {max_imp}] ---")
-                    cabecalhos = ["Título", "Entidade", "Impacto"]
-                    dados = [[a.titulo, a.entidade, a.metrica_impacto] for a in acoes]
+                    cabecalhos = ["Título", "Entidade(s)", "Impacto"]
+                    dados = [[a.titulo, ", ".join(a.entidades), a.metrica_impacto] for a in acoes]
                     self._imprimir_tabela(cabecalhos, dados)
                 except ValueError:
                     print("\n[ERRO] Valor inválido! Por favor introduza números válidos.")
@@ -1183,10 +1183,10 @@ class MenuTerminal:
                 menores, maiores = self.sistema.consultar_acoes_impacto_extremos()
                 
                 print("\n--- AÇÃO(ÕES) COM MENOR IMPACTO ---")
-                self._imprimir_tabela(["Título", "Entidade", "Impacto"], [[a.titulo, a.entidade, a.metrica_impacto] for a in menores])
+                self._imprimir_tabela(["Título", "Entidade(s)", "Impacto"], [[a.titulo, ", ".join(a.entidades), a.metrica_impacto] for a in menores])
                 
                 print("\n--- AÇÃO(ÕES) COM MAIOR IMPACTO ---")
-                self._imprimir_tabela(["Título", "Entidade", "Impacto"], [[a.titulo, a.entidade, a.metrica_impacto] for a in maiores])
+                self._imprimir_tabela(["Título", "Entidade(s)", "Impacto"], [[a.titulo, ", ".join(a.entidades), a.metrica_impacto] for a in maiores])
 
     def menu_priorizacao(self) -> None:
         """
@@ -1314,15 +1314,22 @@ class MenuTerminal:
                 ent2 = input("Nome da Entidade 2: ").strip().lower()
                 
                 if sub_op == "A":
-                    peso_str = input("Peso da ligação (ex: nº de ações em comum): ").strip()
-                    peso = int(peso_str) if peso_str.isdigit() else 1
-                    if grafo.adicionar_ligacao(ent1, ent2, peso):
-                        print(f"[SUCESSO] Ligação criada entre '{ent1}' e '{ent2}' com peso {peso}.")
+                    # CÁLCULO AUTOMÁTICO DO PESO (Ações em comum)
+                    peso_calculado = 0
+                    for acao in self.sistema.acoes.values():
+                        entidades_acao_lower = {e.lower() for e in acao.entidades}
+                        if ent1 in entidades_acao_lower and ent2 in entidades_acao_lower:
+                            peso_calculado += 1
+                            
+                    if grafo.adicionar_ligacao(ent1, ent2, peso_calculado):
+                        print(f"[SUCESSO] Ligação criada entre '{ent1.title()}' e '{ent2.title()}'.")
+                        print(f" -> Peso calculado automaticamente: {peso_calculado} (ações em comum).")
                     else:
-                        print(f"[ERRO] Falha ao criar. Verifique se ambos os nós existem.")
+                        print(f"[ERRO] Falha ao criar. Verifique se ambos os nós existem na rede (Opção 2).")
+                
                 elif sub_op == "R":
                     if grafo.remover_ligacao(ent1, ent2):
-                        print(f"[SUCESSO] Ligação removida entre '{ent1}' e '{ent2}'.")
+                        print(f"[SUCESSO] Ligação removida entre '{ent1.title()}' e '{ent2.title()}'.")
                     else:
                         print(f"[ERRO] Não existe ligação entre os nós ou os nós não existem.")
 
