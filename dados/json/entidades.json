@@ -7,10 +7,10 @@
         "localizacao": "Campus da Asprela",
         "url": "https://voluntariado.universidade.pt/nes",
         "tags": [
-            "cidadania",
             "tutoria",
+            "tecnologia",
             "solidariedade",
-            "tecnologia"
+            "cidadania"
         ],
         "ods_principais": [
             {
@@ -32,10 +32,10 @@
         "localizacao": "Campus do Campo Alegre",
         "url": "https://voluntariado.universidade.pt/aav",
         "tags": [
-            "mobilidade",
-            "reciclagem",
+            "ciência",
             "ambiente",
-            "ciência"
+            "reciclagem",
+            "mobilidade"
         ],
         "ods_principais": [
             {
@@ -60,10 +60,10 @@
         "localizacao": "Campus da Asprela",
         "url": "https://sas.universidade.pt",
         "tags": [
-            "apoio social",
             "inclusão",
-            "bem-estar",
-            "alimentação"
+            "apoio social",
+            "alimentação",
+            "bem-estar"
         ],
         "ods_principais": [
             {
@@ -88,10 +88,10 @@
         "localizacao": "Campus da Asprela",
         "url": "https://saude.universidade.pt",
         "tags": [
-            "campanhas",
-            "bem-estar",
             "prevenção",
-            "saúde"
+            "saúde",
+            "campanhas",
+            "bem-estar"
         ],
         "ods_principais": [
             {
@@ -114,9 +114,9 @@
         "url": "https://bairroaberto.org",
         "tags": [
             "idosos",
-            "inclusão",
             "solidariedade",
-            "literacia"
+            "literacia",
+            "inclusão"
         ],
         "ods_principais": [
             {
@@ -142,9 +142,9 @@
         "url": "https://marlimpo.pt",
         "tags": [
             "mar",
-            "voluntariado",
+            "ambiente",
             "limpeza",
-            "ambiente"
+            "voluntariado"
         ],
         "ods_principais": [
             {
@@ -167,9 +167,9 @@
         "url": "https://fciencias.universidade.pt",
         "tags": [
             "oficinas",
-            "divulgação",
+            "ciência",
             "escolas",
-            "ciência"
+            "divulgação"
         ],
         "ods_principais": [
             {
@@ -191,10 +191,10 @@
         "localizacao": "Asprela",
         "url": "https://fengenharia.universidade.pt",
         "tags": [
-            "robótica",
             "dados",
+            "tecnologia",
             "inovação",
-            "tecnologia"
+            "robótica"
         ],
         "ods_principais": [
             {
@@ -244,9 +244,9 @@
         "localizacao": "Campus da Justiça",
         "url": "https://direito.universidade.pt/clinica",
         "tags": [
+            "apoio",
             "cidadania",
             "migração",
-            "apoio",
             "direitos"
         ],
         "ods_principais": [
@@ -269,10 +269,10 @@
         "localizacao": "Baixa",
         "url": "https://museuculturaviva.pt",
         "tags": [
-            "cultura",
-            "intergeracional",
             "memória",
-            "arte"
+            "arte",
+            "intergeracional",
+            "cultura"
         ],
         "ods_principais": [
             {
@@ -297,10 +297,10 @@
         "localizacao": "Parque de Ciência",
         "url": "https://cienciacidada.pt",
         "tags": [
-            "participação",
             "ambiente",
             "dados",
-            "ciência"
+            "ciência",
+            "participação"
         ],
         "ods_principais": [
             {
@@ -325,10 +325,10 @@
         "localizacao": "Asprela",
         "url": "https://semfome.universidade.pt",
         "tags": [
-            "recolha",
             "comunidade",
+            "alimentação",
             "solidariedade",
-            "alimentação"
+            "recolha"
         ],
         "ods_principais": [
             {
@@ -356,10 +356,10 @@
         "localizacao": "Online",
         "url": "https://alumni.universidade.pt/mentores",
         "tags": [
+            "caloiros",
             "emprego",
             "internacional",
-            "mentoria",
-            "caloiros"
+            "mentoria"
         ],
         "ods_principais": [
             {
@@ -384,8 +384,8 @@
         "localizacao": "Ribeira Quente",
         "url": "https://maresvivas.com/",
         "tags": [
-            "ambiente",
             "comunidade",
+            "ambiente",
             "solidariedade",
             "participação"
         ],
@@ -415,8 +415,8 @@
         "localizacao": "online",
         "url": "https://teste.com/",
         "tags": [
-            "teste",
-            "mentoria"
+            "mentoria",
+            "teste"
         ],
         "ods_principais": [
             {

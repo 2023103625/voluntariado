@@ -1145,7 +1145,7 @@ class MenuTerminal:
 
             elif op == "2":
                 try:
-                    valor_str = input("Digite o valor exato do impacto (ex: 80.5) ou 'V' para Voltar: ").strip()
+                    valor_str = input("Digite o valor exato do impacto ou 'V' para Voltar: ").strip()
                     if valor_str.upper() == "V": continue
                     
                     impacto_alvo = float(valor_str)
@@ -1284,10 +1284,36 @@ class MenuTerminal:
                 print("\n--- MATRIZ DE LIGAÇÕES DA REDE ---")
                 dados = []
                 for no, vizinhos in grafo.adjacencias.items():
-                    conexoes = [f"{viz} (peso {p})" for viz, p in vizinhos.items()]
-                    dados.append([no.title(), ", ".join(conexoes) if conexoes else "Isolada"])
+                    if not vizinhos:
+                        dados.append([no.title(), "Isolada", "-"])
+                    else:
+                        conexoes_lista = []
+                        acoes_comum_lista = []
+                        
+                        for viz, peso in vizinhos.items():
+                            conexoes_lista.append(f"{viz.title()} (peso {peso})")
+                            
+                            # Procurar os títulos das ações em comum entre 'no' e 'viz' 
+                            acoes_partilhadas = []
+                            for acao in self.sistema.acoes.values():
+                                entidades_acao_lower = {e.lower() for e in acao.entidades}
+                                if no.lower() in entidades_acao_lower and viz.lower() in entidades_acao_lower:
+                                    acoes_partilhadas.append(acao.titulo)
+                                    
+                            if acoes_partilhadas:
+                                # Formata o texto: Com Entidade B: Ação 1, Ação 2
+                                acoes_comum_lista.append(f"Com {viz.title()}: {', '.join(acoes_partilhadas)}")
+                            else:
+                                # Caso a ligação tenha sido criada manualmente sem ações no sistema
+                                acoes_comum_lista.append(f"Com {viz.title()}: (Ligação Manual)")
+                                
+                        dados.append([
+                            no.title(), 
+                            " \n ".join(conexoes_lista), 
+                            " \n ".join(acoes_comum_lista)
+                        ])
                 
-                self._imprimir_tabela(["Entidade (Nó)", "Ligações (Arestas e Pesos)"], dados)
+                self._imprimir_tabela(["Entidade (Nó)", "Ligações (Arestas e Pesos)", "Ações em Comum (Títulos)"], dados)
                 input("\nPrima ENTER para continuar.")
 
             elif op == "2":
@@ -1307,31 +1333,75 @@ class MenuTerminal:
                         print(f"[ERRO] O nó '{nome}' não foi encontrado.")
 
             elif op == "3":
-                sub_op = ler_opcao("Pretende Adicionar (A) ou Remover (R) uma ligação? (ou '0' para cancelar): ", ["A", "R", "0"]).upper()
+                sub_op = ler_opcao("Pretende Adicionar (A) ou Remover (R) uma parceria/ligação? (ou '0' para cancelar): ", ["A", "R", "0"]).upper()
                 if sub_op == "0": continue
                 
                 ent1 = input("Nome da Entidade 1: ").strip().lower()
                 ent2 = input("Nome da Entidade 2: ").strip().lower()
                 
-                if sub_op == "A":
-                    # CÁLCULO AUTOMÁTICO DO PESO (Ações em comum)
-                    peso_calculado = 0
-                    for acao in self.sistema.acoes.values():
-                        entidades_acao_lower = {e.lower() for e in acao.entidades}
-                        if ent1 in entidades_acao_lower and ent2 in entidades_acao_lower:
-                            peso_calculado += 1
-                            
-                    if grafo.adicionar_ligacao(ent1, ent2, peso_calculado):
-                        print(f"[SUCESSO] Ligação criada entre '{ent1.title()}' e '{ent2.title()}'.")
-                        print(f" -> Peso calculado automaticamente: {peso_calculado} (ações em comum).")
-                    else:
-                        print(f"[ERRO] Falha ao criar. Verifique se ambos os nós existem na rede (Opção 2).")
+                obj_ent1 = self.sistema.consultar_entidade(ent1)
+                obj_ent2 = self.sistema.consultar_entidade(ent2)
                 
+                if not obj_ent1 or not obj_ent2:
+                    print("\n[ERRO] Uma ou ambas as entidades não existem no sistema. Registe-as primeiro no Menu 1.")
+                    continue
+                
+                if sub_op == "A":
+                    print("\n--- AÇÕES DISPONÍVEIS PARA SERVIR DE LIGAÇÃO ---")
+                    dados_acoes = [[a.titulo, ", ".join(a.entidades)] for a in self.sistema.acoes.values()]
+                    self._imprimir_tabela(["Título da Ação", "Entidades Parceiras Atuais"], dados_acoes)
+                    
+                    tit_acao = ler_texto_obrigatorio("\nDigite o Título da Ação que unirá estas entidades (ou '0' para cancelar): ")
+                    if tit_acao == "0": continue
+                    
+                    acao = self.sistema.consultar_acao(tit_acao)
+                    if not acao:
+                        print("\n[ERRO] Ação não encontrada.")
+                        continue
+                        
+                    # Adiciona as entidades à Ação real e reconstrói o grafo!
+                    acao.entidades.add(obj_ent1.nome) 
+                    acao.entidades.add(obj_ent2.nome)
+                    self.sistema.reconstruir_rede_entidades()
+                    
+                    print(f"\n[SUCESSO] Ligação criada! '{obj_ent1.nome}' e '{obj_ent2.nome}' são parceiras na ação '{acao.titulo}'.")
+                    
                 elif sub_op == "R":
-                    if grafo.remover_ligacao(ent1, ent2):
-                        print(f"[SUCESSO] Ligação removida entre '{ent1.title()}' e '{ent2.title()}'.")
-                    else:
-                        print(f"[ERRO] Não existe ligação entre os nós ou os nós não existem.")
+                    acoes_comuns = [a for a in self.sistema.acoes.values() if ent1 in {e.lower() for e in a.entidades} and ent2 in {e.lower() for e in a.entidades}]
+                            
+                    if not acoes_comuns:
+                        print(f"\n[ERRO] Não existem ações partilhadas entre as duas. Não há ligação a remover.")
+                        continue
+                        
+                    print("\n--- AÇÕES EM COMUM (LIGAÇÕES ATUAIS) ---")
+                    dados_acoes = [[a.titulo, ", ".join(a.entidades)] for a in acoes_comuns]
+                    self._imprimir_tabela(["Título da Ação", "Entidades Parceiras Atuais"], dados_acoes)
+                    
+                    tit_acao = ler_texto_obrigatorio("\nDigite o Título da Ação comum para quebrar a ligação (ou '0' para cancelar): ")
+                    if tit_acao == "0": continue
+                    
+                    acao = self.sistema.consultar_acao(tit_acao)
+                    if not acao or acao not in acoes_comuns:
+                        print("\n[ERRO] Ação inválida ou não partilhada.")
+                        continue
+                        
+                    print(f"\nPara quebrar a parceria na ação '{acao.titulo}', quem deve ser removido?")
+                    print(f"1. Remover '{obj_ent1.nome}'\n2. Remover '{obj_ent2.nome}'\n3. Remover Ambas")
+                    
+                    op_rem = ler_opcao("Escolha: ", ["1", "2", "3", "0"])
+                    if op_rem == "0": continue
+                    
+                    entidades_para_manter = set()
+                    for e in acao.entidades:
+                        e_low = e.lower()
+                        if op_rem == "1" and e_low == ent1: continue
+                        if op_rem == "2" and e_low == ent2: continue
+                        if op_rem == "3" and (e_low == ent1 or e_low == ent2): continue
+                        entidades_para_manter.add(e)
+                        
+                    acao.entidades = entidades_para_manter
+                    self.sistema.reconstruir_rede_entidades()
+                    print(f"\n[SUCESSO] A ligação foi desfeita. A rede foi atualizada!")
 
             elif op == "4":
                 print("\n--- DESCOBRIR CAMINHO MAIS CURTO (BFS) ---")

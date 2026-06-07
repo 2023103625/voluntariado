@@ -1534,12 +1534,12 @@ class SistemaVoluntariado:
     def visualizar_rede_parceiros(self) -> None:
         """
         Renderiza graficamente a teia da rede de entidades usando NetworkX e Matplotlib.
-        O tamanho dos nós escala com a sua centralidade!
+        Implementa posicionamento radial e pesos descentralizados para evitar sobreposições.
         """
         self.reconstruir_rede_entidades()
         nx_grafo = nx.Graph()
 
-        # Adicionar nós e arestas ao NetworkX
+        # 1. Adicionar nós e arestas ao NetworkX
         for entidade, vizinhos in self.rede_entidades.adjacencias.items():
             nx_grafo.add_node(entidade)
             for vizinho, peso in vizinhos.items():
@@ -1549,31 +1549,64 @@ class SistemaVoluntariado:
             print("A rede de entidades está vazia. Não é possível gerar o gráfico.")
             return
 
-        # Calcular tamanhos com base na centralidade para tornar o gráfico interativo
-        centralidades = dict(self.calcular_centralidade_rede())
-        tamanhos_nos = []
-        for no in nx_grafo.nodes():
-            nome_display = self.consultar_entidade(no).nome if self.consultar_entidade(no) else no.title()
-            cent = centralidades.get(nome_display, 0)
-            # Escalar o tamanho do nó para o gráfico
-            tamanhos_nos.append(1000 + (cent * 30000))
+        # 2. Layout (Molas bem fortes para espalhar os nós ao máximo)
+        pos = nx.spring_layout(nx_grafo, k=2.0, iterations=300, seed=42)
 
-        # Layout da rede (Spring Layout aproxima entidades conectadas e afasta desconectadas)
-        pos = nx.spring_layout(nx_grafo, seed=42)
-
-        plt.figure(figsize=(12, 8))
+        plt.figure(figsize=(16, 10))
         plt.title("Visualização da Rede de Parcerias entre Entidades (RF16)", fontsize=16, fontweight='bold', color='#005b96')
         
-        # Desenhar Arestas (a espessura depende do peso/ações em comum)
-        pesos = [nx_grafo[u][v]['weight'] for u, v in nx_grafo.edges()]
-        nx.draw_networkx_edges(nx_grafo, pos, width=pesos, edge_color='gray', alpha=0.5)
+        # 3. DESENHAR ARESTAS (LINHAS)
+        if len(nx_grafo.edges()) > 0:
+            # Linhas mais finas e ligeiramente transparentes para deixar o texto respirar
+            nx.draw_networkx_edges(
+                nx_grafo, pos, width=1.5, edge_color='black', alpha=0.5
+            )
+            
+            # 4. DESENHAR OS PESOS (NÚMEROS) - Desviados do centro
+            rotulos_arestas = {(u, v): str(d['weight']) for u, v, d in nx_grafo.edges(data=True)}
+            nx.draw_networkx_edge_labels(
+                nx_grafo, pos,
+                edge_labels=rotulos_arestas,
+                font_color='red',
+                font_size=10,
+                font_weight='bold',
+                label_pos=0.65, # TRUQUE: 0.65 afasta os números do cruzamento central
+                bbox=dict(boxstyle="circle,pad=0.15", edgecolor="red", facecolor="white", alpha=0.9)
+            )
         
-        # Desenhar Nós
-        nx.draw_networkx_nodes(nx_grafo, pos, node_size=tamanhos_nos, node_color='skyblue', edgecolors='black', linewidths=1.5)
+        # 5. DESENHAR NÓS - Tamanho fixo
+        nx.draw_networkx_nodes(
+            nx_grafo, pos, 
+            node_size=300, 
+            node_color='#87CEEB', 
+            edgecolors='black', 
+            linewidths=1.5
+        )
         
-        # Desenhar Rótulos
+        # 6. MATEMÁTICA RADIAL PARA OS RÓTULOS DOS NÓS
         rotulos = {no: no.title() for no in nx_grafo.nodes()}
-        nx.draw_networkx_labels(nx_grafo, pos, labels=rotulos, font_size=9, font_weight='bold')
+        
+        # Calcula o centro de massa do grafo
+        cx = sum([v[0] for v in pos.values()]) / len(pos)
+        cy = sum([v[1] for v in pos.values()]) / len(pos)
+        
+        pos_labels = {}
+        for k_no, v_coord in pos.items():
+            # Vetor desde o centro até ao nó
+            dx = v_coord[0] - cx
+            dy = v_coord[1] - cy
+            dist = (dx**2 + dy**2)**0.5
+            
+            if dist > 0.01:
+                # Empurra o texto para fora do centro
+                pos_labels[k_no] = [v_coord[0] + (dx/dist)*0.08, v_coord[1] + (dy/dist)*0.08]
+            else:
+                pos_labels[k_no] = [v_coord[0], v_coord[1] + 0.08]
+        
+        nx.draw_networkx_labels(
+            nx_grafo, pos_labels, labels=rotulos, font_size=8, font_weight='bold',
+            bbox=dict(boxstyle="round,pad=0.2", edgecolor="none", facecolor="white", alpha=0.9)
+        )
 
         plt.axis('off')
         plt.tight_layout()

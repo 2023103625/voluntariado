@@ -29,8 +29,8 @@
             }
         ],
         "interesses": [
-            "emprego",
             "inclusão",
+            "emprego",
             "ciência"
         ],
         "ods_interesse": []
@@ -69,8 +69,8 @@
             }
         ],
         "interesses": [
-            "emprego",
             "inclusão",
+            "emprego",
             "internacional",
             "literacia"
         ],
@@ -102,8 +102,8 @@
             }
         ],
         "interesses": [
-            "cidadania",
-            "inclusão"
+            "inclusão",
+            "cidadania"
         ],
         "ods_interesse": [
             10,
@@ -132,10 +132,10 @@
             }
         ],
         "interesses": [
-            "mobilidade",
             "solidariedade",
             "tutoria",
             "ambiente",
+            "mobilidade",
             "alimentação"
         ],
         "ods_interesse": [
@@ -177,9 +177,9 @@
         ],
         "interesses": [
             "ambiente",
+            "direitos",
             "solidariedade",
-            "cultura",
-            "direitos"
+            "cultura"
         ],
         "ods_interesse": [
             11
@@ -211,12 +211,12 @@
             }
         ],
         "interesses": [
-            "idosos",
-            "solidariedade",
             "emprego",
-            "cidadania",
+            "solidariedade",
+            "idosos",
+            "direitos",
             "bem-estar",
-            "direitos"
+            "cidadania"
         ],
         "ods_interesse": [
             8,
@@ -246,8 +246,8 @@
             }
         ],
         "interesses": [
-            "internacional",
-            "direitos"
+            "direitos",
+            "internacional"
         ],
         "ods_interesse": [
             16
@@ -287,12 +287,12 @@
             }
         ],
         "interesses": [
-            "mobilidade",
-            "inclusão",
-            "solidariedade",
             "emprego",
+            "solidariedade",
+            "cultura",
             "ambiente",
-            "cultura"
+            "mobilidade",
+            "inclusão"
         ],
         "ods_interesse": [
             11,
@@ -334,10 +334,10 @@
             }
         ],
         "interesses": [
-            "emprego",
-            "bem-estar",
             "criatividade",
-            "ciência"
+            "ciência",
+            "emprego",
+            "bem-estar"
         ],
         "ods_interesse": [
             3
@@ -369,11 +369,11 @@
             }
         ],
         "interesses": [
-            "mobilidade",
-            "criatividade",
             "saúde",
+            "ambiente",
             "direitos",
-            "ambiente"
+            "mobilidade",
+            "criatividade"
         ],
         "ods_interesse": [
             9
@@ -413,10 +413,10 @@
             }
         ],
         "interesses": [
+            "tutoria",
             "idosos",
             "saúde",
             "tecnologia",
-            "tutoria",
             "bem-estar",
             "alimentação"
         ],
@@ -444,8 +444,8 @@
             }
         ],
         "interesses": [
-            "idosos",
-            "tutoria"
+            "tutoria",
+            "idosos"
         ],
         "ods_interesse": []
     },
@@ -475,10 +475,10 @@
             }
         ],
         "interesses": [
-            "emprego",
             "ambiente",
-            "bem-estar",
-            "ciência"
+            "emprego",
+            "ciência",
+            "bem-estar"
         ],
         "ods_interesse": []
     },
@@ -512,8 +512,8 @@
             }
         ],
         "interesses": [
-            "solidariedade",
-            "direitos"
+            "direitos",
+            "solidariedade"
         ],
         "ods_interesse": []
     },
@@ -539,9 +539,9 @@
             }
         ],
         "interesses": [
-            "cidadania",
             "inclusão",
-            "alimentação"
+            "alimentação",
+            "cidadania"
         ],
         "ods_interesse": [
             16,
@@ -579,8 +579,8 @@
             }
         ],
         "interesses": [
-            "idosos",
-            "dados"
+            "dados",
+            "idosos"
         ],
         "ods_interesse": [
             8,
@@ -623,10 +623,10 @@
         ],
         "interesses": [
             "solidariedade",
-            "infância",
+            "ambiente",
             "tecnologia",
-            "cidadania",
-            "ambiente"
+            "infância",
+            "cidadania"
         ],
         "ods_interesse": [
             15
@@ -654,10 +654,10 @@
             }
         ],
         "interesses": [
-            "emprego",
-            "bem-estar",
             "criatividade",
-            "cultura"
+            "cultura",
+            "emprego",
+            "bem-estar"
         ],
         "ods_interesse": [
             11
@@ -685,11 +685,11 @@
             }
         ],
         "interesses": [
+            "cultura",
+            "dados",
             "idosos",
             "saúde",
-            "ambiente",
-            "dados",
-            "cultura"
+            "ambiente"
         ],
         "ods_interesse": [
             16,
@@ -723,9 +723,9 @@
             }
         ],
         "interesses": [
+            "criatividade",
             "idosos",
             "literacia",
-            "criatividade",
             "mobilidade"
         ],
         "ods_interesse": [
@@ -760,12 +760,12 @@
             }
         ],
         "interesses": [
-            "inclusão",
-            "criatividade",
-            "infância",
+            "cultura",
             "dados",
             "literacia",
-            "cultura"
+            "infância",
+            "inclusão",
+            "criatividade"
         ],
         "ods_interesse": [
             16,
@@ -807,10 +807,10 @@
             }
         ],
         "interesses": [
-            "infância",
             "tecnologia",
-            "ciência",
             "literacia",
+            "infância",
+            "ciência",
             "alimentação"
         ],
         "ods_interesse": [
@@ -849,9 +849,9 @@
             }
         ],
         "interesses": [
-            "internacional",
+            "tecnologia",
             "cultura",
-            "tecnologia"
+            "internacional"
         ],
         "ods_interesse": [
             10
@@ -883,12 +883,12 @@
             }
         ],
         "interesses": [
-            "idosos",
-            "inclusão",
-            "direitos",
-            "alimentação",
+            "cultura",
             "dados",
-            "cultura"
+            "idosos",
+            "direitos",
+            "inclusão",
+            "alimentação"
         ],
         "ods_interesse": [
             17,
@@ -930,11 +930,11 @@
             }
         ],
         "interesses": [
-            "mobilidade",
-            "criatividade",
-            "infância",
             "tutoria",
-            "dados"
+            "dados",
+            "infância",
+            "mobilidade",
+            "criatividade"
         ],
         "ods_interesse": [
             5
@@ -970,8 +970,8 @@
             }
         ],
         "interesses": [
-            "bem-estar",
-            "literacia"
+            "literacia",
+            "bem-estar"
         ],
         "ods_interesse": [
             10,
@@ -1005,11 +1005,11 @@
         ],
         "interesses": [
             "solidariedade",
-            "tecnologia",
+            "cultura",
             "tutoria",
             "ambiente",
-            "literacia",
-            "cultura"
+            "tecnologia",
+            "literacia"
         ],
         "ods_interesse": []
     },
@@ -1047,10 +1047,10 @@
             }
         ],
         "interesses": [
-            "cidadania",
             "inclusão",
-            "bem-estar",
-            "criatividade"
+            "criatividade",
+            "cidadania",
+            "bem-estar"
         ],
         "ods_interesse": [
             16,
@@ -1084,10 +1084,10 @@
             }
         ],
         "interesses": [
-            "emprego",
-            "literacia",
             "criatividade",
-            "alimentação"
+            "alimentação",
+            "literacia",
+            "emprego"
         ],
         "ods_interesse": [
             16,
@@ -1172,9 +1172,9 @@
             }
         ],
         "interesses": [
-            "dados",
             "criatividade",
-            "ambiente"
+            "ambiente",
+            "dados"
         ],
         "ods_interesse": [
             4,
@@ -1207,9 +1207,9 @@
             }
         ],
         "interesses": [
+            "criatividade",
             "idosos",
-            "emprego",
-            "criatividade"
+            "emprego"
         ],
         "ods_interesse": [
             16,
@@ -1246,8 +1246,8 @@
             }
         ],
         "interesses": [
-            "cultura",
-            "alimentação"
+            "alimentação",
+            "cultura"
         ],
         "ods_interesse": [
             5
@@ -1279,8 +1279,8 @@
             }
         ],
         "interesses": [
-            "cultura",
-            "ciência"
+            "ciência",
+            "cultura"
         ],
         "ods_interesse": []
     },
@@ -1308,9 +1308,9 @@
         "interesses": [
             "idosos",
             "mobilidade",
+            "bem-estar",
             "criatividade",
             "cidadania",
-            "bem-estar",
             "internacional"
         ],
         "ods_interesse": [
@@ -1425,12 +1425,12 @@
             }
         ],
         "interesses": [
+            "emprego",
+            "literacia",
             "mobilidade",
             "inclusão",
-            "emprego",
-            "cidadania",
-            "literacia",
-            "alimentação"
+            "alimentação",
+            "cidadania"
         ],
         "ods_interesse": [
             17,
@@ -1464,10 +1464,10 @@
             }
         ],
         "interesses": [
+            "infância",
             "emprego",
             "solidariedade",
-            "bem-estar",
-            "infância"
+            "bem-estar"
         ],
         "ods_interesse": []
     },
@@ -1499,8 +1499,8 @@
         "interesses": [
             "solidariedade",
             "tecnologia",
-            "bem-estar",
             "literacia",
+            "bem-estar",
             "alimentação"
         ],
         "ods_interesse": [
@@ -1538,9 +1538,9 @@
             }
         ],
         "interesses": [
+            "ambiente",
             "emprego",
-            "solidariedade",
-            "ambiente"
+            "solidariedade"
         ],
         "ods_interesse": [
             17,
@@ -1581,11 +1581,11 @@
             }
         ],
         "interesses": [
-            "infância",
             "emprego",
             "tutoria",
-            "ciência",
-            "ambiente"
+            "ambiente",
+            "infância",
+            "ciência"
         ],
         "ods_interesse": [
             16,
@@ -1623,9 +1623,9 @@
             }
         ],
         "interesses": [
-            "emprego",
+            "alimentação",
             "literacia",
-            "alimentação"
+            "emprego"
         ],
         "ods_interesse": [
             17,
@@ -1654,10 +1654,10 @@
             }
         ],
         "interesses": [
+            "emprego",
+            "saúde",
             "idosos",
             "mobilidade",
-            "saúde",
-            "emprego",
             "cidadania"
         ],
         "ods_interesse": []
@@ -1696,12 +1696,12 @@
             }
         ],
         "interesses": [
-            "idosos",
             "solidariedade",
-            "criatividade",
             "saúde",
+            "idosos",
+            "ciência",
             "bem-estar",
-            "ciência"
+            "criatividade"
         ],
         "ods_interesse": [
             9,
@@ -1766,8 +1766,8 @@
         ],
         "interesses": [
             "emprego",
-            "direitos",
-            "ciência"
+            "ciência",
+            "direitos"
         ],
         "ods_interesse": [
             15
@@ -1807,12 +1807,12 @@
             }
         ],
         "interesses": [
-            "criatividade",
+            "cultura",
             "saúde",
-            "cidadania",
             "ciência",
-            "alimentação",
-            "cultura"
+            "criatividade",
+            "cidadania",
+            "alimentação"
         ],
         "ods_interesse": [
             16,
@@ -1896,10 +1896,10 @@
             }
         ],
         "interesses": [
-            "emprego",
-            "bem-estar",
             "saúde",
-            "tecnologia"
+            "tecnologia",
+            "emprego",
+            "bem-estar"
         ],
         "ods_interesse": [
             17,
@@ -1970,12 +1970,12 @@
             }
         ],
         "interesses": [
-            "inclusão",
-            "saúde",
             "emprego",
-            "bem-estar",
+            "saúde",
+            "dados",
             "ciência",
-            "dados"
+            "bem-estar",
+            "inclusão"
         ],
         "ods_interesse": [
             1,
@@ -2008,10 +2008,10 @@
             }
         ],
         "interesses": [
+            "tutoria",
             "emprego",
             "solidariedade",
-            "direitos",
-            "tutoria"
+            "direitos"
         ],
         "ods_interesse": []
     },
@@ -2049,8 +2049,8 @@
             }
         ],
         "interesses": [
-            "tutoria",
-            "infância"
+            "infância",
+            "tutoria"
         ],
         "ods_interesse": [
             8
@@ -2086,12 +2086,12 @@
             }
         ],
         "interesses": [
-            "inclusão",
-            "solidariedade",
-            "criatividade",
             "emprego",
+            "solidariedade",
+            "dados",
             "ambiente",
-            "dados"
+            "inclusão",
+            "criatividade"
         ],
         "ods_interesse": [
             4
@@ -2119,9 +2119,9 @@
             }
         ],
         "interesses": [
+            "saúde",
             "ambiente",
-            "direitos",
-            "saúde"
+            "direitos"
         ],
         "ods_interesse": [
             15
@@ -2149,12 +2149,12 @@
             }
         ],
         "interesses": [
-            "inclusão",
             "emprego",
-            "cidadania",
-            "bem-estar",
             "direitos",
-            "alimentação"
+            "bem-estar",
+            "inclusão",
+            "alimentação",
+            "cidadania"
         ],
         "ods_interesse": []
     },
@@ -2182,8 +2182,8 @@
         "interesses": [
             "idosos",
             "tecnologia",
-            "cidadania",
             "bem-estar",
+            "cidadania",
             "internacional"
         ],
         "ods_interesse": [
@@ -2221,8 +2221,8 @@
             }
         ],
         "interesses": [
-            "bem-estar",
-            "tutoria"
+            "tutoria",
+            "bem-estar"
         ],
         "ods_interesse": [
             16,

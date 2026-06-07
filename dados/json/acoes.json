@@ -2,8 +2,9 @@
     {
         "acao_id": "A001",
         "titulo": "Tutoria de Matemática no Bairro",
-        "entidade_id": "E001",
-        "entidade_nome": "Núcleo de Engenharia Solidária",
+        "entidades": [
+            "Núcleo de Engenharia Solidária"
+        ],
         "area": "educação",
         "data_hora": "2025-10-12 14:30",
         "duracao_horas": 3,
@@ -39,8 +40,9 @@
     {
         "acao_id": "A002",
         "titulo": "Oficina de Literacia Digital para Séniores",
-        "entidade_id": "E005",
-        "entidade_nome": "ONG Bairro Aberto",
+        "entidades": [
+            "ONG Bairro Aberto"
+        ],
         "area": "inclusão",
         "data_hora": "2025-10-25 10:00",
         "duracao_horas": 4,
@@ -79,8 +81,9 @@
     {
         "acao_id": "A003",
         "titulo": "Campanha de Recolha de Alimentos de Outono",
-        "entidade_id": "E013",
-        "entidade_nome": "Programa Universidade Sem Fome",
+        "entidades": [
+            "Programa Universidade Sem Fome"
+        ],
         "area": "alimentação",
         "data_hora": "2025-11-08 09:00",
         "duracao_horas": 5,
@@ -119,8 +122,9 @@
     {
         "acao_id": "A004",
         "titulo": "Limpeza Ribeirinha do Leça",
-        "entidade_id": "E002",
-        "entidade_nome": "Associação Académica Verde",
+        "entidades": [
+            "Associação Académica Verde"
+        ],
         "area": "ambiente",
         "data_hora": "2025-11-15 08:30",
         "duracao_horas": 4,
@@ -155,8 +159,9 @@
     {
         "acao_id": "A005",
         "titulo": "Feira de Ciência Cidadã no Campus",
-        "entidade_id": "E012",
-        "entidade_nome": "Centro de Ciência Cidadã",
+        "entidades": [
+            "Centro de Ciência Cidadã"
+        ],
         "area": "tecnologia",
         "data_hora": "2025-11-28 13:00",
         "duracao_horas": 6,
@@ -195,8 +200,11 @@
     {
         "acao_id": "A006",
         "titulo": "Apoio ao Estudo de Programação",
-        "entidade_id": "E008",
-        "entidade_nome": "Faculdade de Engenharia",
+        "entidades": [
+            "Faculdade de Engenharia",
+            "Núcleo de Engenharia Solidária",
+            "Faculdade de Ciências"
+        ],
         "area": "tecnologia",
         "data_hora": "2025-12-03 17:00",
         "duracao_horas": 2,
@@ -223,67 +231,67 @@
             }
         ],
         "equipa": [
-            "Ana Xavier",
-            "Francisco Moreira",
-            "Bruno Dias",
+            "Vasco Lopes",
             "Francisco Ramos",
             "Joana Teixeira",
-            "Vasco Lopes"
+            "Ana Xavier",
+            "Francisco Moreira",
+            "Bruno Dias"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
-                    "Ana Xavier",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
                     "Joana Teixeira",
-                    "Vasco Lopes"
+                    "Ana Xavier",
+                    "Bruno Dias"
                 ],
                 "estado_novo": [
-                    "Ana Xavier",
-                    "Francisco Moreira",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
                     "Joana Teixeira",
-                    "Vasco Lopes"
+                    "Ana Xavier",
+                    "Francisco Moreira",
+                    "Bruno Dias"
                 ],
                 "data_hora": "2026-05-07 21:05:45",
                 "tipo": "Adição: Francisco Moreira"
             },
             {
                 "estado_anterior": [
-                    "Ana Xavier",
-                    "Leonor Dias",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
                     "Joana Teixeira",
-                    "Vasco Lopes"
+                    "Leonor Dias",
+                    "Ana Xavier",
+                    "Bruno Dias"
                 ],
                 "estado_novo": [
-                    "Ana Xavier",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
                     "Joana Teixeira",
-                    "Vasco Lopes"
+                    "Ana Xavier",
+                    "Bruno Dias"
                 ],
                 "data_hora": "2026-05-06 18:08:15",
                 "tipo": "Remoção: Leonor Dias"
             },
             {
                 "estado_anterior": [
-                    "Ana Xavier",
-                    "Leonor Dias",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
-                    "Vasco Lopes"
+                    "Leonor Dias",
+                    "Ana Xavier",
+                    "Bruno Dias"
                 ],
                 "estado_novo": [
-                    "Ana Xavier",
-                    "Leonor Dias",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
                     "Joana Teixeira",
-                    "Vasco Lopes"
+                    "Leonor Dias",
+                    "Ana Xavier",
+                    "Bruno Dias"
                 ],
                 "data_hora": "2026-05-06 17:55:45",
                 "tipo": "Adição: Joana Teixeira"
@@ -291,16 +299,16 @@
             {
                 "estado_anterior": [
                     "Leonor Dias",
+                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Ana Xavier",
-                    "Francisco Ramos"
+                    "Ana Xavier"
                 ],
                 "estado_novo": [
-                    "Ana Xavier",
-                    "Leonor Dias",
-                    "Bruno Dias",
+                    "Vasco Lopes",
                     "Francisco Ramos",
-                    "Vasco Lopes"
+                    "Leonor Dias",
+                    "Ana Xavier",
+                    "Bruno Dias"
                 ],
                 "data_hora": "2026-05-06 17:39:10",
                 "tipo": "Adição de voluntário à equipa"
@@ -308,14 +316,14 @@
             {
                 "estado_anterior": [
                     "Bruno Dias",
-                    "Ana Xavier",
-                    "Francisco Ramos"
+                    "Francisco Ramos",
+                    "Ana Xavier"
                 ],
                 "estado_novo": [
                     "Leonor Dias",
+                    "Francisco Ramos",
                     "Bruno Dias",
-                    "Ana Xavier",
-                    "Francisco Ramos"
+                    "Ana Xavier"
                 ],
                 "data_hora": "2026-05-06 17:38:54",
                 "tipo": "Adição de voluntário à equipa"
@@ -325,8 +333,9 @@
     {
         "acao_id": "A007",
         "titulo": "Workshop de CV e LinkedIn Solidário",
-        "entidade_id": "E014",
-        "entidade_nome": "Rede Alumni Mentores",
+        "entidades": [
+            "Rede Alumni Mentores"
+        ],
         "area": "educação",
         "data_hora": "2025-12-10 18:30",
         "duracao_horas": 2,
@@ -365,8 +374,9 @@
     {
         "acao_id": "A008",
         "titulo": "Visita Cultural Inclusiva ao Museu",
-        "entidade_id": "E011",
-        "entidade_nome": "Museu e Cultura Viva",
+        "entidades": [
+            "Museu e Cultura Viva"
+        ],
         "area": "cultura",
         "data_hora": "2025-12-14 11:00",
         "duracao_horas": 3,
@@ -405,8 +415,9 @@
     {
         "acao_id": "A009",
         "titulo": "Banco de Sangue Universitário",
-        "entidade_id": "E004",
-        "entidade_nome": "Gabinete de Saúde no Campus",
+        "entidades": [
+            "Gabinete de Saúde no Campus"
+        ],
         "area": "saúde",
         "data_hora": "2026-01-07 09:30",
         "duracao_horas": 5,
@@ -445,8 +456,9 @@
     {
         "acao_id": "A010",
         "titulo": "Mentoria para Caloiros Internacionais",
-        "entidade_id": "E014",
-        "entidade_nome": "Rede Alumni Mentores",
+        "entidades": [
+            "Rede Alumni Mentores"
+        ],
         "area": "educação",
         "data_hora": "2026-01-16 16:00",
         "duracao_horas": 3,
@@ -485,8 +497,9 @@
     {
         "acao_id": "A011",
         "titulo": "Hackathon Dados para o Bem",
-        "entidade_id": "E008",
-        "entidade_nome": "Faculdade de Engenharia",
+        "entidades": [
+            "Faculdade de Engenharia"
+        ],
         "area": "tecnologia",
         "data_hora": "2026-01-24 09:00",
         "duracao_horas": 8,
@@ -525,8 +538,9 @@
     {
         "acao_id": "A012",
         "titulo": "Plantação Participativa de Árvores",
-        "entidade_id": "E002",
-        "entidade_nome": "Associação Académica Verde",
+        "entidades": [
+            "Associação Académica Verde"
+        ],
         "area": "ambiente",
         "data_hora": "2026-02-01 09:00",
         "duracao_horas": 4,
@@ -562,8 +576,9 @@
     {
         "acao_id": "A013",
         "titulo": "Oficina de Primeiros Socorros",
-        "entidade_id": "E004",
-        "entidade_nome": "Gabinete de Saúde no Campus",
+        "entidades": [
+            "Gabinete de Saúde no Campus"
+        ],
         "area": "saúde",
         "data_hora": "2026-02-07 14:00",
         "duracao_horas": 3,
@@ -590,22 +605,22 @@
             }
         ],
         "equipa": [
+            "Marta Nogueira",
             "Daniel Gomes",
             "Joana Teixeira",
-            "Marta Nogueira",
             "Salomé Gomes"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
+                    "Marta Nogueira",
                     "Daniel Gomes",
-                    "Joana Teixeira",
-                    "Marta Nogueira"
+                    "Joana Teixeira"
                 ],
                 "estado_novo": [
+                    "Marta Nogueira",
                     "Daniel Gomes",
                     "Joana Teixeira",
-                    "Marta Nogueira",
                     "Salomé Gomes"
                 ],
                 "data_hora": "2026-05-09 20:58:30",
@@ -613,13 +628,13 @@
             },
             {
                 "estado_anterior": [
-                    "Daniel Gomes",
-                    "Marta Nogueira"
+                    "Marta Nogueira",
+                    "Daniel Gomes"
                 ],
                 "estado_novo": [
+                    "Marta Nogueira",
                     "Daniel Gomes",
-                    "Joana Teixeira",
-                    "Marta Nogueira"
+                    "Joana Teixeira"
                 ],
                 "data_hora": "2026-05-09 20:58:15",
                 "tipo": "Adição: Joana Teixeira"
@@ -629,8 +644,8 @@
                     "Marta Nogueira"
                 ],
                 "estado_novo": [
-                    "Daniel Gomes",
-                    "Marta Nogueira"
+                    "Marta Nogueira",
+                    "Daniel Gomes"
                 ],
                 "data_hora": "2026-05-09 20:57:59",
                 "tipo": "Adição: Daniel Gomes"
@@ -648,8 +663,9 @@
     {
         "acao_id": "A014",
         "titulo": "Clube de Conversação Português",
-        "entidade_id": "E009",
-        "entidade_nome": "Biblioteca Central",
+        "entidades": [
+            "Biblioteca Central"
+        ],
         "area": "cultura",
         "data_hora": "2026-02-12 17:30",
         "duracao_horas": 2,
@@ -685,8 +701,9 @@
     {
         "acao_id": "A015",
         "titulo": "Recolha de Material Escolar",
-        "entidade_id": "E003",
-        "entidade_nome": "Serviço de Ação Social Universitária",
+        "entidades": [
+            "Serviço de Ação Social Universitária"
+        ],
         "area": "inclusão",
         "data_hora": "2026-02-20 10:00",
         "duracao_horas": 4,
@@ -725,8 +742,9 @@
     {
         "acao_id": "A016",
         "titulo": "Reforço Alimentar no Banco Local",
-        "entidade_id": "E013",
-        "entidade_nome": "Programa Universidade Sem Fome",
+        "entidades": [
+            "Programa Universidade Sem Fome"
+        ],
         "area": "alimentação",
         "data_hora": "2026-02-27 15:00",
         "duracao_horas": 5,
@@ -765,8 +783,9 @@
     {
         "acao_id": "A017",
         "titulo": "Mapeamento de Acessibilidade do Campus",
-        "entidade_id": "E010",
-        "entidade_nome": "Clínica Jurídica Universitária",
+        "entidades": [
+            "Clínica Jurídica Universitária"
+        ],
         "area": "direitos",
         "data_hora": "2026-03-25 14:00",
         "duracao_horas": 4,
@@ -805,8 +824,9 @@
     {
         "acao_id": "A018",
         "titulo": "Acompanhamento Digital a IPSS",
-        "entidade_id": "E005",
-        "entidade_nome": "ONG Bairro Aberto",
+        "entidades": [
+            "ONG Bairro Aberto"
+        ],
         "area": "inclusão",
         "data_hora": "2026-03-27 10:00",
         "duracao_horas": 3,
@@ -841,8 +861,9 @@
     {
         "acao_id": "A019",
         "titulo": "Feira de Voluntariado e ODS",
-        "entidade_id": "E003",
-        "entidade_nome": "Serviço de Ação Social Universitária",
+        "entidades": [
+            "Serviço de Ação Social Universitária"
+        ],
         "area": "inclusão",
         "data_hora": "2026-04-02 11:00",
         "duracao_horas": 6,
@@ -881,8 +902,9 @@
     {
         "acao_id": "A020",
         "titulo": "Limpeza de Praia de Matosinhos",
-        "entidade_id": "E006",
-        "entidade_nome": "ONG Mar Limpo",
+        "entidades": [
+            "ONG Mar Limpo"
+        ],
         "area": "ambiente",
         "data_hora": "2026-04-05 08:00",
         "duracao_horas": 5,
@@ -914,8 +936,9 @@
     {
         "acao_id": "A021",
         "titulo": "Tutoria Intensiva de Exames",
-        "entidade_id": "E001",
-        "entidade_nome": "Núcleo de Engenharia Solidária",
+        "entidades": [
+            "Núcleo de Engenharia Solidária"
+        ],
         "area": "educação",
         "data_hora": "2026-04-11 09:30",
         "duracao_horas": 4,
@@ -947,8 +970,9 @@
     {
         "acao_id": "A022",
         "titulo": "Apoio à Declaração de IRS Solidário",
-        "entidade_id": "E010",
-        "entidade_nome": "Clínica Jurídica Universitária",
+        "entidades": [
+            "Clínica Jurídica Universitária"
+        ],
         "area": "direitos",
         "data_hora": "2026-04-16 18:00",
         "duracao_horas": 2,
@@ -987,8 +1011,9 @@
     {
         "acao_id": "A023",
         "titulo": "Open Day Ciência para Escolas",
-        "entidade_id": "E007",
-        "entidade_nome": "Faculdade de Ciências",
+        "entidades": [
+            "Faculdade de Ciências"
+        ],
         "area": "educação",
         "data_hora": "2026-04-22 09:00",
         "duracao_horas": 6,
@@ -1027,8 +1052,9 @@
     {
         "acao_id": "A024",
         "titulo": "Corrida Solidária Campus em Movimento",
-        "entidade_id": "E004",
-        "entidade_nome": "Gabinete de Saúde no Campus",
+        "entidades": [
+            "Gabinete de Saúde no Campus"
+        ],
         "area": "saúde",
         "data_hora": "2026-04-29 17:00",
         "duracao_horas": 4,
@@ -1067,8 +1093,9 @@
     {
         "acao_id": "A025",
         "titulo": "Sessão de Ciência Cidadã sobre Qualidade do Ar",
-        "entidade_id": "E012",
-        "entidade_nome": "Centro de Ciência Cidadã",
+        "entidades": [
+            "Centro de Ciência Cidadã"
+        ],
         "area": "tecnologia",
         "data_hora": "2026-05-06 18:00",
         "duracao_horas": 3,
@@ -1107,8 +1134,9 @@
     {
         "acao_id": "A026",
         "titulo": "Oficina de Design para Campanhas Sociais",
-        "entidade_id": "E011",
-        "entidade_nome": "Museu e Cultura Viva",
+        "entidades": [
+            "Museu e Cultura Viva"
+        ],
         "area": "cultura",
         "data_hora": "2026-05-10 14:30",
         "duracao_horas": 4,
@@ -1147,8 +1175,9 @@
     {
         "acao_id": "A027",
         "titulo": "Hospital dos Bonecos",
-        "entidade_id": "E004",
-        "entidade_nome": "Gabinete de Saúde no Campus",
+        "entidades": [
+            "Gabinete de Saúde no Campus"
+        ],
         "area": "saúde",
         "data_hora": "2026-05-14 09:00",
         "duracao_horas": 5,
@@ -1187,8 +1216,9 @@
     {
         "acao_id": "A028",
         "titulo": "Campanha de Recolha de Resíduos Eletrónicos",
-        "entidade_id": "E002",
-        "entidade_nome": "Associação Académica Verde",
+        "entidades": [
+            "Associação Académica Verde"
+        ],
         "area": "ambiente",
         "data_hora": "2026-05-21 10:00",
         "duracao_horas": 4,
@@ -1224,8 +1254,9 @@
     {
         "acao_id": "A029",
         "titulo": "Oficina de Robótica para Jovens",
-        "entidade_id": "E008",
-        "entidade_nome": "Faculdade de Engenharia",
+        "entidades": [
+            "Faculdade de Engenharia"
+        ],
         "area": "tecnologia",
         "data_hora": "2026-05-28 15:00",
         "duracao_horas": 5,
@@ -1261,8 +1292,9 @@
     {
         "acao_id": "A030",
         "titulo": "Encontro Intergeracional de Memórias",
-        "entidade_id": "E011",
-        "entidade_nome": "Museu e Cultura Viva",
+        "entidades": [
+            "Museu e Cultura Viva"
+        ],
         "area": "cultura",
         "data_hora": "2026-06-04 15:00",
         "duracao_horas": 3,
@@ -1301,8 +1333,10 @@
     {
         "acao_id": "A031",
         "titulo": "Campanha de Incentivo à Pesca Responsável",
-        "entidade_id": "E015",
-        "entidade_nome": "Marés Vivas",
+        "entidades": [
+            "ONG Mar Limpo",
+            "Marés Vivas"
+        ],
         "area": "ambiente",
         "data_hora": "2026-06-04 16:00",
         "duracao_horas": 2,
@@ -1334,8 +1368,9 @@
     {
         "acao_id": "A032",
         "titulo": "Campanha de Teste",
-        "entidade_id": "E016",
-        "entidade_nome": "Teste",
+        "entidades": [
+            "Teste"
+        ],
         "area": "educação",
         "data_hora": "2026-06-05 10:00",
         "duracao_horas": 3,
@@ -1361,8 +1396,9 @@
     {
         "acao_id": "A033",
         "titulo": "Campanha de Ajuda a Desalojados",
-        "entidade_id": "E018",
-        "entidade_nome": "Direção Regional da Habitação",
+        "entidades": [
+            "Direção Regional da Habitação"
+        ],
         "area": "Habitação",
         "data_hora": "2026-05-20 14:00",
         "duracao_horas": 2,
