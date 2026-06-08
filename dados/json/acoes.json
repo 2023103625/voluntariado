@@ -201,9 +201,9 @@
         "acao_id": "A006",
         "titulo": "Apoio ao Estudo de Programação",
         "entidades": [
+            "Faculdade de Ciências",
             "Faculdade de Engenharia",
-            "Núcleo de Engenharia Solidária",
-            "Faculdade de Ciências"
+            "Núcleo de Engenharia Solidária"
         ],
         "area": "tecnologia",
         "data_hora": "2025-12-03 17:00",
@@ -231,67 +231,67 @@
             }
         ],
         "equipa": [
-            "Vasco Lopes",
-            "Francisco Ramos",
+            "Bruno Dias",
+            "Francisco Moreira",
             "Joana Teixeira",
             "Ana Xavier",
-            "Francisco Moreira",
-            "Bruno Dias"
+            "Francisco Ramos",
+            "Vasco Lopes"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
-                    "Vasco Lopes",
-                    "Francisco Ramos",
+                    "Bruno Dias",
                     "Joana Teixeira",
+                    "Francisco Ramos",
                     "Ana Xavier",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
-                    "Francisco Ramos",
-                    "Joana Teixeira",
-                    "Ana Xavier",
+                    "Bruno Dias",
                     "Francisco Moreira",
-                    "Bruno Dias"
+                    "Joana Teixeira",
+                    "Francisco Ramos",
+                    "Ana Xavier",
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-07 21:05:45",
                 "tipo": "Adição: Francisco Moreira"
             },
             {
                 "estado_anterior": [
-                    "Vasco Lopes",
-                    "Francisco Ramos",
+                    "Bruno Dias",
                     "Joana Teixeira",
+                    "Francisco Ramos",
                     "Leonor Dias",
                     "Ana Xavier",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
-                    "Francisco Ramos",
+                    "Bruno Dias",
                     "Joana Teixeira",
+                    "Francisco Ramos",
                     "Ana Xavier",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-06 18:08:15",
                 "tipo": "Remoção: Leonor Dias"
             },
             {
                 "estado_anterior": [
-                    "Vasco Lopes",
+                    "Bruno Dias",
                     "Francisco Ramos",
                     "Leonor Dias",
                     "Ana Xavier",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
-                    "Francisco Ramos",
+                    "Bruno Dias",
                     "Joana Teixeira",
+                    "Francisco Ramos",
                     "Leonor Dias",
                     "Ana Xavier",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-06 17:55:45",
                 "tipo": "Adição: Joana Teixeira"
@@ -299,16 +299,16 @@
             {
                 "estado_anterior": [
                     "Leonor Dias",
+                    "Ana Xavier",
                     "Francisco Ramos",
-                    "Bruno Dias",
-                    "Ana Xavier"
+                    "Bruno Dias"
                 ],
                 "estado_novo": [
-                    "Vasco Lopes",
+                    "Bruno Dias",
                     "Francisco Ramos",
                     "Leonor Dias",
                     "Ana Xavier",
-                    "Bruno Dias"
+                    "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-06 17:39:10",
                 "tipo": "Adição de voluntário à equipa"
@@ -316,14 +316,14 @@
             {
                 "estado_anterior": [
                     "Bruno Dias",
-                    "Francisco Ramos",
-                    "Ana Xavier"
+                    "Ana Xavier",
+                    "Francisco Ramos"
                 ],
                 "estado_novo": [
                     "Leonor Dias",
+                    "Ana Xavier",
                     "Francisco Ramos",
-                    "Bruno Dias",
-                    "Ana Xavier"
+                    "Bruno Dias"
                 ],
                 "data_hora": "2026-05-06 17:38:54",
                 "tipo": "Adição de voluntário à equipa"
@@ -605,35 +605,35 @@
             }
         ],
         "equipa": [
-            "Marta Nogueira",
             "Daniel Gomes",
-            "Joana Teixeira",
-            "Salomé Gomes"
+            "Salomé Gomes",
+            "Marta Nogueira",
+            "Joana Teixeira"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
-                    "Marta Nogueira",
                     "Daniel Gomes",
+                    "Marta Nogueira",
                     "Joana Teixeira"
                 ],
                 "estado_novo": [
-                    "Marta Nogueira",
                     "Daniel Gomes",
-                    "Joana Teixeira",
-                    "Salomé Gomes"
+                    "Salomé Gomes",
+                    "Marta Nogueira",
+                    "Joana Teixeira"
                 ],
                 "data_hora": "2026-05-09 20:58:30",
                 "tipo": "Adição: Salomé Gomes"
             },
             {
                 "estado_anterior": [
-                    "Marta Nogueira",
-                    "Daniel Gomes"
+                    "Daniel Gomes",
+                    "Marta Nogueira"
                 ],
                 "estado_novo": [
-                    "Marta Nogueira",
                     "Daniel Gomes",
+                    "Marta Nogueira",
                     "Joana Teixeira"
                 ],
                 "data_hora": "2026-05-09 20:58:15",
@@ -644,8 +644,8 @@
                     "Marta Nogueira"
                 ],
                 "estado_novo": [
-                    "Marta Nogueira",
-                    "Daniel Gomes"
+                    "Daniel Gomes",
+                    "Marta Nogueira"
                 ],
                 "data_hora": "2026-05-09 20:57:59",
                 "tipo": "Adição: Daniel Gomes"
@@ -976,7 +976,7 @@
         "area": "direitos",
         "data_hora": "2026-04-16 18:00",
         "duracao_horas": 2,
-        "vagas": 10,
+        "vagas": 9,
         "localizacao": "campus",
         "estado": "planeada",
         "metrica_impacto": 0.0,
@@ -1318,13 +1318,13 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 3
+                "ods_id": 11
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 11
+                "ods_id": 3
             }
         ],
         "equipa": [],
@@ -1334,8 +1334,8 @@
         "acao_id": "A031",
         "titulo": "Campanha de Incentivo à Pesca Responsável",
         "entidades": [
-            "ONG Mar Limpo",
-            "Marés Vivas"
+            "Marés Vivas",
+            "ONG Mar Limpo"
         ],
         "area": "ambiente",
         "data_hora": "2026-06-04 16:00",
