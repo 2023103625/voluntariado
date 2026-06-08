@@ -1533,81 +1533,251 @@ class SistemaVoluntariado:
 
     def visualizar_rede_parceiros(self) -> None:
         """
-        Renderiza graficamente a teia da rede de entidades usando NetworkX e Matplotlib.
-        Implementa posicionamento radial e pesos descentralizados para evitar sobreposições.
+        Visualização de nível executivo da rede de entidades.
+        - Labels curtas (A1, A2) mapeadas para uma legenda de ações.
+        - Nós dimensionados pelo grau e coloridos por conectividade.
+        - Arestas com espessura e cor proporcionais ao peso da parceria.
+        - Legendas automáticas para interpretação imediata.
         """
+        import math
+        from matplotlib.patches import Patch # Importação para a legenda customizada
+        try:
+            from adjustText import adjust_text
+        except ImportError:
+            print("\n[ERRO] A biblioteca 'adjustText' não está instalada.")
+            print("Por favor, feche o programa e execute no terminal: pip install adjustText")
+            return
+
         self.reconstruir_rede_entidades()
         nx_grafo = nx.Graph()
 
-        # 1. Adicionar nós e arestas ao NetworkX
+        # ==================================================
+        # 1. Construção do grafo
+        # ==================================================
         for entidade, vizinhos in self.rede_entidades.adjacencias.items():
             nx_grafo.add_node(entidade)
             for vizinho, peso in vizinhos.items():
                 nx_grafo.add_edge(entidade, vizinho, weight=peso)
 
-        if len(nx_grafo.nodes) == 0:
+        if len(nx_grafo.nodes()) == 0:
             print("A rede de entidades está vazia. Não é possível gerar o gráfico.")
             return
 
-        # 2. Layout (Molas bem fortes para espalhar os nós ao máximo)
-        pos = nx.spring_layout(nx_grafo, k=2.0, iterations=300, seed=42)
+        # ==================================================
+        # 2. Separar ligados e isolados
+        # ==================================================
+        conectados = [no for no, grau in nx_grafo.degree() if grau > 0]
+        isolados = [no for no, grau in nx_grafo.degree() if grau == 0]
 
-        plt.figure(figsize=(16, 10))
-        plt.title("Visualização da Rede de Parcerias entre Entidades (RF16)", fontsize=16, fontweight='bold', color='#005b96')
-        
-        # 3. DESENHAR ARESTAS (LINHAS)
-        if len(nx_grafo.edges()) > 0:
-            # Linhas mais finas e ligeiramente transparentes para deixar o texto respirar
-            nx.draw_networkx_edges(
-                nx_grafo, pos, width=1.5, edge_color='black', alpha=0.5
-            )
+        pos = {}
+
+        # ==================================================
+        # 3. Disposição das Componentes Ligadas (Topo)
+        # ==================================================
+        if conectados:
+            subgrafo = nx_grafo.subgraph(conectados)
+            componentes = list(nx.connected_components(subgrafo))
             
-            # 4. DESENHAR OS PESOS (NÚMEROS) - Desviados do centro
-            rotulos_arestas = {(u, v): str(d['weight']) for u, v, d in nx_grafo.edges(data=True)}
-            nx.draw_networkx_edge_labels(
-                nx_grafo, pos,
-                edge_labels=rotulos_arestas,
-                font_color='red',
-                font_size=10,
-                font_weight='bold',
-                label_pos=0.65, # TRUQUE: 0.65 afasta os números do cruzamento central
-                bbox=dict(boxstyle="circle,pad=0.15", edgecolor="red", facecolor="white", alpha=0.9)
-            )
-        
-        # 5. DESENHAR NÓS - Tamanho fixo
-        nx.draw_networkx_nodes(
-            nx_grafo, pos, 
-            node_size=300, 
-            node_color='#87CEEB', 
-            edgecolors='black', 
-            linewidths=1.5
-        )
-        
-        # 6. MATEMÁTICA RADIAL PARA OS RÓTULOS DOS NÓS
-        rotulos = {no: no.title() for no in nx_grafo.nodes()}
-        
-        # Calcula o centro de massa do grafo
-        cx = sum([v[0] for v in pos.values()]) / len(pos)
-        cy = sum([v[1] for v in pos.values()]) / len(pos)
-        
-        pos_labels = {}
-        for k_no, v_coord in pos.items():
-            # Vetor desde o centro até ao nó
-            dx = v_coord[0] - cx
-            dy = v_coord[1] - cy
-            dist = (dx**2 + dy**2)**0.5
+            offset_x = 0
+            for componente in componentes:
+                g_comp = subgrafo.subgraph(componente)
+                # k=5.0 para expandir os grupos densos (ex: Triângulo das Faculdades)
+                pos_comp = nx.spring_layout(g_comp, k=5.0, iterations=1000, seed=42)
+
+                xs = [p[0] for p in pos_comp.values()]
+                largura = max(xs) - min(xs) if xs else 0
+
+                for no, (x, y) in pos_comp.items():
+                    pos[no] = (x * 4 + offset_x, y * 4 + 8)
+
+                offset_x += largura * 6 + 8
+
+        # ==================================================
+        # 4. Nós Isolados em Grelha Centrada (Base)
+        # ==================================================
+        if isolados:
+            colunas = 5  
+            ESP_X = 6.5
+            ESP_Y = 4.5
             
-            if dist > 0.01:
-                # Empurra o texto para fora do centro
-                pos_labels[k_no] = [v_coord[0] + (dx/dist)*0.08, v_coord[1] + (dy/dist)*0.08]
+            largura_total = (colunas - 1) * ESP_X
+
+            for i, no in enumerate(isolados):
+                linha = i // colunas
+                coluna = i % colunas
+                
+                x = coluna * ESP_X - largura_total / 2
+                y = -(linha * ESP_Y) - 1
+                
+                pos[no] = (x, y)
+
+        # ==================================================
+        # 5. Configuração da Figura
+        # ==================================================
+        plt.figure(figsize=(20, 12))
+        plt.title("Visualização da Rede de Parcerias entre Entidades (RF16)", fontsize=18, fontweight="bold", color="#005b96")
+        plt.margins(0.30)
+
+        # ==================================================
+        # 6. Mapeamento de Ações e Desenho das Arestas
+        # ==================================================
+        mapa_acoes = {}
+        contador_acao = 1
+        edge_labels = {}
+        
+        edge_colors = []
+        edge_widths = []
+
+        for u, v, d in nx_grafo.edges(data=True):
+            peso = d['weight']
+            
+            # Dinâmica visual das arestas (Espessura e Cor pelo Peso)
+            edge_widths.append(1 + peso)
+            if peso == 1:
+                edge_colors.append("#B0B0B0") # Cinzento = fraca
+            elif peso <= 3:
+                edge_colors.append("#5DA5DA") # Azul = média
             else:
-                pos_labels[k_no] = [v_coord[0], v_coord[1] + 0.08]
-        
-        nx.draw_networkx_labels(
-            nx_grafo, pos_labels, labels=rotulos, font_size=8, font_weight='bold',
-            bbox=dict(boxstyle="round,pad=0.2", edgecolor="none", facecolor="white", alpha=0.9)
+                edge_colors.append("#2E8B57") # Verde = forte
+
+            # Sistema de referências curtas (A1, A2...)
+            acoes_comuns = []
+            for acao in self.acoes.values():
+                ent_lower = {e.lower() for e in acao.entidades}
+                if u.lower() in ent_lower and v.lower() in ent_lower:
+                    if acao.titulo not in mapa_acoes:
+                        mapa_acoes[acao.titulo] = f"A{contador_acao}"
+                        contador_acao += 1
+                    acoes_comuns.append(mapa_acoes[acao.titulo])
+
+            if acoes_comuns:
+                # Exibe ex: "A1, A2" na aresta
+                texto = ", ".join(acoes_comuns)
+            else:
+                # Fallback caso seja uma ligação sem ações registadas
+                texto = f"P={peso}"
+
+            edge_labels[(u, v)] = texto
+
+        # Desenhar Arestas
+        nx.draw_networkx_edges(
+            nx_grafo, pos, width=edge_widths, edge_color=edge_colors, alpha=0.7
         )
 
-        plt.axis('off')
+        # Labels das Arestas
+        nx.draw_networkx_edge_labels(
+            nx_grafo, pos, edge_labels=edge_labels, 
+            font_size=7, font_color="black", font_weight="bold", rotate=True,
+            bbox=dict(boxstyle="round,pad=0.15", facecolor="#f0f0f0", edgecolor="none", alpha=0.8)
+        )
+
+        # ==================================================
+        # 7. Desenhar Nós (Tamanho e Cor Dinâmicos)
+        # ==================================================
+        node_sizes = []
+        node_colors = []
+        
+        for no in nx_grafo.nodes():
+            grau = nx_grafo.degree(no)
+            node_sizes.append(1200 + grau * 400) # Proporcional à centralidade
+            
+            if grau == 0:
+                node_colors.append("#D9D9D9") # Cinzento = Isolado
+            else:
+                node_colors.append("#87CEEB") # Azul = Em Rede
+
+        nx.draw_networkx_nodes(
+            nx_grafo, pos, node_size=node_sizes, node_color=node_colors,
+            edgecolors="black", linewidths=1.5
+        )
+
+        # ==================================================
+        # 8. Labels Inteligentes
+        # ==================================================
+        texts_conectados = []
+        
+        for no in nx_grafo.nodes():
+            x, y = pos[no]
+            vizinhos = list(nx_grafo.neighbors(no))
+
+            if len(vizinhos) == 0:
+                # NÓ ISOLADO: Estático
+                plt.text(
+                    x, y - 0.7, no.title(), fontsize=7, fontweight="bold",
+                    ha="center", va="center", zorder=20,
+                    bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="gray", alpha=0.95)
+                )
+            else:
+                # NÓ CONECTADO: Sujeito a repulsão
+                dx, dy = 0.0, 0.0
+                for viz in vizinhos:
+                    xv, yv = pos[viz]
+                    dx += (xv - x)
+                    dy += (yv - y)
+
+                dx /= len(vizinhos)
+                dy /= len(vizinhos)
+                norma = math.sqrt(dx**2 + dy**2)
+
+                if norma > 0:
+                    dx /= norma
+                    dy /= norma
+
+                # Ajuste de distância dinâmico
+                distancia = 1.3 + (len(vizinhos) * 0.1) 
+                lx = x - dx * distancia
+                ly = y - dy * distancia
+
+                texto_obj = plt.text(
+                    lx, ly, no.title(), fontsize=8, fontweight="bold",
+                    ha="center", va="center", zorder=20,
+                    bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="gray", alpha=0.95)
+                )
+                texts_conectados.append(texto_obj)
+
+        # ==================================================
+        # 9. Resolver Colisões (Apenas para Nós Ligados)
+        # ==================================================
+        if texts_conectados:
+            adjust_text(
+                texts_conectados,
+                force_text=0.3,
+                force_static=0.3,
+                expand_text=(1.05, 1.1),
+                expand_points=(1.1, 1.1),
+                lim=50,
+                arrowprops=dict(arrowstyle="-", color="lightgray", lw=0.6)
+            )
+
+        # ==================================================
+        # 10. Construção das Legendas (Caixas Analíticas)
+        # ==================================================
+        # Legenda das Cores
+        legenda_entidades = [
+            Patch(facecolor="#87CEEB", edgecolor="black", label="Entidade em Rede"),
+            Patch(facecolor="#D9D9D9", edgecolor="black", label="Entidade Isolada")
+        ]
+        leg_cores = plt.legend(
+            handles=legenda_entidades, loc="upper left", fontsize=9, 
+            title="Estado da Entidade", title_fontproperties={'weight':'bold'}
+        )
+        plt.gca().add_artist(leg_cores) # Mantém a legenda no ecrã
+
+        # Legenda das Ações (Caixa de Texto Superior Direita)
+        if mapa_acoes:
+            texto_acoes = "AÇÕES ATIVAS NA REDE\n" + "-"*25 + "\n"
+            # Ordenar por A1, A2...
+            for titulo, ref in sorted(mapa_acoes.items(), key=lambda item: int(item[1][1:])):
+                tit_curto = titulo if len(titulo) <= 45 else titulo[:42] + "..."
+                texto_acoes += f"{ref} → {tit_curto}\n"
+            
+            plt.text(
+                0.98, 0.98, texto_acoes.strip(),
+                transform=plt.gca().transAxes,
+                fontsize=8, verticalalignment='top', horizontalalignment='right',
+                bbox=dict(boxstyle="round,pad=0.5", facecolor="#f8fcf8", edgecolor="gray", alpha=0.9)
+            )
+
+        plt.axis("off")
         plt.tight_layout()
         plt.show()

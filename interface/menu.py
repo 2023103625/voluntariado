@@ -1265,8 +1265,8 @@ class MenuTerminal:
             self._imprimir_opcoes(
                 [
                     "1. Consultar Ligações da Rede (Sincronizadas por Ações)",
-                    "2. Adicionar/Remover Local Manual na Rede",
-                    "3. Adicionar/Remover Ligação Manual (Aresta)",
+                    "2. Adicionar/Remover Local na Rede",
+                    "3. Adicionar/Remover Ligação (Aresta)",
                     "4. Calcular Caminho Mais Curto entre Entidades (RF15)",
                     "5. Ver Ranking de Centralidade de Proximidade (RF15)",
                     "6. Visualizar Grafo Graficamente (NetworkX - RF16)",
