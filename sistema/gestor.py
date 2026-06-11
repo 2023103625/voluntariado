@@ -5,7 +5,7 @@ Este módulo implementa a classe `SistemaVoluntariado` (o "Gestor"),
 responsável por centralizar o estado das entidades (Voluntários,
 Entidades, Ações e Inscrições), garantir a persistência em JSON,
 e fornecer a lógica de negócio necessária para satisfazer os
-requisitos funcionais (RF01 a RF09).
+requisitos funcionais (RF01 a RF16).
 """
 
 import os
@@ -1463,11 +1463,13 @@ class SistemaVoluntariado:
 
     def reconstruir_rede_entidades(self) -> None:
         """
-        Reconstrói o grafo do zero. 
-        Duas entidades estão ligadas se participarem na mesma ação.
-        O peso da ligação é o número de ações que têm em comum.
-        
-        Nota: Cumpre rigorosamente o OR07 ao não utilizar o módulo itertools.
+        Reconstrói o grafo de entidades desde o início.
+    
+        Duas entidades estabelecem uma ligação se participarem na mesma ação.
+        O peso dessa ligação corresponde ao número total de ações partilhadas.
+    
+        :return: Nenhum valor de retorno, atualiza o estado interno do grafo.
+        :rtype: None
         """
         self.rede_entidades = Grafo()
         
@@ -1501,14 +1503,32 @@ class SistemaVoluntariado:
 
     def pesquisar_caminho_curto_entidades(self, ent1: str, ent2: str) -> Optional[List[str]]:
         """
-        Encontra o caminho mais curto (menos vértices) usando o algoritmo BFS abstrato.
+        Pesquisa e devolve o caminho mais curto entre duas entidades na rede.
+    
+        Utiliza o algoritmo Breadth-First Search (BFS) para descobrir a rota 
+        que atravessa o menor número de vértices.
+
+        :param ent1: O nome da entidade de origem.
+        :type ent1: str
+        :param ent2: O nome da entidade de destino.
+        :type ent2: str
+        :return: Uma lista com os nomes das entidades que formam o caminho. 
+             Devolve None se não houver caminho possível ou se as entidades não existirem.
+        :rtype: Optional[List[str]]
         """
         self.reconstruir_rede_entidades() # Garante que a rede está atualizada
         return caminho_mais_curto_bfs(self.rede_entidades.adjacencias, ent1.lower(), ent2.lower())
 
     def calcular_centralidade_rede(self) -> List[Tuple[str, float]]:
         """
-        Calcula a proximidade de todas as entidades usando a distância geodésica.
+        Calcula o grau de centralidade de proximidade de todas as entidades.
+    
+        A centralidade de proximidade é o inverso da soma das distâncias mais curtas 
+        (geodésicas) de um nó para todos os outros nós alcançáveis.
+
+        :return: Uma lista de tuplos, em que cada tuplo contém o nome formatado da entidade 
+             e o seu valor de centralidade, ordenada de forma decrescente (do maior para o menor).
+        :rtype: List[Tuple[str, float]]
         """
         self.reconstruir_rede_entidades()
         centralidades = []
@@ -1533,11 +1553,17 @@ class SistemaVoluntariado:
 
     def visualizar_rede_parceiros(self) -> None:
         """
-        Visualização de nível executivo da rede de entidades.
-        - Labels curtas (A1, A2) mapeadas para uma legenda de ações.
-        - Nós dimensionados pelo grau e coloridos por conectividade.
-        - Arestas com espessura e cor proporcionais ao peso da parceria.
-        - Legendas automáticas para interpretação imediata.
+        Gera uma visualização interativa e gráfica da rede de entidades usando NetworkX e Matplotlib.
+    
+        Características do gráfico:
+            * Rótulos (Labels) curtos mapeados numa legenda lateral para ações.
+            * Tamanho dos nós dinâmico, baseado no grau de conexões.
+            * Espessura e cor das arestas baseadas no peso da parceria (ações em comum).
+            * Disposição física otimizada, separando os nós isolados das componentes ligadas.
+
+        :raises ImportError: Se a biblioteca 'adjustText' não estiver instalada no ambiente.
+        :return: Nenhum valor. Abre diretamente uma janela de visualização Matplotlib.
+        :rtype: None
         """
         import math
         from matplotlib.patches import Patch # Importação para a legenda customizada
@@ -1551,9 +1577,7 @@ class SistemaVoluntariado:
         self.reconstruir_rede_entidades()
         nx_grafo = nx.Graph()
 
-        # ==================================================
         # 1. Construção do grafo
-        # ==================================================
         for entidade, vizinhos in self.rede_entidades.adjacencias.items():
             nx_grafo.add_node(entidade)
             for vizinho, peso in vizinhos.items():
@@ -1563,17 +1587,13 @@ class SistemaVoluntariado:
             print("A rede de entidades está vazia. Não é possível gerar o gráfico.")
             return
 
-        # ==================================================
         # 2. Separar ligados e isolados
-        # ==================================================
         conectados = [no for no, grau in nx_grafo.degree() if grau > 0]
         isolados = [no for no, grau in nx_grafo.degree() if grau == 0]
 
         pos = {}
 
-        # ==================================================
         # 3. Disposição das Componentes Ligadas (Topo)
-        # ==================================================
         if conectados:
             subgrafo = nx_grafo.subgraph(conectados)
             componentes = list(nx.connected_components(subgrafo))
@@ -1592,9 +1612,7 @@ class SistemaVoluntariado:
 
                 offset_x += largura * 6 + 8
 
-        # ==================================================
         # 4. Nós Isolados em Grelha Centrada (Base)
-        # ==================================================
         if isolados:
             colunas = 5  
             ESP_X = 6.5
@@ -1611,16 +1629,12 @@ class SistemaVoluntariado:
                 
                 pos[no] = (x, y)
 
-        # ==================================================
         # 5. Configuração da Figura
-        # ==================================================
         plt.figure(figsize=(20, 12))
         plt.title("Visualização da Rede de Parcerias entre Entidades (RF16)", fontsize=18, fontweight="bold", color="#005b96")
         plt.margins(0.30)
 
-        # ==================================================
         # 6. Mapeamento de Ações e Desenho das Arestas
-        # ==================================================
         mapa_acoes = {}
         contador_acao = 1
         edge_labels = {}
@@ -1671,9 +1685,7 @@ class SistemaVoluntariado:
             bbox=dict(boxstyle="round,pad=0.15", facecolor="#f0f0f0", edgecolor="none", alpha=0.8)
         )
 
-        # ==================================================
         # 7. Desenhar Nós (Tamanho e Cor Dinâmicos)
-        # ==================================================
         node_sizes = []
         node_colors = []
         
@@ -1691,9 +1703,7 @@ class SistemaVoluntariado:
             edgecolors="black", linewidths=1.5
         )
 
-        # ==================================================
         # 8. Labels Inteligentes
-        # ==================================================
         texts_conectados = []
         
         for no in nx_grafo.nodes():
@@ -1735,9 +1745,7 @@ class SistemaVoluntariado:
                 )
                 texts_conectados.append(texto_obj)
 
-        # ==================================================
         # 9. Resolver Colisões (Apenas para Nós Ligados)
-        # ==================================================
         if texts_conectados:
             adjust_text(
                 texts_conectados,
@@ -1749,9 +1757,8 @@ class SistemaVoluntariado:
                 arrowprops=dict(arrowstyle="-", color="lightgray", lw=0.6)
             )
 
-        # ==================================================
+
         # 10. Construção das Legendas (Caixas Analíticas)
-        # ==================================================
         # Legenda das Cores
         legenda_entidades = [
             Patch(facecolor="#87CEEB", edgecolor="black", label="Entidade em Rede"),

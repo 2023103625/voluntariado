@@ -160,7 +160,8 @@
         "acao_id": "A005",
         "titulo": "Feira de Ciência Cidadã no Campus",
         "entidades": [
-            "Centro de Ciência Cidadã"
+            "Centro de Ciência Cidadã",
+            "Faculdade de Ciências"
         ],
         "area": "tecnologia",
         "data_hora": "2025-11-28 13:00",
@@ -232,27 +233,27 @@
         ],
         "equipa": [
             "Bruno Dias",
-            "Francisco Moreira",
+            "Francisco Ramos",
             "Joana Teixeira",
             "Ana Xavier",
-            "Francisco Ramos",
+            "Francisco Moreira",
             "Vasco Lopes"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
                     "Bruno Dias",
-                    "Joana Teixeira",
                     "Francisco Ramos",
+                    "Joana Teixeira",
                     "Ana Xavier",
                     "Vasco Lopes"
                 ],
                 "estado_novo": [
                     "Bruno Dias",
-                    "Francisco Moreira",
-                    "Joana Teixeira",
                     "Francisco Ramos",
+                    "Joana Teixeira",
                     "Ana Xavier",
+                    "Francisco Moreira",
                     "Vasco Lopes"
                 ],
                 "data_hora": "2026-05-07 21:05:45",
@@ -261,16 +262,16 @@
             {
                 "estado_anterior": [
                     "Bruno Dias",
-                    "Joana Teixeira",
                     "Francisco Ramos",
                     "Leonor Dias",
+                    "Joana Teixeira",
                     "Ana Xavier",
                     "Vasco Lopes"
                 ],
                 "estado_novo": [
                     "Bruno Dias",
-                    "Joana Teixeira",
                     "Francisco Ramos",
+                    "Joana Teixeira",
                     "Ana Xavier",
                     "Vasco Lopes"
                 ],
@@ -287,9 +288,9 @@
                 ],
                 "estado_novo": [
                     "Bruno Dias",
-                    "Joana Teixeira",
                     "Francisco Ramos",
                     "Leonor Dias",
+                    "Joana Teixeira",
                     "Ana Xavier",
                     "Vasco Lopes"
                 ],
@@ -298,9 +299,9 @@
             },
             {
                 "estado_anterior": [
-                    "Leonor Dias",
                     "Ana Xavier",
                     "Francisco Ramos",
+                    "Leonor Dias",
                     "Bruno Dias"
                 ],
                 "estado_novo": [
@@ -315,14 +316,14 @@
             },
             {
                 "estado_anterior": [
-                    "Bruno Dias",
-                    "Ana Xavier",
-                    "Francisco Ramos"
-                ],
-                "estado_novo": [
-                    "Leonor Dias",
                     "Ana Xavier",
                     "Francisco Ramos",
+                    "Bruno Dias"
+                ],
+                "estado_novo": [
+                    "Ana Xavier",
+                    "Francisco Ramos",
+                    "Leonor Dias",
                     "Bruno Dias"
                 ],
                 "data_hora": "2026-05-06 17:38:54",
@@ -605,23 +606,23 @@
             }
         ],
         "equipa": [
-            "Daniel Gomes",
             "Salomé Gomes",
-            "Marta Nogueira",
-            "Joana Teixeira"
+            "Daniel Gomes",
+            "Joana Teixeira",
+            "Marta Nogueira"
         ],
         "historico_equipa": [
             {
                 "estado_anterior": [
                     "Daniel Gomes",
-                    "Marta Nogueira",
-                    "Joana Teixeira"
+                    "Joana Teixeira",
+                    "Marta Nogueira"
                 ],
                 "estado_novo": [
-                    "Daniel Gomes",
                     "Salomé Gomes",
-                    "Marta Nogueira",
-                    "Joana Teixeira"
+                    "Daniel Gomes",
+                    "Joana Teixeira",
+                    "Marta Nogueira"
                 ],
                 "data_hora": "2026-05-09 20:58:30",
                 "tipo": "Adição: Salomé Gomes"
@@ -633,8 +634,8 @@
                 ],
                 "estado_novo": [
                     "Daniel Gomes",
-                    "Marta Nogueira",
-                    "Joana Teixeira"
+                    "Joana Teixeira",
+                    "Marta Nogueira"
                 ],
                 "data_hora": "2026-05-09 20:58:15",
                 "tipo": "Adição: Joana Teixeira"
@@ -1255,7 +1256,8 @@
         "acao_id": "A029",
         "titulo": "Oficina de Robótica para Jovens",
         "entidades": [
-            "Faculdade de Engenharia"
+            "Faculdade de Engenharia",
+            "Faculdade de Ciências"
         ],
         "area": "tecnologia",
         "data_hora": "2026-05-28 15:00",
@@ -1318,13 +1320,13 @@
         ],
         "ods_associados": [
             {
-                "ods_id": 11
+                "ods_id": 3
             },
             {
                 "ods_id": 10
             },
             {
-                "ods_id": 3
+                "ods_id": 11
             }
         ],
         "equipa": [],
@@ -1335,7 +1337,8 @@
         "titulo": "Campanha de Incentivo à Pesca Responsável",
         "entidades": [
             "Marés Vivas",
-            "ONG Mar Limpo"
+            "ONG Mar Limpo",
+            "Faculdade de Ciências"
         ],
         "area": "ambiente",
         "data_hora": "2026-06-04 16:00",

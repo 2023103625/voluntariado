@@ -12,6 +12,7 @@ import types
 from typing import Any
 import io
 from unittest.mock import patch
+from typing import Any, List, Optional
 
 # Garante que o Python encontra as pastas do projeto
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -19,20 +20,36 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 def _instalar_stub_matplotlib() -> None:
     """
     Instala um stub (falso módulo) de matplotlib para ambientes sem dependência.
-    
-    Esta técnica permite que os testes unitários corram em servidores de CI/CD
-    (Integração Contínua) que não possuam o pacote matplotlib instalado,
-    evitando quebras de importação.
     """
     if "matplotlib" in sys.modules:
         return
         
     modulo_matplotlib = types.ModuleType("matplotlib")
     modulo_pyplot = types.ModuleType("matplotlib.pyplot")
+    modulo_patches = types.ModuleType("matplotlib.patches")
     
+    # Simula o objeto Patch usado nas legendas
+    class _Patch:
+        def __init__(self, *args: Any, **kwargs: Any): pass
+    modulo_patches.Patch = _Patch
+
     class _Axis:
-        def bar(self, *args: Any, **kwargs: Any) -> None: return None
+        class _Bar: pass
+        
+        def bar(self, *args: Any, **kwargs: Any) -> List[Any]: 
+            return [self._Bar(), self._Bar()] 
+            
+        def pie(self, *args: Any, **kwargs: Any) -> None: return None
         def set_title(self, *args: Any, **kwargs: Any) -> None: return None
+        def set_xlabel(self, *args: Any, **kwargs: Any) -> None: return None
+        def set_ylabel(self, *args: Any, **kwargs: Any) -> None: return None
+        def set_xticks(self, *args: Any, **kwargs: Any) -> None: return None
+        def set_xticklabels(self, *args: Any, **kwargs: Any) -> None: return None
+        def legend(self, *args: Any, **kwargs: Any) -> None: return None
+        def add_artist(self, *args: Any, **kwargs: Any) -> None: return None
+        def axis(self, *args: Any, **kwargs: Any) -> None: return None
+        def grid(self, *args: Any, **kwargs: Any) -> None: return None
+        def tick_params(self, *args: Any, **kwargs: Any) -> None: return None 
         
     def _subplots(*args: Any, **kwargs: Any) -> tuple:
         return object(), (_Axis(), _Axis())
@@ -40,10 +57,19 @@ def _instalar_stub_matplotlib() -> None:
     modulo_pyplot.subplots = _subplots
     modulo_pyplot.tight_layout = lambda: None
     modulo_pyplot.show = lambda: None
+    modulo_pyplot.gca = lambda: _Axis()
+    modulo_pyplot.text = lambda *args, **kwargs: object()
+    modulo_pyplot.margins = lambda *args, **kwargs: None
+    modulo_pyplot.axis = lambda *args, **kwargs: None
+    modulo_pyplot.legend = lambda *args, **kwargs: object()
+    modulo_pyplot.figure = lambda *args, **kwargs: None
+    modulo_pyplot.title = lambda *args, **kwargs: None
     
     modulo_matplotlib.pyplot = modulo_pyplot
+    modulo_matplotlib.patches = modulo_patches
     sys.modules["matplotlib"] = modulo_matplotlib
     sys.modules["matplotlib.pyplot"] = modulo_pyplot
+    sys.modules["matplotlib.patches"] = modulo_patches
 
 # Instalar o stub antes de importar os módulos que usam matplotlib
 _instalar_stub_matplotlib()
@@ -208,11 +234,12 @@ class TestGestor(unittest.TestCase):
         # 3. Assert
         self.assertTrue(os.path.exists(pasta_relatorios), "A pasta 'relatorios' não foi criada.")
         
-        # Procurar o ficheiro CSV acabado de gerar
+        # Procurar o ficheiro CSV (garantindo que pegamos no mais RECENTE gerado pelo teste)
         ficheiros_csv = [f for f in os.listdir(pasta_relatorios) if f.startswith("relatorio_dados_") and f.endswith(".csv")]
         self.assertGreater(len(ficheiros_csv), 0, "O ficheiro CSV não foi gerado.")
         
-        caminho_csv = os.path.join(pasta_relatorios, ficheiros_csv[0])
+        ficheiros_csv.sort() # Ordena cronologicamente
+        caminho_csv = os.path.join(pasta_relatorios, ficheiros_csv[-1]) # [-1] apanha o último!
         
         with open(caminho_csv, 'r', encoding='utf-8-sig') as f:
             conteudo = f.read()
@@ -323,6 +350,80 @@ class TestGestor(unittest.TestCase):
         insc_vencedora, pontos = lista_prioridades[0]
         self.assertEqual(insc_vencedora.voluntario, "Voluntário Forte", "O Max-Heap não colocou o voluntário com mais pontos no topo.")
         self.assertGreaterEqual(pontos, 2, "A matemática dos pontos (+2 por ODS) falhou.")
+
+    # ==========================================
+    # TESTES DE REGRAS DE NEGÓCIO (RF14, 15, 16)
+    # ==========================================
+
+    def test_gestor_rede_entidades_rf14_rf15(self) -> None:
+        """
+        [Propósito]: Validar RF14 e RF15. O sistema deve reconstruir o grafo
+        corretamente, calcular o caminho mais curto entre entidades e determinar
+        a centralidade (proximidade) com sucesso.
+        """
+        # 1. Arrange
+        sistema = SistemaVoluntariado()
+        
+        from sistema.modelos.entidade import Entidade
+        from sistema.modelos.acao import Acao
+        
+        # Criar 3 entidades
+        sistema.entidades["e1"] = Entidade("E1", "Núcleo", "Educação", "Campus")
+        sistema.entidades["e2"] = Entidade("E2", "Associação", "Ambiente", "Campus")
+        sistema.entidades["e3"] = Entidade("E3", "ONG", "Saúde", "Externo")
+        
+        # Criar ações partilhadas para formar a rede: [E1-E2] e [E2-E3]
+        a1 = Acao("Ação 1", ["E1", "E2"], "2025-01-01", 2, 5, "campus")
+        a2 = Acao("Ação 2", ["E2", "E3"], "2025-01-02", 2, 5, "campus")
+        sistema.acoes["ação 1"] = a1
+        sistema.acoes["ação 2"] = a2
+        
+        # 2. Act (RF14 - Reconstruir Rede)
+        sistema.reconstruir_rede_entidades()
+        
+        # 3. Assert (RF14 - Validar Ligações)
+        self.assertIn("e1", sistema.rede_entidades.adjacencias, "O vértice E1 não foi criado no grafo.")
+        self.assertIn("e2", sistema.rede_entidades.adjacencias["e1"], "A aresta E1-E2 não foi criada.")
+        self.assertIn("e3", sistema.rede_entidades.adjacencias["e2"], "A aresta E2-E3 não foi criada.")
+        
+        # 4. Act & Assert (RF15 - Caminho Mais Curto)
+        # O caminho de E1 a E3 tem de passar obrigatoriamente por E2
+        caminho = sistema.pesquisar_caminho_curto_entidades("e1", "e3")
+        self.assertEqual(caminho, ["e1", "e2", "e3"], "O caminho mais curto calculado está incorreto.")
+        
+        # 5. Act & Assert (RF15 - Centralidade de Proximidade)
+        centralidades = sistema.calcular_centralidade_rede()
+        # E2 está no centro da rede, logo tem a maior centralidade (menor soma de distâncias geodésicas)
+        entidade_top, grau = centralidades[0]
+        self.assertEqual(entidade_top, "E2", "A entidade E2 deveria ter o maior grau de centralidade.")
+
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_gestor_visualizacao_rede_rf16(self, mock_stdout: io.StringIO) -> None:
+        """
+        [Propósito]: Validar RF16. Garantir que a renderização da rede 
+        usando NetworkX e Matplotlib não lança exceções (Crash).
+        Nota: O plt.show e adjustText não bloqueiam o teste graças ao stub.
+        """
+        # 1. Arrange
+        sistema = SistemaVoluntariado()
+        from sistema.modelos.entidade import Entidade
+        from sistema.modelos.acao import Acao
+        
+        # Popular com dados mínimos para não ser uma rede vazia
+        sistema.entidades["e1"] = Entidade("E1", "Núcleo", "Educação", "Campus")
+        a1 = Acao("Ação 1", ["E1"], "2025-01-01", 2, 5, "campus")
+        sistema.acoes["ação 1"] = a1
+        
+        # 2. Act
+        houve_excecao = False
+        try:
+            sistema.visualizar_rede_parceiros()
+        except Exception as e:
+            houve_excecao = True
+            print(f"Exceção gerada: {e}")
+            
+        # 3. Assert
+        self.assertFalse(houve_excecao, "A visualização gráfica (RF16) falhou com uma exceção.")
 
 
 if __name__ == '__main__':

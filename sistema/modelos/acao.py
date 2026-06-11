@@ -58,7 +58,7 @@ class Acao:
         self.estado: EstadoAcao = EstadoAcao.PLANEADA
         self.metrica_impacto: float = 0.0
 
-        # Atributos complexos (TDA e Coleções)
+        # Atributos (TDA e Coleções)
         self.competencias_desejadas: Dict[str, int] = {}
         self.ods_associados: Set[int] = set()
         self.equipa: Set[str] = set()

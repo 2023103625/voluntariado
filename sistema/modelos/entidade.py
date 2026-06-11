@@ -44,7 +44,7 @@ class Entidade:
         self.localizacao: str = localizacao
         self.url: Optional[str] = url
         
-        # Atributos complexos (Coleções)
+        # Coleções
         self.tags: Set[str] = set()
         self.ods_foco: Set[int] = set()
 

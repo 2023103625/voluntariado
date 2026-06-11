@@ -20,6 +20,7 @@ from sistema.algoritmos.heap_sort import heap_sort
 from sistema.modelos.voluntario import Voluntario
 from sistema.modelos.acao import Acao
 from sistema.constantes import VinculoVoluntario
+from sistema.algoritmos.bfs import caminho_mais_curto_bfs, soma_distancias_geodesicas_bfs
 
 
 class TestAlgoritmos(unittest.TestCase):
@@ -135,6 +136,81 @@ class TestAlgoritmos(unittest.TestCase):
             (1.0, "Voluntario D")
         ]
         self.assertEqual(resultado_ordenado, esperado, "O Heap Sort não extraiu os valores na ordem correta de prioridade.")
+
+    # ==========================================
+    # TESTES AO BFS (PESQUISA EM LARGURA - RF15)
+    # ==========================================
+
+    def test_bfs_caminho_mais_curto_encontrado(self) -> None:
+        """
+        [Propósito]: Garantir que o BFS encontra o caminho mais curto
+        (menos saltos/arestas) entre duas entidades num grafo conectado.
+        """
+        # 1. Arrange
+        # Simulamos um dicionário de adjacências de um grafo
+        adjacencias = {
+            "A": {"B": 1, "C": 1},
+            "B": {"A": 1, "D": 1},
+            "C": {"A": 1, "D": 1, "E": 1},
+            "D": {"B": 1, "C": 1, "E": 1},
+            "E": {"C": 1, "D": 1}
+        }
+        
+        # 2. Act
+        caminho = caminho_mais_curto_bfs(adjacencias, "A", "E")
+        
+        # 3. Assert
+        # Existem dois caminhos: A -> C -> E (2 saltos) e A -> B -> D -> E (3 saltos).
+        # O BFS tem de garantir obrigatoriamente o mais curto.
+        self.assertIsNotNone(caminho, "O algoritmo não encontrou nenhum caminho.")
+        self.assertEqual(len(caminho), 3, "O caminho encontrado não é o mais curto.")
+        self.assertEqual(caminho, ["A", "C", "E"], "A rota do caminho mais curto falhou.")
+
+    def test_bfs_caminho_inexistente_ou_invalido(self) -> None:
+        """
+        [Propósito]: Validar o comportamento do BFS em grafos desconexos 
+        (ilhas) ou quando as entidades não existem (Edge Cases).
+        """
+        # 1. Arrange
+        adjacencias = {
+            "A": {"B": 1},
+            "B": {"A": 1},
+            "C": {"D": 1},
+            "D": {"C": 1}
+        } # A e B não têm ligação a C e D
+        
+        # 2. Act & Assert (Entidades em componentes separadas)
+        caminho_ilhas = caminho_mais_curto_bfs(adjacencias, "A", "C")
+        self.assertIsNone(caminho_ilhas, "O BFS inventou um caminho entre grafos desconexos.")
+        
+        # 3. Act & Assert (Entidade não existe na rede)
+        caminho_invalido = caminho_mais_curto_bfs(adjacencias, "A", "Z")
+        self.assertIsNone(caminho_invalido, "O BFS quebrou ao procurar um nó inexistente.")
+
+    def test_bfs_soma_distancias_geodesicas(self) -> None:
+        """
+        [Propósito]: Testar se a soma das distâncias geodésicas (necessária para 
+        o cálculo da Centralidade de Proximidade) conta corretamente os "saltos" da rede.
+        """
+        # 1. Arrange
+        adjacencias = {
+            "A": {"B": 1, "C": 1},
+            "B": {"A": 1, "D": 1},
+            "C": {"A": 1},
+            "D": {"B": 1}
+        }
+        # Distâncias a partir do nó "A":
+        # A -> A = 0
+        # A -> B = 1 salto
+        # A -> C = 1 salto
+        # A -> D = 2 saltos (A -> B -> D)
+        # SOMA TOTAL = 4
+        
+        # 2. Act
+        soma = soma_distancias_geodesicas_bfs(adjacencias, "A")
+        
+        # 3. Assert
+        self.assertEqual(soma, 4, "A soma das distâncias geodésicas iterativas falhou.")
 
 
 if __name__ == '__main__':

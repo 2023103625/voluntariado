@@ -1282,38 +1282,64 @@ class MenuTerminal:
 
             elif op == "1":
                 print("\n--- MATRIZ DE LIGAÇÕES DA REDE ---")
-                dados = []
+                
+                # 1. Definir a largura total e imprimir o cabeçalho da tabela ASCII
+                largura_tabela = 115
+                print("=" * largura_tabela)
+                print("| {:<25} | {:<25} | {:>4} | {:<47} |".format(
+                    "Entidade", 
+                    "Ligada a", 
+                    "Peso", 
+                    "Ações em Comum"
+                ))
+                print("=" * largura_tabela)
+
+                # 2. Percorrer o grafo (dicionário de adjacências)
                 for no, vizinhos in grafo.adjacencias.items():
+                    # Formatar o nome do nó e cortar se for maior que 25 caracteres
+                    nome_no = no.title()
+                    if len(nome_no) > 25:
+                        nome_no = nome_no[:22] + "..."
+
                     if not vizinhos:
-                        dados.append([no.title(), "Isolada", "-"])
+                        # Entidade isolada (sem ligações)
+                        print("| {:<25} | {:<25} | {:>4} | {:<47} |".format(
+                            nome_no, "-", "-", "-"
+                        ))
                     else:
-                        conexoes_lista = []
-                        acoes_comum_lista = []
-                        
                         for viz, peso in vizinhos.items():
-                            conexoes_lista.append(f"{viz.title()} (peso {peso})")
-                            
-                            # Procurar os títulos das ações em comum entre 'no' e 'viz' 
+                            # Formatar o nome do vizinho com limite de caracteres
+                            nome_viz = viz.title()
+                            if len(nome_viz) > 25:
+                                nome_viz = nome_viz[:22] + "..."
+
+                            # 3. Procurar as ações em comum (a tua lógica atual)
                             acoes_partilhadas = []
                             for acao in self.sistema.acoes.values():
                                 entidades_acao_lower = {e.lower() for e in acao.entidades}
                                 if no.lower() in entidades_acao_lower and viz.lower() in entidades_acao_lower:
                                     acoes_partilhadas.append(acao.titulo)
-                                    
+                            
+                            # 4. Formatar o texto das ações
                             if acoes_partilhadas:
-                                # Formata o texto: Com Entidade B: Ação 1, Ação 2
-                                acoes_comum_lista.append(f"Com {viz.title()}: {', '.join(acoes_partilhadas)}")
+                                texto_acoes = ", ".join(acoes_partilhadas)
                             else:
-                                # Caso a ligação tenha sido criada manualmente sem ações no sistema
-                                acoes_comum_lista.append(f"Com {viz.title()}: (Ligação Manual)")
-                                
-                        dados.append([
-                            no.title(), 
-                            " \n ".join(conexoes_lista), 
-                            " \n ".join(acoes_comum_lista)
-                        ])
+                                texto_acoes = "(Ligação Manual)"
+                            
+                            # Evitar que o texto longo desalinhe a tabela (limite de 47 caracteres)
+                            if len(texto_acoes) > 47:
+                                texto_acoes = texto_acoes[:44] + "..."
+
+                            # 5. Imprimir a linha formatada da nossa tabela ASCII
+                            print("| {:<25} | {:<25} | {:>4} | {:<47} |".format(
+                                nome_no,
+                                nome_viz,
+                                peso,
+                                texto_acoes
+                            ))
                 
-                self._imprimir_tabela(["Entidade (Nó)", "Ligações (Arestas e Pesos)", "Ações em Comum (Títulos)"], dados)
+                # Fechar a tabela
+                print("=" * largura_tabela)
                 input("\nPrima ENTER para continuar.")
 
             elif op == "2":
